@@ -1,0 +1,44 @@
+{
+  "run_id": "run_894761cb7c674ac19dbd42bf115980eb",
+  "client_id": "SCENARIO2_DEMO",
+  "test_id": "WC-04",
+  "test_name": "Inventory & Stock Economics",
+  "core_question": "How much cash is tied up in stock, which inventory is genuinely needed, which is moving too slowly or becoming obsolete, and how much cash could realistically be released without putting sales or customer service at risk?",
+  "objective": "Measure evidenced inventory and DIO without equating inventory balance with releasable cash.",
+  "eligibility_state": "FULL",
+  "execution_status": "COMPLETED",
+  "method_id": "PRIMITIVE_OR_LEDGER_BASED",
+  "limitation": null,
+  "signals": [
+    {
+      "signal_id": "sig_5374433bb23e446998b4a508dce420a0",
+      "test_id": "WC-04",
+      "test_name": "Inventory & Stock Economics",
+      "core_question": "How much cash is tied up in stock, which inventory is genuinely needed, which is moving too slowly or becoming obsolete, and how much cash could realistically be released without putting sales or customer service at risk?",
+      "signal_type": "BS_INVENTORY",
+      "entity_type": null,
+      "entity_id": null,
+      "observed_value": "2300000.0",
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "GBP",
+      "materiality_state": "INFORMATIONAL",
+      "evidence_summary": "BS_INVENTORY = 2300000.0 GBP. Inventory value or DIO is not the same as safely releasable cash; service level, replenishment, obsolescence and practical stock requirement must be evidenced."
+    },
+    {
+      "signal_id": "sig_be4647373a9e4f01a63d81fd8e6d5334",
+      "test_id": "WC-04",
+      "test_name": "Inventory & Stock Economics",
+      "core_question": "How much cash is tied up in stock, which inventory is genuinely needed, which is moving too slowly or becoming obsolete, and how much cash could realistically be released without putting sales or customer service at risk?",
+      "signal_type": "WC_DIO",
+      "entity_type": null,
+      "entity_id": null,
+      "observed_value": "81.07907116897767047687504330",
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "DAYS",
+      "materiality_state": "INFORMATIONAL",
+      "evidence_summary": "WC_DIO = 81.07907116897767047687504330 DAYS. Inventory value or DIO is not the same as safely releasable cash; service level, replenishment, obsolescence and practical stock requirement must be evidenced."
+    }
+  ]
+}

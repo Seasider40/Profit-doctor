@@ -1,0 +1,558 @@
+{
+  "spec_version": "MOS-2.33",
+  "api_version": "PVM-2.34",
+  "run_id": "run_894761cb7c674ac19dbd42bf115980eb",
+  "client_id": "SCENARIO2_DEMO",
+  "section_order": [
+    "EXECUTIVE_HEALTH_CHECK",
+    "MANAGEMENT_ATTENTION",
+    "PROFIT_CASH_OPPORTUNITY_REGISTER",
+    "PERFORMANCE_DIAGNOSTICS",
+    "RECOMMENDED_ACTIONS",
+    "DATA_MI_MATURITY",
+    "BENEFIT_PROGRESS",
+    "EVIDENCE_AND_LIMITATIONS"
+  ],
+  "executive_health_check": {
+    "headline": "Management review generated from evidenced data",
+    "kpis": [
+      {
+        "label": "Revenue",
+        "value": "15000000.0",
+        "unit": "GBP",
+        "primitive_id": "FIN_REVENUE"
+      },
+      {
+        "label": "Gross profit",
+        "value": "4645910.00000000016",
+        "unit": "GBP",
+        "primitive_id": "FIN_GROSS_PROFIT"
+      },
+      {
+        "label": "EBITDA",
+        "value": "-520089.999999999809",
+        "unit": "GBP",
+        "primitive_id": "FIN_EBITDA"
+      },
+      {
+        "label": "Available cash",
+        "value": "95000.0",
+        "unit": "GBP",
+        "primitive_id": "AVAILABLE_CASH"
+      },
+      {
+        "label": "DSO",
+        "value": "83.95",
+        "unit": "DAYS",
+        "primitive_id": "WC_DSO"
+      },
+      {
+        "label": "DIO",
+        "value": "81.07907116897767047687504330",
+        "unit": "DAYS",
+        "primitive_id": "WC_DIO"
+      },
+      {
+        "label": "DPO",
+        "value": "60.28052682563122457193753216",
+        "unit": "DAYS",
+        "primitive_id": "WC_DPO"
+      },
+      {
+        "label": "Cash conversion cycle",
+        "value": "104.7485443433464459049375111",
+        "unit": "DAYS",
+        "primitive_id": "WC_CCC"
+      }
+    ],
+    "diagnostic_coverage": {
+      "completed": 18,
+      "total": 56,
+      "not_completed": 38
+    },
+    "control_failures": 4,
+    "guardrail": "Health Check is a decision summary, not a universal score or rating."
+  },
+  "management_attention": [
+    {
+      "rank": 1,
+      "theme": "FINANCIAL_INTEGRITY",
+      "title": "Resolve financial control-account discrepancies",
+      "issue_type": "RISK",
+      "priority": "HIGH",
+      "confidence": "HIGH",
+      "management_question": "Which balances are reliable enough to manage the business from?",
+      "rationale": "4 independently assessed reconciliation control(s) failed. Residuals are control exceptions, not assumed losses: UWB_AR_TO_TB: 982806.0, UWB_AP_TO_TB: -279000.0, UWB_INVENTORY_TO_SUPPORT: 120000.0, UWB_DEBT_TO_SUPPORT: -125000.0.",
+      "next_step": "Reconcile each failed control to source records, identify timing/classification differences and document resolution.",
+      "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection."
+    },
+    {
+      "rank": 2,
+      "theme": "CUSTOMER_ECONOMICS",
+      "title": "Customer economics and concentration deserve review",
+      "issue_type": "INSIGHT",
+      "priority": "HIGH",
+      "confidence": "MEDIUM",
+      "management_question": "Which customer relationships create value and where is dependency material?",
+      "rationale": "3 material signal(s) across CUS-01, CUS-02 support one management theme. Related signals are compressed without deleting their underlying evidence.",
+      "next_step": "Review contribution, concentration and commercial context for the customers driving the evidence.",
+      "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection."
+    },
+    {
+      "rank": 3,
+      "theme": "SUPPLIER_DEPENDENCY",
+      "title": "Supplier spend concentration requires commercial review",
+      "issue_type": "RISK",
+      "priority": "HIGH",
+      "confidence": "MEDIUM",
+      "management_question": "Where does supplier concentration create dependency or negotiating exposure?",
+      "rationale": "6 material signal(s) across SUP-01, SUP-03 support one management theme. Related signals are compressed without deleting their underlying evidence.",
+      "next_step": "Review critical suppliers, alternatives, contract terms and operational substitutability before assigning risk value.",
+      "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection."
+    },
+    {
+      "rank": 4,
+      "theme": "CAPACITY_CONSTRAINT",
+      "title": "Operational capacity appears constrained",
+      "issue_type": "INSIGHT",
+      "priority": "MEDIUM",
+      "confidence": "MEDIUM",
+      "management_question": "Which work centres are genuinely capacity constrained and what is driving the load?",
+      "rationale": "1 material signal(s) across PEO-04 support one management theme. Related signals are compressed without deleting their underlying evidence.",
+      "next_step": "Validate hours and constraints, then test overtime, bottlenecks, scheduling, mix and investment options before monetising.",
+      "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection."
+    },
+    {
+      "rank": 5,
+      "theme": "WORKING_CAPITAL",
+      "title": "Working capital requires focused investigation",
+      "issue_type": "INSIGHT",
+      "priority": "MEDIUM",
+      "confidence": "HIGH",
+      "management_question": "What portion of working capital is genuinely addressable without harming operations?",
+      "rationale": "2 material signal(s) across WC-06, WC-07 support one management theme. Related signals are compressed without deleting their underlying evidence.",
+      "next_step": "Investigate the underlying balances, causes, timing and operational guardrails before estimating cash release.",
+      "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection."
+    }
+  ],
+  "opportunity_register": {
+    "items": [
+      {
+        "theme": "FINANCIAL_INTEGRITY",
+        "purpose": "PROTECT",
+        "benefit_type": "B6_RISK_MITIGATION",
+        "availability": "CONDITIONAL",
+        "economic_state": "EVIDENCE_REQUIRED",
+        "currency": "GBP",
+        "theoretical": null,
+        "addressable": null,
+        "expected": null,
+        "recommended_action": "Reconcile failed control balances to source records and resolve timing, classification and posting differences.",
+        "evidence_required": "Underlying ledger detail, control-account roll-forward and documented reconciling items.",
+        "limitation": "Reconciliation residuals are control exceptions, not losses, savings or cash opportunities."
+      },
+      {
+        "theme": "CUSTOMER_ECONOMICS",
+        "purpose": "IMPROVE",
+        "benefit_type": "B1_RECURRING_PROFIT_IMPROVEMENT",
+        "availability": "CONDITIONAL",
+        "economic_state": "CANDIDATE_UNQUANTIFIED",
+        "currency": "GBP",
+        "theoretical": null,
+        "addressable": null,
+        "expected": null,
+        "recommended_action": "Review concentrated and low-contribution customer relationships; identify price, mix, service or retention interventions only where mechanism evidence exists.",
+        "evidence_required": "Customer/product mix, price history, direct cost and where available cost-to-serve evidence.",
+        "limitation": "No monetary opportunity is supported from this management priority without mechanism, addressability and recovery-envelope evidence."
+      },
+      {
+        "theme": "SUPPLIER_DEPENDENCY",
+        "purpose": "PROTECT",
+        "benefit_type": "B6_RISK_MITIGATION",
+        "availability": "CONDITIONAL",
+        "economic_state": "EVIDENCE_REQUIRED",
+        "currency": "GBP",
+        "theoretical": null,
+        "addressable": null,
+        "expected": null,
+        "recommended_action": "Review concentrated suppliers for criticality, alternatives, terms and negotiation opportunities.",
+        "evidence_required": "Contracts, item-level purchases/prices, alternative-source evidence and operational criticality.",
+        "limitation": "No monetary opportunity is supported from this management priority without mechanism, addressability and recovery-envelope evidence."
+      },
+      {
+        "theme": "CAPACITY_CONSTRAINT",
+        "purpose": "IMPROVE",
+        "benefit_type": "B4_RECURRING_WORKING_CAPITAL_EFFICIENCY",
+        "availability": "CONDITIONAL",
+        "economic_state": "EVIDENCE_REQUIRED",
+        "currency": "GBP",
+        "theoretical": null,
+        "addressable": null,
+        "expected": null,
+        "recommended_action": "Validate bottleneck load and test scheduling, overtime, mix, process and investment alternatives before monetising.",
+        "evidence_required": "Validated practical capacity, productive hours, overtime, throughput, scrap/downtime and contribution at constraint.",
+        "limitation": "Capacity released or data corrected is not a saving unless an evidenced economic use or avoided cost is demonstrated."
+      },
+      {
+        "theme": "WORKING_CAPITAL",
+        "purpose": "RELEASE",
+        "benefit_type": "B3_ONE_OFF_CASH_RELEASE",
+        "availability": "CONDITIONAL",
+        "economic_state": "EVIDENCE_REQUIRED",
+        "currency": "GBP",
+        "theoretical": null,
+        "addressable": null,
+        "expected": null,
+        "recommended_action": "Identify genuinely addressable receivables, payables and inventory actions subject to operational guardrails.",
+        "evidence_required": "Invoice/aging detail, disputes/credits, supplier terms, stock aging/service-level evidence and cash timing.",
+        "limitation": "No monetary opportunity is supported from this management priority without mechanism, addressability and recovery-envelope evidence."
+      }
+    ],
+    "portfolio_headline": {
+      "recurring_profit_expected": null,
+      "one_off_cash_release_expected": null,
+      "combined_total": null,
+      "rule": "Profit and cash are non-additive; no combined headline benefit is permitted."
+    }
+  },
+  "performance_diagnostics": {
+    "completed": [
+      "CUS-01",
+      "CUS-02",
+      "CUS-07",
+      "PEO-01",
+      "PEO-03",
+      "PEO-04",
+      "RISK-01",
+      "RISK-02",
+      "RISK-04",
+      "SUP-01",
+      "SUP-03",
+      "WC-01",
+      "WC-02",
+      "WC-03",
+      "WC-04",
+      "WC-05",
+      "WC-06",
+      "WC-07"
+    ],
+    "partial": [
+      "CUS-01",
+      "CUS-02",
+      "CUS-07",
+      "PEO-04",
+      "RISK-02",
+      "SUP-01",
+      "SUP-03"
+    ],
+    "unavailable": [
+      {
+        "test_id": "CUS-03",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "CUS-04",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "CUS-05",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "CUS-06",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "FCST-01",
+        "limitation": "Required D13/KPI evidence unavailable"
+      },
+      {
+        "test_id": "FCST-02",
+        "limitation": "Required D13/KPI evidence unavailable"
+      },
+      {
+        "test_id": "FCST-03",
+        "limitation": "Required D13/KPI evidence unavailable"
+      },
+      {
+        "test_id": "FCST-04",
+        "limitation": "Required D13/KPI evidence unavailable"
+      },
+      {
+        "test_id": "GM-01",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "GM-02",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "GM-03",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "GM-04",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "GM-05",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "GM-06",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "GM-07",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "PEO-02",
+        "limitation": "Revenue/contribution per FTE requires D07 sales evidence"
+      },
+      {
+        "test_id": "PEO-05",
+        "limitation": "No evidenced workforce optimisation candidate"
+      },
+      {
+        "test_id": "PRI-01",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "PRI-02",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "PRI-03",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "PRI-04",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "PRI-05",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "PROD-01",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "PROD-02",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "PROD-03",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "PROD-04",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "PROD-05",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "REV-01",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "REV-02",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "REV-03",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "REV-04",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "REV-05",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "REV-06",
+        "limitation": "D07 unavailable"
+      },
+      {
+        "test_id": "RISK-03",
+        "limitation": "No explicit or diagnostic exposure evidence available"
+      },
+      {
+        "test_id": "SUP-02",
+        "limitation": "Comparable item/unit-cost evidence unavailable"
+      },
+      {
+        "test_id": "SUP-04",
+        "limitation": "Overhead transaction evidence unavailable"
+      },
+      {
+        "test_id": "SUP-05",
+        "limitation": "No duplicate-looking spend identified"
+      },
+      {
+        "test_id": "SUP-06",
+        "limitation": "No evidenced supplier/overhead candidate"
+      }
+    ]
+  },
+  "recommended_actions": [
+    {
+      "theme": "FINANCIAL_INTEGRITY",
+      "action_type": "CONTROL_REMEDIATION",
+      "recommended_action": "Reconcile failed control balances to source records and resolve timing, classification and posting differences.",
+      "evidence_required": "Underlying ledger detail, control-account roll-forward and documented reconciling items.",
+      "owner_role": "FD/Management",
+      "state": "PROPOSED",
+      "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+    },
+    {
+      "theme": "CUSTOMER_ECONOMICS",
+      "action_type": "COMMERCIAL_REVIEW",
+      "recommended_action": "Review concentrated and low-contribution customer relationships; identify price, mix, service or retention interventions only where mechanism evidence exists.",
+      "evidence_required": "Customer/product mix, price history, direct cost and where available cost-to-serve evidence.",
+      "owner_role": "FD/Management",
+      "state": "PROPOSED",
+      "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+    },
+    {
+      "theme": "SUPPLIER_DEPENDENCY",
+      "action_type": "SUPPLIER_REVIEW",
+      "recommended_action": "Review concentrated suppliers for criticality, alternatives, terms and negotiation opportunities.",
+      "evidence_required": "Contracts, item-level purchases/prices, alternative-source evidence and operational criticality.",
+      "owner_role": "FD/Management",
+      "state": "PROPOSED",
+      "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+    },
+    {
+      "theme": "CAPACITY_CONSTRAINT",
+      "action_type": "CAPACITY_REVIEW",
+      "recommended_action": "Validate bottleneck load and test scheduling, overtime, mix, process and investment alternatives before monetising.",
+      "evidence_required": "Validated practical capacity, productive hours, overtime, throughput, scrap/downtime and contribution at constraint.",
+      "owner_role": "FD/Management",
+      "state": "PROPOSED",
+      "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+    },
+    {
+      "theme": "WORKING_CAPITAL",
+      "action_type": "WORKING_CAPITAL_REVIEW",
+      "recommended_action": "Identify genuinely addressable receivables, payables and inventory actions subject to operational guardrails.",
+      "evidence_required": "Invoice/aging detail, disputes/credits, supplier terms, stock aging/service-level evidence and cash timing.",
+      "owner_role": "FD/Management",
+      "state": "PROPOSED",
+      "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+    }
+  ],
+  "data_mi_maturity": {
+    "control_reconciliations": [
+      {
+        "reconciliation_type": "UWB_AR_TO_TB",
+        "status": "FAILED",
+        "residual": "982806.0",
+        "left_object": "ACCOUNTING_CONTROL",
+        "right_object": "SUPPORTING_SCHEDULE",
+        "left_value": "3450000.0",
+        "right_value": "2467194.0",
+        "limitation": null
+      },
+      {
+        "reconciliation_type": "UWB_AP_TO_TB",
+        "status": "FAILED",
+        "residual": "-279000.0",
+        "left_object": "ACCOUNTING_CONTROL",
+        "right_object": "SUPPORTING_SCHEDULE",
+        "left_value": "1710000.0",
+        "right_value": "1989000.0",
+        "limitation": null
+      },
+      {
+        "reconciliation_type": "UWB_INVENTORY_TO_SUPPORT",
+        "status": "FAILED",
+        "residual": "120000.0",
+        "left_object": "ACCOUNTING_CONTROL",
+        "right_object": "SUPPORTING_SCHEDULE",
+        "left_value": "2300000.0",
+        "right_value": "2180000.0",
+        "limitation": "independently recalculated from TB and supporting amount; embedded status ignored"
+      },
+      {
+        "reconciliation_type": "UWB_DEBT_TO_SUPPORT",
+        "status": "FAILED",
+        "residual": "-125000.0",
+        "left_object": "ACCOUNTING_CONTROL",
+        "right_object": "SUPPORTING_SCHEDULE",
+        "left_value": "2535000.0",
+        "right_value": "2660000.0",
+        "limitation": "independently recalculated from TB borrowing accounts; embedded status ignored"
+      }
+    ],
+    "coverage": {
+      "completed": 18,
+      "total": 56,
+      "not_completed": 38
+    },
+    "message": "Data quality, financial integrity, diagnostic coverage and analytical confidence remain distinct concepts."
+  },
+  "benefit_progress": {
+    "status": "NO_LONGITUDINAL_BENEFIT_EVIDENCE_IN_THIS_VIEW",
+    "realised": null,
+    "verified": null,
+    "retained": null,
+    "rule": "Realised, verified and retained benefits require explicit lifecycle evidence; they are not inferred from opportunity values."
+  },
+  "evidence_and_limitations": {
+    "reconciliations": [
+      {
+        "reconciliation_type": "UWB_AR_TO_TB",
+        "status": "FAILED",
+        "residual": "982806.0",
+        "left_object": "ACCOUNTING_CONTROL",
+        "right_object": "SUPPORTING_SCHEDULE",
+        "left_value": "3450000.0",
+        "right_value": "2467194.0",
+        "limitation": null
+      },
+      {
+        "reconciliation_type": "UWB_AP_TO_TB",
+        "status": "FAILED",
+        "residual": "-279000.0",
+        "left_object": "ACCOUNTING_CONTROL",
+        "right_object": "SUPPORTING_SCHEDULE",
+        "left_value": "1710000.0",
+        "right_value": "1989000.0",
+        "limitation": null
+      },
+      {
+        "reconciliation_type": "UWB_INVENTORY_TO_SUPPORT",
+        "status": "FAILED",
+        "residual": "120000.0",
+        "left_object": "ACCOUNTING_CONTROL",
+        "right_object": "SUPPORTING_SCHEDULE",
+        "left_value": "2300000.0",
+        "right_value": "2180000.0",
+        "limitation": "independently recalculated from TB and supporting amount; embedded status ignored"
+      },
+      {
+        "reconciliation_type": "UWB_DEBT_TO_SUPPORT",
+        "status": "FAILED",
+        "residual": "-125000.0",
+        "left_object": "ACCOUNTING_CONTROL",
+        "right_object": "SUPPORTING_SCHEDULE",
+        "left_value": "2535000.0",
+        "right_value": "2660000.0",
+        "limitation": "independently recalculated from TB borrowing accounts; embedded status ignored"
+      }
+    ],
+    "principles": [
+      "Observed evidence is separated from interpretation and opportunity.",
+      "Exposure is not expected loss.",
+      "Cash release is not profit.",
+      "Capacity released is not a saving without evidenced economic use.",
+      "Unavailable evidence remains unavailable rather than being invented."
+    ]
+  }
+}

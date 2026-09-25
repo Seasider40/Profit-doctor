@@ -1,0 +1,13 @@
+{
+  "run_id": "run_894761cb7c674ac19dbd42bf115980eb",
+  "client_id": "SCENARIO2_DEMO",
+  "test_id": "RISK-02",
+  "test_name": "Transaction, Process & Control Exception Intelligence",
+  "core_question": "Where are unusual transactions, repeated exceptions or weaknesses in financial processes creating unnecessary risk — and which items genuinely need management attention or investigation?",
+  "objective": "Surface evidenced control/process exceptions while keeping anomaly, error, misconduct and loss distinct.",
+  "eligibility_state": "PARTIAL-A",
+  "execution_status": "COMPLETED",
+  "method_id": "L1_EXCEPTION_SYNTHESIS",
+  "limitation": "No material exception evidence identified in available sources",
+  "signals": []
+}

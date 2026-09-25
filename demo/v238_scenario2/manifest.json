@@ -1,0 +1,994 @@
+{
+  "demo_version": "UDR-2.37",
+  "created_at": "2026-09-25T17:23:07.416744+00:00",
+  "run_id": "run_88960505854545ad8b945cde3e434ee5",
+  "client_id": "V238_DEMO",
+  "source": {
+    "original_name": "uploaded_source.xlsx",
+    "stored_name": "uploaded_source.xlsx",
+    "sha256": "ab0d260fccec7fab83b9e9a0eafb9c40147118bb0d99e2015776c40067963a5a"
+  },
+  "pipeline": [
+    "UPLOAD",
+    "INTAKE_PROFILE",
+    "SEMANTIC_MAPPING",
+    "RECONCILIATION",
+    "CANONICAL_HANDOFF",
+    "PRIMITIVES",
+    "DIAGNOSTICS",
+    "FD_REASONING",
+    "ECONOMIC_ENGINE",
+    "MANAGEMENT_ATTENTION",
+    "OPPORTUNITY_REGISTER",
+    "PRODUCT_VIEW"
+  ],
+  "intake": {
+    "profile": {
+      "file": "uploaded_source.xlsx",
+      "sheet_count": 9,
+      "sheets": [
+        {
+          "sheet": "Assumptions",
+          "rows": 12,
+          "columns": 4,
+          "header_row": 3,
+          "headers": [
+            "Assumption",
+            "Value",
+            "Unit / Comment",
+            "Purpose"
+          ],
+          "domain": "CONTEXT_CONFIG",
+          "formula_cells": 0,
+          "formula_values_missing": 0
+        },
+        {
+          "sheet": "AR Customer Ledger",
+          "rows": 31,
+          "columns": 9,
+          "header_row": 3,
+          "headers": [
+            "Customer",
+            "Annual Sales (£)",
+            "Gross Margin %",
+            "AR Balance (£)",
+            "Debtor Days",
+            "Current (£)",
+            "31–60 (£)",
+            "61–90 / 90+ (£)",
+            "Issue Flag"
+          ],
+          "domain": "D04_AR",
+          "formula_cells": 7,
+          "formula_values_missing": 0
+        },
+        {
+          "sheet": "AP Supplier Ledger",
+          "rows": 20,
+          "columns": 7,
+          "header_row": 3,
+          "headers": [
+            "Supplier",
+            "Annual Purchases (£)",
+            "AP Balance (£)",
+            "Current (£)",
+            "31–60 (£)",
+            "61+ (£)",
+            "Flag"
+          ],
+          "domain": "D05_AP",
+          "formula_cells": 5,
+          "formula_values_missing": 0
+        },
+        {
+          "sheet": "Staff Costs",
+          "rows": 30,
+          "columns": 10,
+          "header_row": 3,
+          "headers": [
+            "Employee",
+            "Role",
+            "Department",
+            "FTE",
+            "Base Salary (£)",
+            "Bonus / OT (£)",
+            "Employer NI (£)",
+            "Pension (£)",
+            "Total Cost (£)",
+            "Direct / Indirect"
+          ],
+          "domain": "D11_WORKFORCE",
+          "formula_cells": 81,
+          "formula_values_missing": 0
+        },
+        {
+          "sheet": "Capacity",
+          "rows": 9,
+          "columns": 10,
+          "header_row": 3,
+          "headers": [
+            "Work Centre",
+            "FTE / Machines",
+            "Available Hrs",
+            "Practical Capacity Hrs",
+            "Budget Load Hrs",
+            "Actual Productive Hrs",
+            "Budget Utilisation %",
+            "Actual Utilisation %",
+            "Gap Hrs",
+            "Flag"
+          ],
+          "domain": "D16_OPERATIONS",
+          "formula_cells": 36,
+          "formula_values_missing": 0
+        },
+        {
+          "sheet": "Management Accounts",
+          "rows": 24,
+          "columns": 14,
+          "header_row": 3,
+          "headers": [
+            "£000 unless stated",
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+            "FY"
+          ],
+          "domain": "D01_PNL",
+          "formula_cells": 126,
+          "formula_values_missing": 0
+        },
+        {
+          "sheet": "Trial Balance",
+          "rows": 38,
+          "columns": 7,
+          "header_row": 3,
+          "headers": [
+            "Code",
+            "Account",
+            "Category",
+            "Debit (£)",
+            "Credit (£)",
+            "Expected Reconciliation",
+            "Issue Note"
+          ],
+          "domain": "D03_TB_GL",
+          "formula_cells": 2,
+          "formula_values_missing": 0
+        },
+        {
+          "sheet": "Reconciliations",
+          "rows": 16,
+          "columns": 7,
+          "header_row": 3,
+          "headers": [
+            "Reconciliation",
+            "GL / Reported (£)",
+            "Subledger / Supporting (£)",
+            "Difference (£)",
+            "Difference %",
+            "Status",
+            "Diagnostic Comment"
+          ],
+          "domain": "CONTROL_EVIDENCE",
+          "formula_cells": 29,
+          "formula_values_missing": 0
+        },
+        {
+          "sheet": "Overview",
+          "rows": 27,
+          "columns": 8,
+          "header_row": 3,
+          "headers": [
+            "Metric",
+            "Value",
+            "Signal",
+            "Source",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "domain": "CONTEXT_CONFIG",
+          "formula_cells": 10,
+          "formula_values_missing": 0
+        }
+      ]
+    },
+    "mappings": [
+      {
+        "sheet": "Assumptions",
+        "domain": "CONTEXT_CONFIG",
+        "columns": [
+          {
+            "column": 1,
+            "header": "Assumption",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          },
+          {
+            "column": 2,
+            "header": "Value",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "NUMBER",
+            "requires_confirmation": true
+          },
+          {
+            "column": 3,
+            "header": "Unit / Comment",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          },
+          {
+            "column": 4,
+            "header": "Purpose",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          }
+        ],
+        "mapping_confidence": 0.0,
+        "requires_human_confirmation": true
+      },
+      {
+        "sheet": "AR Customer Ledger",
+        "domain": "D04_AR",
+        "columns": [
+          {
+            "column": 1,
+            "header": "Customer",
+            "semantic": "entity.customer",
+            "confidence": 1.0,
+            "unit": "TEXT",
+            "requires_confirmation": false
+          },
+          {
+            "column": 2,
+            "header": "Annual Sales (£)",
+            "semantic": "metric.revenue",
+            "confidence": 0.85,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 3,
+            "header": "Gross Margin %",
+            "semantic": "metric.gross_margin_pct",
+            "confidence": 1.0,
+            "unit": "PERCENT",
+            "requires_confirmation": false
+          },
+          {
+            "column": 4,
+            "header": "AR Balance (£)",
+            "semantic": "metric.ar_balance",
+            "confidence": 0.85,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 5,
+            "header": "Debtor Days",
+            "semantic": "metric.debtor_days",
+            "confidence": 1.0,
+            "unit": "DAYS",
+            "requires_confirmation": false
+          },
+          {
+            "column": 6,
+            "header": "Current (£)",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 7,
+            "header": "31–60 (£)",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 8,
+            "header": "61–90 / 90+ (£)",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 9,
+            "header": "Issue Flag",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          }
+        ],
+        "mapping_confidence": 0.556,
+        "requires_human_confirmation": true
+      },
+      {
+        "sheet": "AP Supplier Ledger",
+        "domain": "D05_AP",
+        "columns": [
+          {
+            "column": 1,
+            "header": "Supplier",
+            "semantic": "entity.supplier",
+            "confidence": 1.0,
+            "unit": "TEXT",
+            "requires_confirmation": false
+          },
+          {
+            "column": 2,
+            "header": "Annual Purchases (£)",
+            "semantic": "metric.purchases",
+            "confidence": 0.85,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 3,
+            "header": "AP Balance (£)",
+            "semantic": "metric.ap_balance",
+            "confidence": 0.85,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 4,
+            "header": "Current (£)",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 5,
+            "header": "31–60 (£)",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 6,
+            "header": "61+ (£)",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 7,
+            "header": "Flag",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          }
+        ],
+        "mapping_confidence": 0.429,
+        "requires_human_confirmation": true
+      },
+      {
+        "sheet": "Staff Costs",
+        "domain": "D11_WORKFORCE",
+        "columns": [
+          {
+            "column": 1,
+            "header": "Employee",
+            "semantic": "entity.employee",
+            "confidence": 1.0,
+            "unit": "TEXT",
+            "requires_confirmation": false
+          },
+          {
+            "column": 2,
+            "header": "Role",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          },
+          {
+            "column": 3,
+            "header": "Department",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          },
+          {
+            "column": 4,
+            "header": "FTE",
+            "semantic": "metric.fte",
+            "confidence": 1.0,
+            "unit": "FTE",
+            "requires_confirmation": false
+          },
+          {
+            "column": 5,
+            "header": "Base Salary (£)",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 6,
+            "header": "Bonus / OT (£)",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 7,
+            "header": "Employer NI (£)",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 8,
+            "header": "Pension (£)",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 9,
+            "header": "Total Cost (£)",
+            "semantic": "metric.total_staff_cost",
+            "confidence": 0.85,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 10,
+            "header": "Direct / Indirect",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          }
+        ],
+        "mapping_confidence": 0.3,
+        "requires_human_confirmation": true
+      },
+      {
+        "sheet": "Capacity",
+        "domain": "D16_OPERATIONS",
+        "columns": [
+          {
+            "column": 1,
+            "header": "Work Centre",
+            "semantic": "entity.work_centre",
+            "confidence": 1.0,
+            "unit": "TEXT",
+            "requires_confirmation": false
+          },
+          {
+            "column": 2,
+            "header": "FTE / Machines",
+            "semantic": "metric.fte",
+            "confidence": 1.0,
+            "unit": "FTE",
+            "requires_confirmation": false
+          },
+          {
+            "column": 3,
+            "header": "Available Hrs",
+            "semantic": "metric.available_hours",
+            "confidence": 1.0,
+            "unit": "HOURS",
+            "requires_confirmation": false
+          },
+          {
+            "column": 4,
+            "header": "Practical Capacity Hrs",
+            "semantic": "metric.practical_capacity_hours",
+            "confidence": 1.0,
+            "unit": "HOURS",
+            "requires_confirmation": false
+          },
+          {
+            "column": 5,
+            "header": "Budget Load Hrs",
+            "semantic": "metric.planned_load_hours",
+            "confidence": 1.0,
+            "unit": "HOURS",
+            "requires_confirmation": false
+          },
+          {
+            "column": 6,
+            "header": "Actual Productive Hrs",
+            "semantic": "metric.actual_productive_hours",
+            "confidence": 1.0,
+            "unit": "HOURS",
+            "requires_confirmation": false
+          },
+          {
+            "column": 7,
+            "header": "Budget Utilisation %",
+            "semantic": "metric.utilisation_pct",
+            "confidence": 1.0,
+            "unit": "PERCENT",
+            "requires_confirmation": false
+          },
+          {
+            "column": 8,
+            "header": "Actual Utilisation %",
+            "semantic": "metric.utilisation_pct",
+            "confidence": 1.0,
+            "unit": "PERCENT",
+            "requires_confirmation": false
+          },
+          {
+            "column": 9,
+            "header": "Gap Hrs",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "HOURS",
+            "requires_confirmation": true
+          },
+          {
+            "column": 10,
+            "header": "Flag",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          }
+        ],
+        "mapping_confidence": 0.8,
+        "requires_human_confirmation": true
+      },
+      {
+        "sheet": "Management Accounts",
+        "domain": "D01_PNL",
+        "columns": [
+          {
+            "column": 1,
+            "header": "£000 unless stated",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 2,
+            "header": "Jan",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "NUMBER",
+            "requires_confirmation": true
+          },
+          {
+            "column": 3,
+            "header": "Feb",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "NUMBER",
+            "requires_confirmation": true
+          },
+          {
+            "column": 4,
+            "header": "Mar",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "NUMBER",
+            "requires_confirmation": true
+          },
+          {
+            "column": 5,
+            "header": "Apr",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "NUMBER",
+            "requires_confirmation": true
+          },
+          {
+            "column": 6,
+            "header": "May",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "NUMBER",
+            "requires_confirmation": true
+          },
+          {
+            "column": 7,
+            "header": "Jun",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "NUMBER",
+            "requires_confirmation": true
+          },
+          {
+            "column": 8,
+            "header": "Jul",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "NUMBER",
+            "requires_confirmation": true
+          },
+          {
+            "column": 9,
+            "header": "Aug",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "NUMBER",
+            "requires_confirmation": true
+          },
+          {
+            "column": 10,
+            "header": "Sep",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "NUMBER",
+            "requires_confirmation": true
+          },
+          {
+            "column": 11,
+            "header": "Oct",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "NUMBER",
+            "requires_confirmation": true
+          },
+          {
+            "column": 12,
+            "header": "Nov",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "NUMBER",
+            "requires_confirmation": true
+          },
+          {
+            "column": 13,
+            "header": "Dec",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "NUMBER",
+            "requires_confirmation": true
+          },
+          {
+            "column": 14,
+            "header": "FY",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "NUMBER",
+            "requires_confirmation": true
+          }
+        ],
+        "mapping_confidence": 0.0,
+        "requires_human_confirmation": true
+      },
+      {
+        "sheet": "Trial Balance",
+        "domain": "D03_TB_GL",
+        "columns": [
+          {
+            "column": 1,
+            "header": "Code",
+            "semantic": "account.code",
+            "confidence": 1.0,
+            "unit": "TEXT",
+            "requires_confirmation": false
+          },
+          {
+            "column": 2,
+            "header": "Account",
+            "semantic": "account.name",
+            "confidence": 1.0,
+            "unit": "TEXT",
+            "requires_confirmation": false
+          },
+          {
+            "column": 3,
+            "header": "Category",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          },
+          {
+            "column": 4,
+            "header": "Debit (£)",
+            "semantic": "account.debit",
+            "confidence": 1.0,
+            "unit": "GBP",
+            "requires_confirmation": false
+          },
+          {
+            "column": 5,
+            "header": "Credit (£)",
+            "semantic": "account.credit",
+            "confidence": 1.0,
+            "unit": "GBP",
+            "requires_confirmation": false
+          },
+          {
+            "column": 6,
+            "header": "Expected Reconciliation",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          },
+          {
+            "column": 7,
+            "header": "Issue Note",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          }
+        ],
+        "mapping_confidence": 0.571,
+        "requires_human_confirmation": true
+      },
+      {
+        "sheet": "Reconciliations",
+        "domain": "CONTROL_EVIDENCE",
+        "columns": [
+          {
+            "column": 1,
+            "header": "Reconciliation",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          },
+          {
+            "column": 2,
+            "header": "GL / Reported (£)",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 3,
+            "header": "Subledger / Supporting (£)",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 4,
+            "header": "Difference (£)",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "GBP",
+            "requires_confirmation": true
+          },
+          {
+            "column": 5,
+            "header": "Difference %",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "PERCENT",
+            "requires_confirmation": true
+          },
+          {
+            "column": 6,
+            "header": "Status",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          },
+          {
+            "column": 7,
+            "header": "Diagnostic Comment",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          }
+        ],
+        "mapping_confidence": 0.0,
+        "requires_human_confirmation": true
+      },
+      {
+        "sheet": "Overview",
+        "domain": "CONTEXT_CONFIG",
+        "columns": [
+          {
+            "column": 1,
+            "header": "Metric",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          },
+          {
+            "column": 2,
+            "header": "Value",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "NUMBER",
+            "requires_confirmation": true
+          },
+          {
+            "column": 3,
+            "header": "Signal",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          },
+          {
+            "column": 4,
+            "header": "Source",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          },
+          {
+            "column": 5,
+            "header": "",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          },
+          {
+            "column": 6,
+            "header": "",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          },
+          {
+            "column": 7,
+            "header": "",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          },
+          {
+            "column": 8,
+            "header": "",
+            "semantic": null,
+            "confidence": 0.0,
+            "unit": "TEXT",
+            "requires_confirmation": true
+          }
+        ],
+        "mapping_confidence": 0.0,
+        "requires_human_confirmation": true
+      }
+    ],
+    "reconciliations": [
+      {
+        "control": "AR_TO_TB",
+        "gl": 3450000.0,
+        "supporting": 2467194.0,
+        "difference": 982806.0,
+        "status": "FAIL"
+      },
+      {
+        "control": "AP_TO_TB",
+        "gl": 1710000.0,
+        "supporting": 1989000.0,
+        "difference": -279000.0,
+        "status": "FAIL"
+      },
+      {
+        "control": "INVENTORY_TO_SUPPORT",
+        "gl": 2300000.0,
+        "supporting": 2180000.0,
+        "difference": 120000.0,
+        "status": "FAIL",
+        "basis": "independently recalculated from TB and supporting amount; embedded status ignored"
+      },
+      {
+        "control": "DEBT_TO_SUPPORT",
+        "gl": 2535000.0,
+        "supporting": 2660000.0,
+        "difference": -125000.0,
+        "status": "FAIL",
+        "basis": "independently recalculated from TB borrowing accounts; embedded status ignored"
+      }
+    ],
+    "canonical_domains": {
+      "D04_AR": 26,
+      "D05_AP": 15,
+      "D11_WORKFORCE": 25,
+      "D16_OPERATIONS": 6
+    },
+    "available_domains": [
+      "D01_PNL",
+      "D03_TB_GL",
+      "D04_AR",
+      "D05_AP",
+      "D11_WORKFORCE",
+      "D16_OPERATIONS"
+    ],
+    "integrity_state": "MATERIALLY_CONSTRAINED",
+    "failed_controls": [
+      "AR_TO_TB",
+      "AP_TO_TB",
+      "INVENTORY_TO_SUPPORT",
+      "DEBT_TO_SUPPORT"
+    ]
+  },
+  "canonical": {
+    "pnl_rows": 48,
+    "bs_rows": 4,
+    "tb_rows": 33,
+    "workforce_rows": 25
+  },
+  "diagnostics": {
+    "completed": 18,
+    "not_run": 38,
+    "total": 56,
+    "signals": 79,
+    "findings": 20
+  },
+  "outputs": {
+    "upload_readiness": "upload_readiness.json",
+    "review": "review.json",
+    "priority_details": [
+      "priority_01_financial_integrity.json",
+      "priority_02_customer_economics.json",
+      "priority_03_supplier_dependency.json",
+      "priority_04_capacity_constraint.json",
+      "priority_05_working_capital.json"
+    ],
+    "diagnostic_details": [
+      "diagnostic_cus-01.json",
+      "diagnostic_cus-02.json",
+      "diagnostic_cus-07.json",
+      "diagnostic_peo-01.json",
+      "diagnostic_peo-03.json",
+      "diagnostic_peo-04.json",
+      "diagnostic_risk-01.json",
+      "diagnostic_risk-02.json",
+      "diagnostic_risk-04.json",
+      "diagnostic_sup-01.json",
+      "diagnostic_sup-03.json",
+      "diagnostic_wc-01.json",
+      "diagnostic_wc-02.json",
+      "diagnostic_wc-03.json",
+      "diagnostic_wc-04.json",
+      "diagnostic_wc-05.json",
+      "diagnostic_wc-06.json",
+      "diagnostic_wc-07.json"
+    ],
+    "database": "profit_doctor_demo.db"
+  },
+  "guardrails": [
+    "Product outputs are projections of persisted engine evidence.",
+    "No reconciliation residual is converted into a saving or loss.",
+    "Cash release and profit are not added together.",
+    "Unavailable evidence remains unavailable; the demo does not invent precision."
+  ]
+}

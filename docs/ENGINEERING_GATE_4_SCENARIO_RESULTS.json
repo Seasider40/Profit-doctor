@@ -1,0 +1,96 @@
+{
+  "micro": {
+    "registered": 56,
+    "completed": 41,
+    "not_completed": 15,
+    "signals": 200,
+    "findings": 40,
+    "stories": 40,
+    "reconciliations": {
+      "SALES_TO_PNL_REVENUE": "RECONCILED",
+      "AR_LEDGER_TO_BS": "RECONCILED",
+      "AP_LEDGER_TO_BS": "RECONCILED",
+      "BANK_TO_BS_CASH": "RECONCILED"
+    },
+    "not_completed_ids": [
+      "PEO-01",
+      "PEO-02",
+      "PEO-03",
+      "PEO-04",
+      "PEO-05",
+      "SUP-01",
+      "SUP-02",
+      "SUP-03",
+      "SUP-04",
+      "SUP-05",
+      "SUP-06",
+      "FCST-01",
+      "FCST-02",
+      "FCST-03",
+      "FCST-04"
+    ]
+  },
+  "mid": {
+    "registered": 56,
+    "completed": 41,
+    "not_completed": 15,
+    "signals": 214,
+    "findings": 28,
+    "stories": 28,
+    "reconciliations": {
+      "SALES_TO_PNL_REVENUE": "RECONCILED",
+      "AR_LEDGER_TO_BS": "RECONCILED",
+      "AP_LEDGER_TO_BS": "RECONCILED",
+      "BANK_TO_BS_CASH": "RECONCILED"
+    },
+    "not_completed_ids": [
+      "PEO-01",
+      "PEO-02",
+      "PEO-03",
+      "PEO-04",
+      "PEO-05",
+      "SUP-01",
+      "SUP-02",
+      "SUP-03",
+      "SUP-04",
+      "SUP-05",
+      "SUP-06",
+      "FCST-01",
+      "FCST-02",
+      "FCST-03",
+      "FCST-04"
+    ]
+  },
+  "large": {
+    "registered": 56,
+    "completed": 40,
+    "not_completed": 16,
+    "signals": 205,
+    "findings": 27,
+    "stories": 27,
+    "reconciliations": {
+      "SALES_TO_PNL_REVENUE": "RECONCILED",
+      "AR_LEDGER_TO_BS": "RECONCILED",
+      "AP_LEDGER_TO_BS": "RECONCILED",
+      "BANK_TO_BS_CASH": "RECONCILED"
+    },
+    "not_completed_ids": [
+      "PRI-05",
+      "PEO-01",
+      "PEO-02",
+      "PEO-03",
+      "PEO-04",
+      "PEO-05",
+      "SUP-01",
+      "SUP-02",
+      "SUP-03",
+      "SUP-04",
+      "SUP-05",
+      "SUP-06",
+      "FCST-01",
+      "FCST-02",
+      "FCST-03",
+      "FCST-04"
+    ]
+  }
+}

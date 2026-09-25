@@ -1,0 +1,6 @@
+customer_id,customer_name,segment,size
+C1,Anchor Client,Enterprise,Mid
+C2,Growth Client,Mid,Mid
+C3,Stable Client,SME,Mid
+C4,At Risk Client,Mid,Mid
+C5,New Client,SME,Mid

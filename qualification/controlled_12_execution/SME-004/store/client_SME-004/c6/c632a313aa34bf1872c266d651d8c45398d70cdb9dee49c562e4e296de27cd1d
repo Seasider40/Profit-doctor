@@ -1,0 +1,41 @@
+product_id,product_name,family,supplier,base_price,base_cost
+P001,Product A,Core,Supplier B,57,35.05
+P002,Product B,Core,Supplier X,64,41.6
+P003,Product C,Core,Supplier D,71,48.63
+P004,Product D,Core,Supplier E,78,56.16
+P005,Product E,Core,Supplier F,85,49.3
+P006,Strategic Spare Z,Core,Supplier G,92,56.58
+P007,SKU-07,Core,Supplier H,99,64.35
+P008,SKU-08,Core,Supplier I,106,72.61
+P009,SKU-09,Core,Supplier J,113,81.36
+P010,SKU-10,Core,Supplier A,120,69.6
+P011,SKU-11,Accessories,Supplier B,127,78.11
+P012,SKU-12,Accessories,Supplier C,134,87.1
+P013,SKU-13,Accessories,Supplier D,141,96.58
+P014,SKU-14,Accessories,Supplier E,148,106.56
+P015,SKU-15,Accessories,Supplier F,155,89.9
+P016,SKU-16,Accessories,Supplier G,162,99.63
+P017,SKU-17,Accessories,Supplier H,169,109.85
+P018,SKU-18,Accessories,Supplier I,176,120.56
+P019,SKU-19,Accessories,Supplier J,183,131.76
+P020,SKU-20,Accessories,Supplier A,190,110.2
+P021,SKU-21,Accessories,Supplier B,197,121.16
+P022,SKU-22,Accessories,Supplier C,204,132.6
+P023,SKU-23,Accessories,Supplier D,211,144.53
+P024,SKU-24,Accessories,Supplier E,218,156.96
+P025,SKU-25,Accessories,Supplier F,225,130.5
+P026,SKU-26,Specialist,Supplier G,232,142.68
+P027,SKU-27,Specialist,Supplier H,239,155.35
+P028,SKU-28,Specialist,Supplier I,246,168.51
+P029,SKU-29,Specialist,Supplier J,253,182.16
+P030,SKU-30,Specialist,Supplier A,260,150.8
+P031,SKU-31,Specialist,Supplier B,267,164.2
+P032,SKU-32,Specialist,Supplier C,274,178.1
+P033,SKU-33,Specialist,Supplier D,281,192.48
+P034,SKU-34,Specialist,Supplier E,288,207.36
+P035,SKU-35,Specialist,Supplier F,295,171.1
+P036,SKU-36,Specialist,Supplier G,302,185.73
+P037,SKU-37,Specialist,Supplier H,309,200.85
+P038,SKU-38,Specialist,Supplier I,316,216.46
+P039,SKU-39,Specialist,Supplier J,323,232.56
+P040,SKU-40,Specialist,Supplier A,330,191.4

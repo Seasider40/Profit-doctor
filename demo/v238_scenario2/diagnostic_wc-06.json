@@ -1,0 +1,29 @@
+{
+  "run_id": "run_88960505854545ad8b945cde3e434ee5",
+  "client_id": "V238_DEMO",
+  "test_id": "WC-06",
+  "test_name": "Working Capital Leakage & Cash Release",
+  "core_question": "Where is cash unnecessarily trapped in the business, why is it trapped, and how much could realistically be released without damaging customers, suppliers, operations or growth?",
+  "objective": "Identify working-capital release candidates while keeping balances, exposure and addressable cash release distinct.",
+  "eligibility_state": "FULL",
+  "execution_status": "COMPLETED",
+  "method_id": "PRIMITIVE_OR_LEDGER_BASED",
+  "limitation": null,
+  "signals": [
+    {
+      "signal_id": "sig_d05c84d5864d44c4a09e8b2f932a752d",
+      "test_id": "WC-06",
+      "test_name": "Working Capital Leakage & Cash Release",
+      "core_question": "Where is cash unnecessarily trapped in the business, why is it trapped, and how much could realistically be released without damaging customers, suppliers, operations or growth?",
+      "signal_type": "WORKING_CAPITAL_RELEASE_CANDIDATE",
+      "entity_type": "WORKING_CAPITAL_COMPONENT",
+      "entity_id": "BS_INVENTORY",
+      "observed_value": null,
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "GBP",
+      "materiality_state": "MEDIUM",
+      "evidence_summary": "BS_INVENTORY provides evidence of working-capital exposure, but addressable cash release remains unquantified until cause, mechanism, operational guardrails and timing are evidenced. Cash release is not profit."
+    }
+  ]
+}

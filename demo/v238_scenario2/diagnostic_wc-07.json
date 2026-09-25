@@ -1,0 +1,29 @@
+{
+  "run_id": "run_88960505854545ad8b945cde3e434ee5",
+  "client_id": "V238_DEMO",
+  "test_id": "WC-07",
+  "test_name": "Working Capital & Cash Opportunity Optimisation",
+  "core_question": "What should you actually do to improve cash, how much will each action realistically release, when will the cash arrive, what could it put at risk, and what is the best combined plan for the business?",
+  "objective": "Synthesize cash optimisation candidates without treating collection, inventory reduction or payment delay as profit.",
+  "eligibility_state": "FULL",
+  "execution_status": "COMPLETED",
+  "method_id": "PRIMITIVE_OR_LEDGER_BASED",
+  "limitation": null,
+  "signals": [
+    {
+      "signal_id": "sig_697a3c7cfb774624ab5c06d6e6e6a6d5",
+      "test_id": "WC-07",
+      "test_name": "Working Capital & Cash Opportunity Optimisation",
+      "core_question": "What should you actually do to improve cash, how much will each action realistically release, when will the cash arrive, what could it put at risk, and what is the best combined plan for the business?",
+      "signal_type": "CASH_OPTIMISATION_CANDIDATE",
+      "entity_type": "WORKING_CAPITAL_COMPONENT",
+      "entity_id": "BS_INVENTORY",
+      "observed_value": null,
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "GBP",
+      "materiality_state": "MEDIUM",
+      "evidence_summary": "WORKING_CAPITAL_RELEASE_CANDIDATE supports investigation. Expected cash release, timing and guardrails remain unquantified; collecting recognised revenue is not new profit and profit-to-cash manifestation must not be double counted."
+    }
+  ]
+}

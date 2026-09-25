@@ -1,0 +1,59 @@
+{
+  "run_id": "run_88960505854545ad8b945cde3e434ee5",
+  "client_id": "V238_DEMO",
+  "test_id": "CUS-01",
+  "test_name": "Customer Concentration & Dependency",
+  "core_question": "How dependent is the business on individual customers, and how much revenue is concentrated in its largest relationships?",
+  "objective": "Measure customer concentration and dependency signals.",
+  "eligibility_state": "PARTIAL-A",
+  "execution_status": "COMPLETED",
+  "method_id": "AGGREGATE_CUSTOMER_ANNUAL",
+  "limitation": "Aggregate annual evidence; no time-series customer movement inferred",
+  "signals": [
+    {
+      "signal_id": "sig_f1b857c706c446b59e6cd71cc55dedc5",
+      "test_id": "CUS-01",
+      "test_name": "Customer Concentration & Dependency",
+      "core_question": "How dependent is the business on individual customers, and how much revenue is concentrated in its largest relationships?",
+      "signal_type": "TOP_CUSTOMER_CONCENTRATION",
+      "entity_type": "CUSTOMER",
+      "entity_id": "AeroFab UK",
+      "observed_value": "10.9600",
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "PERCENT",
+      "materiality_state": "MEDIUM",
+      "evidence_summary": "Annual customer summary: largest customer contributes 1644000 of 15000000 captured revenue. Dependency exposure only; no loss probability inferred."
+    },
+    {
+      "signal_id": "sig_b0a41f49805d49c89f79f9a79ac1b912",
+      "test_id": "CUS-01",
+      "test_name": "Customer Concentration & Dependency",
+      "core_question": "How dependent is the business on individual customers, and how much revenue is concentrated in its largest relationships?",
+      "signal_type": "TOP5_CONCENTRATION",
+      "entity_type": null,
+      "entity_id": null,
+      "observed_value": "42.01333333333333333333333333",
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "PERCENT",
+      "materiality_state": "MEDIUM",
+      "evidence_summary": "Top five customers contribute 42.01333333333333333333333333% of captured annual customer revenue."
+    },
+    {
+      "signal_id": "sig_14fedda765844540bd5197739e41d257",
+      "test_id": "CUS-01",
+      "test_name": "Customer Concentration & Dependency",
+      "core_question": "How dependent is the business on individual customers, and how much revenue is concentrated in its largest relationships?",
+      "signal_type": "CUSTOMER_HHI",
+      "entity_type": null,
+      "entity_id": null,
+      "observed_value": "574.1573333333333333333333333",
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "INDEX",
+      "materiality_state": "INFORMATIONAL",
+      "evidence_summary": "Customer revenue HHI is 574.1573333333333333333333333 from annual aggregate customer evidence."
+    }
+  ]
+}

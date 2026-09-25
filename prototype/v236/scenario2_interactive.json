@@ -1,0 +1,2189 @@
+{
+  "view": {
+    "spec_version": "MOS-2.33",
+    "api_version": "PVM-2.34",
+    "run_id": "run_a9a61c39f60245dfac46741b73952fdd",
+    "client_id": "UWB_CLIENT",
+    "section_order": [
+      "EXECUTIVE_HEALTH_CHECK",
+      "MANAGEMENT_ATTENTION",
+      "PROFIT_CASH_OPPORTUNITY_REGISTER",
+      "PERFORMANCE_DIAGNOSTICS",
+      "RECOMMENDED_ACTIONS",
+      "DATA_MI_MATURITY",
+      "BENEFIT_PROGRESS",
+      "EVIDENCE_AND_LIMITATIONS"
+    ],
+    "executive_health_check": {
+      "headline": "Management review generated from evidenced data",
+      "kpis": [
+        {
+          "label": "Revenue",
+          "value": "15000000.0",
+          "unit": "GBP",
+          "primitive_id": "FIN_REVENUE"
+        },
+        {
+          "label": "Gross profit",
+          "value": "4645910.00000000016",
+          "unit": "GBP",
+          "primitive_id": "FIN_GROSS_PROFIT"
+        },
+        {
+          "label": "EBITDA",
+          "value": "-520089.999999999809",
+          "unit": "GBP",
+          "primitive_id": "FIN_EBITDA"
+        },
+        {
+          "label": "Available cash",
+          "value": "95000.0",
+          "unit": "GBP",
+          "primitive_id": "AVAILABLE_CASH"
+        },
+        {
+          "label": "DSO",
+          "value": "83.95",
+          "unit": "DAYS",
+          "primitive_id": "WC_DSO"
+        },
+        {
+          "label": "DIO",
+          "value": "81.07907116897767047687504330",
+          "unit": "DAYS",
+          "primitive_id": "WC_DIO"
+        },
+        {
+          "label": "DPO",
+          "value": "60.28052682563122457193753216",
+          "unit": "DAYS",
+          "primitive_id": "WC_DPO"
+        },
+        {
+          "label": "Cash conversion cycle",
+          "value": "104.7485443433464459049375111",
+          "unit": "DAYS",
+          "primitive_id": "WC_CCC"
+        }
+      ],
+      "diagnostic_coverage": {
+        "completed": 18,
+        "total": 56,
+        "not_completed": 38
+      },
+      "control_failures": 4,
+      "guardrail": "Health Check is a decision summary, not a universal score or rating."
+    },
+    "management_attention": [
+      {
+        "rank": 1,
+        "theme": "FINANCIAL_INTEGRITY",
+        "title": "Resolve financial control-account discrepancies",
+        "issue_type": "RISK",
+        "priority": "HIGH",
+        "confidence": "HIGH",
+        "management_question": "Which balances are reliable enough to manage the business from?",
+        "rationale": "4 independently assessed reconciliation control(s) failed. Residuals are control exceptions, not assumed losses: UWB_AR_TO_TB: 982806.0, UWB_AP_TO_TB: -279000.0, UWB_INVENTORY_TO_SUPPORT: 120000.0, UWB_DEBT_TO_SUPPORT: -125000.0.",
+        "next_step": "Reconcile each failed control to source records, identify timing/classification differences and document resolution.",
+        "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection."
+      },
+      {
+        "rank": 2,
+        "theme": "CUSTOMER_ECONOMICS",
+        "title": "Customer economics and concentration deserve review",
+        "issue_type": "INSIGHT",
+        "priority": "HIGH",
+        "confidence": "MEDIUM",
+        "management_question": "Which customer relationships create value and where is dependency material?",
+        "rationale": "3 material signal(s) across CUS-01, CUS-02 support one management theme. Related signals are compressed without deleting their underlying evidence.",
+        "next_step": "Review contribution, concentration and commercial context for the customers driving the evidence.",
+        "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection."
+      },
+      {
+        "rank": 3,
+        "theme": "SUPPLIER_DEPENDENCY",
+        "title": "Supplier spend concentration requires commercial review",
+        "issue_type": "RISK",
+        "priority": "HIGH",
+        "confidence": "MEDIUM",
+        "management_question": "Where does supplier concentration create dependency or negotiating exposure?",
+        "rationale": "6 material signal(s) across SUP-01, SUP-03 support one management theme. Related signals are compressed without deleting their underlying evidence.",
+        "next_step": "Review critical suppliers, alternatives, contract terms and operational substitutability before assigning risk value.",
+        "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection."
+      },
+      {
+        "rank": 4,
+        "theme": "CAPACITY_CONSTRAINT",
+        "title": "Operational capacity appears constrained",
+        "issue_type": "INSIGHT",
+        "priority": "MEDIUM",
+        "confidence": "MEDIUM",
+        "management_question": "Which work centres are genuinely capacity constrained and what is driving the load?",
+        "rationale": "1 material signal(s) across PEO-04 support one management theme. Related signals are compressed without deleting their underlying evidence.",
+        "next_step": "Validate hours and constraints, then test overtime, bottlenecks, scheduling, mix and investment options before monetising.",
+        "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection."
+      },
+      {
+        "rank": 5,
+        "theme": "WORKING_CAPITAL",
+        "title": "Working capital requires focused investigation",
+        "issue_type": "INSIGHT",
+        "priority": "MEDIUM",
+        "confidence": "HIGH",
+        "management_question": "What portion of working capital is genuinely addressable without harming operations?",
+        "rationale": "2 material signal(s) across WC-06, WC-07 support one management theme. Related signals are compressed without deleting their underlying evidence.",
+        "next_step": "Investigate the underlying balances, causes, timing and operational guardrails before estimating cash release.",
+        "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection."
+      }
+    ],
+    "opportunity_register": {
+      "items": [
+        {
+          "theme": "FINANCIAL_INTEGRITY",
+          "purpose": "PROTECT",
+          "benefit_type": "B6_RISK_MITIGATION",
+          "availability": "CONDITIONAL",
+          "economic_state": "EVIDENCE_REQUIRED",
+          "currency": "GBP",
+          "theoretical": null,
+          "addressable": null,
+          "expected": null,
+          "recommended_action": "Reconcile failed control balances to source records and resolve timing, classification and posting differences.",
+          "evidence_required": "Underlying ledger detail, control-account roll-forward and documented reconciling items.",
+          "limitation": "Reconciliation residuals are control exceptions, not losses, savings or cash opportunities."
+        },
+        {
+          "theme": "CUSTOMER_ECONOMICS",
+          "purpose": "IMPROVE",
+          "benefit_type": "B1_RECURRING_PROFIT_IMPROVEMENT",
+          "availability": "CONDITIONAL",
+          "economic_state": "CANDIDATE_UNQUANTIFIED",
+          "currency": "GBP",
+          "theoretical": null,
+          "addressable": null,
+          "expected": null,
+          "recommended_action": "Review concentrated and low-contribution customer relationships; identify price, mix, service or retention interventions only where mechanism evidence exists.",
+          "evidence_required": "Customer/product mix, price history, direct cost and where available cost-to-serve evidence.",
+          "limitation": "No monetary opportunity is supported from this management priority without mechanism, addressability and recovery-envelope evidence."
+        },
+        {
+          "theme": "SUPPLIER_DEPENDENCY",
+          "purpose": "PROTECT",
+          "benefit_type": "B6_RISK_MITIGATION",
+          "availability": "CONDITIONAL",
+          "economic_state": "EVIDENCE_REQUIRED",
+          "currency": "GBP",
+          "theoretical": null,
+          "addressable": null,
+          "expected": null,
+          "recommended_action": "Review concentrated suppliers for criticality, alternatives, terms and negotiation opportunities.",
+          "evidence_required": "Contracts, item-level purchases/prices, alternative-source evidence and operational criticality.",
+          "limitation": "No monetary opportunity is supported from this management priority without mechanism, addressability and recovery-envelope evidence."
+        },
+        {
+          "theme": "CAPACITY_CONSTRAINT",
+          "purpose": "IMPROVE",
+          "benefit_type": "B4_RECURRING_WORKING_CAPITAL_EFFICIENCY",
+          "availability": "CONDITIONAL",
+          "economic_state": "EVIDENCE_REQUIRED",
+          "currency": "GBP",
+          "theoretical": null,
+          "addressable": null,
+          "expected": null,
+          "recommended_action": "Validate bottleneck load and test scheduling, overtime, mix, process and investment alternatives before monetising.",
+          "evidence_required": "Validated practical capacity, productive hours, overtime, throughput, scrap/downtime and contribution at constraint.",
+          "limitation": "Capacity released or data corrected is not a saving unless an evidenced economic use or avoided cost is demonstrated."
+        },
+        {
+          "theme": "WORKING_CAPITAL",
+          "purpose": "RELEASE",
+          "benefit_type": "B3_ONE_OFF_CASH_RELEASE",
+          "availability": "CONDITIONAL",
+          "economic_state": "EVIDENCE_REQUIRED",
+          "currency": "GBP",
+          "theoretical": null,
+          "addressable": null,
+          "expected": null,
+          "recommended_action": "Identify genuinely addressable receivables, payables and inventory actions subject to operational guardrails.",
+          "evidence_required": "Invoice/aging detail, disputes/credits, supplier terms, stock aging/service-level evidence and cash timing.",
+          "limitation": "No monetary opportunity is supported from this management priority without mechanism, addressability and recovery-envelope evidence."
+        }
+      ],
+      "portfolio_headline": {
+        "recurring_profit_expected": null,
+        "one_off_cash_release_expected": null,
+        "combined_total": null,
+        "rule": "Profit and cash are non-additive; no combined headline benefit is permitted."
+      }
+    },
+    "performance_diagnostics": {
+      "completed": [
+        "CUS-01",
+        "CUS-02",
+        "CUS-07",
+        "PEO-01",
+        "PEO-03",
+        "PEO-04",
+        "RISK-01",
+        "RISK-02",
+        "RISK-04",
+        "SUP-01",
+        "SUP-03",
+        "WC-01",
+        "WC-02",
+        "WC-03",
+        "WC-04",
+        "WC-05",
+        "WC-06",
+        "WC-07"
+      ],
+      "partial": [
+        "CUS-01",
+        "CUS-02",
+        "CUS-07",
+        "PEO-04",
+        "RISK-02",
+        "SUP-01",
+        "SUP-03"
+      ],
+      "unavailable": [
+        {
+          "test_id": "CUS-03",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "CUS-04",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "CUS-05",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "CUS-06",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "FCST-01",
+          "limitation": "Required D13/KPI evidence unavailable"
+        },
+        {
+          "test_id": "FCST-02",
+          "limitation": "Required D13/KPI evidence unavailable"
+        },
+        {
+          "test_id": "FCST-03",
+          "limitation": "Required D13/KPI evidence unavailable"
+        },
+        {
+          "test_id": "FCST-04",
+          "limitation": "Required D13/KPI evidence unavailable"
+        },
+        {
+          "test_id": "GM-01",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "GM-02",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "GM-03",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "GM-04",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "GM-05",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "GM-06",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "GM-07",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "PEO-02",
+          "limitation": "Revenue/contribution per FTE requires D07 sales evidence"
+        },
+        {
+          "test_id": "PEO-05",
+          "limitation": "No evidenced workforce optimisation candidate"
+        },
+        {
+          "test_id": "PRI-01",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "PRI-02",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "PRI-03",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "PRI-04",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "PRI-05",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "PROD-01",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "PROD-02",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "PROD-03",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "PROD-04",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "PROD-05",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "REV-01",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "REV-02",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "REV-03",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "REV-04",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "REV-05",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "REV-06",
+          "limitation": "D07 unavailable"
+        },
+        {
+          "test_id": "RISK-03",
+          "limitation": "No explicit or diagnostic exposure evidence available"
+        },
+        {
+          "test_id": "SUP-02",
+          "limitation": "Comparable item/unit-cost evidence unavailable"
+        },
+        {
+          "test_id": "SUP-04",
+          "limitation": "Overhead transaction evidence unavailable"
+        },
+        {
+          "test_id": "SUP-05",
+          "limitation": "No duplicate-looking spend identified"
+        },
+        {
+          "test_id": "SUP-06",
+          "limitation": "No evidenced supplier/overhead candidate"
+        }
+      ]
+    },
+    "recommended_actions": [
+      {
+        "theme": "FINANCIAL_INTEGRITY",
+        "action_type": "CONTROL_REMEDIATION",
+        "recommended_action": "Reconcile failed control balances to source records and resolve timing, classification and posting differences.",
+        "evidence_required": "Underlying ledger detail, control-account roll-forward and documented reconciling items.",
+        "owner_role": "FD/Management",
+        "state": "PROPOSED",
+        "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+      },
+      {
+        "theme": "CUSTOMER_ECONOMICS",
+        "action_type": "COMMERCIAL_REVIEW",
+        "recommended_action": "Review concentrated and low-contribution customer relationships; identify price, mix, service or retention interventions only where mechanism evidence exists.",
+        "evidence_required": "Customer/product mix, price history, direct cost and where available cost-to-serve evidence.",
+        "owner_role": "FD/Management",
+        "state": "PROPOSED",
+        "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+      },
+      {
+        "theme": "SUPPLIER_DEPENDENCY",
+        "action_type": "SUPPLIER_REVIEW",
+        "recommended_action": "Review concentrated suppliers for criticality, alternatives, terms and negotiation opportunities.",
+        "evidence_required": "Contracts, item-level purchases/prices, alternative-source evidence and operational criticality.",
+        "owner_role": "FD/Management",
+        "state": "PROPOSED",
+        "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+      },
+      {
+        "theme": "CAPACITY_CONSTRAINT",
+        "action_type": "CAPACITY_REVIEW",
+        "recommended_action": "Validate bottleneck load and test scheduling, overtime, mix, process and investment alternatives before monetising.",
+        "evidence_required": "Validated practical capacity, productive hours, overtime, throughput, scrap/downtime and contribution at constraint.",
+        "owner_role": "FD/Management",
+        "state": "PROPOSED",
+        "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+      },
+      {
+        "theme": "WORKING_CAPITAL",
+        "action_type": "WORKING_CAPITAL_REVIEW",
+        "recommended_action": "Identify genuinely addressable receivables, payables and inventory actions subject to operational guardrails.",
+        "evidence_required": "Invoice/aging detail, disputes/credits, supplier terms, stock aging/service-level evidence and cash timing.",
+        "owner_role": "FD/Management",
+        "state": "PROPOSED",
+        "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+      }
+    ],
+    "data_mi_maturity": {
+      "control_reconciliations": [
+        {
+          "reconciliation_type": "UWB_AR_TO_TB",
+          "status": "FAILED",
+          "residual": "982806.0",
+          "left_object": "ACCOUNTING_CONTROL",
+          "right_object": "SUPPORTING_SCHEDULE",
+          "left_value": "3450000.0",
+          "right_value": "2467194.0",
+          "limitation": null
+        },
+        {
+          "reconciliation_type": "UWB_AP_TO_TB",
+          "status": "FAILED",
+          "residual": "-279000.0",
+          "left_object": "ACCOUNTING_CONTROL",
+          "right_object": "SUPPORTING_SCHEDULE",
+          "left_value": "1710000.0",
+          "right_value": "1989000.0",
+          "limitation": null
+        },
+        {
+          "reconciliation_type": "UWB_INVENTORY_TO_SUPPORT",
+          "status": "FAILED",
+          "residual": "120000.0",
+          "left_object": "ACCOUNTING_CONTROL",
+          "right_object": "SUPPORTING_SCHEDULE",
+          "left_value": "2300000.0",
+          "right_value": "2180000.0",
+          "limitation": "independently recalculated from TB and supporting amount; embedded status ignored"
+        },
+        {
+          "reconciliation_type": "UWB_DEBT_TO_SUPPORT",
+          "status": "FAILED",
+          "residual": "-125000.0",
+          "left_object": "ACCOUNTING_CONTROL",
+          "right_object": "SUPPORTING_SCHEDULE",
+          "left_value": "2535000.0",
+          "right_value": "2660000.0",
+          "limitation": "independently recalculated from TB borrowing accounts; embedded status ignored"
+        }
+      ],
+      "coverage": {
+        "completed": 18,
+        "total": 56,
+        "not_completed": 38
+      },
+      "message": "Data quality, financial integrity, diagnostic coverage and analytical confidence remain distinct concepts."
+    },
+    "benefit_progress": {
+      "status": "NO_LONGITUDINAL_BENEFIT_EVIDENCE_IN_THIS_VIEW",
+      "realised": null,
+      "verified": null,
+      "retained": null,
+      "rule": "Realised, verified and retained benefits require explicit lifecycle evidence; they are not inferred from opportunity values."
+    },
+    "evidence_and_limitations": {
+      "reconciliations": [
+        {
+          "reconciliation_type": "UWB_AR_TO_TB",
+          "status": "FAILED",
+          "residual": "982806.0",
+          "left_object": "ACCOUNTING_CONTROL",
+          "right_object": "SUPPORTING_SCHEDULE",
+          "left_value": "3450000.0",
+          "right_value": "2467194.0",
+          "limitation": null
+        },
+        {
+          "reconciliation_type": "UWB_AP_TO_TB",
+          "status": "FAILED",
+          "residual": "-279000.0",
+          "left_object": "ACCOUNTING_CONTROL",
+          "right_object": "SUPPORTING_SCHEDULE",
+          "left_value": "1710000.0",
+          "right_value": "1989000.0",
+          "limitation": null
+        },
+        {
+          "reconciliation_type": "UWB_INVENTORY_TO_SUPPORT",
+          "status": "FAILED",
+          "residual": "120000.0",
+          "left_object": "ACCOUNTING_CONTROL",
+          "right_object": "SUPPORTING_SCHEDULE",
+          "left_value": "2300000.0",
+          "right_value": "2180000.0",
+          "limitation": "independently recalculated from TB and supporting amount; embedded status ignored"
+        },
+        {
+          "reconciliation_type": "UWB_DEBT_TO_SUPPORT",
+          "status": "FAILED",
+          "residual": "-125000.0",
+          "left_object": "ACCOUNTING_CONTROL",
+          "right_object": "SUPPORTING_SCHEDULE",
+          "left_value": "2535000.0",
+          "right_value": "2660000.0",
+          "limitation": "independently recalculated from TB borrowing accounts; embedded status ignored"
+        }
+      ],
+      "principles": [
+        "Observed evidence is separated from interpretation and opportunity.",
+        "Exposure is not expected loss.",
+        "Cash release is not profit.",
+        "Capacity released is not a saving without evidenced economic use.",
+        "Unavailable evidence remains unavailable rather than being invented."
+      ]
+    }
+  },
+  "priority_details": {
+    "FINANCIAL_INTEGRITY": {
+      "run_id": "run_a9a61c39f60245dfac46741b73952fdd",
+      "client_id": "UWB_CLIENT",
+      "attention_item_id": "mai_613fbd10935c467086e9d975eed23fda",
+      "rank": 1,
+      "theme": "FINANCIAL_INTEGRITY",
+      "title": "Resolve financial control-account discrepancies",
+      "management_question": "Which balances are reliable enough to manage the business from?",
+      "rationale": "4 independently assessed reconciliation control(s) failed. Residuals are control exceptions, not assumed losses: UWB_AR_TO_TB: 982806.0, UWB_AP_TO_TB: -279000.0, UWB_INVENTORY_TO_SUPPORT: 120000.0, UWB_DEBT_TO_SUPPORT: -125000.0.",
+      "next_step": "Reconcile each failed control to source records, identify timing/classification differences and document resolution.",
+      "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection.",
+      "supporting_evidence": [
+        {
+          "signal_id": "sig_1c297739980745bbb91e4fa26e6630ac",
+          "test_id": "RISK-01",
+          "test_name": "Financial Integrity, Reconciliation & Accounting Control",
+          "core_question": "Can you trust the numbers you are using to run the business \u2014 and where could errors, unreconciled balances or weak financial controls be distorting the picture?",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "entity_type": "RECONCILIATION",
+          "entity_id": "UWB_INVENTORY_TO_SUPPORT",
+          "observed_value": "120000.0",
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "UWB_INVENTORY_TO_SUPPORT reconciliation status FAILED; residual 120000.0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "signal_id": "sig_24f324a237d64f0ca955e2d80c6adce3",
+          "test_id": "RISK-04",
+          "test_name": "Financial Risk, Control & Governance Optimisation",
+          "core_question": "What should management actually fix, strengthen, monitor or consciously accept to protect the business \u2014 without creating unnecessary bureaucracy or getting in the way of profitable growth?",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "entity_type": "CONTROL_AREA",
+          "entity_id": "FINANCIAL_INTEGRITY",
+          "observed_value": null,
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "ACTION",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "signal_id": "sig_4de27463b3b34f7681ae03cbc0779dd1",
+          "test_id": "RISK-04",
+          "test_name": "Financial Risk, Control & Governance Optimisation",
+          "core_question": "What should management actually fix, strengthen, monitor or consciously accept to protect the business \u2014 without creating unnecessary bureaucracy or getting in the way of profitable growth?",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "entity_type": "CONTROL_AREA",
+          "entity_id": "FINANCIAL_INTEGRITY",
+          "observed_value": null,
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "ACTION",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "signal_id": "sig_7f08daee34904f49bd37574dfcafab88",
+          "test_id": "RISK-04",
+          "test_name": "Financial Risk, Control & Governance Optimisation",
+          "core_question": "What should management actually fix, strengthen, monitor or consciously accept to protect the business \u2014 without creating unnecessary bureaucracy or getting in the way of profitable growth?",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "entity_type": "CONTROL_AREA",
+          "entity_id": "FINANCIAL_INTEGRITY",
+          "observed_value": null,
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "ACTION",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "signal_id": "sig_a430bdac7e1f40fb808c452a1dabe906",
+          "test_id": "RISK-01",
+          "test_name": "Financial Integrity, Reconciliation & Accounting Control",
+          "core_question": "Can you trust the numbers you are using to run the business \u2014 and where could errors, unreconciled balances or weak financial controls be distorting the picture?",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "entity_type": "RECONCILIATION",
+          "entity_id": "UWB_DEBT_TO_SUPPORT",
+          "observed_value": "-125000.0",
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "UWB_DEBT_TO_SUPPORT reconciliation status FAILED; residual -125000.0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "signal_id": "sig_bdfa4b7454ba490c9068beb92c0df6c3",
+          "test_id": "RISK-01",
+          "test_name": "Financial Integrity, Reconciliation & Accounting Control",
+          "core_question": "Can you trust the numbers you are using to run the business \u2014 and where could errors, unreconciled balances or weak financial controls be distorting the picture?",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "entity_type": "RECONCILIATION",
+          "entity_id": "UWB_AP_TO_TB",
+          "observed_value": "-279000.0",
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "UWB_AP_TO_TB reconciliation status FAILED; residual -279000.0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "signal_id": "sig_d808ff9f1e4d4a74bc6378a377cc5bcd",
+          "test_id": "RISK-01",
+          "test_name": "Financial Integrity, Reconciliation & Accounting Control",
+          "core_question": "Can you trust the numbers you are using to run the business \u2014 and where could errors, unreconciled balances or weak financial controls be distorting the picture?",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "entity_type": "RECONCILIATION",
+          "entity_id": "UWB_AR_TO_TB",
+          "observed_value": "982806.0",
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "UWB_AR_TO_TB reconciliation status FAILED; residual 982806.0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "signal_id": "sig_df8e900df3c24a5e89bbb5f19b11984a",
+          "test_id": "RISK-04",
+          "test_name": "Financial Risk, Control & Governance Optimisation",
+          "core_question": "What should management actually fix, strengthen, monitor or consciously accept to protect the business \u2014 without creating unnecessary bureaucracy or getting in the way of profitable growth?",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "entity_type": "CONTROL_AREA",
+          "entity_id": "FINANCIAL_INTEGRITY",
+          "observed_value": null,
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "ACTION",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        }
+      ],
+      "diagnostic_ids": [
+        "RISK-01",
+        "RISK-04"
+      ],
+      "recommended_actions": [
+        {
+          "theme": "FINANCIAL_INTEGRITY",
+          "action_type": "CONTROL_REMEDIATION",
+          "recommended_action": "Reconcile failed control balances to source records and resolve timing, classification and posting differences.",
+          "evidence_required": "Underlying ledger detail, control-account roll-forward and documented reconciling items.",
+          "owner_role": "FD/Management",
+          "state": "PROPOSED",
+          "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+        }
+      ],
+      "opportunities": [
+        {
+          "theme": "FINANCIAL_INTEGRITY",
+          "purpose": "PROTECT",
+          "benefit_type": "B6_RISK_MITIGATION",
+          "availability": "CONDITIONAL",
+          "economic_state": "EVIDENCE_REQUIRED",
+          "currency": "GBP",
+          "theoretical": null,
+          "addressable": null,
+          "expected": null,
+          "recommended_action": "Reconcile failed control balances to source records and resolve timing, classification and posting differences.",
+          "evidence_required": "Underlying ledger detail, control-account roll-forward and documented reconciling items.",
+          "limitation": "Reconciliation residuals are control exceptions, not losses, savings or cash opportunities."
+        }
+      ]
+    },
+    "CUSTOMER_ECONOMICS": {
+      "run_id": "run_a9a61c39f60245dfac46741b73952fdd",
+      "client_id": "UWB_CLIENT",
+      "attention_item_id": "mai_322f5a32e3b1477ca69afc8d6e649df7",
+      "rank": 2,
+      "theme": "CUSTOMER_ECONOMICS",
+      "title": "Customer economics and concentration deserve review",
+      "management_question": "Which customer relationships create value and where is dependency material?",
+      "rationale": "3 material signal(s) across CUS-01, CUS-02 support one management theme. Related signals are compressed without deleting their underlying evidence.",
+      "next_step": "Review contribution, concentration and commercial context for the customers driving the evidence.",
+      "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection.",
+      "supporting_evidence": [
+        {
+          "signal_id": "sig_53d34b64b2ef4ef7aee1bda97c3e309b",
+          "test_id": "CUS-01",
+          "test_name": "Customer Concentration & Dependency",
+          "core_question": "How dependent is the business on individual customers, and how much revenue is concentrated in its largest relationships?",
+          "signal_type": "TOP5_CONCENTRATION",
+          "entity_type": null,
+          "entity_id": null,
+          "observed_value": "42.01333333333333333333333333",
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "PERCENT",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Top five customers contribute 42.01333333333333333333333333% of captured annual customer revenue."
+        },
+        {
+          "signal_id": "sig_68ff87e543ff41c490cb6e48c0abff25",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Cobalt Engineering",
+          "observed_value": "468540.00",
+          "comparison_value": "1233000",
+          "variance_value": "38.00",
+          "unit": "GBP",
+          "materiality_state": "HIGH",
+          "evidence_summary": "Annual customer summary evidences revenue 1233000 and gross profit/Contribution 0 468540.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_a92e7ce8a3c146fc872c6e9f90262183",
+          "test_id": "CUS-01",
+          "test_name": "Customer Concentration & Dependency",
+          "core_question": "How dependent is the business on individual customers, and how much revenue is concentrated in its largest relationships?",
+          "signal_type": "TOP_CUSTOMER_CONCENTRATION",
+          "entity_type": "CUSTOMER",
+          "entity_id": "AeroFab UK",
+          "observed_value": "10.9600",
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "PERCENT",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Annual customer summary: largest customer contributes 1644000 of 15000000 captured revenue. Dependency exposure only; no loss probability inferred."
+        }
+      ],
+      "diagnostic_ids": [
+        "CUS-01",
+        "CUS-02"
+      ],
+      "recommended_actions": [
+        {
+          "theme": "CUSTOMER_ECONOMICS",
+          "action_type": "COMMERCIAL_REVIEW",
+          "recommended_action": "Review concentrated and low-contribution customer relationships; identify price, mix, service or retention interventions only where mechanism evidence exists.",
+          "evidence_required": "Customer/product mix, price history, direct cost and where available cost-to-serve evidence.",
+          "owner_role": "FD/Management",
+          "state": "PROPOSED",
+          "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+        }
+      ],
+      "opportunities": [
+        {
+          "theme": "CUSTOMER_ECONOMICS",
+          "purpose": "IMPROVE",
+          "benefit_type": "B1_RECURRING_PROFIT_IMPROVEMENT",
+          "availability": "CONDITIONAL",
+          "economic_state": "CANDIDATE_UNQUANTIFIED",
+          "currency": "GBP",
+          "theoretical": null,
+          "addressable": null,
+          "expected": null,
+          "recommended_action": "Review concentrated and low-contribution customer relationships; identify price, mix, service or retention interventions only where mechanism evidence exists.",
+          "evidence_required": "Customer/product mix, price history, direct cost and where available cost-to-serve evidence.",
+          "limitation": "No monetary opportunity is supported from this management priority without mechanism, addressability and recovery-envelope evidence."
+        }
+      ]
+    },
+    "SUPPLIER_DEPENDENCY": {
+      "run_id": "run_a9a61c39f60245dfac46741b73952fdd",
+      "client_id": "UWB_CLIENT",
+      "attention_item_id": "mai_43843e2f3250493b8faf82b57fae7a1e",
+      "rank": 3,
+      "theme": "SUPPLIER_DEPENDENCY",
+      "title": "Supplier spend concentration requires commercial review",
+      "management_question": "Where does supplier concentration create dependency or negotiating exposure?",
+      "rationale": "6 material signal(s) across SUP-01, SUP-03 support one management theme. Related signals are compressed without deleting their underlying evidence.",
+      "next_step": "Review critical suppliers, alternatives, contract terms and operational substitutability before assigning risk value.",
+      "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection.",
+      "supporting_evidence": [
+        {
+          "signal_id": "sig_2105fe77957e4ce9b662d18005874529",
+          "test_id": "SUP-03",
+          "test_name": "Supplier Concentration, Dependency & Commercial Risk",
+          "core_question": "Which suppliers does your business genuinely depend on, what profit or revenue is exposed if something changes, and where should you reduce risk or strengthen your commercial position?",
+          "signal_type": "SUPPLIER_DEPENDENCY",
+          "entity_type": "SUPPLIER",
+          "entity_id": "SteelCo",
+          "observed_value": "22.28976697061803444782168186",
+          "comparison_value": "2200000",
+          "variance_value": null,
+          "unit": "PERCENT",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "SteelCo represents 22.28976697061803444782168186% of captured annual supplier spend. This is concentration exposure only; no disruption probability or expected loss is inferred."
+        },
+        {
+          "signal_id": "sig_2a71f7e1dfe1496e848f3b1de057a46e",
+          "test_id": "SUP-03",
+          "test_name": "Supplier Concentration, Dependency & Commercial Risk",
+          "core_question": "Which suppliers does your business genuinely depend on, what profit or revenue is exposed if something changes, and where should you reduce risk or strengthen your commercial position?",
+          "signal_type": "SUPPLIER_DEPENDENCY",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Alloy Metals",
+          "observed_value": "13.67781155015197568389057751",
+          "comparison_value": "1350000",
+          "variance_value": null,
+          "unit": "PERCENT",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Alloy Metals represents 13.67781155015197568389057751% of captured annual supplier spend. This is concentration exposure only; no disruption probability or expected loss is inferred."
+        },
+        {
+          "signal_id": "sig_68f718367f6c426b81bdc711ab49539b",
+          "test_id": "SUP-03",
+          "test_name": "Supplier Concentration, Dependency & Commercial Risk",
+          "core_question": "Which suppliers does your business genuinely depend on, what profit or revenue is exposed if something changes, and where should you reduce risk or strengthen your commercial position?",
+          "signal_type": "SUPPLIER_DEPENDENCY",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Polymer UK",
+          "observed_value": "6.484295845997973657548125633",
+          "comparison_value": "640000",
+          "variance_value": null,
+          "unit": "PERCENT",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Polymer UK represents 6.484295845997973657548125633% of captured annual supplier spend. This is concentration exposure only; no disruption probability or expected loss is inferred."
+        },
+        {
+          "signal_id": "sig_95d7e3e001d8487eb84c8c1661ed65a7",
+          "test_id": "SUP-03",
+          "test_name": "Supplier Concentration, Dependency & Commercial Risk",
+          "core_question": "Which suppliers does your business genuinely depend on, what profit or revenue is exposed if something changes, and where should you reduce risk or strengthen your commercial position?",
+          "signal_type": "SUPPLIER_DEPENDENCY",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Electro Components",
+          "observed_value": "7.700101317122593718338399189",
+          "comparison_value": "760000",
+          "variance_value": null,
+          "unit": "PERCENT",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Electro Components represents 7.700101317122593718338399189% of captured annual supplier spend. This is concentration exposure only; no disruption probability or expected loss is inferred."
+        },
+        {
+          "signal_id": "sig_a104274901694f678b277a19806753f9",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "SteelCo",
+          "observed_value": "2200000",
+          "comparison_value": "22.28976697061803444782168186",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "HIGH",
+          "evidence_summary": "Annual supplier summary evidences spend 2200000, 22.28976697061803444782168186% of captured spend. High spend alone is not overspend."
+        },
+        {
+          "signal_id": "sig_cb0b7d27185044a0ac624eeba8c5c963",
+          "test_id": "SUP-03",
+          "test_name": "Supplier Concentration, Dependency & Commercial Risk",
+          "core_question": "Which suppliers does your business genuinely depend on, what profit or revenue is exposed if something changes, and where should you reduce risk or strengthen your commercial position?",
+          "signal_type": "SUPPLIER_DEPENDENCY",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Precision Bearings",
+          "observed_value": "7.294832826747720364741641337",
+          "comparison_value": "720000",
+          "variance_value": null,
+          "unit": "PERCENT",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Precision Bearings represents 7.294832826747720364741641337% of captured annual supplier spend. This is concentration exposure only; no disruption probability or expected loss is inferred."
+        }
+      ],
+      "diagnostic_ids": [
+        "SUP-01",
+        "SUP-03"
+      ],
+      "recommended_actions": [
+        {
+          "theme": "SUPPLIER_DEPENDENCY",
+          "action_type": "SUPPLIER_REVIEW",
+          "recommended_action": "Review concentrated suppliers for criticality, alternatives, terms and negotiation opportunities.",
+          "evidence_required": "Contracts, item-level purchases/prices, alternative-source evidence and operational criticality.",
+          "owner_role": "FD/Management",
+          "state": "PROPOSED",
+          "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+        }
+      ],
+      "opportunities": [
+        {
+          "theme": "SUPPLIER_DEPENDENCY",
+          "purpose": "PROTECT",
+          "benefit_type": "B6_RISK_MITIGATION",
+          "availability": "CONDITIONAL",
+          "economic_state": "EVIDENCE_REQUIRED",
+          "currency": "GBP",
+          "theoretical": null,
+          "addressable": null,
+          "expected": null,
+          "recommended_action": "Review concentrated suppliers for criticality, alternatives, terms and negotiation opportunities.",
+          "evidence_required": "Contracts, item-level purchases/prices, alternative-source evidence and operational criticality.",
+          "limitation": "No monetary opportunity is supported from this management priority without mechanism, addressability and recovery-envelope evidence."
+        }
+      ]
+    },
+    "CAPACITY_CONSTRAINT": {
+      "run_id": "run_a9a61c39f60245dfac46741b73952fdd",
+      "client_id": "UWB_CLIENT",
+      "attention_item_id": "mai_1ad133dd5c33465d9b035df82e927583",
+      "rank": 4,
+      "theme": "CAPACITY_CONSTRAINT",
+      "title": "Operational capacity appears constrained",
+      "management_question": "Which work centres are genuinely capacity constrained and what is driving the load?",
+      "rationale": "1 material signal(s) across PEO-04 support one management theme. Related signals are compressed without deleting their underlying evidence.",
+      "next_step": "Validate hours and constraints, then test overtime, bottlenecks, scheduling, mix and investment options before monetising.",
+      "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection.",
+      "supporting_evidence": [
+        {
+          "signal_id": "sig_bbcdffdfe3e140688c66b5e1a0453d5a",
+          "test_id": "PEO-04",
+          "test_name": "Capacity, Utilisation & Workforce Efficiency",
+          "core_question": "Where is practical workforce capacity constrained or underused, and how much capacity is genuinely evidenced?",
+          "signal_type": "WORK_CENTRE_UTILISATION",
+          "entity_type": "WORK_CENTRE",
+          "entity_id": "Assembly",
+          "observed_value": "104.2053184910327767470624613",
+          "comparison_value": "3234",
+          "variance_value": "0",
+          "unit": "PERCENT",
+          "materiality_state": "HIGH",
+          "evidence_summary": "Assembly: practical capacity 3234 hours, actual productive hours 3370, utilisation 104.2053184910327767470624613%. Over/unused capacity is operational evidence only; no financial saving or causal conclusion is inferred."
+        }
+      ],
+      "diagnostic_ids": [
+        "PEO-04"
+      ],
+      "recommended_actions": [
+        {
+          "theme": "CAPACITY_CONSTRAINT",
+          "action_type": "CAPACITY_REVIEW",
+          "recommended_action": "Validate bottleneck load and test scheduling, overtime, mix, process and investment alternatives before monetising.",
+          "evidence_required": "Validated practical capacity, productive hours, overtime, throughput, scrap/downtime and contribution at constraint.",
+          "owner_role": "FD/Management",
+          "state": "PROPOSED",
+          "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+        }
+      ],
+      "opportunities": [
+        {
+          "theme": "CAPACITY_CONSTRAINT",
+          "purpose": "IMPROVE",
+          "benefit_type": "B4_RECURRING_WORKING_CAPITAL_EFFICIENCY",
+          "availability": "CONDITIONAL",
+          "economic_state": "EVIDENCE_REQUIRED",
+          "currency": "GBP",
+          "theoretical": null,
+          "addressable": null,
+          "expected": null,
+          "recommended_action": "Validate bottleneck load and test scheduling, overtime, mix, process and investment alternatives before monetising.",
+          "evidence_required": "Validated practical capacity, productive hours, overtime, throughput, scrap/downtime and contribution at constraint.",
+          "limitation": "Capacity released or data corrected is not a saving unless an evidenced economic use or avoided cost is demonstrated."
+        }
+      ]
+    },
+    "WORKING_CAPITAL": {
+      "run_id": "run_a9a61c39f60245dfac46741b73952fdd",
+      "client_id": "UWB_CLIENT",
+      "attention_item_id": "mai_2f33eb6bca5d42629b87dd527d456fab",
+      "rank": 5,
+      "theme": "WORKING_CAPITAL",
+      "title": "Working capital requires focused investigation",
+      "management_question": "What portion of working capital is genuinely addressable without harming operations?",
+      "rationale": "2 material signal(s) across WC-06, WC-07 support one management theme. Related signals are compressed without deleting their underlying evidence.",
+      "next_step": "Investigate the underlying balances, causes, timing and operational guardrails before estimating cash release.",
+      "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection.",
+      "supporting_evidence": [
+        {
+          "signal_id": "sig_3f1b71d3390a434a9db96d1ede044167",
+          "test_id": "WC-07",
+          "test_name": "Working Capital & Cash Opportunity Optimisation",
+          "core_question": "What should you actually do to improve cash, how much will each action realistically release, when will the cash arrive, what could it put at risk, and what is the best combined plan for the business?",
+          "signal_type": "CASH_OPTIMISATION_CANDIDATE",
+          "entity_type": "WORKING_CAPITAL_COMPONENT",
+          "entity_id": "BS_INVENTORY",
+          "observed_value": null,
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "WORKING_CAPITAL_RELEASE_CANDIDATE supports investigation. Expected cash release, timing and guardrails remain unquantified; collecting recognised revenue is not new profit and profit-to-cash manifestation must not be double counted."
+        },
+        {
+          "signal_id": "sig_b5f82ecb41144ff1a2bdd1211598e579",
+          "test_id": "WC-06",
+          "test_name": "Working Capital Leakage & Cash Release",
+          "core_question": "Where is cash unnecessarily trapped in the business, why is it trapped, and how much could realistically be released without damaging customers, suppliers, operations or growth?",
+          "signal_type": "WORKING_CAPITAL_RELEASE_CANDIDATE",
+          "entity_type": "WORKING_CAPITAL_COMPONENT",
+          "entity_id": "BS_INVENTORY",
+          "observed_value": null,
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "BS_INVENTORY provides evidence of working-capital exposure, but addressable cash release remains unquantified until cause, mechanism, operational guardrails and timing are evidenced. Cash release is not profit."
+        }
+      ],
+      "diagnostic_ids": [
+        "WC-06",
+        "WC-07"
+      ],
+      "recommended_actions": [
+        {
+          "theme": "WORKING_CAPITAL",
+          "action_type": "WORKING_CAPITAL_REVIEW",
+          "recommended_action": "Identify genuinely addressable receivables, payables and inventory actions subject to operational guardrails.",
+          "evidence_required": "Invoice/aging detail, disputes/credits, supplier terms, stock aging/service-level evidence and cash timing.",
+          "owner_role": "FD/Management",
+          "state": "PROPOSED",
+          "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+        }
+      ],
+      "opportunities": [
+        {
+          "theme": "WORKING_CAPITAL",
+          "purpose": "RELEASE",
+          "benefit_type": "B3_ONE_OFF_CASH_RELEASE",
+          "availability": "CONDITIONAL",
+          "economic_state": "EVIDENCE_REQUIRED",
+          "currency": "GBP",
+          "theoretical": null,
+          "addressable": null,
+          "expected": null,
+          "recommended_action": "Identify genuinely addressable receivables, payables and inventory actions subject to operational guardrails.",
+          "evidence_required": "Invoice/aging detail, disputes/credits, supplier terms, stock aging/service-level evidence and cash timing.",
+          "limitation": "No monetary opportunity is supported from this management priority without mechanism, addressability and recovery-envelope evidence."
+        }
+      ]
+    }
+  },
+  "diagnostic_details": {
+    "RISK-01": {
+      "run_id": "run_a9a61c39f60245dfac46741b73952fdd",
+      "client_id": "UWB_CLIENT",
+      "test_id": "RISK-01",
+      "test_name": "Financial Integrity, Reconciliation & Accounting Control",
+      "core_question": "Can you trust the numbers you are using to run the business \u2014 and where could errors, unreconciled balances or weak financial controls be distorting the picture?",
+      "objective": "Synthesize financial-integrity and reconciliation evidence without representing Profit Doctor as an audit opinion.",
+      "eligibility_state": "FULL",
+      "execution_status": "COMPLETED",
+      "method_id": "L1_TRUST_CONTROLS",
+      "limitation": null,
+      "signals": [
+        {
+          "signal_id": "sig_d808ff9f1e4d4a74bc6378a377cc5bcd",
+          "test_id": "RISK-01",
+          "test_name": "Financial Integrity, Reconciliation & Accounting Control",
+          "core_question": "Can you trust the numbers you are using to run the business \u2014 and where could errors, unreconciled balances or weak financial controls be distorting the picture?",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "entity_type": "RECONCILIATION",
+          "entity_id": "UWB_AR_TO_TB",
+          "observed_value": "982806.0",
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "UWB_AR_TO_TB reconciliation status FAILED; residual 982806.0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "signal_id": "sig_bdfa4b7454ba490c9068beb92c0df6c3",
+          "test_id": "RISK-01",
+          "test_name": "Financial Integrity, Reconciliation & Accounting Control",
+          "core_question": "Can you trust the numbers you are using to run the business \u2014 and where could errors, unreconciled balances or weak financial controls be distorting the picture?",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "entity_type": "RECONCILIATION",
+          "entity_id": "UWB_AP_TO_TB",
+          "observed_value": "-279000.0",
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "UWB_AP_TO_TB reconciliation status FAILED; residual -279000.0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "signal_id": "sig_1c297739980745bbb91e4fa26e6630ac",
+          "test_id": "RISK-01",
+          "test_name": "Financial Integrity, Reconciliation & Accounting Control",
+          "core_question": "Can you trust the numbers you are using to run the business \u2014 and where could errors, unreconciled balances or weak financial controls be distorting the picture?",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "entity_type": "RECONCILIATION",
+          "entity_id": "UWB_INVENTORY_TO_SUPPORT",
+          "observed_value": "120000.0",
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "UWB_INVENTORY_TO_SUPPORT reconciliation status FAILED; residual 120000.0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "signal_id": "sig_a430bdac7e1f40fb808c452a1dabe906",
+          "test_id": "RISK-01",
+          "test_name": "Financial Integrity, Reconciliation & Accounting Control",
+          "core_question": "Can you trust the numbers you are using to run the business \u2014 and where could errors, unreconciled balances or weak financial controls be distorting the picture?",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "entity_type": "RECONCILIATION",
+          "entity_id": "UWB_DEBT_TO_SUPPORT",
+          "observed_value": "-125000.0",
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "UWB_DEBT_TO_SUPPORT reconciliation status FAILED; residual -125000.0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        }
+      ]
+    },
+    "RISK-04": {
+      "run_id": "run_a9a61c39f60245dfac46741b73952fdd",
+      "client_id": "UWB_CLIENT",
+      "test_id": "RISK-04",
+      "test_name": "Financial Risk, Control & Governance Optimisation",
+      "core_question": "What should management actually fix, strengthen, monitor or consciously accept to protect the business \u2014 without creating unnecessary bureaucracy or getting in the way of profitable growth?",
+      "objective": "Create proportionate governance/action candidates from evidenced weaknesses and exposures; management judgement remains explicit.",
+      "eligibility_state": "FULL",
+      "execution_status": "COMPLETED",
+      "method_id": "L1_PROPORTIONATE_GOVERNANCE",
+      "limitation": null,
+      "signals": [
+        {
+          "signal_id": "sig_4de27463b3b34f7681ae03cbc0779dd1",
+          "test_id": "RISK-04",
+          "test_name": "Financial Risk, Control & Governance Optimisation",
+          "core_question": "What should management actually fix, strengthen, monitor or consciously accept to protect the business \u2014 without creating unnecessary bureaucracy or getting in the way of profitable growth?",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "entity_type": "CONTROL_AREA",
+          "entity_id": "FINANCIAL_INTEGRITY",
+          "observed_value": null,
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "ACTION",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "signal_id": "sig_24f324a237d64f0ca955e2d80c6adce3",
+          "test_id": "RISK-04",
+          "test_name": "Financial Risk, Control & Governance Optimisation",
+          "core_question": "What should management actually fix, strengthen, monitor or consciously accept to protect the business \u2014 without creating unnecessary bureaucracy or getting in the way of profitable growth?",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "entity_type": "CONTROL_AREA",
+          "entity_id": "FINANCIAL_INTEGRITY",
+          "observed_value": null,
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "ACTION",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "signal_id": "sig_7f08daee34904f49bd37574dfcafab88",
+          "test_id": "RISK-04",
+          "test_name": "Financial Risk, Control & Governance Optimisation",
+          "core_question": "What should management actually fix, strengthen, monitor or consciously accept to protect the business \u2014 without creating unnecessary bureaucracy or getting in the way of profitable growth?",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "entity_type": "CONTROL_AREA",
+          "entity_id": "FINANCIAL_INTEGRITY",
+          "observed_value": null,
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "ACTION",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "signal_id": "sig_df8e900df3c24a5e89bbb5f19b11984a",
+          "test_id": "RISK-04",
+          "test_name": "Financial Risk, Control & Governance Optimisation",
+          "core_question": "What should management actually fix, strengthen, monitor or consciously accept to protect the business \u2014 without creating unnecessary bureaucracy or getting in the way of profitable growth?",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "entity_type": "CONTROL_AREA",
+          "entity_id": "FINANCIAL_INTEGRITY",
+          "observed_value": null,
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "ACTION",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        }
+      ]
+    },
+    "CUS-01": {
+      "run_id": "run_a9a61c39f60245dfac46741b73952fdd",
+      "client_id": "UWB_CLIENT",
+      "test_id": "CUS-01",
+      "test_name": "Customer Concentration & Dependency",
+      "core_question": "How dependent is the business on individual customers, and how much revenue is concentrated in its largest relationships?",
+      "objective": "Measure customer concentration and dependency signals.",
+      "eligibility_state": "PARTIAL-A",
+      "execution_status": "COMPLETED",
+      "method_id": "AGGREGATE_CUSTOMER_ANNUAL",
+      "limitation": "Aggregate annual evidence; no time-series customer movement inferred",
+      "signals": [
+        {
+          "signal_id": "sig_a92e7ce8a3c146fc872c6e9f90262183",
+          "test_id": "CUS-01",
+          "test_name": "Customer Concentration & Dependency",
+          "core_question": "How dependent is the business on individual customers, and how much revenue is concentrated in its largest relationships?",
+          "signal_type": "TOP_CUSTOMER_CONCENTRATION",
+          "entity_type": "CUSTOMER",
+          "entity_id": "AeroFab UK",
+          "observed_value": "10.9600",
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "PERCENT",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Annual customer summary: largest customer contributes 1644000 of 15000000 captured revenue. Dependency exposure only; no loss probability inferred."
+        },
+        {
+          "signal_id": "sig_53d34b64b2ef4ef7aee1bda97c3e309b",
+          "test_id": "CUS-01",
+          "test_name": "Customer Concentration & Dependency",
+          "core_question": "How dependent is the business on individual customers, and how much revenue is concentrated in its largest relationships?",
+          "signal_type": "TOP5_CONCENTRATION",
+          "entity_type": null,
+          "entity_id": null,
+          "observed_value": "42.01333333333333333333333333",
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "PERCENT",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Top five customers contribute 42.01333333333333333333333333% of captured annual customer revenue."
+        },
+        {
+          "signal_id": "sig_29a86718a27a41789264de9192a9bc37",
+          "test_id": "CUS-01",
+          "test_name": "Customer Concentration & Dependency",
+          "core_question": "How dependent is the business on individual customers, and how much revenue is concentrated in its largest relationships?",
+          "signal_type": "CUSTOMER_HHI",
+          "entity_type": null,
+          "entity_id": null,
+          "observed_value": "574.1573333333333333333333333",
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "INDEX",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Customer revenue HHI is 574.1573333333333333333333333 from annual aggregate customer evidence."
+        }
+      ]
+    },
+    "CUS-02": {
+      "run_id": "run_a9a61c39f60245dfac46741b73952fdd",
+      "client_id": "UWB_CLIENT",
+      "test_id": "CUS-02",
+      "test_name": "Customer Profitability",
+      "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+      "objective": "Measure customer revenue, Contribution 0 and margin economics without confusing revenue scale with profitability.",
+      "eligibility_state": "PARTIAL-A",
+      "execution_status": "COMPLETED",
+      "method_id": "AGGREGATE_CUSTOMER_MARGIN",
+      "limitation": "Contribution 0 only; CTS unavailable",
+      "signals": [
+        {
+          "signal_id": "sig_bb6028d86ead47ee8029df34002cd4c4",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "AeroFab UK",
+          "observed_value": "443880.00",
+          "comparison_value": "1644000",
+          "variance_value": "27.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 1644000 and gross profit/Contribution 0 443880.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_10f4abda755c496b93cb4505a67e3411",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Barton Process",
+          "observed_value": "260300.00",
+          "comparison_value": "1370000",
+          "variance_value": "19.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 1370000 and gross profit/Contribution 0 260300.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_68ff87e543ff41c490cb6e48c0abff25",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Cobalt Engineering",
+          "observed_value": "468540.00",
+          "comparison_value": "1233000",
+          "variance_value": "38.00",
+          "unit": "GBP",
+          "materiality_state": "HIGH",
+          "evidence_summary": "Annual customer summary evidences revenue 1233000 and gross profit/Contribution 0 468540.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_ace98d84d9fb4e36a5d980ac2ea7f5f7",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Dales Packaging",
+          "observed_value": "339760.00",
+          "comparison_value": "1096000",
+          "variance_value": "31.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 1096000 and gross profit/Contribution 0 339760.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_bd301f0ba2e44dde899e9fcef34ce34a",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Edge Mobility",
+          "observed_value": "220570.00",
+          "comparison_value": "959000",
+          "variance_value": "23.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 959000 and gross profit/Contribution 0 220570.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_6ec75cf786f043aabb6ab12d2c15a191",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Futura Systems",
+          "observed_value": "320400.00",
+          "comparison_value": "890000",
+          "variance_value": "36.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 890000 and gross profit/Contribution 0 320400.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_c46253232ffe431d91a074ced911fc63",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Grafton Foods",
+          "observed_value": "287700.00",
+          "comparison_value": "822000",
+          "variance_value": "35.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 822000 and gross profit/Contribution 0 287700.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_9aaf60bc84f04932a8ab842cdb5fe588",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Helix Marine",
+          "observed_value": "128010.00",
+          "comparison_value": "753000",
+          "variance_value": "17.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 753000 and gross profit/Contribution 0 128010.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_65f7637edb3f4da2af16710cfed4fbe2",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Innova Rail",
+          "observed_value": "287700.00",
+          "comparison_value": "685000",
+          "variance_value": "42.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 685000 and gross profit/Contribution 0 287700.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_35e47890d77a4ccc8c9b4c89c592fb10",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Jenson Controls",
+          "observed_value": "178640.00",
+          "comparison_value": "616000",
+          "variance_value": "29.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 616000 and gross profit/Contribution 0 178640.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_1133d006181a4bdc9974570c23d4eee3",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Kinetic OEM",
+          "observed_value": "180840.00",
+          "comparison_value": "548000",
+          "variance_value": "33.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 548000 and gross profit/Contribution 0 180840.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_b32af0ef47034efe837849f3e987eb35",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Lancaster Defence",
+          "observed_value": "106470.00",
+          "comparison_value": "507000",
+          "variance_value": "21.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 507000 and gross profit/Contribution 0 106470.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_ba57d1de0a5141aebd54ac9d3fe31a0f",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Metro Automation",
+          "observed_value": "186400.0",
+          "comparison_value": "466000",
+          "variance_value": "40.0",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 466000 and gross profit/Contribution 0 186400.0. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_d7537a376af14d28965cbec0ab9cb8a1",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Nexus Energy",
+          "observed_value": "162060.00",
+          "comparison_value": "438000",
+          "variance_value": "37.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 438000 and gross profit/Contribution 0 162060.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_d3aa78ef4ba54ccb9ffcdffccd1ed003",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Oakwell Pumps",
+          "observed_value": "102750.00",
+          "comparison_value": "411000",
+          "variance_value": "25.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 411000 and gross profit/Contribution 0 102750.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_c5f1ba86f40f487b957a12ffac174140",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Prime Medical",
+          "observed_value": "162800.00",
+          "comparison_value": "370000",
+          "variance_value": "44.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 370000 and gross profit/Contribution 0 162800.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_f3a1e5bc416c468fbc292923559a23d8",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Quarry Equipment",
+          "observed_value": "95760.00",
+          "comparison_value": "342000",
+          "variance_value": "28.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 342000 and gross profit/Contribution 0 95760.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_f2e9b76817ad49778e7634db9ebe528a",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Riverside Agri",
+          "observed_value": "69300.00",
+          "comparison_value": "315000",
+          "variance_value": "22.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 315000 and gross profit/Contribution 0 69300.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_3192ea6454a04b7fba8ac64041ffad3e",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Summit Handling",
+          "observed_value": "97920.00",
+          "comparison_value": "288000",
+          "variance_value": "34.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 288000 and gross profit/Contribution 0 97920.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_e0440362ce804df5af2b6ef3f3f226e8",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Trident Components",
+          "observed_value": "78000.0",
+          "comparison_value": "260000",
+          "variance_value": "30.0",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 260000 and gross profit/Contribution 0 78000.0. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_bb69cba9769e4ae391ae806ecaad8e22",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Unity Interiors",
+          "observed_value": "41940.00",
+          "comparison_value": "233000",
+          "variance_value": "18.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 233000 and gross profit/Contribution 0 41940.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_53a63902b41c4629a7f2aa5a04e630a9",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Vantage Utilities",
+          "observed_value": "79950.00",
+          "comparison_value": "205000",
+          "variance_value": "39.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 205000 and gross profit/Contribution 0 79950.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_2442d9230948474dbb3df67cfbe9aef9",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Westmoor Tech",
+          "observed_value": "56960.00",
+          "comparison_value": "178000",
+          "variance_value": "32.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 178000 and gross profit/Contribution 0 56960.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_a1510b2b35d348f59a1dad6d1ca0a60c",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Xcel Fabrication",
+          "observed_value": "36240.00",
+          "comparison_value": "151000",
+          "variance_value": "24.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 151000 and gross profit/Contribution 0 36240.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_6d7264384a1a40d4b239db5a91a05cf8",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "York Process",
+          "observed_value": "50430.00",
+          "comparison_value": "123000",
+          "variance_value": "41.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 123000 and gross profit/Contribution 0 50430.00. No cost-to-serve allocation is inferred."
+        },
+        {
+          "signal_id": "sig_a4a5be936d7445f1b894abefa43e65a6",
+          "test_id": "CUS-02",
+          "test_name": "Customer Profitability",
+          "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "entity_type": "CUSTOMER",
+          "entity_id": "Zenith OEM",
+          "observed_value": "25220.00",
+          "comparison_value": "97000",
+          "variance_value": "26.00",
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual customer summary evidences revenue 97000 and gross profit/Contribution 0 25220.00. No cost-to-serve allocation is inferred."
+        }
+      ]
+    },
+    "SUP-01": {
+      "run_id": "run_a9a61c39f60245dfac46741b73952fdd",
+      "client_id": "UWB_CLIENT",
+      "test_id": "SUP-01",
+      "test_name": "Supplier Spend & Cost Base Intelligence",
+      "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+      "objective": "Measure supplier/category spend and concentration without equating high spend with overspend.",
+      "eligibility_state": "PARTIAL-A",
+      "execution_status": "COMPLETED",
+      "method_id": "AGGREGATE_SUPPLIER_ANNUAL",
+      "limitation": "Annual aggregate spend only",
+      "signals": [
+        {
+          "signal_id": "sig_a104274901694f678b277a19806753f9",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "SteelCo",
+          "observed_value": "2200000",
+          "comparison_value": "22.28976697061803444782168186",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "HIGH",
+          "evidence_summary": "Annual supplier summary evidences spend 2200000, 22.28976697061803444782168186% of captured spend. High spend alone is not overspend."
+        },
+        {
+          "signal_id": "sig_ae987ed5ef144a10a39343e6d2894a07",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Alloy Metals",
+          "observed_value": "1350000",
+          "comparison_value": "13.67781155015197568389057751",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual supplier summary evidences spend 1350000, 13.67781155015197568389057751% of captured spend. High spend alone is not overspend."
+        },
+        {
+          "signal_id": "sig_85a69f2a32f047dc995ab8b3e3d4c95d",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Electro Components",
+          "observed_value": "760000",
+          "comparison_value": "7.700101317122593718338399189",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual supplier summary evidences spend 760000, 7.700101317122593718338399189% of captured spend. High spend alone is not overspend."
+        },
+        {
+          "signal_id": "sig_2b32041296e544a29fde7836b3580c84",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Precision Bearings",
+          "observed_value": "720000",
+          "comparison_value": "7.294832826747720364741641337",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual supplier summary evidences spend 720000, 7.294832826747720364741641337% of captured spend. High spend alone is not overspend."
+        },
+        {
+          "signal_id": "sig_eedeba798c2b4d468b23e544b6be0a03",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Polymer UK",
+          "observed_value": "640000",
+          "comparison_value": "6.484295845997973657548125633",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual supplier summary evidences spend 640000, 6.484295845997973657548125633% of captured spend. High spend alone is not overspend."
+        },
+        {
+          "signal_id": "sig_c6cf7378e8dd4e69a8304f325fc70e04",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Other Suppliers",
+          "observed_value": "610000",
+          "comparison_value": "6.180344478216818642350557244",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual supplier summary evidences spend 610000, 6.180344478216818642350557244% of captured spend. High spend alone is not overspend."
+        },
+        {
+          "signal_id": "sig_6fcb9bba9f724aa980375e96cdf4490b",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Freightline",
+          "observed_value": "580000",
+          "comparison_value": "5.876393110435663627152988855",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual supplier summary evidences spend 580000, 5.876393110435663627152988855% of captured spend. High spend alone is not overspend."
+        },
+        {
+          "signal_id": "sig_49895a18276546c3935156313073a325",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Machine Services",
+          "observed_value": "520000",
+          "comparison_value": "5.268490374873353596757852077",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual supplier summary evidences spend 520000, 5.268490374873353596757852077% of captured spend. High spend alone is not overspend."
+        },
+        {
+          "signal_id": "sig_f8a97ba0c24d4b46ab75b452da60f5ce",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Temp Labour Co",
+          "observed_value": "460000",
+          "comparison_value": "4.660587639311043566362715299",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual supplier summary evidences spend 460000, 4.660587639311043566362715299% of captured spend. High spend alone is not overspend."
+        },
+        {
+          "signal_id": "sig_cda0ae2ee0d34265b3c9611ce7b3b96a",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Industrial Gas",
+          "observed_value": "430000",
+          "comparison_value": "4.356636271529888551165146910",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual supplier summary evidences spend 430000, 4.356636271529888551165146910% of captured spend. High spend alone is not overspend."
+        },
+        {
+          "signal_id": "sig_2a60966e1c42416eb68264d52355d8e3",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Coatings Ltd",
+          "observed_value": "410000",
+          "comparison_value": "4.154002026342451874366767984",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual supplier summary evidences spend 410000, 4.154002026342451874366767984% of captured spend. High spend alone is not overspend."
+        },
+        {
+          "signal_id": "sig_64d09478b53a43f7a0acf3253c12814e",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Tooling Direct",
+          "observed_value": "390000",
+          "comparison_value": "3.951367781155015197568389058",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual supplier summary evidences spend 390000, 3.951367781155015197568389058% of captured spend. High spend alone is not overspend."
+        },
+        {
+          "signal_id": "sig_7a2f7d1e3dfd41b8a204fc4c85f3a40f",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Packaging Plus",
+          "observed_value": "330000",
+          "comparison_value": "3.343465045592705167173252280",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual supplier summary evidences spend 330000, 3.343465045592705167173252280% of captured spend. High spend alone is not overspend."
+        },
+        {
+          "signal_id": "sig_ef78d528348847d587c49d6d2b75d69b",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Facilities Group",
+          "observed_value": "290000",
+          "comparison_value": "2.938196555217831813576494428",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual supplier summary evidences spend 290000, 2.938196555217831813576494428% of captured spend. High spend alone is not overspend."
+        },
+        {
+          "signal_id": "sig_1c55edb7d6e04a7e87500a6abadd9a4e",
+          "test_id": "SUP-01",
+          "test_name": "Supplier Spend & Cost Base Intelligence",
+          "core_question": "Where is money being spent, which suppliers and categories matter most, and how is the cost base changing?",
+          "signal_type": "SUPPLIER_SPEND",
+          "entity_type": "SUPPLIER",
+          "entity_id": "IT Systems",
+          "observed_value": "180000",
+          "comparison_value": "1.823708206686930091185410334",
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Annual supplier summary evidences spend 180000, 1.823708206686930091185410334% of captured spend. High spend alone is not overspend."
+        }
+      ]
+    },
+    "SUP-03": {
+      "run_id": "run_a9a61c39f60245dfac46741b73952fdd",
+      "client_id": "UWB_CLIENT",
+      "test_id": "SUP-03",
+      "test_name": "Supplier Concentration, Dependency & Commercial Risk",
+      "core_question": "Which suppliers does your business genuinely depend on, what profit or revenue is exposed if something changes, and where should you reduce risk or strengthen your commercial position?",
+      "objective": "Measure spend concentration and evidenced dependency while refusing to invent disruption probability or expected loss.",
+      "eligibility_state": "PARTIAL-A",
+      "execution_status": "COMPLETED",
+      "method_id": "AGGREGATE_SUPPLIER_ANNUAL",
+      "limitation": "Dependency based on spend concentration only; criticality/single-source status unavailable",
+      "signals": [
+        {
+          "signal_id": "sig_2105fe77957e4ce9b662d18005874529",
+          "test_id": "SUP-03",
+          "test_name": "Supplier Concentration, Dependency & Commercial Risk",
+          "core_question": "Which suppliers does your business genuinely depend on, what profit or revenue is exposed if something changes, and where should you reduce risk or strengthen your commercial position?",
+          "signal_type": "SUPPLIER_DEPENDENCY",
+          "entity_type": "SUPPLIER",
+          "entity_id": "SteelCo",
+          "observed_value": "22.28976697061803444782168186",
+          "comparison_value": "2200000",
+          "variance_value": null,
+          "unit": "PERCENT",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "SteelCo represents 22.28976697061803444782168186% of captured annual supplier spend. This is concentration exposure only; no disruption probability or expected loss is inferred."
+        },
+        {
+          "signal_id": "sig_2a71f7e1dfe1496e848f3b1de057a46e",
+          "test_id": "SUP-03",
+          "test_name": "Supplier Concentration, Dependency & Commercial Risk",
+          "core_question": "Which suppliers does your business genuinely depend on, what profit or revenue is exposed if something changes, and where should you reduce risk or strengthen your commercial position?",
+          "signal_type": "SUPPLIER_DEPENDENCY",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Alloy Metals",
+          "observed_value": "13.67781155015197568389057751",
+          "comparison_value": "1350000",
+          "variance_value": null,
+          "unit": "PERCENT",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Alloy Metals represents 13.67781155015197568389057751% of captured annual supplier spend. This is concentration exposure only; no disruption probability or expected loss is inferred."
+        },
+        {
+          "signal_id": "sig_95d7e3e001d8487eb84c8c1661ed65a7",
+          "test_id": "SUP-03",
+          "test_name": "Supplier Concentration, Dependency & Commercial Risk",
+          "core_question": "Which suppliers does your business genuinely depend on, what profit or revenue is exposed if something changes, and where should you reduce risk or strengthen your commercial position?",
+          "signal_type": "SUPPLIER_DEPENDENCY",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Electro Components",
+          "observed_value": "7.700101317122593718338399189",
+          "comparison_value": "760000",
+          "variance_value": null,
+          "unit": "PERCENT",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Electro Components represents 7.700101317122593718338399189% of captured annual supplier spend. This is concentration exposure only; no disruption probability or expected loss is inferred."
+        },
+        {
+          "signal_id": "sig_cb0b7d27185044a0ac624eeba8c5c963",
+          "test_id": "SUP-03",
+          "test_name": "Supplier Concentration, Dependency & Commercial Risk",
+          "core_question": "Which suppliers does your business genuinely depend on, what profit or revenue is exposed if something changes, and where should you reduce risk or strengthen your commercial position?",
+          "signal_type": "SUPPLIER_DEPENDENCY",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Precision Bearings",
+          "observed_value": "7.294832826747720364741641337",
+          "comparison_value": "720000",
+          "variance_value": null,
+          "unit": "PERCENT",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Precision Bearings represents 7.294832826747720364741641337% of captured annual supplier spend. This is concentration exposure only; no disruption probability or expected loss is inferred."
+        },
+        {
+          "signal_id": "sig_68f718367f6c426b81bdc711ab49539b",
+          "test_id": "SUP-03",
+          "test_name": "Supplier Concentration, Dependency & Commercial Risk",
+          "core_question": "Which suppliers does your business genuinely depend on, what profit or revenue is exposed if something changes, and where should you reduce risk or strengthen your commercial position?",
+          "signal_type": "SUPPLIER_DEPENDENCY",
+          "entity_type": "SUPPLIER",
+          "entity_id": "Polymer UK",
+          "observed_value": "6.484295845997973657548125633",
+          "comparison_value": "640000",
+          "variance_value": null,
+          "unit": "PERCENT",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "Polymer UK represents 6.484295845997973657548125633% of captured annual supplier spend. This is concentration exposure only; no disruption probability or expected loss is inferred."
+        }
+      ]
+    },
+    "PEO-04": {
+      "run_id": "run_a9a61c39f60245dfac46741b73952fdd",
+      "client_id": "UWB_CLIENT",
+      "test_id": "PEO-04",
+      "test_name": "Capacity, Utilisation & Workforce Efficiency",
+      "core_question": "Where is practical workforce capacity constrained or underused, and how much capacity is genuinely evidenced?",
+      "objective": "Measure practical capacity and utilisation without converting unused hours into financial savings.",
+      "eligibility_state": "PARTIAL-A",
+      "execution_status": "COMPLETED",
+      "method_id": "AGGREGATE_WORK_CENTRE_CAPACITY",
+      "limitation": "Work-centre summary; no causal attribution",
+      "signals": [
+        {
+          "signal_id": "sig_febbaf3c6fe44c30b51ac467e78e221c",
+          "test_id": "PEO-04",
+          "test_name": "Capacity, Utilisation & Workforce Efficiency",
+          "core_question": "Where is practical workforce capacity constrained or underused, and how much capacity is genuinely evidenced?",
+          "signal_type": "WORK_CENTRE_UTILISATION",
+          "entity_type": "WORK_CENTRE",
+          "entity_id": "CNC Machining",
+          "observed_value": "99.72170686456400742115027829",
+          "comparison_value": "6468",
+          "variance_value": "18",
+          "unit": "PERCENT",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "CNC Machining: practical capacity 6468 hours, actual productive hours 6450, utilisation 99.72170686456400742115027829%. Over/unused capacity is operational evidence only; no financial saving or causal conclusion is inferred."
+        },
+        {
+          "signal_id": "sig_bbcdffdfe3e140688c66b5e1a0453d5a",
+          "test_id": "PEO-04",
+          "test_name": "Capacity, Utilisation & Workforce Efficiency",
+          "core_question": "Where is practical workforce capacity constrained or underused, and how much capacity is genuinely evidenced?",
+          "signal_type": "WORK_CENTRE_UTILISATION",
+          "entity_type": "WORK_CENTRE",
+          "entity_id": "Assembly",
+          "observed_value": "104.2053184910327767470624613",
+          "comparison_value": "3234",
+          "variance_value": "0",
+          "unit": "PERCENT",
+          "materiality_state": "HIGH",
+          "evidence_summary": "Assembly: practical capacity 3234 hours, actual productive hours 3370, utilisation 104.2053184910327767470624613%. Over/unused capacity is operational evidence only; no financial saving or causal conclusion is inferred."
+        },
+        {
+          "signal_id": "sig_c2619caff0e044a0a988811e33ce7f0d",
+          "test_id": "PEO-04",
+          "test_name": "Capacity, Utilisation & Workforce Efficiency",
+          "core_question": "Where is practical workforce capacity constrained or underused, and how much capacity is genuinely evidenced?",
+          "signal_type": "WORK_CENTRE_UTILISATION",
+          "entity_type": "WORK_CENTRE",
+          "entity_id": "Welding",
+          "observed_value": "99.25788497217068645640074212",
+          "comparison_value": "3234",
+          "variance_value": "24",
+          "unit": "PERCENT",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Welding: practical capacity 3234 hours, actual productive hours 3210, utilisation 99.25788497217068645640074212%. Over/unused capacity is operational evidence only; no financial saving or causal conclusion is inferred."
+        },
+        {
+          "signal_id": "sig_a24f1e9dd1e54a9ab24edd6651dbc7f3",
+          "test_id": "PEO-04",
+          "test_name": "Capacity, Utilisation & Workforce Efficiency",
+          "core_question": "Where is practical workforce capacity constrained or underused, and how much capacity is genuinely evidenced?",
+          "signal_type": "WORK_CENTRE_UTILISATION",
+          "entity_type": "WORK_CENTRE",
+          "entity_id": "Engineering",
+          "observed_value": "87.81694495980210265924551639",
+          "comparison_value": "1617",
+          "variance_value": "197",
+          "unit": "PERCENT",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Engineering: practical capacity 1617 hours, actual productive hours 1420, utilisation 87.81694495980210265924551639%. Over/unused capacity is operational evidence only; no financial saving or causal conclusion is inferred."
+        },
+        {
+          "signal_id": "sig_652b8555706f42a1a16ab8aaf51b5e31",
+          "test_id": "PEO-04",
+          "test_name": "Capacity, Utilisation & Workforce Efficiency",
+          "core_question": "Where is practical workforce capacity constrained or underused, and how much capacity is genuinely evidenced?",
+          "signal_type": "WORK_CENTRE_UTILISATION",
+          "entity_type": "WORK_CENTRE",
+          "entity_id": "Maintenance",
+          "observed_value": "81.01422387136672850958565244",
+          "comparison_value": "1617",
+          "variance_value": "307",
+          "unit": "PERCENT",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Maintenance: practical capacity 1617 hours, actual productive hours 1310, utilisation 81.01422387136672850958565244%. Over/unused capacity is operational evidence only; no financial saving or causal conclusion is inferred."
+        },
+        {
+          "signal_id": "sig_e792dc78928e4c858ee138053d2ad0da",
+          "test_id": "PEO-04",
+          "test_name": "Capacity, Utilisation & Workforce Efficiency",
+          "core_question": "Where is practical workforce capacity constrained or underused, and how much capacity is genuinely evidenced?",
+          "signal_type": "WORK_CENTRE_UTILISATION",
+          "entity_type": "WORK_CENTRE",
+          "entity_id": "Warehouse",
+          "observed_value": "92.76437847866419294990723562",
+          "comparison_value": "1617",
+          "variance_value": "117",
+          "unit": "PERCENT",
+          "materiality_state": "INFORMATIONAL",
+          "evidence_summary": "Warehouse: practical capacity 1617 hours, actual productive hours 1500, utilisation 92.76437847866419294990723562%. Over/unused capacity is operational evidence only; no financial saving or causal conclusion is inferred."
+        }
+      ]
+    },
+    "WC-06": {
+      "run_id": "run_a9a61c39f60245dfac46741b73952fdd",
+      "client_id": "UWB_CLIENT",
+      "test_id": "WC-06",
+      "test_name": "Working Capital Leakage & Cash Release",
+      "core_question": "Where is cash unnecessarily trapped in the business, why is it trapped, and how much could realistically be released without damaging customers, suppliers, operations or growth?",
+      "objective": "Identify working-capital release candidates while keeping balances, exposure and addressable cash release distinct.",
+      "eligibility_state": "FULL",
+      "execution_status": "COMPLETED",
+      "method_id": "PRIMITIVE_OR_LEDGER_BASED",
+      "limitation": null,
+      "signals": [
+        {
+          "signal_id": "sig_b5f82ecb41144ff1a2bdd1211598e579",
+          "test_id": "WC-06",
+          "test_name": "Working Capital Leakage & Cash Release",
+          "core_question": "Where is cash unnecessarily trapped in the business, why is it trapped, and how much could realistically be released without damaging customers, suppliers, operations or growth?",
+          "signal_type": "WORKING_CAPITAL_RELEASE_CANDIDATE",
+          "entity_type": "WORKING_CAPITAL_COMPONENT",
+          "entity_id": "BS_INVENTORY",
+          "observed_value": null,
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "BS_INVENTORY provides evidence of working-capital exposure, but addressable cash release remains unquantified until cause, mechanism, operational guardrails and timing are evidenced. Cash release is not profit."
+        }
+      ]
+    },
+    "WC-07": {
+      "run_id": "run_a9a61c39f60245dfac46741b73952fdd",
+      "client_id": "UWB_CLIENT",
+      "test_id": "WC-07",
+      "test_name": "Working Capital & Cash Opportunity Optimisation",
+      "core_question": "What should you actually do to improve cash, how much will each action realistically release, when will the cash arrive, what could it put at risk, and what is the best combined plan for the business?",
+      "objective": "Synthesize cash optimisation candidates without treating collection, inventory reduction or payment delay as profit.",
+      "eligibility_state": "FULL",
+      "execution_status": "COMPLETED",
+      "method_id": "PRIMITIVE_OR_LEDGER_BASED",
+      "limitation": null,
+      "signals": [
+        {
+          "signal_id": "sig_3f1b71d3390a434a9db96d1ede044167",
+          "test_id": "WC-07",
+          "test_name": "Working Capital & Cash Opportunity Optimisation",
+          "core_question": "What should you actually do to improve cash, how much will each action realistically release, when will the cash arrive, what could it put at risk, and what is the best combined plan for the business?",
+          "signal_type": "CASH_OPTIMISATION_CANDIDATE",
+          "entity_type": "WORKING_CAPITAL_COMPONENT",
+          "entity_id": "BS_INVENTORY",
+          "observed_value": null,
+          "comparison_value": null,
+          "variance_value": null,
+          "unit": "GBP",
+          "materiality_state": "MEDIUM",
+          "evidence_summary": "WORKING_CAPITAL_RELEASE_CANDIDATE supports investigation. Expected cash release, timing and guardrails remain unquantified; collecting recognised revenue is not new profit and profit-to-cash manifestation must not be double counted."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+period_end,account_code,account_name,account_type,debit,credit
+2026-12-31,1000,Assets,ASSET,125851.27,0
+2026-12-31,2000,Payables,LIABILITY,0,15904.60
+2026-12-31,3000,Equity,EQUITY,0,109946.67

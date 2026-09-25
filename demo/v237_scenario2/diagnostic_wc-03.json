@@ -1,0 +1,44 @@
+{
+  "run_id": "run_894761cb7c674ac19dbd42bf115980eb",
+  "client_id": "SCENARIO2_DEMO",
+  "test_id": "WC-03",
+  "test_name": "Payables & Supplier Payment Performance",
+  "core_question": "Are you paying suppliers at the right time — or is cash leaving too early, discounts being missed, terms being underused, or suppliers being stretched in ways that could put the business at risk?",
+  "objective": "Measure evidenced payables and payment pressure without treating supplier stretch as free financing.",
+  "eligibility_state": "FULL",
+  "execution_status": "COMPLETED",
+  "method_id": "PRIMITIVE_OR_LEDGER_BASED",
+  "limitation": null,
+  "signals": [
+    {
+      "signal_id": "sig_94888412de114a5db636bd065b2c179e",
+      "test_id": "WC-03",
+      "test_name": "Payables & Supplier Payment Performance",
+      "core_question": "Are you paying suppliers at the right time — or is cash leaving too early, discounts being missed, terms being underused, or suppliers being stretched in ways that could put the business at risk?",
+      "signal_type": "BS_ACCOUNTS_PAYABLE",
+      "entity_type": null,
+      "entity_id": null,
+      "observed_value": "1710000.0",
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "GBP",
+      "materiality_state": "INFORMATIONAL",
+      "evidence_summary": "BS_ACCOUNTS_PAYABLE = 1710000.0 GBP. Supplier balances and DPO require contractual and relationship context; delaying payment is not automatically a cash opportunity."
+    },
+    {
+      "signal_id": "sig_04651192e41240eeb6d159144905d63b",
+      "test_id": "WC-03",
+      "test_name": "Payables & Supplier Payment Performance",
+      "core_question": "Are you paying suppliers at the right time — or is cash leaving too early, discounts being missed, terms being underused, or suppliers being stretched in ways that could put the business at risk?",
+      "signal_type": "WC_DPO",
+      "entity_type": null,
+      "entity_id": null,
+      "observed_value": "60.28052682563122457193753216",
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "DAYS",
+      "materiality_state": "INFORMATIONAL",
+      "evidence_summary": "WC_DPO = 60.28052682563122457193753216 DAYS. Supplier balances and DPO require contractual and relationship context; delaying payment is not automatically a cash opportunity."
+    }
+  ]
+}

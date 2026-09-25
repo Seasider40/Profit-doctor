@@ -1,0 +1,44 @@
+{
+  "run_id": "run_88960505854545ad8b945cde3e434ee5",
+  "client_id": "V238_DEMO",
+  "test_id": "PEO-01",
+  "test_name": "People Cost & Workforce Economics",
+  "core_question": "What does the workforce genuinely cost, how is that cost structured, and how is it changing?",
+  "objective": "Measure evidenced FTE and fully loaded people cost, including separately visible variable pay.",
+  "eligibility_state": "FULL",
+  "execution_status": "COMPLETED",
+  "method_id": "D11_WORKFORCE_SNAPSHOT",
+  "limitation": null,
+  "signals": [
+    {
+      "signal_id": "sig_6c0386be5b884f1ebd53a485f891edc4",
+      "test_id": "PEO-01",
+      "test_name": "People Cost & Workforce Economics",
+      "core_question": "What does the workforce genuinely cost, how is that cost structured, and how is it changing?",
+      "signal_type": "TOTAL_PEOPLE_COST",
+      "entity_type": null,
+      "entity_id": null,
+      "observed_value": "2014602",
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "GBP",
+      "materiality_state": "INFORMATIONAL",
+      "evidence_summary": "Latest evidenced workforce contains 25 FTE with fully loaded annual people cost 2014602. Variable commission/bonus is separately evidenced at 0."
+    },
+    {
+      "signal_id": "sig_6924bed1f0014f51bda9123d19db8c65",
+      "test_id": "PEO-01",
+      "test_name": "People Cost & Workforce Economics",
+      "core_question": "What does the workforce genuinely cost, how is that cost structured, and how is it changing?",
+      "signal_type": "PEOPLE_COST_PER_FTE",
+      "entity_type": null,
+      "entity_id": null,
+      "observed_value": "80584.08",
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "GBP_PER_FTE",
+      "materiality_state": "INFORMATIONAL",
+      "evidence_summary": "Fully loaded people cost per evidenced FTE is 80584.08. This is a cost measure, not a productivity conclusion."
+    }
+  ]
+}

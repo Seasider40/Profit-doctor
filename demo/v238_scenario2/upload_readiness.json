@@ -1,0 +1,178 @@
+{
+  "version": "UIR-2.38",
+  "readiness_state": "ANALYSIS_WITH_CONTROL_LIMITATIONS",
+  "integrity_state": "MATERIALLY_CONSTRAINED",
+  "available_domains": [
+    "D01_PNL",
+    "D03_TB_GL",
+    "D04_AR",
+    "D05_AP",
+    "D11_WORKFORCE",
+    "D16_OPERATIONS"
+  ],
+  "sheets": [
+    {
+      "sheet": "Assumptions",
+      "domain": "CONTEXT_CONFIG",
+      "domain_label": "CONTEXT_CONFIG",
+      "mapping_confidence": 0.0,
+      "requires_human_confirmation": true
+    },
+    {
+      "sheet": "AR Customer Ledger",
+      "domain": "D04_AR",
+      "domain_label": "Sales Ledger / AR",
+      "mapping_confidence": 0.556,
+      "requires_human_confirmation": true
+    },
+    {
+      "sheet": "AP Supplier Ledger",
+      "domain": "D05_AP",
+      "domain_label": "Purchase Ledger / AP",
+      "mapping_confidence": 0.429,
+      "requires_human_confirmation": true
+    },
+    {
+      "sheet": "Staff Costs",
+      "domain": "D11_WORKFORCE",
+      "domain_label": "Payroll / Workforce",
+      "mapping_confidence": 0.3,
+      "requires_human_confirmation": true
+    },
+    {
+      "sheet": "Capacity",
+      "domain": "D16_OPERATIONS",
+      "domain_label": "Operational / Capacity KPIs",
+      "mapping_confidence": 0.8,
+      "requires_human_confirmation": true
+    },
+    {
+      "sheet": "Management Accounts",
+      "domain": "D01_PNL",
+      "domain_label": "P&L / Management Accounts",
+      "mapping_confidence": 0.0,
+      "requires_human_confirmation": true
+    },
+    {
+      "sheet": "Trial Balance",
+      "domain": "D03_TB_GL",
+      "domain_label": "D03_TB_GL",
+      "mapping_confidence": 0.571,
+      "requires_human_confirmation": true
+    },
+    {
+      "sheet": "Reconciliations",
+      "domain": "CONTROL_EVIDENCE",
+      "domain_label": "CONTROL_EVIDENCE",
+      "mapping_confidence": 0.0,
+      "requires_human_confirmation": true
+    },
+    {
+      "sheet": "Overview",
+      "domain": "CONTEXT_CONFIG",
+      "domain_label": "CONTEXT_CONFIG",
+      "mapping_confidence": 0.0,
+      "requires_human_confirmation": true
+    }
+  ],
+  "controls": [
+    {
+      "control": "AR_TO_TB",
+      "status": "FAIL",
+      "difference": 982806.0,
+      "basis": null
+    },
+    {
+      "control": "AP_TO_TB",
+      "status": "FAIL",
+      "difference": -279000.0,
+      "basis": null
+    },
+    {
+      "control": "INVENTORY_TO_SUPPORT",
+      "status": "FAIL",
+      "difference": 120000.0,
+      "basis": "independently recalculated from TB and supporting amount; embedded status ignored"
+    },
+    {
+      "control": "DEBT_TO_SUPPORT",
+      "status": "FAIL",
+      "difference": -125000.0,
+      "basis": "independently recalculated from TB borrowing accounts; embedded status ignored"
+    }
+  ],
+  "failed_controls": [
+    "AR_TO_TB",
+    "AP_TO_TB",
+    "INVENTORY_TO_SUPPORT",
+    "DEBT_TO_SUPPORT"
+  ],
+  "diagnostic_coverage": {
+    "total": 56,
+    "completed": 18,
+    "partial": 7,
+    "unavailable": 38,
+    "completed_tests": [
+      "CUS-01",
+      "CUS-02",
+      "CUS-07",
+      "PEO-01",
+      "PEO-03",
+      "PEO-04",
+      "RISK-01",
+      "RISK-02",
+      "RISK-04",
+      "SUP-01",
+      "SUP-03",
+      "WC-01",
+      "WC-02",
+      "WC-03",
+      "WC-04",
+      "WC-05",
+      "WC-06",
+      "WC-07"
+    ],
+    "partial_tests": [
+      "CUS-01",
+      "CUS-02",
+      "CUS-07",
+      "PEO-04",
+      "RISK-02",
+      "SUP-01",
+      "SUP-03"
+    ]
+  },
+  "recommended_next_data": [
+    {
+      "domain": "D07_SALES",
+      "request": "Detailed sales transactions",
+      "why_it_matters": "Unlock deeper revenue, customer, product and margin diagnostics."
+    },
+    {
+      "domain": "D10_MARGIN",
+      "request": "Transaction-level direct cost / margin",
+      "why_it_matters": "Supports stronger customer/product contribution and leakage analysis."
+    },
+    {
+      "domain": "D13_FORECAST",
+      "request": "Budget, forecast and KPI history",
+      "why_it_matters": "Unlocks forecast accuracy, bias, drivers and forward scenario diagnostics."
+    },
+    {
+      "domain": "D14_PRICING",
+      "request": "Price history, discounts and rebates",
+      "why_it_matters": "Unlocks price realisation, dispersion and pricing-effectiveness analysis."
+    },
+    {
+      "domain": "D15_CRM",
+      "request": "CRM pipeline, opportunities and win/loss",
+      "why_it_matters": "Unlocks pipeline, conversion and commercial forward-looking analysis."
+    }
+  ],
+  "guardrails": [
+    "This is not a universal data-quality score.",
+    "Missing data reduces coverage; it does not invalidate supported diagnostics.",
+    "Failed reconciliations are control exceptions, not assumed losses or savings.",
+    "Human confirmation is required where semantic mapping is ambiguous."
+  ]
+}

@@ -1,0 +1,2 @@
+invoice_id,supplier_id,invoice_date,due_date,original_amount,outstanding_amount
+AP1,S1,2026-11-01,2026-11-30,264223.14,264223.14

@@ -1,0 +1,75 @@
+{
+  "run_id": "run_88960505854545ad8b945cde3e434ee5",
+  "client_id": "V238_DEMO",
+  "attention_item_id": "mai_162b3006449343fd8bed9a1ff0d5bc96",
+  "rank": 5,
+  "theme": "WORKING_CAPITAL",
+  "title": "Working capital requires focused investigation",
+  "management_question": "What portion of working capital is genuinely addressable without harming operations?",
+  "rationale": "2 material signal(s) across WC-06, WC-07 support one management theme. Related signals are compressed without deleting their underlying evidence.",
+  "next_step": "Investigate the underlying balances, causes, timing and operational guardrails before estimating cash release.",
+  "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection.",
+  "supporting_evidence": [
+    {
+      "signal_id": "sig_697a3c7cfb774624ab5c06d6e6e6a6d5",
+      "test_id": "WC-07",
+      "test_name": "Working Capital & Cash Opportunity Optimisation",
+      "core_question": "What should you actually do to improve cash, how much will each action realistically release, when will the cash arrive, what could it put at risk, and what is the best combined plan for the business?",
+      "signal_type": "CASH_OPTIMISATION_CANDIDATE",
+      "entity_type": "WORKING_CAPITAL_COMPONENT",
+      "entity_id": "BS_INVENTORY",
+      "observed_value": null,
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "GBP",
+      "materiality_state": "MEDIUM",
+      "evidence_summary": "WORKING_CAPITAL_RELEASE_CANDIDATE supports investigation. Expected cash release, timing and guardrails remain unquantified; collecting recognised revenue is not new profit and profit-to-cash manifestation must not be double counted."
+    },
+    {
+      "signal_id": "sig_d05c84d5864d44c4a09e8b2f932a752d",
+      "test_id": "WC-06",
+      "test_name": "Working Capital Leakage & Cash Release",
+      "core_question": "Where is cash unnecessarily trapped in the business, why is it trapped, and how much could realistically be released without damaging customers, suppliers, operations or growth?",
+      "signal_type": "WORKING_CAPITAL_RELEASE_CANDIDATE",
+      "entity_type": "WORKING_CAPITAL_COMPONENT",
+      "entity_id": "BS_INVENTORY",
+      "observed_value": null,
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "GBP",
+      "materiality_state": "MEDIUM",
+      "evidence_summary": "BS_INVENTORY provides evidence of working-capital exposure, but addressable cash release remains unquantified until cause, mechanism, operational guardrails and timing are evidenced. Cash release is not profit."
+    }
+  ],
+  "diagnostic_ids": [
+    "WC-06",
+    "WC-07"
+  ],
+  "recommended_actions": [
+    {
+      "theme": "WORKING_CAPITAL",
+      "action_type": "WORKING_CAPITAL_REVIEW",
+      "recommended_action": "Identify genuinely addressable receivables, payables and inventory actions subject to operational guardrails.",
+      "evidence_required": "Invoice/aging detail, disputes/credits, supplier terms, stock aging/service-level evidence and cash timing.",
+      "owner_role": "FD/Management",
+      "state": "PROPOSED",
+      "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+    }
+  ],
+  "opportunities": [
+    {
+      "theme": "WORKING_CAPITAL",
+      "purpose": "RELEASE",
+      "benefit_type": "B3_ONE_OFF_CASH_RELEASE",
+      "availability": "CONDITIONAL",
+      "economic_state": "EVIDENCE_REQUIRED",
+      "currency": "GBP",
+      "theoretical": null,
+      "addressable": null,
+      "expected": null,
+      "recommended_action": "Identify genuinely addressable receivables, payables and inventory actions subject to operational guardrails.",
+      "evidence_required": "Invoice/aging detail, disputes/credits, supplier terms, stock aging/service-level evidence and cash timing.",
+      "limitation": "No monetary opportunity is supported from this management priority without mechanism, addressability and recovery-envelope evidence."
+    }
+  ]
+}

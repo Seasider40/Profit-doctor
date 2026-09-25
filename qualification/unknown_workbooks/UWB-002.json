@@ -1,0 +1,200 @@
+{
+  "case": "UWB-002",
+  "profile": {
+    "file": "scenario2.xlsx",
+    "sheet_count": 9,
+    "sheets": [
+      {
+        "sheet": "Assumptions",
+        "rows": 12,
+        "columns": 4,
+        "header_row": 3,
+        "headers": [
+          "Assumption",
+          "Value",
+          "Unit / Comment",
+          "Purpose"
+        ],
+        "domain": "CONTEXT_CONFIG",
+        "formula_cells": 0,
+        "formula_values_missing": 0
+      },
+      {
+        "sheet": "AR Customer Ledger",
+        "rows": 31,
+        "columns": 9,
+        "header_row": 3,
+        "headers": [
+          "Customer",
+          "Annual Sales (\u00a3)",
+          "Gross Margin %",
+          "AR Balance (\u00a3)",
+          "Debtor Days",
+          "Current (\u00a3)",
+          "31\u201360 (\u00a3)",
+          "61\u201390 / 90+ (\u00a3)",
+          "Issue Flag"
+        ],
+        "domain": "D04_AR",
+        "formula_cells": 7,
+        "formula_values_missing": 0
+      },
+      {
+        "sheet": "AP Supplier Ledger",
+        "rows": 20,
+        "columns": 7,
+        "header_row": 3,
+        "headers": [
+          "Supplier",
+          "Annual Purchases (\u00a3)",
+          "AP Balance (\u00a3)",
+          "Current (\u00a3)",
+          "31\u201360 (\u00a3)",
+          "61+ (\u00a3)",
+          "Flag"
+        ],
+        "domain": "D05_AP",
+        "formula_cells": 5,
+        "formula_values_missing": 0
+      },
+      {
+        "sheet": "Staff Costs",
+        "rows": 30,
+        "columns": 10,
+        "header_row": 3,
+        "headers": [
+          "Employee",
+          "Role",
+          "Department",
+          "FTE",
+          "Base Salary (\u00a3)",
+          "Bonus / OT (\u00a3)",
+          "Employer NI (\u00a3)",
+          "Pension (\u00a3)",
+          "Total Cost (\u00a3)",
+          "Direct / Indirect"
+        ],
+        "domain": "D11_WORKFORCE",
+        "formula_cells": 81,
+        "formula_values_missing": 0
+      },
+      {
+        "sheet": "Capacity",
+        "rows": 9,
+        "columns": 10,
+        "header_row": 3,
+        "headers": [
+          "Work Centre",
+          "FTE / Machines",
+          "Available Hrs",
+          "Practical Capacity Hrs",
+          "Budget Load Hrs",
+          "Actual Productive Hrs",
+          "Budget Utilisation %",
+          "Actual Utilisation %",
+          "Gap Hrs",
+          "Flag"
+        ],
+        "domain": "D16_OPERATIONS",
+        "formula_cells": 36,
+        "formula_values_missing": 0
+      },
+      {
+        "sheet": "Management Accounts",
+        "rows": 24,
+        "columns": 14,
+        "header_row": 3,
+        "headers": [
+          "\u00a3000 unless stated",
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+          "FY"
+        ],
+        "domain": "D01_PNL",
+        "formula_cells": 126,
+        "formula_values_missing": 0
+      },
+      {
+        "sheet": "Trial Balance",
+        "rows": 38,
+        "columns": 7,
+        "header_row": 3,
+        "headers": [
+          "Code",
+          "Account",
+          "Category",
+          "Debit (\u00a3)",
+          "Credit (\u00a3)",
+          "Expected Reconciliation",
+          "Issue Note"
+        ],
+        "domain": "D03_TB_GL",
+        "formula_cells": 2,
+        "formula_values_missing": 0
+      },
+      {
+        "sheet": "Reconciliations",
+        "rows": 16,
+        "columns": 7,
+        "header_row": 3,
+        "headers": [
+          "Reconciliation",
+          "GL / Reported (\u00a3)",
+          "Subledger / Supporting (\u00a3)",
+          "Difference (\u00a3)",
+          "Difference %",
+          "Status",
+          "Diagnostic Comment"
+        ],
+        "domain": "CONTROL_EVIDENCE",
+        "formula_cells": 29,
+        "formula_values_missing": 0
+      },
+      {
+        "sheet": "Overview",
+        "rows": 27,
+        "columns": 8,
+        "header_row": 3,
+        "headers": [
+          "Metric",
+          "Value",
+          "Signal",
+          "Source",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "domain": "CONTEXT_CONFIG",
+        "formula_cells": 10,
+        "formula_values_missing": 0
+      }
+    ]
+  },
+  "independent_reconciliations": [
+    {
+      "control": "AR_TO_TB",
+      "gl": 3450000.0,
+      "supporting": 2467194.0,
+      "difference": 982806.0,
+      "status": "FAIL"
+    },
+    {
+      "control": "AP_TO_TB",
+      "gl": 1710000.0,
+      "supporting": 1989000.0,
+      "difference": -279000.0,
+      "status": "FAIL"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+truth_id,truth,expected
+T1,Anchor customer concentration,detect_or_expose
+T2,At Risk Client H2 2025 decline and slower payment,detect_or_expose
+T3,P2 cost inflation only partly recovered by price,detect_or_expose
+T4,New Client appears in 2025,detect_or_expose
+T5,Inventory economics not applicable,refuse_or_na

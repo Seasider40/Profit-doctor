@@ -1,0 +1,16 @@
+scenario_id,scenario,expected,result,finding_ids
+S01,Supplier X / Product B / Smith connected deterioration,Detect,PASS,"F01, F02"
+S02,Hidden customer/product churn: Smith stops Product C while total Smith revenue grows,Detect,PASS,F03
+S03,Product C broad high-quality growth,Detect positive,PASS,F04
+S04,Alpha concentration / growth dependency,Detect risk,PASS,F05
+S05,Smith/Product B price leakage,Detect,PASS,F01
+S06,Product mix deterioration toward Product B,Detect,PASS,F11
+S07,Seasonality normal movement,Suppress false positive,PASS,Suppressed as intended
+S08,Product A to B migration,"Detect as possible migration, not causal",FAIL,Suppressed as intended
+S09,Long-tail complexity,Detect,PASS,F06
+S10,Strategic Spare Z weak standalone but relationship-supporting,Protect / do not auto-rationalise,PASS,F07
+S11,Jones × Product E credible cross-sell whitespace,Detect candidate,PASS,F08
+S12,Fake whitespace among ineligible pairs,Suppress,PASS,Suppressed as intended
+S13,Smith × Product C win-back,Detect but suppress expansion pending relationship repair,PASS,F03
+S14,Smith payment deterioration,Detect cash quality issue,PASS,F09
+S15,Product 7 Sep-25 promotional low margin,Red herring: identify promo context,PASS,F10

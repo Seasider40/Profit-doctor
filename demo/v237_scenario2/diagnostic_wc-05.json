@@ -1,0 +1,29 @@
+{
+  "run_id": "run_894761cb7c674ac19dbd42bf115980eb",
+  "client_id": "SCENARIO2_DEMO",
+  "test_id": "WC-05",
+  "test_name": "Cash Flow, Liquidity & Cash Pressure",
+  "core_question": "How much cash does the business really have available, what is going to happen to it next, and how early can we identify potential cash pressure before it becomes a problem?",
+  "objective": "Measure evidenced available cash and liquidity boundaries without inventing facility headroom or forecasts.",
+  "eligibility_state": "FULL",
+  "execution_status": "COMPLETED",
+  "method_id": "PRIMITIVE_OR_LEDGER_BASED",
+  "limitation": null,
+  "signals": [
+    {
+      "signal_id": "sig_73bc35ca97864c53af4f9265ea3219cf",
+      "test_id": "WC-05",
+      "test_name": "Cash Flow, Liquidity & Cash Pressure",
+      "core_question": "How much cash does the business really have available, what is going to happen to it next, and how early can we identify potential cash pressure before it becomes a problem?",
+      "signal_type": "AVAILABLE_CASH_POSITION",
+      "entity_type": null,
+      "entity_id": null,
+      "observed_value": "95000.0",
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "GBP",
+      "materiality_state": "INFORMATIONAL",
+      "evidence_summary": "Available cash evidenced at 95000.0. This is not Available Liquidity unless documented facility headroom is separately evidenced, and it is not a cash forecast."
+    }
+  ]
+}

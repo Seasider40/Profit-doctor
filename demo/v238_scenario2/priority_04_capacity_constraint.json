@@ -1,0 +1,59 @@
+{
+  "run_id": "run_88960505854545ad8b945cde3e434ee5",
+  "client_id": "V238_DEMO",
+  "attention_item_id": "mai_b5d434680c384d55a2db1847bd0b9779",
+  "rank": 4,
+  "theme": "CAPACITY_CONSTRAINT",
+  "title": "Operational capacity appears constrained",
+  "management_question": "Which work centres are genuinely capacity constrained and what is driving the load?",
+  "rationale": "1 material signal(s) across PEO-04 support one management theme. Related signals are compressed without deleting their underlying evidence.",
+  "next_step": "Validate hours and constraints, then test overtime, bottlenecks, scheduling, mix and investment options before monetising.",
+  "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection.",
+  "supporting_evidence": [
+    {
+      "signal_id": "sig_965939b246c340f7a4a980ec3a8d71ed",
+      "test_id": "PEO-04",
+      "test_name": "Capacity, Utilisation & Workforce Efficiency",
+      "core_question": "Where is practical workforce capacity constrained or underused, and how much capacity is genuinely evidenced?",
+      "signal_type": "WORK_CENTRE_UTILISATION",
+      "entity_type": "WORK_CENTRE",
+      "entity_id": "Assembly",
+      "observed_value": "104.2053184910327767470624613",
+      "comparison_value": "3234",
+      "variance_value": "0",
+      "unit": "PERCENT",
+      "materiality_state": "HIGH",
+      "evidence_summary": "Assembly: practical capacity 3234 hours, actual productive hours 3370, utilisation 104.2053184910327767470624613%. Over/unused capacity is operational evidence only; no financial saving or causal conclusion is inferred."
+    }
+  ],
+  "diagnostic_ids": [
+    "PEO-04"
+  ],
+  "recommended_actions": [
+    {
+      "theme": "CAPACITY_CONSTRAINT",
+      "action_type": "CAPACITY_REVIEW",
+      "recommended_action": "Validate bottleneck load and test scheduling, overtime, mix, process and investment alternatives before monetising.",
+      "evidence_required": "Validated practical capacity, productive hours, overtime, throughput, scrap/downtime and contribution at constraint.",
+      "owner_role": "FD/Management",
+      "state": "PROPOSED",
+      "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+    }
+  ],
+  "opportunities": [
+    {
+      "theme": "CAPACITY_CONSTRAINT",
+      "purpose": "IMPROVE",
+      "benefit_type": "B4_RECURRING_WORKING_CAPITAL_EFFICIENCY",
+      "availability": "CONDITIONAL",
+      "economic_state": "EVIDENCE_REQUIRED",
+      "currency": "GBP",
+      "theoretical": null,
+      "addressable": null,
+      "expected": null,
+      "recommended_action": "Validate bottleneck load and test scheduling, overtime, mix, process and investment alternatives before monetising.",
+      "evidence_required": "Validated practical capacity, productive hours, overtime, throughput, scrap/downtime and contribution at constraint.",
+      "limitation": "Capacity released or data corrected is not a saving unless an evidenced economic use or avoided cost is demonstrated."
+    }
+  ]
+}

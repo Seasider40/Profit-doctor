@@ -1,0 +1,29 @@
+{
+  "run_id": "run_894761cb7c674ac19dbd42bf115980eb",
+  "client_id": "SCENARIO2_DEMO",
+  "test_id": "PEO-03",
+  "test_name": "Department & Role Productivity",
+  "core_question": "Where do workforce cost, FTE and evidenced operating measures differ across departments and roles?",
+  "objective": "Measure department/role workforce economics while refusing unsupported cross-role productivity rankings.",
+  "eligibility_state": "FULL",
+  "execution_status": "COMPLETED",
+  "method_id": "D11_WORKFORCE_SNAPSHOT",
+  "limitation": null,
+  "signals": [
+    {
+      "signal_id": "sig_d078b421dc4a4469a222d23231d4c079",
+      "test_id": "PEO-03",
+      "test_name": "Department & Role Productivity",
+      "core_question": "Where do workforce cost, FTE and evidenced operating measures differ across departments and roles?",
+      "signal_type": "DEPARTMENT_WORKFORCE_ECONOMICS",
+      "entity_type": "DEPARTMENT",
+      "entity_id": "UNMAPPED",
+      "observed_value": "2014602",
+      "comparison_value": "25",
+      "variance_value": null,
+      "unit": "GBP",
+      "materiality_state": "INFORMATIONAL",
+      "evidence_summary": "UNMAPPED: 25 FTE, annual people cost 2014602. This does not rank departments or roles as more/less productive without comparable output drivers."
+    }
+  ]
+}

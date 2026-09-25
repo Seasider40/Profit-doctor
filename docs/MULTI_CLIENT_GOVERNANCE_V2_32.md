@@ -1,0 +1,2 @@
+# v2.32 Multi-Client Isolation, Security & Data Governance Qualification
+Adds fail-closed tenant-scoped access helpers, ownership guards, cross-client relationship rejection, lineage ownership validation, archive boundaries and governance audit events. Qualification deliberately collides names, account codes, story concepts and periods across clients. This is application-layer qualification on SQLite; live PostgreSQL/RLS and penetration/security review remain release gates.

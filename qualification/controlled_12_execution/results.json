@@ -1,0 +1,3527 @@
+{
+  "cases": 12,
+  "pass": 12,
+  "fail": 0,
+  "results": [
+    {
+      "case_id": "SME-001",
+      "model": "PRODUCT_DISTRIBUTION",
+      "data_state": "L1_CORE",
+      "challenge": "Clean accounting core; no detailed commercial data",
+      "expected": "Deliver useful core health check and refuse unsupported deep commercial claims",
+      "diagnostics_registered": 56,
+      "completed": 10,
+      "refused_or_na": 46,
+      "completed_ids": [
+        "WC-01",
+        "WC-02",
+        "WC-03",
+        "WC-04",
+        "WC-05",
+        "WC-06",
+        "WC-07",
+        "RISK-01",
+        "RISK-02",
+        "RISK-04"
+      ],
+      "refused_ids": [
+        "REV-01",
+        "REV-02",
+        "REV-03",
+        "REV-04",
+        "REV-05",
+        "REV-06",
+        "GM-01",
+        "GM-02",
+        "GM-03",
+        "GM-04",
+        "GM-05",
+        "GM-06",
+        "GM-07",
+        "CUS-01",
+        "CUS-02",
+        "CUS-03",
+        "CUS-04",
+        "CUS-05",
+        "CUS-06",
+        "CUS-07",
+        "PROD-01",
+        "PROD-02",
+        "PROD-03",
+        "PROD-04",
+        "PROD-05",
+        "PRI-01",
+        "PRI-02",
+        "PRI-03",
+        "PRI-04",
+        "PRI-05",
+        "PEO-01",
+        "PEO-02",
+        "PEO-03",
+        "PEO-04",
+        "PEO-05",
+        "SUP-01",
+        "SUP-02",
+        "SUP-03",
+        "SUP-04",
+        "SUP-05",
+        "SUP-06",
+        "FCST-01",
+        "FCST-02",
+        "FCST-03",
+        "FCST-04",
+        "RISK-03"
+      ],
+      "signals": 28,
+      "findings": 14,
+      "stories": 11,
+      "reconciliations": {
+        "AR_LEDGER_TO_BS": "RECONCILED",
+        "AP_LEDGER_TO_BS": "RECONCILED",
+        "BANK_TO_BS_CASH": "RECONCILED"
+      },
+      "trust": {
+        "D01": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 48,
+          "limitation": null
+        },
+        "D02": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 4,
+          "limitation": null
+        },
+        "D03": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D04": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D05": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 1,
+          "limitation": null
+        },
+        "D06": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        }
+      },
+      "sense_checks": {
+        "registered_56": true,
+        "no_inventory_false_cash": true,
+        "l1_degrades": true,
+        "no_causal_overclaim": true,
+        "no_fraud_overclaim": true,
+        "project_irregularity_caution": true,
+        "capacity_not_money": true,
+        "mismatch_detected": true,
+        "missing_bank_visible": true,
+        "repeatable_inputs_preserved": true
+      },
+      "verdict": "PASS",
+      "top_findings": [
+        {
+          "finding_id": "find_58bdcdcc6b90442a994d90d290e89bd1",
+          "finding_type": "INSIGHT",
+          "title": "Working Capital Release Candidate",
+          "status": "NEW",
+          "fact_text": "WORKING_CAPITAL_RELEASE_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_4b1bb81149e8485295fae79f41907f3f",
+          "finding_type": "INSIGHT",
+          "title": "Working Capital Release Candidate",
+          "status": "NEW",
+          "fact_text": "WORKING_CAPITAL_RELEASE_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_8eff96d1ae7e4dfea0d47f4cfab89a19",
+          "finding_type": "INSIGHT",
+          "title": "Working Capital Release Candidate",
+          "status": "NEW",
+          "fact_text": "WORKING_CAPITAL_RELEASE_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_d287f87f205348b1bba7799c17bfe940",
+          "finding_type": "INSIGHT",
+          "title": "Cash Optimisation Candidate",
+          "status": "NEW",
+          "fact_text": "CASH_OPTIMISATION_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_18f03b543452401c9eea225668127b4a",
+          "finding_type": "INSIGHT",
+          "title": "Cash Optimisation Candidate",
+          "status": "NEW",
+          "fact_text": "CASH_OPTIMISATION_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_4c9aa7af0f9e4db7813350e1dad47bd0",
+          "finding_type": "INSIGHT",
+          "title": "Cash Optimisation Candidate",
+          "status": "NEW",
+          "fact_text": "CASH_OPTIMISATION_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_7aff2cef688a47ef919b923cfadddd3f",
+          "finding_type": "INSIGHT",
+          "title": "Reconciliation Exception",
+          "status": "NEW",
+          "fact_text": "RECONCILIATION_EXCEPTION: observed 0 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        }
+      ],
+      "sample_signals": [
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0",
+          "unit": "GBP",
+          "evidence_summary": "TRIAL_BALANCE_DEBITS_CREDITS reconciliation status RECONCILED; residual 0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "-2E-11",
+          "unit": "GBP",
+          "evidence_summary": "AR_LEDGER_TO_BS reconciliation status RECONCILED; residual -2E-11. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0.00",
+          "unit": "GBP",
+          "evidence_summary": "AP_LEDGER_TO_BS reconciliation status RECONCILED; residual 0.00. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0.0",
+          "unit": "GBP",
+          "evidence_summary": "BANK_TO_BS_CASH reconciliation status RECONCILED; residual 0.0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "WC-01",
+          "signal_type": "WC_CCC",
+          "observed_value": "698.7023963106501006877160988",
+          "unit": "DAYS",
+          "evidence_summary": "WC_CCC = 698.7023963106501006877160988 DAYS; this is an evidenced working-capital measure, not by itself proof that cash is trapped or releasable."
+        },
+        {
+          "test_id": "WC-01",
+          "signal_type": "WC_DIO",
+          "observed_value": "653.6248138227136289372696532",
+          "unit": "DAYS",
+          "evidence_summary": "WC_DIO = 653.6248138227136289372696532 DAYS; this is an evidenced working-capital measure, not by itself proof that cash is trapped or releasable."
+        },
+        {
+          "test_id": "WC-01",
+          "signal_type": "WC_DPO",
+          "observed_value": "428.2369446027584634674569702",
+          "unit": "DAYS",
+          "evidence_summary": "WC_DPO = 428.2369446027584634674569702 DAYS; this is an evidenced working-capital measure, not by itself proof that cash is trapped or releasable."
+        },
+        {
+          "test_id": "WC-01",
+          "signal_type": "WC_DSO",
+          "observed_value": "473.3145270906949352179034158",
+          "unit": "DAYS",
+          "evidence_summary": "WC_DSO = 473.3145270906949352179034158 DAYS; this is an evidenced working-capital measure, not by itself proof that cash is trapped or releasable."
+        }
+      ]
+    },
+    {
+      "case_id": "SME-002",
+      "model": "PRODUCT_DISTRIBUTION",
+      "data_state": "L2_ENHANCED",
+      "challenge": "Customer/product margin, inventory and supplier data with credit notes",
+      "expected": "Reconcile economics; distinguish margin impact, stock exposure and cash release",
+      "diagnostics_registered": 56,
+      "completed": 40,
+      "refused_or_na": 16,
+      "completed_ids": [
+        "REV-01",
+        "REV-02",
+        "REV-03",
+        "REV-04",
+        "REV-05",
+        "REV-06",
+        "GM-01",
+        "GM-02",
+        "GM-03",
+        "GM-04",
+        "GM-05",
+        "GM-06",
+        "GM-07",
+        "CUS-01",
+        "CUS-02",
+        "CUS-03",
+        "CUS-04",
+        "CUS-05",
+        "CUS-06",
+        "CUS-07",
+        "PROD-01",
+        "PROD-02",
+        "PROD-03",
+        "PROD-04",
+        "PROD-05",
+        "PRI-01",
+        "PRI-02",
+        "PRI-03",
+        "PRI-04",
+        "PRI-05",
+        "WC-02",
+        "WC-03",
+        "WC-04",
+        "WC-05",
+        "WC-06",
+        "WC-07",
+        "RISK-01",
+        "RISK-02",
+        "RISK-03",
+        "RISK-04"
+      ],
+      "refused_ids": [
+        "PEO-01",
+        "PEO-02",
+        "PEO-03",
+        "PEO-04",
+        "PEO-05",
+        "SUP-01",
+        "SUP-02",
+        "SUP-03",
+        "SUP-04",
+        "SUP-05",
+        "SUP-06",
+        "WC-01",
+        "FCST-01",
+        "FCST-02",
+        "FCST-03",
+        "FCST-04"
+      ],
+      "signals": 333,
+      "findings": 30,
+      "stories": 25,
+      "reconciliations": {
+        "SALES_TO_PNL_REVENUE": "RECONCILED",
+        "AR_LEDGER_TO_BS": "RECONCILED",
+        "AP_LEDGER_TO_BS": "RECONCILED",
+        "BANK_TO_BS_CASH": "RECONCILED"
+      },
+      "trust": {
+        "D01": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 4,
+          "limitation": null
+        },
+        "D02": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 4,
+          "limitation": null
+        },
+        "D03": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D04": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D05": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 1,
+          "limitation": null
+        },
+        "D06": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        }
+      },
+      "sense_checks": {
+        "registered_56": true,
+        "no_inventory_false_cash": true,
+        "l1_degrades": true,
+        "no_causal_overclaim": true,
+        "no_fraud_overclaim": true,
+        "project_irregularity_caution": true,
+        "capacity_not_money": true,
+        "mismatch_detected": true,
+        "missing_bank_visible": true,
+        "repeatable_inputs_preserved": true
+      },
+      "verdict": "PASS",
+      "top_findings": [
+        {
+          "finding_id": "find_572fc6025b284bcd854445a573aeba79",
+          "finding_type": "INSIGHT",
+          "title": "Material comparable revenue movement",
+          "status": "NEW",
+          "fact_text": "COMPARABLE_REVENUE_CHANGE: observed 5107669.08 GBP versus 4675723.97 GBP, a movement of 431945.11 GBP.",
+          "interpretation_text": "Comparable revenue increased; this is an observed performance movement, not a causal explanation.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_2befc866ced946d895b75207360a9cd5",
+          "finding_type": "INSIGHT",
+          "title": "Revenue Bridge Total",
+          "status": "NEW",
+          "fact_text": "REVENUE_BRIDGE_TOTAL: observed 5107669.08 GBP versus 4675723.97 GBP, a movement of 431945.11 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_39488894529b42239365a7f3a18cfecd",
+          "finding_type": "INSIGHT",
+          "title": "Existing Customer Net Change",
+          "status": "NEW",
+          "fact_text": "EXISTING_CUSTOMER_NET_CHANGE: observed 431945.11 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_0fc9b0da23fd4c06a0638b0d2960bd15",
+          "finding_type": "INSIGHT",
+          "title": "Volume Effect",
+          "status": "NEW",
+          "fact_text": "VOLUME_EFFECT: observed 287828.4457053930213652360439 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_007523867bb8480e8ee8131e41e2375f",
+          "finding_type": "INSIGHT",
+          "title": "Contribution Change",
+          "status": "NEW",
+          "fact_text": "CONTRIBUTION_CHANGE: observed 1797927.17 GBP versus 1655018.35 GBP, a movement of 142908.82 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_c6725910832547ae9470ac04d8d3bc19",
+          "finding_type": "RISK",
+          "title": "Customer concentration exposure",
+          "status": "NEW",
+          "fact_text": "TOP5_CONCENTRATION: observed 20.10541881072686878140507881 PERCENT.",
+          "interpretation_text": "Revenue is concentrated in a limited number of customer relationships.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_6af309fe3b394678855a55cbdfa4eba3",
+          "finding_type": "INSIGHT",
+          "title": "Customer Profitability",
+          "status": "NEW",
+          "fact_text": "CUSTOMER_PROFITABILITY: observed 173691.99 GBP versus 459871.96 GBP, a movement of 37.76964135843376926046980555 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        }
+      ],
+      "sample_signals": [
+        {
+          "test_id": "CUS-01",
+          "signal_type": "CUSTOMER_HHI",
+          "observed_value": "224.2628367041728540006700129",
+          "unit": "INDEX",
+          "evidence_summary": "Customer revenue HHI is 224.2628367041728540006700129; retained as concentration evidence, not a client-facing verdict."
+        },
+        {
+          "test_id": "CUS-01",
+          "signal_type": "TOP5_CONCENTRATION",
+          "observed_value": "20.10541881072686878140507881",
+          "unit": "PERCENT",
+          "evidence_summary": "Top five customers contribute 20.10541881072686878140507881% of current comparable revenue."
+        },
+        {
+          "test_id": "CUS-01",
+          "signal_type": "TOP_CUSTOMER_CONCENTRATION",
+          "observed_value": "9.003558233651268574353293851",
+          "unit": "PERCENT",
+          "evidence_summary": "Largest customer contributes 459871.96 revenue, 9.003558233651268574353293851% of current comparable revenue. This is dependency exposure, not loss probability."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "173691.99",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 459871.96; Contribution 0 173691.99; Contribution 0 margin 37.76964135843376926046980555%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "56565.57",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 154528.16; Contribution 0 56565.57; Contribution 0 margin 36.60534753018478962022197119%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "51931.82",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 138910.49; Contribution 0 51931.82; Contribution 0 margin 37.38509597079385437341701120%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "50590.44",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 141050.34; Contribution 0 50590.44; Contribution 0 margin 35.86693942035162765293582419%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "49082.74",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 132557.31; Contribution 0 49082.74; Contribution 0 margin 37.02756189002326616314105952%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "47746.26",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 130265.65; Contribution 0 47746.26; Contribution 0 margin 36.65299332556203419704273536%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "42759.28",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 129246.00; Contribution 0 42759.28; Contribution 0 margin 33.08363895207588629435340359%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "39228.42",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 115828.75; Contribution 0 39228.42; Contribution 0 margin 33.86760195547305828647896140%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "37641.90",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 104153.48; Contribution 0 37641.90; Contribution 0 margin 36.14079913604423011117823428%. Revenue scale and economic contribution are retained separately."
+        }
+      ]
+    },
+    {
+      "case_id": "SME-003",
+      "model": "PROFESSIONAL_SERVICES",
+      "data_state": "L1_CORE",
+      "challenge": "No inventory; uneven monthly billing",
+      "expected": "Treat inventory diagnostics as N/A and avoid false stock/cash findings",
+      "diagnostics_registered": 56,
+      "completed": 9,
+      "refused_or_na": 47,
+      "completed_ids": [
+        "WC-01",
+        "WC-02",
+        "WC-03",
+        "WC-05",
+        "WC-06",
+        "WC-07",
+        "RISK-01",
+        "RISK-02",
+        "RISK-04"
+      ],
+      "refused_ids": [
+        "REV-01",
+        "REV-02",
+        "REV-03",
+        "REV-04",
+        "REV-05",
+        "REV-06",
+        "GM-01",
+        "GM-02",
+        "GM-03",
+        "GM-04",
+        "GM-05",
+        "GM-06",
+        "GM-07",
+        "CUS-01",
+        "CUS-02",
+        "CUS-03",
+        "CUS-04",
+        "CUS-05",
+        "CUS-06",
+        "CUS-07",
+        "PROD-01",
+        "PROD-02",
+        "PROD-03",
+        "PROD-04",
+        "PROD-05",
+        "PRI-01",
+        "PRI-02",
+        "PRI-03",
+        "PRI-04",
+        "PRI-05",
+        "PEO-01",
+        "PEO-02",
+        "PEO-03",
+        "PEO-04",
+        "PEO-05",
+        "SUP-01",
+        "SUP-02",
+        "SUP-03",
+        "SUP-04",
+        "SUP-05",
+        "SUP-06",
+        "WC-04",
+        "FCST-01",
+        "FCST-02",
+        "FCST-03",
+        "FCST-04",
+        "RISK-03"
+      ],
+      "signals": 22,
+      "findings": 12,
+      "stories": 9,
+      "reconciliations": {
+        "AR_LEDGER_TO_BS": "RECONCILED",
+        "AP_LEDGER_TO_BS": "RECONCILED",
+        "BANK_TO_BS_CASH": "RECONCILED"
+      },
+      "trust": {
+        "D01": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 48,
+          "limitation": null
+        },
+        "D02": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 3,
+          "limitation": null
+        },
+        "D03": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D04": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D05": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 1,
+          "limitation": null
+        },
+        "D06": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        }
+      },
+      "sense_checks": {
+        "registered_56": true,
+        "no_inventory_false_cash": true,
+        "l1_degrades": true,
+        "no_causal_overclaim": true,
+        "no_fraud_overclaim": true,
+        "project_irregularity_caution": true,
+        "capacity_not_money": true,
+        "mismatch_detected": true,
+        "missing_bank_visible": true,
+        "repeatable_inputs_preserved": true
+      },
+      "verdict": "PASS",
+      "top_findings": [
+        {
+          "finding_id": "find_69f7c21a163647e2a766321bfa737312",
+          "finding_type": "INSIGHT",
+          "title": "Working Capital Release Candidate",
+          "status": "NEW",
+          "fact_text": "WORKING_CAPITAL_RELEASE_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_ef1d26a64bbc492390d779a0c857de70",
+          "finding_type": "INSIGHT",
+          "title": "Working Capital Release Candidate",
+          "status": "NEW",
+          "fact_text": "WORKING_CAPITAL_RELEASE_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_d6c2be4261be4512b3123c9dd967b0a1",
+          "finding_type": "INSIGHT",
+          "title": "Cash Optimisation Candidate",
+          "status": "NEW",
+          "fact_text": "CASH_OPTIMISATION_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_7489cd9c24814d608b840966652b5b7b",
+          "finding_type": "INSIGHT",
+          "title": "Cash Optimisation Candidate",
+          "status": "NEW",
+          "fact_text": "CASH_OPTIMISATION_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_9ef27f615b3945ab888769dfdbf5c6c0",
+          "finding_type": "INSIGHT",
+          "title": "Reconciliation Exception",
+          "status": "NEW",
+          "fact_text": "RECONCILIATION_EXCEPTION: observed 0 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_b0ca419ccd974a05a4239d57d971bde9",
+          "finding_type": "INSIGHT",
+          "title": "Reconciliation Exception",
+          "status": "NEW",
+          "fact_text": "RECONCILIATION_EXCEPTION: observed 0.0000 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_db83cf840b264398aa17eed38c1bbb7e",
+          "finding_type": "INSIGHT",
+          "title": "Reconciliation Exception",
+          "status": "NEW",
+          "fact_text": "RECONCILIATION_EXCEPTION: observed 0.00 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        }
+      ],
+      "sample_signals": [
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0",
+          "unit": "GBP",
+          "evidence_summary": "TRIAL_BALANCE_DEBITS_CREDITS reconciliation status RECONCILED; residual 0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0.0000",
+          "unit": "GBP",
+          "evidence_summary": "AR_LEDGER_TO_BS reconciliation status RECONCILED; residual 0.0000. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0.00",
+          "unit": "GBP",
+          "evidence_summary": "AP_LEDGER_TO_BS reconciliation status RECONCILED; residual 0.00. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0.0",
+          "unit": "GBP",
+          "evidence_summary": "BANK_TO_BS_CASH reconciliation status RECONCILED; residual 0.0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "WC-01",
+          "signal_type": "WC_DPO",
+          "observed_value": "364.8428052610914801727522576",
+          "unit": "DAYS",
+          "evidence_summary": "WC_DPO = 364.8428052610914801727522576 DAYS; this is an evidenced working-capital measure, not by itself proof that cash is trapped or releasable."
+        },
+        {
+          "test_id": "WC-01",
+          "signal_type": "WC_DSO",
+          "observed_value": "403.2473065906413962951065425",
+          "unit": "DAYS",
+          "evidence_summary": "WC_DSO = 403.2473065906413962951065425 DAYS; this is an evidenced working-capital measure, not by itself proof that cash is trapped or releasable."
+        },
+        {
+          "test_id": "WC-02",
+          "signal_type": "AR_LEDGER_OUTSTANDING",
+          "observed_value": "331070.4700",
+          "unit": "GBP",
+          "evidence_summary": "AR_LEDGER_OUTSTANDING = 331070.4700 GBP. Outstanding/overdue receivables are cash exposure, not new profit and not automatically collectible cash release."
+        },
+        {
+          "test_id": "WC-02",
+          "signal_type": "AR_OVERDUE_OUTSTANDING",
+          "observed_value": "182088.7585",
+          "unit": "GBP",
+          "evidence_summary": "AR_OVERDUE_OUTSTANDING = 182088.7585 GBP. Outstanding/overdue receivables are cash exposure, not new profit and not automatically collectible cash release."
+        }
+      ]
+    },
+    {
+      "case_id": "SME-004",
+      "model": "PROFESSIONAL_SERVICES",
+      "data_state": "L2_ENHANCED",
+      "challenge": "Payroll, utilisation and departments available",
+      "expected": "Analyse capacity without converting unused hours into savings",
+      "diagnostics_registered": 56,
+      "completed": 37,
+      "refused_or_na": 19,
+      "completed_ids": [
+        "REV-01",
+        "REV-02",
+        "REV-03",
+        "REV-04",
+        "REV-05",
+        "REV-06",
+        "GM-01",
+        "GM-02",
+        "GM-03",
+        "GM-04",
+        "GM-05",
+        "GM-06",
+        "GM-07",
+        "CUS-01",
+        "CUS-02",
+        "CUS-03",
+        "CUS-04",
+        "CUS-05",
+        "CUS-06",
+        "CUS-07",
+        "PROD-01",
+        "PROD-02",
+        "PROD-03",
+        "PROD-04",
+        "PROD-05",
+        "PRI-01",
+        "PRI-02",
+        "PRI-03",
+        "PRI-04",
+        "PRI-05",
+        "WC-02",
+        "WC-03",
+        "WC-05",
+        "RISK-01",
+        "RISK-02",
+        "RISK-03",
+        "RISK-04"
+      ],
+      "refused_ids": [
+        "PEO-01",
+        "PEO-02",
+        "PEO-03",
+        "PEO-04",
+        "PEO-05",
+        "SUP-01",
+        "SUP-02",
+        "SUP-03",
+        "SUP-04",
+        "SUP-05",
+        "SUP-06",
+        "WC-01",
+        "WC-04",
+        "WC-06",
+        "WC-07",
+        "FCST-01",
+        "FCST-02",
+        "FCST-03",
+        "FCST-04"
+      ],
+      "signals": 330,
+      "findings": 28,
+      "stories": 23,
+      "reconciliations": {
+        "SALES_TO_PNL_REVENUE": "RECONCILED",
+        "AR_LEDGER_TO_BS": "RECONCILED",
+        "AP_LEDGER_TO_BS": "RECONCILED",
+        "BANK_TO_BS_CASH": "RECONCILED"
+      },
+      "trust": {
+        "D01": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 4,
+          "limitation": null
+        },
+        "D02": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 3,
+          "limitation": null
+        },
+        "D03": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D04": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D05": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 1,
+          "limitation": null
+        },
+        "D06": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        }
+      },
+      "sense_checks": {
+        "registered_56": true,
+        "no_inventory_false_cash": true,
+        "l1_degrades": true,
+        "no_causal_overclaim": true,
+        "no_fraud_overclaim": true,
+        "project_irregularity_caution": true,
+        "capacity_not_money": true,
+        "mismatch_detected": true,
+        "missing_bank_visible": true,
+        "repeatable_inputs_preserved": true
+      },
+      "verdict": "PASS",
+      "top_findings": [
+        {
+          "finding_id": "find_b154b23a270c46e99075ef8bb58c44c7",
+          "finding_type": "INSIGHT",
+          "title": "Material comparable revenue movement",
+          "status": "NEW",
+          "fact_text": "COMPARABLE_REVENUE_CHANGE: observed 5107669.08 GBP versus 4675723.97 GBP, a movement of 431945.11 GBP.",
+          "interpretation_text": "Comparable revenue increased; this is an observed performance movement, not a causal explanation.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_afcf4bea7b964ef69509eeab2ef15bfa",
+          "finding_type": "INSIGHT",
+          "title": "Revenue Bridge Total",
+          "status": "NEW",
+          "fact_text": "REVENUE_BRIDGE_TOTAL: observed 5107669.08 GBP versus 4675723.97 GBP, a movement of 431945.11 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_9ebd32cbf36e4c2bbbf8102ab21eaf5a",
+          "finding_type": "INSIGHT",
+          "title": "Existing Customer Net Change",
+          "status": "NEW",
+          "fact_text": "EXISTING_CUSTOMER_NET_CHANGE: observed 431945.11 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_86b1a32275fc40e6b7c092fe5603f654",
+          "finding_type": "INSIGHT",
+          "title": "Volume Effect",
+          "status": "NEW",
+          "fact_text": "VOLUME_EFFECT: observed 287828.4457053930213652360438 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_500f362c108b44ad83376156f94e7354",
+          "finding_type": "INSIGHT",
+          "title": "Contribution Change",
+          "status": "NEW",
+          "fact_text": "CONTRIBUTION_CHANGE: observed 1797927.17 GBP versus 1655018.35 GBP, a movement of 142908.82 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_a78dee6be3f84b4eb0ab7c738a008422",
+          "finding_type": "RISK",
+          "title": "Customer concentration exposure",
+          "status": "NEW",
+          "fact_text": "TOP5_CONCENTRATION: observed 20.10541881072686878140507881 PERCENT.",
+          "interpretation_text": "Revenue is concentrated in a limited number of customer relationships.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_e8adf926f1354f4198716f50ddff7be8",
+          "finding_type": "INSIGHT",
+          "title": "Customer Profitability",
+          "status": "NEW",
+          "fact_text": "CUSTOMER_PROFITABILITY: observed 173691.99 GBP versus 459871.96 GBP, a movement of 37.76964135843376926046980555 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        }
+      ],
+      "sample_signals": [
+        {
+          "test_id": "CUS-01",
+          "signal_type": "CUSTOMER_HHI",
+          "observed_value": "224.2628367041728540006700129",
+          "unit": "INDEX",
+          "evidence_summary": "Customer revenue HHI is 224.2628367041728540006700129; retained as concentration evidence, not a client-facing verdict."
+        },
+        {
+          "test_id": "CUS-01",
+          "signal_type": "TOP5_CONCENTRATION",
+          "observed_value": "20.10541881072686878140507881",
+          "unit": "PERCENT",
+          "evidence_summary": "Top five customers contribute 20.10541881072686878140507881% of current comparable revenue."
+        },
+        {
+          "test_id": "CUS-01",
+          "signal_type": "TOP_CUSTOMER_CONCENTRATION",
+          "observed_value": "9.003558233651268574353293851",
+          "unit": "PERCENT",
+          "evidence_summary": "Largest customer contributes 459871.96 revenue, 9.003558233651268574353293851% of current comparable revenue. This is dependency exposure, not loss probability."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "173691.99",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 459871.96; Contribution 0 173691.99; Contribution 0 margin 37.76964135843376926046980555%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "56565.57",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 154528.16; Contribution 0 56565.57; Contribution 0 margin 36.60534753018478962022197119%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "51931.82",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 138910.49; Contribution 0 51931.82; Contribution 0 margin 37.38509597079385437341701120%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "50590.44",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 141050.34; Contribution 0 50590.44; Contribution 0 margin 35.86693942035162765293582419%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "49082.74",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 132557.31; Contribution 0 49082.74; Contribution 0 margin 37.02756189002326616314105952%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "47746.26",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 130265.65; Contribution 0 47746.26; Contribution 0 margin 36.65299332556203419704273536%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "42759.28",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 129246.00; Contribution 0 42759.28; Contribution 0 margin 33.08363895207588629435340359%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "39228.42",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 115828.75; Contribution 0 39228.42; Contribution 0 margin 33.86760195547305828647896140%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "37641.90",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 104153.48; Contribution 0 37641.90; Contribution 0 margin 36.14079913604423011117823428%. Revenue scale and economic contribution are retained separately."
+        }
+      ]
+    },
+    {
+      "case_id": "SME-005",
+      "model": "SUBSCRIPTION",
+      "data_state": "L2_ENHANCED",
+      "challenge": "Recurring revenue, churn/reactivation and deferred timing",
+      "expected": "Separate recurring visibility from forecast certainty",
+      "diagnostics_registered": 56,
+      "completed": 37,
+      "refused_or_na": 19,
+      "completed_ids": [
+        "REV-01",
+        "REV-02",
+        "REV-03",
+        "REV-04",
+        "REV-05",
+        "REV-06",
+        "GM-01",
+        "GM-02",
+        "GM-03",
+        "GM-04",
+        "GM-05",
+        "GM-06",
+        "GM-07",
+        "CUS-01",
+        "CUS-02",
+        "CUS-03",
+        "CUS-04",
+        "CUS-05",
+        "CUS-06",
+        "CUS-07",
+        "PROD-01",
+        "PROD-02",
+        "PROD-03",
+        "PROD-04",
+        "PROD-05",
+        "PRI-01",
+        "PRI-02",
+        "PRI-03",
+        "PRI-04",
+        "PRI-05",
+        "WC-02",
+        "WC-03",
+        "WC-05",
+        "RISK-01",
+        "RISK-02",
+        "RISK-03",
+        "RISK-04"
+      ],
+      "refused_ids": [
+        "PEO-01",
+        "PEO-02",
+        "PEO-03",
+        "PEO-04",
+        "PEO-05",
+        "SUP-01",
+        "SUP-02",
+        "SUP-03",
+        "SUP-04",
+        "SUP-05",
+        "SUP-06",
+        "WC-01",
+        "WC-04",
+        "WC-06",
+        "WC-07",
+        "FCST-01",
+        "FCST-02",
+        "FCST-03",
+        "FCST-04"
+      ],
+      "signals": 330,
+      "findings": 28,
+      "stories": 23,
+      "reconciliations": {
+        "SALES_TO_PNL_REVENUE": "RECONCILED",
+        "AR_LEDGER_TO_BS": "RECONCILED",
+        "AP_LEDGER_TO_BS": "RECONCILED",
+        "BANK_TO_BS_CASH": "RECONCILED"
+      },
+      "trust": {
+        "D01": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 4,
+          "limitation": null
+        },
+        "D02": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 3,
+          "limitation": null
+        },
+        "D03": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D04": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D05": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 1,
+          "limitation": null
+        },
+        "D06": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        }
+      },
+      "sense_checks": {
+        "registered_56": true,
+        "no_inventory_false_cash": true,
+        "l1_degrades": true,
+        "no_causal_overclaim": true,
+        "no_fraud_overclaim": true,
+        "project_irregularity_caution": true,
+        "capacity_not_money": true,
+        "mismatch_detected": true,
+        "missing_bank_visible": true,
+        "repeatable_inputs_preserved": true
+      },
+      "verdict": "PASS",
+      "top_findings": [
+        {
+          "finding_id": "find_bafdb65fcdf54820923585d6dd048685",
+          "finding_type": "INSIGHT",
+          "title": "Material comparable revenue movement",
+          "status": "NEW",
+          "fact_text": "COMPARABLE_REVENUE_CHANGE: observed 5107669.08 GBP versus 4675723.97 GBP, a movement of 431945.11 GBP.",
+          "interpretation_text": "Comparable revenue increased; this is an observed performance movement, not a causal explanation.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_8e0bfccb66314ae3af366e8f8368aa63",
+          "finding_type": "INSIGHT",
+          "title": "Revenue Bridge Total",
+          "status": "NEW",
+          "fact_text": "REVENUE_BRIDGE_TOTAL: observed 5107669.08 GBP versus 4675723.97 GBP, a movement of 431945.11 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_60e42602f1754c46874c2b6431b01900",
+          "finding_type": "INSIGHT",
+          "title": "Existing Customer Net Change",
+          "status": "NEW",
+          "fact_text": "EXISTING_CUSTOMER_NET_CHANGE: observed 431945.11 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_ada94e25b4c2440681ee9814b4f917df",
+          "finding_type": "INSIGHT",
+          "title": "Volume Effect",
+          "status": "NEW",
+          "fact_text": "VOLUME_EFFECT: observed 287828.4457053930213652360439 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_a15f66b95ce0413da44b470cd95c6740",
+          "finding_type": "INSIGHT",
+          "title": "Contribution Change",
+          "status": "NEW",
+          "fact_text": "CONTRIBUTION_CHANGE: observed 1797927.17 GBP versus 1655018.35 GBP, a movement of 142908.82 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_db2982f2f3b7445993f9207a11096af1",
+          "finding_type": "RISK",
+          "title": "Customer concentration exposure",
+          "status": "NEW",
+          "fact_text": "TOP5_CONCENTRATION: observed 20.10541881072686878140507881 PERCENT.",
+          "interpretation_text": "Revenue is concentrated in a limited number of customer relationships.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_05c38659be544d5182b38b91a4fab064",
+          "finding_type": "INSIGHT",
+          "title": "Customer Profitability",
+          "status": "NEW",
+          "fact_text": "CUSTOMER_PROFITABILITY: observed 173691.99 GBP versus 459871.96 GBP, a movement of 37.76964135843376926046980555 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        }
+      ],
+      "sample_signals": [
+        {
+          "test_id": "CUS-01",
+          "signal_type": "CUSTOMER_HHI",
+          "observed_value": "224.2628367041728540006700129",
+          "unit": "INDEX",
+          "evidence_summary": "Customer revenue HHI is 224.2628367041728540006700129; retained as concentration evidence, not a client-facing verdict."
+        },
+        {
+          "test_id": "CUS-01",
+          "signal_type": "TOP5_CONCENTRATION",
+          "observed_value": "20.10541881072686878140507881",
+          "unit": "PERCENT",
+          "evidence_summary": "Top five customers contribute 20.10541881072686878140507881% of current comparable revenue."
+        },
+        {
+          "test_id": "CUS-01",
+          "signal_type": "TOP_CUSTOMER_CONCENTRATION",
+          "observed_value": "9.003558233651268574353293851",
+          "unit": "PERCENT",
+          "evidence_summary": "Largest customer contributes 459871.96 revenue, 9.003558233651268574353293851% of current comparable revenue. This is dependency exposure, not loss probability."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "173691.99",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 459871.96; Contribution 0 173691.99; Contribution 0 margin 37.76964135843376926046980555%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "56565.57",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 154528.16; Contribution 0 56565.57; Contribution 0 margin 36.60534753018478962022197119%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "51931.82",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 138910.49; Contribution 0 51931.82; Contribution 0 margin 37.38509597079385437341701120%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "50590.44",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 141050.34; Contribution 0 50590.44; Contribution 0 margin 35.86693942035162765293582419%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "49082.74",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 132557.31; Contribution 0 49082.74; Contribution 0 margin 37.02756189002326616314105952%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "47746.26",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 130265.65; Contribution 0 47746.26; Contribution 0 margin 36.65299332556203419704273536%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "42759.28",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 129246.00; Contribution 0 42759.28; Contribution 0 margin 33.08363895207588629435340359%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "39228.42",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 115828.75; Contribution 0 39228.42; Contribution 0 margin 33.86760195547305828647896140%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "37641.90",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 104153.48; Contribution 0 37641.90; Contribution 0 margin 36.14079913604423011117823428%. Revenue scale and economic contribution are retained separately."
+        }
+      ]
+    },
+    {
+      "case_id": "SME-006",
+      "model": "SUBSCRIPTION",
+      "data_state": "L3_ADVANCED",
+      "challenge": "CRM pipeline and forecast history disagree with accounting actuals",
+      "expected": "Prefer authoritative actuals; expose forecast bias without predicting outcomes",
+      "diagnostics_registered": 56,
+      "completed": 37,
+      "refused_or_na": 19,
+      "completed_ids": [
+        "REV-01",
+        "REV-02",
+        "REV-03",
+        "REV-04",
+        "REV-05",
+        "REV-06",
+        "GM-01",
+        "GM-02",
+        "GM-03",
+        "GM-04",
+        "GM-05",
+        "GM-06",
+        "GM-07",
+        "CUS-01",
+        "CUS-02",
+        "CUS-03",
+        "CUS-04",
+        "CUS-05",
+        "CUS-06",
+        "CUS-07",
+        "PROD-01",
+        "PROD-02",
+        "PROD-03",
+        "PROD-04",
+        "PROD-05",
+        "PRI-01",
+        "PRI-02",
+        "PRI-03",
+        "PRI-04",
+        "PRI-05",
+        "WC-02",
+        "WC-03",
+        "WC-05",
+        "RISK-01",
+        "RISK-02",
+        "RISK-03",
+        "RISK-04"
+      ],
+      "refused_ids": [
+        "PEO-01",
+        "PEO-02",
+        "PEO-03",
+        "PEO-04",
+        "PEO-05",
+        "SUP-01",
+        "SUP-02",
+        "SUP-03",
+        "SUP-04",
+        "SUP-05",
+        "SUP-06",
+        "WC-01",
+        "WC-04",
+        "WC-06",
+        "WC-07",
+        "FCST-01",
+        "FCST-02",
+        "FCST-03",
+        "FCST-04"
+      ],
+      "signals": 330,
+      "findings": 28,
+      "stories": 23,
+      "reconciliations": {
+        "SALES_TO_PNL_REVENUE": "RECONCILED",
+        "AR_LEDGER_TO_BS": "RECONCILED",
+        "AP_LEDGER_TO_BS": "RECONCILED",
+        "BANK_TO_BS_CASH": "RECONCILED"
+      },
+      "trust": {
+        "D01": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 4,
+          "limitation": null
+        },
+        "D02": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 3,
+          "limitation": null
+        },
+        "D03": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D04": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D05": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 1,
+          "limitation": null
+        },
+        "D06": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        }
+      },
+      "sense_checks": {
+        "registered_56": true,
+        "no_inventory_false_cash": true,
+        "l1_degrades": true,
+        "no_causal_overclaim": true,
+        "no_fraud_overclaim": true,
+        "project_irregularity_caution": true,
+        "capacity_not_money": true,
+        "mismatch_detected": true,
+        "missing_bank_visible": true,
+        "repeatable_inputs_preserved": true
+      },
+      "verdict": "PASS",
+      "top_findings": [
+        {
+          "finding_id": "find_6423f16ed64a48b6a30f96f0f4ec37ed",
+          "finding_type": "INSIGHT",
+          "title": "Material comparable revenue movement",
+          "status": "NEW",
+          "fact_text": "COMPARABLE_REVENUE_CHANGE: observed 5107669.08 GBP versus 4675723.97 GBP, a movement of 431945.11 GBP.",
+          "interpretation_text": "Comparable revenue increased; this is an observed performance movement, not a causal explanation.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_0e76f42621d44b2783d10bc10499a04f",
+          "finding_type": "INSIGHT",
+          "title": "Revenue Bridge Total",
+          "status": "NEW",
+          "fact_text": "REVENUE_BRIDGE_TOTAL: observed 5107669.08 GBP versus 4675723.97 GBP, a movement of 431945.11 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_2bae38120df145fa9a04c93f6169c839",
+          "finding_type": "INSIGHT",
+          "title": "Existing Customer Net Change",
+          "status": "NEW",
+          "fact_text": "EXISTING_CUSTOMER_NET_CHANGE: observed 431945.11 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_d28fc4ce8b724aff8834c648ef1cedeb",
+          "finding_type": "INSIGHT",
+          "title": "Volume Effect",
+          "status": "NEW",
+          "fact_text": "VOLUME_EFFECT: observed 287828.4457053930213652360439 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_97f77225e6d840939267613812cfbede",
+          "finding_type": "INSIGHT",
+          "title": "Contribution Change",
+          "status": "NEW",
+          "fact_text": "CONTRIBUTION_CHANGE: observed 1797927.17 GBP versus 1655018.35 GBP, a movement of 142908.82 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_15e267dfbb944e6aa98e8484c6c9ccfc",
+          "finding_type": "RISK",
+          "title": "Customer concentration exposure",
+          "status": "NEW",
+          "fact_text": "TOP5_CONCENTRATION: observed 20.10541881072686878140507881 PERCENT.",
+          "interpretation_text": "Revenue is concentrated in a limited number of customer relationships.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_ad722d5a211247e686aabeaef6f125f9",
+          "finding_type": "INSIGHT",
+          "title": "Customer Profitability",
+          "status": "NEW",
+          "fact_text": "CUSTOMER_PROFITABILITY: observed 173691.99 GBP versus 459871.96 GBP, a movement of 37.76964135843376926046980555 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        }
+      ],
+      "sample_signals": [
+        {
+          "test_id": "CUS-01",
+          "signal_type": "CUSTOMER_HHI",
+          "observed_value": "224.2628367041728540006700129",
+          "unit": "INDEX",
+          "evidence_summary": "Customer revenue HHI is 224.2628367041728540006700129; retained as concentration evidence, not a client-facing verdict."
+        },
+        {
+          "test_id": "CUS-01",
+          "signal_type": "TOP5_CONCENTRATION",
+          "observed_value": "20.10541881072686878140507881",
+          "unit": "PERCENT",
+          "evidence_summary": "Top five customers contribute 20.10541881072686878140507881% of current comparable revenue."
+        },
+        {
+          "test_id": "CUS-01",
+          "signal_type": "TOP_CUSTOMER_CONCENTRATION",
+          "observed_value": "9.003558233651268574353293851",
+          "unit": "PERCENT",
+          "evidence_summary": "Largest customer contributes 459871.96 revenue, 9.003558233651268574353293851% of current comparable revenue. This is dependency exposure, not loss probability."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "173691.99",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 459871.96; Contribution 0 173691.99; Contribution 0 margin 37.76964135843376926046980555%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "56565.57",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 154528.16; Contribution 0 56565.57; Contribution 0 margin 36.60534753018478962022197119%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "51931.82",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 138910.49; Contribution 0 51931.82; Contribution 0 margin 37.38509597079385437341701120%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "50590.44",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 141050.34; Contribution 0 50590.44; Contribution 0 margin 35.86693942035162765293582419%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "49082.74",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 132557.31; Contribution 0 49082.74; Contribution 0 margin 37.02756189002326616314105952%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "47746.26",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 130265.65; Contribution 0 47746.26; Contribution 0 margin 36.65299332556203419704273536%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "42759.28",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 129246.00; Contribution 0 42759.28; Contribution 0 margin 33.08363895207588629435340359%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "39228.42",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 115828.75; Contribution 0 39228.42; Contribution 0 margin 33.86760195547305828647896140%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "37641.90",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 104153.48; Contribution 0 37641.90; Contribution 0 margin 36.14079913604423011117823428%. Revenue scale and economic contribution are retained separately."
+        }
+      ]
+    },
+    {
+      "case_id": "SME-007",
+      "model": "PROJECT_CONTRACT",
+      "data_state": "L1_MESSY",
+      "challenge": "Irregular invoicing, WIP/timing and sparse customer transactions",
+      "expected": "Avoid interpreting billing timing as underlying growth without evidence",
+      "diagnostics_registered": 56,
+      "completed": 9,
+      "refused_or_na": 47,
+      "completed_ids": [
+        "WC-01",
+        "WC-02",
+        "WC-03",
+        "WC-05",
+        "WC-06",
+        "WC-07",
+        "RISK-01",
+        "RISK-02",
+        "RISK-04"
+      ],
+      "refused_ids": [
+        "REV-01",
+        "REV-02",
+        "REV-03",
+        "REV-04",
+        "REV-05",
+        "REV-06",
+        "GM-01",
+        "GM-02",
+        "GM-03",
+        "GM-04",
+        "GM-05",
+        "GM-06",
+        "GM-07",
+        "CUS-01",
+        "CUS-02",
+        "CUS-03",
+        "CUS-04",
+        "CUS-05",
+        "CUS-06",
+        "CUS-07",
+        "PROD-01",
+        "PROD-02",
+        "PROD-03",
+        "PROD-04",
+        "PROD-05",
+        "PRI-01",
+        "PRI-02",
+        "PRI-03",
+        "PRI-04",
+        "PRI-05",
+        "PEO-01",
+        "PEO-02",
+        "PEO-03",
+        "PEO-04",
+        "PEO-05",
+        "SUP-01",
+        "SUP-02",
+        "SUP-03",
+        "SUP-04",
+        "SUP-05",
+        "SUP-06",
+        "WC-04",
+        "FCST-01",
+        "FCST-02",
+        "FCST-03",
+        "FCST-04",
+        "RISK-03"
+      ],
+      "signals": 22,
+      "findings": 12,
+      "stories": 9,
+      "reconciliations": {
+        "AR_LEDGER_TO_BS": "RECONCILED",
+        "AP_LEDGER_TO_BS": "RECONCILED",
+        "BANK_TO_BS_CASH": "RECONCILED"
+      },
+      "trust": {
+        "D01": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 48,
+          "limitation": null
+        },
+        "D02": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 3,
+          "limitation": null
+        },
+        "D03": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D04": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D05": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 1,
+          "limitation": null
+        },
+        "D06": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        }
+      },
+      "sense_checks": {
+        "registered_56": true,
+        "no_inventory_false_cash": true,
+        "l1_degrades": true,
+        "no_causal_overclaim": true,
+        "no_fraud_overclaim": true,
+        "project_irregularity_caution": true,
+        "capacity_not_money": true,
+        "mismatch_detected": true,
+        "missing_bank_visible": true,
+        "repeatable_inputs_preserved": true
+      },
+      "verdict": "PASS",
+      "top_findings": [
+        {
+          "finding_id": "find_7bf83ef2128044b2853a06d025bf5cdd",
+          "finding_type": "INSIGHT",
+          "title": "Working Capital Release Candidate",
+          "status": "NEW",
+          "fact_text": "WORKING_CAPITAL_RELEASE_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_fd555d3c3b684254a20d9ae1c20b7019",
+          "finding_type": "INSIGHT",
+          "title": "Working Capital Release Candidate",
+          "status": "NEW",
+          "fact_text": "WORKING_CAPITAL_RELEASE_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_a045c2de44c4499faeea8250d9aafc37",
+          "finding_type": "INSIGHT",
+          "title": "Cash Optimisation Candidate",
+          "status": "NEW",
+          "fact_text": "CASH_OPTIMISATION_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_00e23e18b3d7465eb33b26ebaa5c0963",
+          "finding_type": "INSIGHT",
+          "title": "Cash Optimisation Candidate",
+          "status": "NEW",
+          "fact_text": "CASH_OPTIMISATION_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_f862db637c7940d690dd36262631192d",
+          "finding_type": "INSIGHT",
+          "title": "Reconciliation Exception",
+          "status": "NEW",
+          "fact_text": "RECONCILIATION_EXCEPTION: observed 0 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_12cd27b7b54c4bd4876cd9098a10cdf1",
+          "finding_type": "INSIGHT",
+          "title": "Reconciliation Exception",
+          "status": "NEW",
+          "fact_text": "RECONCILIATION_EXCEPTION: observed 2E-11 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_57344fdeb92a4086b11e59e8d9000dfd",
+          "finding_type": "INSIGHT",
+          "title": "Reconciliation Exception",
+          "status": "NEW",
+          "fact_text": "RECONCILIATION_EXCEPTION: observed 0.00 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        }
+      ],
+      "sample_signals": [
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0",
+          "unit": "GBP",
+          "evidence_summary": "TRIAL_BALANCE_DEBITS_CREDITS reconciliation status RECONCILED; residual 0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "2E-11",
+          "unit": "GBP",
+          "evidence_summary": "AR_LEDGER_TO_BS reconciliation status RECONCILED; residual 2E-11. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0.00",
+          "unit": "GBP",
+          "evidence_summary": "AP_LEDGER_TO_BS reconciliation status RECONCILED; residual 0.00. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0.0",
+          "unit": "GBP",
+          "evidence_summary": "BANK_TO_BS_CASH reconciliation status RECONCILED; residual 0.0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "WC-01",
+          "signal_type": "WC_DPO",
+          "observed_value": "299.6143854166666666666666667",
+          "unit": "DAYS",
+          "evidence_summary": "WC_DPO = 299.6143854166666666666666667 DAYS; this is an evidenced working-capital measure, not by itself proof that cash is trapped or releasable."
+        },
+        {
+          "test_id": "WC-01",
+          "signal_type": "WC_DSO",
+          "observed_value": "331.1527375000000000000000000",
+          "unit": "DAYS",
+          "evidence_summary": "WC_DSO = 331.1527375000000000000000000 DAYS; this is an evidenced working-capital measure, not by itself proof that cash is trapped or releasable."
+        },
+        {
+          "test_id": "WC-02",
+          "signal_type": "AR_LEDGER_OUTSTANDING",
+          "observed_value": "407572.59999999998",
+          "unit": "GBP",
+          "evidence_summary": "AR_LEDGER_OUTSTANDING = 407572.59999999998 GBP. Outstanding/overdue receivables are cash exposure, not new profit and not automatically collectible cash release."
+        },
+        {
+          "test_id": "WC-02",
+          "signal_type": "AR_OVERDUE_OUTSTANDING",
+          "observed_value": "224164.93",
+          "unit": "GBP",
+          "evidence_summary": "AR_OVERDUE_OUTSTANDING = 224164.93 GBP. Outstanding/overdue receivables are cash exposure, not new profit and not automatically collectible cash release."
+        }
+      ]
+    },
+    {
+      "case_id": "SME-008",
+      "model": "PROJECT_CONTRACT",
+      "data_state": "L2_ENHANCED",
+      "challenge": "Project contribution and cost-to-serve available",
+      "expected": "Use evidenced contribution definitions and preserve allocation caveats",
+      "diagnostics_registered": 56,
+      "completed": 37,
+      "refused_or_na": 19,
+      "completed_ids": [
+        "REV-01",
+        "REV-02",
+        "REV-03",
+        "REV-04",
+        "REV-05",
+        "REV-06",
+        "GM-01",
+        "GM-02",
+        "GM-03",
+        "GM-04",
+        "GM-05",
+        "GM-06",
+        "GM-07",
+        "CUS-01",
+        "CUS-02",
+        "CUS-03",
+        "CUS-04",
+        "CUS-05",
+        "CUS-06",
+        "CUS-07",
+        "PROD-01",
+        "PROD-02",
+        "PROD-03",
+        "PROD-04",
+        "PROD-05",
+        "PRI-01",
+        "PRI-02",
+        "PRI-03",
+        "PRI-04",
+        "PRI-05",
+        "WC-02",
+        "WC-03",
+        "WC-05",
+        "RISK-01",
+        "RISK-02",
+        "RISK-03",
+        "RISK-04"
+      ],
+      "refused_ids": [
+        "PEO-01",
+        "PEO-02",
+        "PEO-03",
+        "PEO-04",
+        "PEO-05",
+        "SUP-01",
+        "SUP-02",
+        "SUP-03",
+        "SUP-04",
+        "SUP-05",
+        "SUP-06",
+        "WC-01",
+        "WC-04",
+        "WC-06",
+        "WC-07",
+        "FCST-01",
+        "FCST-02",
+        "FCST-03",
+        "FCST-04"
+      ],
+      "signals": 330,
+      "findings": 28,
+      "stories": 23,
+      "reconciliations": {
+        "SALES_TO_PNL_REVENUE": "RECONCILED",
+        "AR_LEDGER_TO_BS": "RECONCILED",
+        "AP_LEDGER_TO_BS": "RECONCILED",
+        "BANK_TO_BS_CASH": "RECONCILED"
+      },
+      "trust": {
+        "D01": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 4,
+          "limitation": null
+        },
+        "D02": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 3,
+          "limitation": null
+        },
+        "D03": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D04": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D05": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 1,
+          "limitation": null
+        },
+        "D06": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        }
+      },
+      "sense_checks": {
+        "registered_56": true,
+        "no_inventory_false_cash": true,
+        "l1_degrades": true,
+        "no_causal_overclaim": true,
+        "no_fraud_overclaim": true,
+        "project_irregularity_caution": true,
+        "capacity_not_money": true,
+        "mismatch_detected": true,
+        "missing_bank_visible": true,
+        "repeatable_inputs_preserved": true
+      },
+      "verdict": "PASS",
+      "top_findings": [
+        {
+          "finding_id": "find_f3e5f0f27dee41cda030cf9f58caa63b",
+          "finding_type": "INSIGHT",
+          "title": "Material comparable revenue movement",
+          "status": "NEW",
+          "fact_text": "COMPARABLE_REVENUE_CHANGE: observed 5107669.08 GBP versus 4675723.97 GBP, a movement of 431945.11 GBP.",
+          "interpretation_text": "Comparable revenue increased; this is an observed performance movement, not a causal explanation.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_6a66a8295933473dbedf9f583fa29175",
+          "finding_type": "INSIGHT",
+          "title": "Revenue Bridge Total",
+          "status": "NEW",
+          "fact_text": "REVENUE_BRIDGE_TOTAL: observed 5107669.08 GBP versus 4675723.97 GBP, a movement of 431945.11 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_8373d91aa6604747bf07e5ae34ed169c",
+          "finding_type": "INSIGHT",
+          "title": "Existing Customer Net Change",
+          "status": "NEW",
+          "fact_text": "EXISTING_CUSTOMER_NET_CHANGE: observed 431945.11 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_79975b6c55204bfbbe4de360511f6ec4",
+          "finding_type": "INSIGHT",
+          "title": "Volume Effect",
+          "status": "NEW",
+          "fact_text": "VOLUME_EFFECT: observed 287828.4457053930213652360438 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_ece28dadd4d346388953b55d98cee428",
+          "finding_type": "INSIGHT",
+          "title": "Contribution Change",
+          "status": "NEW",
+          "fact_text": "CONTRIBUTION_CHANGE: observed 1797927.17 GBP versus 1655018.35 GBP, a movement of 142908.82 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_4db12d0d9a0b43a3a7d814d6aeb8fd45",
+          "finding_type": "RISK",
+          "title": "Customer concentration exposure",
+          "status": "NEW",
+          "fact_text": "TOP5_CONCENTRATION: observed 20.10541881072686878140507881 PERCENT.",
+          "interpretation_text": "Revenue is concentrated in a limited number of customer relationships.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_033894353c384a178488ece63cf4268e",
+          "finding_type": "INSIGHT",
+          "title": "Customer Profitability",
+          "status": "NEW",
+          "fact_text": "CUSTOMER_PROFITABILITY: observed 173691.99 GBP versus 459871.96 GBP, a movement of 37.76964135843376926046980555 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        }
+      ],
+      "sample_signals": [
+        {
+          "test_id": "CUS-01",
+          "signal_type": "CUSTOMER_HHI",
+          "observed_value": "224.2628367041728540006700129",
+          "unit": "INDEX",
+          "evidence_summary": "Customer revenue HHI is 224.2628367041728540006700129; retained as concentration evidence, not a client-facing verdict."
+        },
+        {
+          "test_id": "CUS-01",
+          "signal_type": "TOP5_CONCENTRATION",
+          "observed_value": "20.10541881072686878140507881",
+          "unit": "PERCENT",
+          "evidence_summary": "Top five customers contribute 20.10541881072686878140507881% of current comparable revenue."
+        },
+        {
+          "test_id": "CUS-01",
+          "signal_type": "TOP_CUSTOMER_CONCENTRATION",
+          "observed_value": "9.003558233651268574353293851",
+          "unit": "PERCENT",
+          "evidence_summary": "Largest customer contributes 459871.96 revenue, 9.003558233651268574353293851% of current comparable revenue. This is dependency exposure, not loss probability."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "173691.99",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 459871.96; Contribution 0 173691.99; Contribution 0 margin 37.76964135843376926046980555%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "56565.57",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 154528.16; Contribution 0 56565.57; Contribution 0 margin 36.60534753018478962022197119%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "51931.82",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 138910.49; Contribution 0 51931.82; Contribution 0 margin 37.38509597079385437341701120%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "50590.44",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 141050.34; Contribution 0 50590.44; Contribution 0 margin 35.86693942035162765293582419%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "49082.74",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 132557.31; Contribution 0 49082.74; Contribution 0 margin 37.02756189002326616314105952%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "47746.26",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 130265.65; Contribution 0 47746.26; Contribution 0 margin 36.65299332556203419704273536%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "42759.28",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 129246.00; Contribution 0 42759.28; Contribution 0 margin 33.08363895207588629435340359%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "39228.42",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 115828.75; Contribution 0 39228.42; Contribution 0 margin 33.86760195547305828647896140%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "37641.90",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 104153.48; Contribution 0 37641.90; Contribution 0 margin 36.14079913604423011117823428%. Revenue scale and economic contribution are retained separately."
+        }
+      ]
+    },
+    {
+      "case_id": "SME-009",
+      "model": "HOSPITALITY_TRANSACTIONAL",
+      "data_state": "L1_CORE",
+      "challenge": "High transaction count but accounting-only core supplied",
+      "expected": "Deliver Level-1 value and state transaction insight is unavailable",
+      "diagnostics_registered": 56,
+      "completed": 10,
+      "refused_or_na": 46,
+      "completed_ids": [
+        "WC-01",
+        "WC-02",
+        "WC-03",
+        "WC-04",
+        "WC-05",
+        "WC-06",
+        "WC-07",
+        "RISK-01",
+        "RISK-02",
+        "RISK-04"
+      ],
+      "refused_ids": [
+        "REV-01",
+        "REV-02",
+        "REV-03",
+        "REV-04",
+        "REV-05",
+        "REV-06",
+        "GM-01",
+        "GM-02",
+        "GM-03",
+        "GM-04",
+        "GM-05",
+        "GM-06",
+        "GM-07",
+        "CUS-01",
+        "CUS-02",
+        "CUS-03",
+        "CUS-04",
+        "CUS-05",
+        "CUS-06",
+        "CUS-07",
+        "PROD-01",
+        "PROD-02",
+        "PROD-03",
+        "PROD-04",
+        "PROD-05",
+        "PRI-01",
+        "PRI-02",
+        "PRI-03",
+        "PRI-04",
+        "PRI-05",
+        "PEO-01",
+        "PEO-02",
+        "PEO-03",
+        "PEO-04",
+        "PEO-05",
+        "SUP-01",
+        "SUP-02",
+        "SUP-03",
+        "SUP-04",
+        "SUP-05",
+        "SUP-06",
+        "FCST-01",
+        "FCST-02",
+        "FCST-03",
+        "FCST-04",
+        "RISK-03"
+      ],
+      "signals": 28,
+      "findings": 14,
+      "stories": 11,
+      "reconciliations": {
+        "AR_LEDGER_TO_BS": "RECONCILED",
+        "AP_LEDGER_TO_BS": "RECONCILED",
+        "BANK_TO_BS_CASH": "RECONCILED"
+      },
+      "trust": {
+        "D01": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 48,
+          "limitation": null
+        },
+        "D02": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 4,
+          "limitation": null
+        },
+        "D03": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D04": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D05": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 1,
+          "limitation": null
+        },
+        "D06": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        }
+      },
+      "sense_checks": {
+        "registered_56": true,
+        "no_inventory_false_cash": true,
+        "l1_degrades": true,
+        "no_causal_overclaim": true,
+        "no_fraud_overclaim": true,
+        "project_irregularity_caution": true,
+        "capacity_not_money": true,
+        "mismatch_detected": true,
+        "missing_bank_visible": true,
+        "repeatable_inputs_preserved": true
+      },
+      "verdict": "PASS",
+      "top_findings": [
+        {
+          "finding_id": "find_76739f73fa054676bca6743e0cafb50f",
+          "finding_type": "INSIGHT",
+          "title": "Working Capital Release Candidate",
+          "status": "NEW",
+          "fact_text": "WORKING_CAPITAL_RELEASE_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_70656912979e4a018e4625f7e7c190fb",
+          "finding_type": "INSIGHT",
+          "title": "Working Capital Release Candidate",
+          "status": "NEW",
+          "fact_text": "WORKING_CAPITAL_RELEASE_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_117f9b285bd04b22976fa2dbd69936d7",
+          "finding_type": "INSIGHT",
+          "title": "Working Capital Release Candidate",
+          "status": "NEW",
+          "fact_text": "WORKING_CAPITAL_RELEASE_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_58b0f27f12e24289b8a24fb80b52630d",
+          "finding_type": "INSIGHT",
+          "title": "Cash Optimisation Candidate",
+          "status": "NEW",
+          "fact_text": "CASH_OPTIMISATION_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_4a20ec929b894522b9bec99b758e3b69",
+          "finding_type": "INSIGHT",
+          "title": "Cash Optimisation Candidate",
+          "status": "NEW",
+          "fact_text": "CASH_OPTIMISATION_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_7761f72cf7da4448919ebdb00a164777",
+          "finding_type": "INSIGHT",
+          "title": "Cash Optimisation Candidate",
+          "status": "NEW",
+          "fact_text": "CASH_OPTIMISATION_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_f6acd375fc7246d796d26a4fd0204b37",
+          "finding_type": "INSIGHT",
+          "title": "Reconciliation Exception",
+          "status": "NEW",
+          "fact_text": "RECONCILIATION_EXCEPTION: observed 0 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        }
+      ],
+      "sample_signals": [
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0",
+          "unit": "GBP",
+          "evidence_summary": "TRIAL_BALANCE_DEBITS_CREDITS reconciliation status RECONCILED; residual 0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0.0000",
+          "unit": "GBP",
+          "evidence_summary": "AR_LEDGER_TO_BS reconciliation status RECONCILED; residual 0.0000. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0.00",
+          "unit": "GBP",
+          "evidence_summary": "AP_LEDGER_TO_BS reconciliation status RECONCILED; residual 0.00. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0.0",
+          "unit": "GBP",
+          "evidence_summary": "BANK_TO_BS_CASH reconciliation status RECONCILED; residual 0.0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "WC-01",
+          "signal_type": "WC_CCC",
+          "observed_value": "698.7023790227592233747482807",
+          "unit": "DAYS",
+          "evidence_summary": "WC_CCC = 698.7023790227592233747482807 DAYS; this is an evidenced working-capital measure, not by itself proof that cash is trapped or releasable."
+        },
+        {
+          "test_id": "WC-01",
+          "signal_type": "WC_DIO",
+          "observed_value": "653.6248138227136289372696532",
+          "unit": "DAYS",
+          "evidence_summary": "WC_DIO = 653.6248138227136289372696532 DAYS; this is an evidenced working-capital measure, not by itself proof that cash is trapped or releasable."
+        },
+        {
+          "test_id": "WC-01",
+          "signal_type": "WC_DPO",
+          "observed_value": "428.2369618906493407804247883",
+          "unit": "DAYS",
+          "evidence_summary": "WC_DPO = 428.2369618906493407804247883 DAYS; this is an evidenced working-capital measure, not by itself proof that cash is trapped or releasable."
+        },
+        {
+          "test_id": "WC-01",
+          "signal_type": "WC_DSO",
+          "observed_value": "473.3145270906949352179034158",
+          "unit": "DAYS",
+          "evidence_summary": "WC_DSO = 473.3145270906949352179034158 DAYS; this is an evidenced working-capital measure, not by itself proof that cash is trapped or releasable."
+        }
+      ]
+    },
+    {
+      "case_id": "SME-010",
+      "model": "HOSPITALITY_TRANSACTIONAL",
+      "data_state": "L2_ENHANCED",
+      "challenge": "Covers/transactions, labour and direct costs",
+      "expected": "Use activity drivers without treating correlation as causality",
+      "diagnostics_registered": 56,
+      "completed": 40,
+      "refused_or_na": 16,
+      "completed_ids": [
+        "REV-01",
+        "REV-02",
+        "REV-03",
+        "REV-04",
+        "REV-05",
+        "REV-06",
+        "GM-01",
+        "GM-02",
+        "GM-03",
+        "GM-04",
+        "GM-05",
+        "GM-06",
+        "GM-07",
+        "CUS-01",
+        "CUS-02",
+        "CUS-03",
+        "CUS-04",
+        "CUS-05",
+        "CUS-06",
+        "CUS-07",
+        "PROD-01",
+        "PROD-02",
+        "PROD-03",
+        "PROD-04",
+        "PROD-05",
+        "PRI-01",
+        "PRI-02",
+        "PRI-03",
+        "PRI-04",
+        "PRI-05",
+        "WC-02",
+        "WC-03",
+        "WC-04",
+        "WC-05",
+        "WC-06",
+        "WC-07",
+        "RISK-01",
+        "RISK-02",
+        "RISK-03",
+        "RISK-04"
+      ],
+      "refused_ids": [
+        "PEO-01",
+        "PEO-02",
+        "PEO-03",
+        "PEO-04",
+        "PEO-05",
+        "SUP-01",
+        "SUP-02",
+        "SUP-03",
+        "SUP-04",
+        "SUP-05",
+        "SUP-06",
+        "WC-01",
+        "FCST-01",
+        "FCST-02",
+        "FCST-03",
+        "FCST-04"
+      ],
+      "signals": 333,
+      "findings": 30,
+      "stories": 25,
+      "reconciliations": {
+        "SALES_TO_PNL_REVENUE": "RECONCILED",
+        "AR_LEDGER_TO_BS": "RECONCILED",
+        "AP_LEDGER_TO_BS": "RECONCILED",
+        "BANK_TO_BS_CASH": "RECONCILED"
+      },
+      "trust": {
+        "D01": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 4,
+          "limitation": null
+        },
+        "D02": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 4,
+          "limitation": null
+        },
+        "D03": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D04": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D05": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 1,
+          "limitation": null
+        },
+        "D06": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        }
+      },
+      "sense_checks": {
+        "registered_56": true,
+        "no_inventory_false_cash": true,
+        "l1_degrades": true,
+        "no_causal_overclaim": true,
+        "no_fraud_overclaim": true,
+        "project_irregularity_caution": true,
+        "capacity_not_money": true,
+        "mismatch_detected": true,
+        "missing_bank_visible": true,
+        "repeatable_inputs_preserved": true
+      },
+      "verdict": "PASS",
+      "top_findings": [
+        {
+          "finding_id": "find_b18a24782a31478b84d0d5bb0ff174f8",
+          "finding_type": "INSIGHT",
+          "title": "Material comparable revenue movement",
+          "status": "NEW",
+          "fact_text": "COMPARABLE_REVENUE_CHANGE: observed 5107669.08 GBP versus 4675723.97 GBP, a movement of 431945.11 GBP.",
+          "interpretation_text": "Comparable revenue increased; this is an observed performance movement, not a causal explanation.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_53fdeec8d9914658a3068ec1f13b50a5",
+          "finding_type": "INSIGHT",
+          "title": "Revenue Bridge Total",
+          "status": "NEW",
+          "fact_text": "REVENUE_BRIDGE_TOTAL: observed 5107669.08 GBP versus 4675723.97 GBP, a movement of 431945.11 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_3f24aa4f7ba24fee86afbe27b3726045",
+          "finding_type": "INSIGHT",
+          "title": "Existing Customer Net Change",
+          "status": "NEW",
+          "fact_text": "EXISTING_CUSTOMER_NET_CHANGE: observed 431945.11 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_4366f43267ee4a028a84c47e0719489e",
+          "finding_type": "INSIGHT",
+          "title": "Volume Effect",
+          "status": "NEW",
+          "fact_text": "VOLUME_EFFECT: observed 287828.4457053930213652360439 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_c1d56c2d48b6416089bb9927805fe806",
+          "finding_type": "INSIGHT",
+          "title": "Contribution Change",
+          "status": "NEW",
+          "fact_text": "CONTRIBUTION_CHANGE: observed 1797927.17 GBP versus 1655018.35 GBP, a movement of 142908.82 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_e93f63087ca54f328ec87dcaa7911b63",
+          "finding_type": "RISK",
+          "title": "Customer concentration exposure",
+          "status": "NEW",
+          "fact_text": "TOP5_CONCENTRATION: observed 20.10541881072686878140507881 PERCENT.",
+          "interpretation_text": "Revenue is concentrated in a limited number of customer relationships.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_4c1146152701424ea0dc27274ef413a3",
+          "finding_type": "INSIGHT",
+          "title": "Customer Profitability",
+          "status": "NEW",
+          "fact_text": "CUSTOMER_PROFITABILITY: observed 173691.99 GBP versus 459871.96 GBP, a movement of 37.76964135843376926046980555 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        }
+      ],
+      "sample_signals": [
+        {
+          "test_id": "CUS-01",
+          "signal_type": "CUSTOMER_HHI",
+          "observed_value": "224.2628367041728540006700129",
+          "unit": "INDEX",
+          "evidence_summary": "Customer revenue HHI is 224.2628367041728540006700129; retained as concentration evidence, not a client-facing verdict."
+        },
+        {
+          "test_id": "CUS-01",
+          "signal_type": "TOP5_CONCENTRATION",
+          "observed_value": "20.10541881072686878140507881",
+          "unit": "PERCENT",
+          "evidence_summary": "Top five customers contribute 20.10541881072686878140507881% of current comparable revenue."
+        },
+        {
+          "test_id": "CUS-01",
+          "signal_type": "TOP_CUSTOMER_CONCENTRATION",
+          "observed_value": "9.003558233651268574353293851",
+          "unit": "PERCENT",
+          "evidence_summary": "Largest customer contributes 459871.96 revenue, 9.003558233651268574353293851% of current comparable revenue. This is dependency exposure, not loss probability."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "173691.99",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 459871.96; Contribution 0 173691.99; Contribution 0 margin 37.76964135843376926046980555%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "56565.57",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 154528.16; Contribution 0 56565.57; Contribution 0 margin 36.60534753018478962022197119%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "51931.82",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 138910.49; Contribution 0 51931.82; Contribution 0 margin 37.38509597079385437341701120%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "50590.44",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 141050.34; Contribution 0 50590.44; Contribution 0 margin 35.86693942035162765293582419%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "49082.74",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 132557.31; Contribution 0 49082.74; Contribution 0 margin 37.02756189002326616314105952%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "47746.26",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 130265.65; Contribution 0 47746.26; Contribution 0 margin 36.65299332556203419704273536%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "42759.28",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 129246.00; Contribution 0 42759.28; Contribution 0 margin 33.08363895207588629435340359%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "39228.42",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 115828.75; Contribution 0 39228.42; Contribution 0 margin 33.86760195547305828647896140%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "37641.90",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 104153.48; Contribution 0 37641.90; Contribution 0 margin 36.14079913604423011117823428%. Revenue scale and economic contribution are retained separately."
+        }
+      ]
+    },
+    {
+      "case_id": "SME-011",
+      "model": "HYBRID",
+      "data_state": "L1_MESSY",
+      "challenge": "AR/BS mismatch, duplicate IDs, missing bank and malformed rows",
+      "expected": "Constrain/refuse affected tests; never silently repair material evidence",
+      "diagnostics_registered": 56,
+      "completed": 10,
+      "refused_or_na": 46,
+      "completed_ids": [
+        "WC-01",
+        "WC-02",
+        "WC-03",
+        "WC-04",
+        "WC-05",
+        "WC-06",
+        "WC-07",
+        "RISK-01",
+        "RISK-02",
+        "RISK-04"
+      ],
+      "refused_ids": [
+        "REV-01",
+        "REV-02",
+        "REV-03",
+        "REV-04",
+        "REV-05",
+        "REV-06",
+        "GM-01",
+        "GM-02",
+        "GM-03",
+        "GM-04",
+        "GM-05",
+        "GM-06",
+        "GM-07",
+        "CUS-01",
+        "CUS-02",
+        "CUS-03",
+        "CUS-04",
+        "CUS-05",
+        "CUS-06",
+        "CUS-07",
+        "PROD-01",
+        "PROD-02",
+        "PROD-03",
+        "PROD-04",
+        "PROD-05",
+        "PRI-01",
+        "PRI-02",
+        "PRI-03",
+        "PRI-04",
+        "PRI-05",
+        "PEO-01",
+        "PEO-02",
+        "PEO-03",
+        "PEO-04",
+        "PEO-05",
+        "SUP-01",
+        "SUP-02",
+        "SUP-03",
+        "SUP-04",
+        "SUP-05",
+        "SUP-06",
+        "FCST-01",
+        "FCST-02",
+        "FCST-03",
+        "FCST-04",
+        "RISK-03"
+      ],
+      "signals": 30,
+      "findings": 16,
+      "stories": 12,
+      "reconciliations": {
+        "AR_LEDGER_TO_BS": "FAILED",
+        "AP_LEDGER_TO_BS": "RECONCILED"
+      },
+      "trust": {
+        "D01": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 48,
+          "limitation": null
+        },
+        "D02": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 4,
+          "limitation": null
+        },
+        "D03": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D04": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D05": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 1,
+          "limitation": null
+        },
+        "D06": {
+          "availability": "UNAVAILABLE",
+          "quality": "UNAVAILABLE",
+          "integrity": "UNAVAILABLE"
+        }
+      },
+      "sense_checks": {
+        "registered_56": true,
+        "no_inventory_false_cash": true,
+        "l1_degrades": true,
+        "no_causal_overclaim": true,
+        "no_fraud_overclaim": true,
+        "project_irregularity_caution": true,
+        "capacity_not_money": true,
+        "mismatch_detected": true,
+        "missing_bank_visible": true,
+        "repeatable_inputs_preserved": true
+      },
+      "verdict": "PASS",
+      "top_findings": [
+        {
+          "finding_id": "find_4263bc3066c54507a97e5e710bfd3f61",
+          "finding_type": "INSIGHT",
+          "title": "Working Capital Release Candidate",
+          "status": "NEW",
+          "fact_text": "WORKING_CAPITAL_RELEASE_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_c6ce1c822747424cbb3db2f35bbdb572",
+          "finding_type": "INSIGHT",
+          "title": "Working Capital Release Candidate",
+          "status": "NEW",
+          "fact_text": "WORKING_CAPITAL_RELEASE_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_78537577e3e14b11b9fd4d02b3ca4ebb",
+          "finding_type": "INSIGHT",
+          "title": "Working Capital Release Candidate",
+          "status": "NEW",
+          "fact_text": "WORKING_CAPITAL_RELEASE_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_1c9d7705469a4d2ab0d1298ecd662e2c",
+          "finding_type": "INSIGHT",
+          "title": "Cash Optimisation Candidate",
+          "status": "NEW",
+          "fact_text": "CASH_OPTIMISATION_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_d62ebd240bd442fe9a50ab63c1815266",
+          "finding_type": "INSIGHT",
+          "title": "Cash Optimisation Candidate",
+          "status": "NEW",
+          "fact_text": "CASH_OPTIMISATION_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_e341f084a47d43e08864a7e63ab8aa2b",
+          "finding_type": "INSIGHT",
+          "title": "Cash Optimisation Candidate",
+          "status": "NEW",
+          "fact_text": "CASH_OPTIMISATION_CANDIDATE: observed None GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_37f05e9c2005445aa4df3d93ca9af519",
+          "finding_type": "INSIGHT",
+          "title": "Financial Integrity Weakness",
+          "status": "NEW",
+          "fact_text": "FINANCIAL_INTEGRITY_WEAKNESS: observed None STATE.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "HIGH"
+        }
+      ],
+      "sample_signals": [
+        {
+          "test_id": "RISK-01",
+          "signal_type": "FINANCIAL_INTEGRITY_WEAKNESS",
+          "observed_value": null,
+          "unit": "STATE",
+          "evidence_summary": "D02 integrity state is MATERIALLY_CONSTRAINED: Domain-specific Level 1 integrity contract. This identifies a reliability/control concern; it is not an audit opinion and does not by itself prove financial misstatement or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "FINANCIAL_INTEGRITY_WEAKNESS",
+          "observed_value": null,
+          "unit": "STATE",
+          "evidence_summary": "D04 integrity state is MATERIALLY_CONSTRAINED: Domain-specific Level 1 integrity contract. This identifies a reliability/control concern; it is not an audit opinion and does not by itself prove financial misstatement or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0",
+          "unit": "GBP",
+          "evidence_summary": "TRIAL_BALANCE_DEBITS_CREDITS reconciliation status RECONCILED; residual 0. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "243363.41750000006",
+          "unit": "GBP",
+          "evidence_summary": "AR_LEDGER_TO_BS reconciliation status FAILED; residual 243363.41750000006. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-01",
+          "signal_type": "RECONCILIATION_EXCEPTION",
+          "observed_value": "0.00",
+          "unit": "GBP",
+          "evidence_summary": "AP_LEDGER_TO_BS reconciliation status RECONCILED; residual 0.00. An unreconciled difference requires investigation but does not establish error, misconduct or loss."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "RISK-04",
+          "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+          "observed_value": null,
+          "unit": "ACTION",
+          "evidence_summary": "Investigate and resolve the evidenced integrity/reconciliation weakness, documenting ownership and resolution. Proportionate response to an evidenced medium/high signal; minimum effective governance, not maximum bureaucracy. No expected-loss value is invented and management retains the decision to fix, monitor or accept the risk."
+        },
+        {
+          "test_id": "WC-01",
+          "signal_type": "WC_CCC",
+          "observed_value": "1168.636096303110496017610852",
+          "unit": "DAYS",
+          "evidence_summary": "WC_CCC = 1168.636096303110496017610852 DAYS; this is an evidenced working-capital measure, not by itself proof that cash is trapped or releasable."
+        },
+        {
+          "test_id": "WC-01",
+          "signal_type": "WC_DIO",
+          "observed_value": "653.6248192251795280975720962",
+          "unit": "DAYS",
+          "evidence_summary": "WC_DIO = 653.6248192251795280975720962 DAYS; this is an evidenced working-capital measure, not by itself proof that cash is trapped or releasable."
+        }
+      ]
+    },
+    {
+      "case_id": "SME-012",
+      "model": "HYBRID",
+      "data_state": "L3_ADVANCED",
+      "challenge": "Rich but contradictory finance/CRM/pricing/operations data",
+      "expected": "Preserve source precedence, surface contradictions and refuse false precision",
+      "diagnostics_registered": 56,
+      "completed": 40,
+      "refused_or_na": 16,
+      "completed_ids": [
+        "REV-01",
+        "REV-02",
+        "REV-03",
+        "REV-04",
+        "REV-05",
+        "REV-06",
+        "GM-01",
+        "GM-02",
+        "GM-03",
+        "GM-04",
+        "GM-05",
+        "GM-06",
+        "GM-07",
+        "CUS-01",
+        "CUS-02",
+        "CUS-03",
+        "CUS-04",
+        "CUS-05",
+        "CUS-06",
+        "CUS-07",
+        "PROD-01",
+        "PROD-02",
+        "PROD-03",
+        "PROD-04",
+        "PROD-05",
+        "PRI-01",
+        "PRI-02",
+        "PRI-03",
+        "PRI-04",
+        "PRI-05",
+        "WC-02",
+        "WC-03",
+        "WC-04",
+        "WC-05",
+        "WC-06",
+        "WC-07",
+        "RISK-01",
+        "RISK-02",
+        "RISK-03",
+        "RISK-04"
+      ],
+      "refused_ids": [
+        "PEO-01",
+        "PEO-02",
+        "PEO-03",
+        "PEO-04",
+        "PEO-05",
+        "SUP-01",
+        "SUP-02",
+        "SUP-03",
+        "SUP-04",
+        "SUP-05",
+        "SUP-06",
+        "WC-01",
+        "FCST-01",
+        "FCST-02",
+        "FCST-03",
+        "FCST-04"
+      ],
+      "signals": 337,
+      "findings": 34,
+      "stories": 27,
+      "reconciliations": {
+        "SALES_TO_PNL_REVENUE": "RECONCILED",
+        "AR_LEDGER_TO_BS": "RECONCILED",
+        "AP_LEDGER_TO_BS": "RECONCILED",
+        "BANK_TO_BS_CASH": "FAILED"
+      },
+      "trust": {
+        "D01": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 4,
+          "limitation": null
+        },
+        "D02": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 4,
+          "limitation": null
+        },
+        "D03": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D04": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        },
+        "D05": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 1,
+          "limitation": null
+        },
+        "D06": {
+          "availability": "AVAILABLE",
+          "quality": "RELIABLE",
+          "integrity": "RELIABLE",
+          "row_count": 2,
+          "limitation": null
+        }
+      },
+      "sense_checks": {
+        "registered_56": true,
+        "no_inventory_false_cash": true,
+        "l1_degrades": true,
+        "no_causal_overclaim": true,
+        "no_fraud_overclaim": true,
+        "project_irregularity_caution": true,
+        "capacity_not_money": true,
+        "mismatch_detected": true,
+        "missing_bank_visible": true,
+        "repeatable_inputs_preserved": true
+      },
+      "verdict": "PASS",
+      "top_findings": [
+        {
+          "finding_id": "find_969ac8c696f9452fad3da67480e528d7",
+          "finding_type": "INSIGHT",
+          "title": "Material comparable revenue movement",
+          "status": "NEW",
+          "fact_text": "COMPARABLE_REVENUE_CHANGE: observed 5107669.08 GBP versus 4675723.97 GBP, a movement of 431945.11 GBP.",
+          "interpretation_text": "Comparable revenue increased; this is an observed performance movement, not a causal explanation.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_ee9b76889ba74faaa028be223ca59411",
+          "finding_type": "INSIGHT",
+          "title": "Revenue Bridge Total",
+          "status": "NEW",
+          "fact_text": "REVENUE_BRIDGE_TOTAL: observed 5107669.08 GBP versus 4675723.97 GBP, a movement of 431945.11 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_562926cecc9140ca9ed732a17a4c7bf0",
+          "finding_type": "INSIGHT",
+          "title": "Existing Customer Net Change",
+          "status": "NEW",
+          "fact_text": "EXISTING_CUSTOMER_NET_CHANGE: observed 431945.11 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_4624e9ca83cd47f9a87e90290459423f",
+          "finding_type": "INSIGHT",
+          "title": "Volume Effect",
+          "status": "NEW",
+          "fact_text": "VOLUME_EFFECT: observed 287828.4457053930213652360438 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_094b63d1ddda4ef6a9a3558f5514f503",
+          "finding_type": "INSIGHT",
+          "title": "Contribution Change",
+          "status": "NEW",
+          "fact_text": "CONTRIBUTION_CHANGE: observed 1797927.17 GBP versus 1655018.35 GBP, a movement of 142908.82 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_46a779994a1d4eb8a29f2d9bef8657bb",
+          "finding_type": "RISK",
+          "title": "Customer concentration exposure",
+          "status": "NEW",
+          "fact_text": "TOP5_CONCENTRATION: observed 20.10541881072686878140507881 PERCENT.",
+          "interpretation_text": "Revenue is concentrated in a limited number of customer relationships.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        },
+        {
+          "finding_id": "find_154db81fb8b544a0b61dfa8c891c68c9",
+          "finding_type": "INSIGHT",
+          "title": "Customer Profitability",
+          "status": "NEW",
+          "fact_text": "CUSTOMER_PROFITABILITY: observed 173691.99 GBP versus 459871.96 GBP, a movement of 37.76964135843376926046980555 GBP.",
+          "interpretation_text": "The signal is evidenced and may be relevant to management.",
+          "why_it_matters": "Material evidenced movement warrants management attention; no opportunity value or causal claim has been created.",
+          "materiality_band": "MEDIUM"
+        }
+      ],
+      "sample_signals": [
+        {
+          "test_id": "CUS-01",
+          "signal_type": "CUSTOMER_HHI",
+          "observed_value": "224.2628367041728540006700129",
+          "unit": "INDEX",
+          "evidence_summary": "Customer revenue HHI is 224.2628367041728540006700129; retained as concentration evidence, not a client-facing verdict."
+        },
+        {
+          "test_id": "CUS-01",
+          "signal_type": "TOP5_CONCENTRATION",
+          "observed_value": "20.10541881072686878140507881",
+          "unit": "PERCENT",
+          "evidence_summary": "Top five customers contribute 20.10541881072686878140507881% of current comparable revenue."
+        },
+        {
+          "test_id": "CUS-01",
+          "signal_type": "TOP_CUSTOMER_CONCENTRATION",
+          "observed_value": "9.003558233651268574353293851",
+          "unit": "PERCENT",
+          "evidence_summary": "Largest customer contributes 459871.96 revenue, 9.003558233651268574353293851% of current comparable revenue. This is dependency exposure, not loss probability."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "173691.99",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 459871.96; Contribution 0 173691.99; Contribution 0 margin 37.76964135843376926046980555%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "56565.57",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 154528.16; Contribution 0 56565.57; Contribution 0 margin 36.60534753018478962022197119%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "51931.82",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 138910.49; Contribution 0 51931.82; Contribution 0 margin 37.38509597079385437341701120%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "50590.44",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 141050.34; Contribution 0 50590.44; Contribution 0 margin 35.86693942035162765293582419%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "49082.74",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 132557.31; Contribution 0 49082.74; Contribution 0 margin 37.02756189002326616314105952%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "47746.26",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 130265.65; Contribution 0 47746.26; Contribution 0 margin 36.65299332556203419704273536%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "42759.28",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 129246.00; Contribution 0 42759.28; Contribution 0 margin 33.08363895207588629435340359%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "39228.42",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 115828.75; Contribution 0 39228.42; Contribution 0 margin 33.86760195547305828647896140%. Revenue scale and economic contribution are retained separately."
+        },
+        {
+          "test_id": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "observed_value": "37641.90",
+          "unit": "GBP",
+          "evidence_summary": "Customer revenue 104153.48; Contribution 0 37641.90; Contribution 0 margin 36.14079913604423011117823428%. Revenue scale and economic contribution are retained separately."
+        }
+      ]
+    }
+  ]
+}

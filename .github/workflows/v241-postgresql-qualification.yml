@@ -1,0 +1,62 @@
+name: v2.41 PostgreSQL Qualification
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  postgres-qualification:
+    name: Live PostgreSQL qualification
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PROFIT_DOCTOR_POSTGRES_TEST_URL: ${{ secrets.PROFIT_DOCTOR_POSTGRES_TEST_URL }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Refuse missing PostgreSQL secret
+        shell: bash
+        run: |
+          if [ -z "$PROFIT_DOCTOR_POSTGRES_TEST_URL" ]; then
+            echo "::error::Repository secret PROFIT_DOCTOR_POSTGRES_TEST_URL is not configured."
+            exit 1
+          fi
+          case "$PROFIT_DOCTOR_POSTGRES_TEST_URL" in
+            postgresql://*|postgresql+psycopg://*) ;;
+            *)
+              echo "::error::Qualification URL is not PostgreSQL."
+              exit 1
+              ;;
+          esac
+
+      - name: Compile source
+        run: python -m compileall -q profit_doctor alembic tests
+
+      - name: PostgreSQL static readiness
+        run: python -m unittest tests.test_postgresql_readiness_v217 -v
+
+      - name: Live PostgreSQL qualification attacks
+        run: python -m unittest tests.test_postgresql_live_qualification_v218 -v
+
+      - name: Persistence and migration regression
+        run: |
+          python -m unittest             tests.test_persistence_v28             tests.test_persistence_v29             tests.test_persistence_rev_gm_v210             tests.test_persistence_cus_prod_pri_v211             tests.test_persistence_peo_sup_v212             tests.test_persistence_wc_v213 -v
+
+      - name: v2.40 CRM and Level-3 qualification
+        run: |
+          python -m unittest             tests.test_crm_d15_v240             tests.test_level3_qualification_v239 -v

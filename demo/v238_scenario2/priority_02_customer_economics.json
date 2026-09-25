@@ -1,0 +1,90 @@
+{
+  "run_id": "run_88960505854545ad8b945cde3e434ee5",
+  "client_id": "V238_DEMO",
+  "attention_item_id": "mai_b1c7b0449d55428cb4c2028da88b0331",
+  "rank": 2,
+  "theme": "CUSTOMER_ECONOMICS",
+  "title": "Customer economics and concentration deserve review",
+  "management_question": "Which customer relationships create value and where is dependency material?",
+  "rationale": "3 material signal(s) across CUS-01, CUS-02 support one management theme. Related signals are compressed without deleting their underlying evidence.",
+  "next_step": "Review contribution, concentration and commercial context for the customers driving the evidence.",
+  "limitation": "No causal or monetised opportunity conclusion is created by management-attention selection.",
+  "supporting_evidence": [
+    {
+      "signal_id": "sig_b0a41f49805d49c89f79f9a79ac1b912",
+      "test_id": "CUS-01",
+      "test_name": "Customer Concentration & Dependency",
+      "core_question": "How dependent is the business on individual customers, and how much revenue is concentrated in its largest relationships?",
+      "signal_type": "TOP5_CONCENTRATION",
+      "entity_type": null,
+      "entity_id": null,
+      "observed_value": "42.01333333333333333333333333",
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "PERCENT",
+      "materiality_state": "MEDIUM",
+      "evidence_summary": "Top five customers contribute 42.01333333333333333333333333% of captured annual customer revenue."
+    },
+    {
+      "signal_id": "sig_e8326ad834e44916bb7125eb98694381",
+      "test_id": "CUS-02",
+      "test_name": "Customer Profitability",
+      "core_question": "Which customers genuinely create the most and least gross profit or contribution, and where is customer economics materially different?",
+      "signal_type": "CUSTOMER_PROFITABILITY",
+      "entity_type": "CUSTOMER",
+      "entity_id": "Cobalt Engineering",
+      "observed_value": "468540.00",
+      "comparison_value": "1233000",
+      "variance_value": "38.00",
+      "unit": "GBP",
+      "materiality_state": "HIGH",
+      "evidence_summary": "Annual customer summary evidences revenue 1233000 and gross profit/Contribution 0 468540.00. No cost-to-serve allocation is inferred."
+    },
+    {
+      "signal_id": "sig_f1b857c706c446b59e6cd71cc55dedc5",
+      "test_id": "CUS-01",
+      "test_name": "Customer Concentration & Dependency",
+      "core_question": "How dependent is the business on individual customers, and how much revenue is concentrated in its largest relationships?",
+      "signal_type": "TOP_CUSTOMER_CONCENTRATION",
+      "entity_type": "CUSTOMER",
+      "entity_id": "AeroFab UK",
+      "observed_value": "10.9600",
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "PERCENT",
+      "materiality_state": "MEDIUM",
+      "evidence_summary": "Annual customer summary: largest customer contributes 1644000 of 15000000 captured revenue. Dependency exposure only; no loss probability inferred."
+    }
+  ],
+  "diagnostic_ids": [
+    "CUS-01",
+    "CUS-02"
+  ],
+  "recommended_actions": [
+    {
+      "theme": "CUSTOMER_ECONOMICS",
+      "action_type": "COMMERCIAL_REVIEW",
+      "recommended_action": "Review concentrated and low-contribution customer relationships; identify price, mix, service or retention interventions only where mechanism evidence exists.",
+      "evidence_required": "Customer/product mix, price history, direct cost and where available cost-to-serve evidence.",
+      "owner_role": "FD/Management",
+      "state": "PROPOSED",
+      "limitation": "Recommended action is an investigation/intervention path, not proof of causality or benefit."
+    }
+  ],
+  "opportunities": [
+    {
+      "theme": "CUSTOMER_ECONOMICS",
+      "purpose": "IMPROVE",
+      "benefit_type": "B1_RECURRING_PROFIT_IMPROVEMENT",
+      "availability": "CONDITIONAL",
+      "economic_state": "CANDIDATE_UNQUANTIFIED",
+      "currency": "GBP",
+      "theoretical": null,
+      "addressable": null,
+      "expected": null,
+      "recommended_action": "Review concentrated and low-contribution customer relationships; identify price, mix, service or retention interventions only where mechanism evidence exists.",
+      "evidence_required": "Customer/product mix, price history, direct cost and where available cost-to-serve evidence.",
+      "limitation": "No monetary opportunity is supported from this management priority without mechanism, addressability and recovery-envelope evidence."
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+product_id,product_name,family,supplier,base_price,base_cost
+P1,Core A,Core,SUP1,100,60
+P2,Core B,Core,SUP2,125,78
+P3,Premium,Premium,SUP1,150,96
+P4,Legacy,Legacy,SUP3,175,114

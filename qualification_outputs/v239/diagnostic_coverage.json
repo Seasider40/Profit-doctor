@@ -1,0 +1,338 @@
+[
+  {
+    "test_id": "CUS-01",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 3
+  },
+  {
+    "test_id": "CUS-02",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 30
+  },
+  {
+    "test_id": "CUS-03",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 30
+  },
+  {
+    "test_id": "CUS-04",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 3
+  },
+  {
+    "test_id": "CUS-05",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 4
+  },
+  {
+    "test_id": "CUS-06",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 12
+  },
+  {
+    "test_id": "CUS-07",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "FCST-01",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "FCST-02",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 2
+  },
+  {
+    "test_id": "FCST-03",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "FCST-04",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "GM-01",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "GM-02",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 2
+  },
+  {
+    "test_id": "GM-03",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 0
+  },
+  {
+    "test_id": "GM-04",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "GM-05",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 25
+  },
+  {
+    "test_id": "GM-06",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 20
+  },
+  {
+    "test_id": "GM-07",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 17
+  },
+  {
+    "test_id": "PEO-01",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 3
+  },
+  {
+    "test_id": "PEO-02",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 2
+  },
+  {
+    "test_id": "PEO-03",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 4
+  },
+  {
+    "test_id": "PEO-04",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "PEO-05",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "PRI-01",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 30
+  },
+  {
+    "test_id": "PRI-02",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "PRI-03",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 24
+  },
+  {
+    "test_id": "PRI-04",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "PRI-05",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "PROD-01",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 30
+  },
+  {
+    "test_id": "PROD-02",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 4
+  },
+  {
+    "test_id": "PROD-03",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 15
+  },
+  {
+    "test_id": "PROD-04",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "PROD-05",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 25
+  },
+  {
+    "test_id": "REV-01",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "REV-02",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 11
+  },
+  {
+    "test_id": "REV-03",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 3
+  },
+  {
+    "test_id": "REV-04",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 4
+  },
+  {
+    "test_id": "REV-05",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 3
+  },
+  {
+    "test_id": "REV-06",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "RISK-01",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 2
+  },
+  {
+    "test_id": "RISK-02",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 19
+  },
+  {
+    "test_id": "RISK-03",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 7
+  },
+  {
+    "test_id": "RISK-04",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 10
+  },
+  {
+    "test_id": "SUP-01",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 6
+  },
+  {
+    "test_id": "SUP-02",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "SUP-03",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 5
+  },
+  {
+    "test_id": "SUP-04",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "SUP-05",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "SUP-06",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 3
+  },
+  {
+    "test_id": "WC-01",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 4
+  },
+  {
+    "test_id": "WC-02",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 11
+  },
+  {
+    "test_id": "WC-03",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 4
+  },
+  {
+    "test_id": "WC-04",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 3
+  },
+  {
+    "test_id": "WC-05",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 1
+  },
+  {
+    "test_id": "WC-06",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 4
+  },
+  {
+    "test_id": "WC-07",
+    "execution_status": "COMPLETED",
+    "eligibility_state": "FULL",
+    "signal_count": 12
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "run_id": "run_88960505854545ad8b945cde3e434ee5",
+  "client_id": "V238_DEMO",
+  "test_id": "CUS-07",
+  "test_name": "Customer Pareto & Economic Distribution",
+  "core_question": "How concentrated is economic value across the customer base, and which relationships sit in the economically important head and long tail?",
+  "objective": "Measure customer revenue and contribution Pareto distribution without turning distribution bands into automatic actions.",
+  "eligibility_state": "PARTIAL-A",
+  "execution_status": "COMPLETED",
+  "method_id": "AGGREGATE_CUSTOMER_DISTRIBUTION",
+  "limitation": "Annual snapshot only",
+  "signals": [
+    {
+      "signal_id": "sig_73ca78f8399741d5a00c3182e6dec823",
+      "test_id": "CUS-07",
+      "test_name": "Customer Pareto & Economic Distribution",
+      "core_question": "How concentrated is economic value across the customer base, and which relationships sit in the economically important head and long tail?",
+      "signal_type": "CUSTOMER_PARETO_DISTRIBUTION",
+      "entity_type": null,
+      "entity_id": null,
+      "observed_value": "14",
+      "comparison_value": "26",
+      "variance_value": "80.1800",
+      "unit": "COUNT",
+      "materiality_state": "INFORMATIONAL",
+      "evidence_summary": "14 of 26 customers account for at least 80% of captured annual revenue. This describes economic distribution, not customer quality."
+    }
+  ]
+}

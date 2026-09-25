@@ -1,0 +1,29 @@
+{
+  "run_id": "run_88960505854545ad8b945cde3e434ee5",
+  "client_id": "V238_DEMO",
+  "test_id": "WC-02",
+  "test_name": "Receivables & Collection Performance",
+  "core_question": "Which customers are tying up your cash, why are they paying late, how much cash is genuinely collectible, and what needs to change to get you paid faster?",
+  "objective": "Surface evidenced receivables and overdue balance signals.",
+  "eligibility_state": "FULL",
+  "execution_status": "COMPLETED",
+  "method_id": "PRIMITIVE_OR_LEDGER_BASED",
+  "limitation": null,
+  "signals": [
+    {
+      "signal_id": "sig_98adca09f5ea49e884edad10f5810b5e",
+      "test_id": "WC-02",
+      "test_name": "Receivables & Collection Performance",
+      "core_question": "Which customers are tying up your cash, why are they paying late, how much cash is genuinely collectible, and what needs to change to get you paid faster?",
+      "signal_type": "BS_ACCOUNTS_RECEIVABLE",
+      "entity_type": null,
+      "entity_id": null,
+      "observed_value": "3450000.0",
+      "comparison_value": null,
+      "variance_value": null,
+      "unit": "GBP",
+      "materiality_state": "INFORMATIONAL",
+      "evidence_summary": "BS_ACCOUNTS_RECEIVABLE = 3450000.0 GBP. Outstanding/overdue receivables are cash exposure, not new profit and not automatically collectible cash release."
+    }
+  ]
+}
