@@ -48,7 +48,7 @@ jobs:
         run: python -m compileall -q profit_doctor alembic tests
 
       - name: PostgreSQL static readiness
-        run: python -m unittest tests.test_postgresql_readiness_v217 -v
+        run: python -m unittest tests.test_postgresql_readiness_v217 tests.test_alembic_schema_v241 -v
 
       - name: Live PostgreSQL qualification attacks
         run: python -m unittest tests.test_postgresql_live_qualification_v218 -v

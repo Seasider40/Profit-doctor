@@ -30,6 +30,17 @@ def alembic_config(url):
     return cfg
 
 
+def reset_qualification_schema(engine, url):
+    """Destructively rebuild only the disposable qualification schema via Alembic."""
+    with engine.begin() as c:
+        Base.metadata.drop_all(c)
+    cfg = alembic_config(url)
+    # drop_all leaves alembic_version behind. Reset its revision so a reused
+    # qualification database replays every migration instead of skipping head.
+    command.stamp(cfg, "base")
+    command.upgrade(cfg, "head")
+
+
 @unittest.skipUnless(LIVE, "disposable live PostgreSQL URL not supplied")
 class PostgreSQLLiveQualificationV218(unittest.TestCase):
     @classmethod
@@ -39,9 +50,7 @@ class PostgreSQLLiveQualificationV218(unittest.TestCase):
         cls.F = session_factory(cls.engine)
         if cls.engine.dialect.name != "postgresql":
             raise unittest.SkipTest("qualification database is not PostgreSQL")
-        with cls.engine.begin() as c:
-            Base.metadata.drop_all(c)
-        command.upgrade(alembic_config(cls.url), "head")
+        reset_qualification_schema(cls.engine, cls.url)
 
     @classmethod
     def tearDownClass(cls):
