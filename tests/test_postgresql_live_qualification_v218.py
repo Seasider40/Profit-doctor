@@ -60,7 +60,8 @@ class PostgreSQLLiveQualificationV218(unittest.TestCase):
 
     def test_01_alembic_head_matches_current_metadata_tables(self):
         self.assertTrue(ping(self.engine))
-        names = set(inspect(self.engine).get_table_names())
+        # Alembic's bookkeeping table is not part of the application schema.
+        names = set(inspect(self.engine).get_table_names()) - {"alembic_version"}
         self.assertEqual(set(Base.metadata.tables), names)
 
     def test_02_commit_and_rollback_are_atomic(self):
@@ -133,9 +134,10 @@ class PostgreSQLLiveQualificationV218(unittest.TestCase):
 
     def test_07_alembic_downgrade_base_and_upgrade_head(self):
         command.downgrade(alembic_config(self.url), "base")
-        self.assertEqual([], inspect(self.engine).get_table_names())
+        # Alembic retains its bookkeeping table even after downgrade to base.
+        self.assertEqual(set(), set(inspect(self.engine).get_table_names()) - {"alembic_version"})
         command.upgrade(alembic_config(self.url), "head")
-        self.assertEqual(set(Base.metadata.tables), set(inspect(self.engine).get_table_names()))
+        self.assertEqual(set(Base.metadata.tables), set(inspect(self.engine).get_table_names()) - {"alembic_version"})
 
 
 class PostgreSQLQualificationContractV218(unittest.TestCase):
