@@ -670,5 +670,17 @@
     "fixture_dependent": false,
     "expected_tests": 3,
     "introduced_in": "2.44"
+  },
+  "test_evidence_graph_v245": {
+    "category": "reasoning/evidence-graph",
+    "fixture_dependent": false,
+    "expected_tests": 32,
+    "introduced_in": "2.45"
+  },
+  "test_graph_migrations_v245": {
+    "category": "persistence/migration",
+    "fixture_dependent": false,
+    "expected_tests": 3,
+    "introduced_in": "2.45"
   }
 }

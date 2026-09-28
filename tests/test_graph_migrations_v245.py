@@ -1,4 +1,4 @@
-"""Frozen v2.43 upgrade evidence, independent of current metadata."""
+"""Frozen v2.44 upgrade evidence, independent of current metadata."""
 from pathlib import Path
 import tempfile
 import unittest
@@ -12,11 +12,11 @@ from profit_doctor.persistence import Base, DatabaseConfig, build_engine
 from tests.test_postgresql_live_qualification_v218 import alembic_config
 
 ROOT = Path(__file__).resolve().parents[1]
-FIXTURE = ROOT / 'tests/fixtures/v243_schema.sql'
-NEW = {'canonical_fact_v244', 'canonical_finding_v244', 'canonical_semantic_revision_v244'}
+FIXTURE = ROOT / 'tests/fixtures/v244_schema.sql'
+NEW = {'evidence_graph_record'}
 
 
-class CanonicalMigrationsV244(unittest.TestCase):
+class GraphMigrationsV245(unittest.TestCase):
     def setUp(self):
         directory = tempfile.TemporaryDirectory()
         self.addCleanup(directory.cleanup)
@@ -44,7 +44,7 @@ class CanonicalMigrationsV244(unittest.TestCase):
         command.upgrade(self.cfg, 'head')
         self.assert_head()
 
-    def test_frozen_v243_all_tables_preserved_downgrade_and_reupgrade(self):
+    def test_frozen_v244_all_tables_preserved_downgrade_and_reupgrade(self):
         statements = '\n'.join(x for x in FIXTURE.read_text(encoding='utf-8').splitlines() if not x.startswith('--'))
         with self.engine.begin() as c:
             for statement in statements.split(';'):
@@ -52,7 +52,7 @@ class CanonicalMigrationsV244(unittest.TestCase):
                     c.exec_driver_sql(statement)
         old = MetaData()
         old.reflect(self.engine)
-        self.assertEqual(22, len(old.tables)-1)
+        self.assertEqual(25, len(old.tables)-1)
         self.assertFalse(NEW & old.tables.keys())
         expected = {}
         with self.engine.begin() as c:
@@ -77,14 +77,12 @@ class CanonicalMigrationsV244(unittest.TestCase):
                 expected[table.name] = row
         command.upgrade(self.cfg, 'head')
         self.assert_head()
-        # Payload removal on downgrade is intentional; v2.43 identity/audits stay.
+        # Payload removal on downgrade is intentional; v2.44 records and foundation links/audits stay.
         with self.engine.begin() as c:
             for name in NEW:
-                values = dict(object_id='old-reasoning_object_v243', client_id='old-client', revision=1, document='{"qualification":"payload"}')
-                if name == 'canonical_semantic_revision_v244':
-                    values['revision_id'] = 'qualification-revision'
+                values = dict(link_id='old-evidence_link_v243', revision=1, client_id='old-client', run_id='old-engine_run', source_id='old-reasoning_object_v243', target_id='old-reasoning_object_v243', document='{"qualification":"payload"}')
                 c.execute(insert(Base.metadata.tables[name]).values(**values))
-        for revision in ('head', '0004_reasoning_foundation'):
+        for revision in ('head', '0005_canonical_facts_findings'):
             if revision != 'head':
                 command.downgrade(self.cfg, revision)
             with self.engine.connect() as c:
@@ -98,10 +96,10 @@ class CanonicalMigrationsV244(unittest.TestCase):
                 self.assertEqual(0, c.scalar(text(f'SELECT count(*) FROM {name}')))
 
     def test_forward_migration_does_not_import_mutable_models(self):
-        source = (ROOT/'alembic/versions/0005_canonical_facts_findings.py').read_text(encoding='utf-8')
+        source = (ROOT/'alembic/versions/0006_evidence_graph.py').read_text(encoding='utf-8')
         for forbidden in ('profit_doctor', 'metadata', 'create_all'):
             self.assertNotIn(forbidden, source)
-        self.assertIn("down_revision = '0004_reasoning_foundation'", source)
+        self.assertIn("down_revision = '0005_canonical_facts_findings'", source)
 
 
 if __name__ == '__main__':
