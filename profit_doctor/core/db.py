@@ -604,12 +604,7 @@ ALL_SCHEMAS = (
 )
 
 class ProfitDoctorSQLiteConnection(sqlite3.Connection):
-    """SQLite dev/test connection with legacy-fixture cleanup."""
-    def __del__(self):
-        try:
-            self.close()
-        except Exception:
-            pass
+    """SQLite dev/test connection; the caller owns explicit closure."""
 
 def connect(path):
     con = sqlite3.connect(Path(path), factory=ProfitDoctorSQLiteConnection)
@@ -637,10 +632,14 @@ def _schema_template():
     global _SCHEMA_TEMPLATE
     if _SCHEMA_TEMPLATE is None:
         t = sqlite3.connect(_SCHEMA_TEMPLATE_URI, uri=True, factory=ProfitDoctorSQLiteConnection)
-        t.row_factory = sqlite3.Row
-        t.execute('PRAGMA foreign_keys=ON')
-        for schema in ALL_SCHEMAS:
-            t.executescript(schema)
+        try:
+            t.row_factory = sqlite3.Row
+            t.execute('PRAGMA foreign_keys=ON')
+            for schema in ALL_SCHEMAS:
+                t.executescript(schema)
+        except BaseException:
+            t.close()
+            raise
         _SCHEMA_TEMPLATE = t
     return _SCHEMA_TEMPLATE
 
@@ -649,16 +648,20 @@ def connect(path):
     p = Path(path)
     existed_with_schema = p.exists() and p.stat().st_size > 0
     con = sqlite3.connect(p, factory=ProfitDoctorSQLiteConnection)
-    con.row_factory = sqlite3.Row
-    con.execute('PRAGMA foreign_keys=ON')
-    con.execute('PRAGMA busy_timeout=5000')
-    if not existed_with_schema:
-        _schema_template().backup(con)
-        con.commit()
-    else:
-        # Existing databases may predate the latest schema; idempotent migration bootstrap.
-        for schema in ALL_SCHEMAS:
-            con.executescript(schema)
+    try:
+        con.row_factory = sqlite3.Row
+        con.execute('PRAGMA foreign_keys=ON')
+        con.execute('PRAGMA busy_timeout=5000')
+        if not existed_with_schema:
+            _schema_template().backup(con)
+            con.commit()
+        else:
+            # Existing databases may predate the latest schema; idempotent migration bootstrap.
+            for schema in ALL_SCHEMAS:
+                con.executescript(schema)
+    except BaseException:
+        con.close()
+        raise
     return con
 
 # v2.40 D15 CRM / Pipeline / Win-Loss canonical domain.

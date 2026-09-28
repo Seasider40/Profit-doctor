@@ -1,3 +1,5 @@
+from tests.resources import close_with
+from contextlib import ExitStack
 import tempfile, unittest, csv, uuid
 from pathlib import Path
 from decimal import Decimal
@@ -9,8 +11,8 @@ def write(p,fields,rows):
  with open(p,'w',newline='') as f: w=csv.DictWriter(f,fieldnames=fields); w.writeheader(); w.writerows(rows)
 class PeriodBasisV222(unittest.TestCase):
  def test_monthly_pnl_is_aggregated_before_dso_dpo(self):
-  with tempfile.TemporaryDirectory() as td:
-   d=Path(td); con=connect(d/'x.db'); c='c_'+uuid.uuid4().hex; r='r_'+uuid.uuid4().hex; now='2026-12-31T00:00:00+00:00'
+  with tempfile.TemporaryDirectory() as td, ExitStack() as resources:
+   d=Path(td); con=close_with(resources.callback, connect(d/'x.db')); c='c_'+uuid.uuid4().hex; r='r_'+uuid.uuid4().hex; now='2026-12-31T00:00:00+00:00'
    con.execute('insert into client values (?,?,?,?,?)',(c,'x','GBP','PRODUCT_DISTRIBUTION',now)); con.execute('insert into engine_run values (?,?,?,?,?,?,?,?,?)',(r,c,'Q',now,None,'RUNNING',None,r,'2.22')); con.commit()
    pnl=[]
    for m in range(1,13):

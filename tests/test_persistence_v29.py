@@ -1,3 +1,4 @@
+from tests.resources import dispose_with, remove_file
 import tempfile, unittest
 from pathlib import Path
 from decimal import Decimal
@@ -8,7 +9,7 @@ from profit_doctor.persistence import *
 T='2026-09-25T00:00:00Z'
 class V29(unittest.TestCase):
  def make(self):
-  f=tempfile.NamedTemporaryFile(suffix='.db',delete=False);f.close();p=Path(f.name);e=build_engine(DatabaseConfig(f'sqlite+pysqlite:///{p}'));Base.metadata.create_all(e);return p,e,session_factory(e)
+  f=tempfile.NamedTemporaryFile(suffix='.db',delete=False);f.close(); self.addCleanup(remove_file, f.name);p=Path(f.name);e=dispose_with(self.addCleanup, build_engine(DatabaseConfig(f'sqlite+pysqlite:///{p}')));Base.metadata.create_all(e);return p,e,session_factory(e)
  def seed(self,F):
   with session_scope(F) as s:
    s.add(Client(client_id='c1',client_name='A',base_currency='GBP',created_at=T))
@@ -40,7 +41,7 @@ class V29(unittest.TestCase):
    with session_scope(F) as s: add_impact(s,'i2','r2','c1','st1','REV','REVENUE','1','GBP','OBSERVED','x','OPEN',T)
   e.dispose();p.unlink(missing_ok=True)
  def test_alembic_head_contains_backbone(self):
-  f=tempfile.NamedTemporaryFile(suffix='.db',delete=False);f.close();p=Path(f.name);cfg=Config(str(Path(__file__).resolve().parents[1]/'alembic.ini'));cfg.set_main_option('sqlalchemy.url',f'sqlite+pysqlite:///{p}');command.upgrade(cfg,'head');e=build_engine(DatabaseConfig(f'sqlite+pysqlite:///{p}'))
+  f=tempfile.NamedTemporaryFile(suffix='.db',delete=False);f.close(); self.addCleanup(remove_file, f.name);p=Path(f.name);cfg=Config(str(Path(__file__).resolve().parents[1]/'alembic.ini'));cfg.set_main_option('sqlalchemy.url',f'sqlite+pysqlite:///{p}');command.upgrade(cfg,'head');e=dispose_with(self.addCleanup, build_engine(DatabaseConfig(f'sqlite+pysqlite:///{p}')))
   from sqlalchemy import inspect
   names=set(inspect(e).get_table_names());self.assertIn('benefit_leg_v2',names);self.assertIn('economic_story_v2',names);e.dispose();command.downgrade(cfg,'base');p.unlink(missing_ok=True)
 if __name__=='__main__':unittest.main()

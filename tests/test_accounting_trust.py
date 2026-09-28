@@ -1,3 +1,5 @@
+from tests.resources import close_with
+from contextlib import ExitStack
 import unittest,tempfile,csv,uuid
 from pathlib import Path
 from profit_doctor.core.db import connect
@@ -23,36 +25,36 @@ def fixture(d,break_tb=False,break_bank=False):
 
 class AccountingTrust(unittest.TestCase):
  def test_clean_level1_domains_reliable(self):
-  with tempfile.TemporaryDirectory() as d:
-   con=connect(Path(d)/'x.db'); run=setup(con)
+  with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
+   con=close_with(resources.callback, connect(Path(d)/'x.db')); run=setup(con)
    for f,k in fixture(d): ingest_accounting_file(con,'c1',run,Path(d)/f,k,Path(d)/'store')
    out=assess_level1_accounting_trust(con,run,'c1')
    self.assertTrue(all(out[x]['availability']=='AVAILABLE' for x in ('D01','D02','D03','D04','D05','D06')))
    self.assertTrue(all(out[x]['integrity']=='RELIABLE' for x in ('D01','D02','D03','D04','D05','D06')))
    self.assertEqual(assess_level1_eligibility(con,run,'c1','WC-01',['D01','D02','D03'])['eligibility'],'FULL')
  def test_unbalanced_tb_constrains_dependent_test(self):
-  with tempfile.TemporaryDirectory() as d:
-   con=connect(Path(d)/'x.db'); run=setup(con)
+  with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
+   con=close_with(resources.callback, connect(Path(d)/'x.db')); run=setup(con)
    for f,k in fixture(d,break_tb=True): ingest_accounting_file(con,'c1',run,Path(d)/f,k,Path(d)/'store')
    out=assess_level1_accounting_trust(con,run,'c1'); self.assertEqual(out['D03']['integrity'],'MATERIALLY_CONSTRAINED')
    self.assertEqual(assess_level1_eligibility(con,run,'c1','RISK-01',['D03'])['eligibility'],'PARTIAL-C')
  def test_bank_movement_anomaly_is_limitation_not_false_failure(self):
-  with tempfile.TemporaryDirectory() as d:
-   con=connect(Path(d)/'x.db'); run=setup(con)
+  with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
+   con=close_with(resources.callback, connect(Path(d)/'x.db')); run=setup(con)
    for f,k in fixture(d,break_bank=True): ingest_accounting_file(con,'c1',run,Path(d)/f,k,Path(d)/'store')
    out=assess_level1_accounting_trust(con,run,'c1'); self.assertEqual(out['D06']['integrity'],'USABLE_WITH_LIMITATION')
    self.assertEqual(assess_level1_eligibility(con,run,'c1','WC-05',['D06'])['eligibility'],'PARTIAL-B')
  def test_missing_bank_refuses_cash_test_but_not_tb_test(self):
-  with tempfile.TemporaryDirectory() as d:
-   con=connect(Path(d)/'x.db'); run=setup(con)
+  with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
+   con=close_with(resources.callback, connect(Path(d)/'x.db')); run=setup(con)
    for f,k in fixture(d):
     if k!='D06_BANK': ingest_accounting_file(con,'c1',run,Path(d)/f,k,Path(d)/'store')
    assess_level1_accounting_trust(con,run,'c1')
    self.assertEqual(assess_level1_eligibility(con,run,'c1','WC-05',['D06'])['eligibility'],'UNAVAILABLE')
    self.assertEqual(assess_level1_eligibility(con,run,'c1','RISK-01',['D03'])['eligibility'],'FULL')
  def test_bad_accounting_decimal_rolls_back(self):
-  with tempfile.TemporaryDirectory() as d:
-   con=connect(Path(d)/'x.db'); run=setup(con); fixture(d)
+  with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
+   con=close_with(resources.callback, connect(Path(d)/'x.db')); run=setup(con); fixture(d)
    p=Path(d)/'pnl.csv'; write(p,['period_end','line_code','line_name','amount'],[{'period_end':'2026-08-31','line_code':'REV','line_name':'Revenue','amount':'not-money'}])
    with self.assertRaisesRegex(ValueError,'INVALID_DECIMAL'): ingest_accounting_file(con,'c1',run,p,'D01_PNL',Path(d)/'store')
    self.assertEqual(con.execute('select count(*) from financial_statement_line').fetchone()[0],0)

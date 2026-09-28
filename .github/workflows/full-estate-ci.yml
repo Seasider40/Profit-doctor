@@ -1,0 +1,46 @@
+name: Full Estate CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-estate:
+    name: Full estate (${{ matrix.os }}, Python ${{ matrix.python }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.12', '3.13']
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    env:
+      # No secrets: these nine tests must skip, never masquerade as SQLite passes.
+      PROFIT_DOCTOR_POSTGRES_TEST_URL: ''
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+      - name: Install dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Compile source and tests
+        run: python -m compileall -q profit_doctor alembic tests scripts
+      - name: Complete non-live estate with strict warnings
+        run: python scripts/run_full_estate.py
+      - name: Retain exact qualification results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-estate-${{ matrix.os }}-python-${{ matrix.python }}
+          path: qualification_outputs/v242/full-estate.json
+          if-no-files-found: error

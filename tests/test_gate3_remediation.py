@@ -1,3 +1,5 @@
+from tests.resources import close_with
+from contextlib import ExitStack
 import tempfile,uuid,shutil
 from pathlib import Path
 from decimal import Decimal
@@ -11,8 +13,8 @@ from profit_doctor.economic.engine import record_mechanism_evidence,qualify_oppo
 
 SRC=Path(__file__).resolve().parent/'fixtures'/'gate3_micro'
 def now(): return '2026-09-24T00:00:00+00:00'
-def load_all(tmp):
-    con=connect(Path(tmp)/'x.db'); c='c1'; r='run_'+uuid.uuid4().hex
+def load_all(tmp, *, resources):
+    con=close_with(resources.callback, connect(Path(tmp)/'x.db')); c='c1'; r='run_'+uuid.uuid4().hex
     con.execute('INSERT INTO client VALUES (?,?,?,?,?)',(c,'Micro','GBP','PROFESSIONAL_SERVICES',now()))
     con.execute('INSERT INTO engine_run VALUES (?,?,?,?,?,?,?,?,?)',(r,c,'BASELINE',now(),None,'RUNNING',None,r,'1.3')); con.commit()
     sales=ingest_northstar(con,c,r,SRC,Path(tmp)/'store')
@@ -21,28 +23,28 @@ def load_all(tmp):
     return con,c,r,sales
 
 def test_cross_source_matrix_clean_and_detects_break():
-    with tempfile.TemporaryDirectory() as d:
-        con,c,r,s=load_all(d); x=assess_cross_source_reconciliations(con,r,c)
+    with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
+        con,c,r,s=load_all(d, resources=resources); x=assess_cross_source_reconciliations(con,r,c)
         assert x['SALES_TO_PNL_REVENUE']=='RECONCILED'; assert x['AR_LEDGER_TO_BS']=='RECONCILED'; assert x['AP_LEDGER_TO_BS']=='RECONCILED'; assert x['BANK_TO_BS_CASH']=='RECONCILED'
         # Break AR subledger and prove cross-source integrity catches it.
         con.execute("UPDATE ar_invoice SET outstanding_amount=CAST(outstanding_amount AS REAL)+5000 WHERE ar_invoice_id=(SELECT ar_invoice_id FROM ar_invoice LIMIT 1)"); con.commit()
         x2=assess_cross_source_reconciliations(con,r,c); assert x2['AR_LEDGER_TO_BS']=='FAILED'; con.close()
 
 def test_inventory_not_applicable_is_na_and_ccc_excludes_dio():
-    with tempfile.TemporaryDirectory() as d:
-        con,c,r,s=load_all(d); set_business_model_runtime(con,c,'PROFESSIONAL_SERVICES','NOT_APPLICABLE'); out=run_primitive_engine(con,r,c,s['dataset_version_id'])['level1']
+    with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
+        con,c,r,s=load_all(d, resources=resources); set_business_model_runtime(con,c,'PROFESSIONAL_SERVICES','NOT_APPLICABLE'); out=run_primitive_engine(con,r,c,s['dataset_version_id'])['level1']
         ex=con.execute("SELECT execution_status FROM primitive_execution WHERE run_id=? AND primitive_id='WC_DIO' ORDER BY executed_at DESC LIMIT 1",(r,)).fetchone()[0]
         assert ex=='N/A'; assert out['WC_CCC']==out['WC_DSO']-out['WC_DPO']; con.close()
 
 def test_revenue_semantics_separates_recurring_from_project_event():
-    with tempfile.TemporaryDirectory() as d:
-        con,c,r,s=load_all(d)
+    with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
+        con,c,r,s=load_all(d, resources=resources)
         assign_product_revenue_type(con,c,'RETAINER','RETAINER'); assign_product_revenue_type(con,c,'PROJECT','PROJECT'); assign_product_revenue_type(con,c,'EVENT','EVENT')
         mix=revenue_mix(con,c,s['dataset_version_id']); assert mix['recurring_revenue']>0; assert mix['recurring_revenue']<mix['total_revenue']; assert mix['unmapped_revenue']==0; con.close()
 
 def test_mechanism_evidence_required_for_evidenced_qualification():
-    with tempfile.TemporaryDirectory() as d:
-        con,c,r,s=load_all(d); t=now(); fid='f_'+uuid.uuid4().hex; story='story_'+uuid.uuid4().hex; cid='oc_'+uuid.uuid4().hex
+    with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
+        con,c,r,s=load_all(d, resources=resources); t=now(); fid='f_'+uuid.uuid4().hex; story='story_'+uuid.uuid4().hex; cid='oc_'+uuid.uuid4().hex
         # Minimal economic objects for qualification contract.
         con.execute('INSERT INTO finding VALUES (?,?,?,?,?,?,?,?,?)',(fid,c,'OPPORTUNITY','Test finding','ACCEPTED',r,r,t,t))
         con.execute('INSERT INTO economic_story VALUES (?,?,?,?,?,?,?,?,?,?)',(story,c,'S_'+uuid.uuid4().hex,'PERFORMANCE','Test','OPEN',r,r,t,t))

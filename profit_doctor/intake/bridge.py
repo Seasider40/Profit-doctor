@@ -1,4 +1,6 @@
 from __future__ import annotations
+from contextlib import ExitStack, closing
+from profit_doctor.intake.workbook import open_workbook
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from datetime import datetime, timezone
@@ -23,43 +25,45 @@ def _year_from_title(s, default=2026):
     return int(m.group(1)) if m else default
 
 def _ma_rows(path):
-    wb=load_workbook(path,data_only=True); ws=next((w for w in wb.worksheets if 'management accounts' in _norm(w.title)),None)
-    if not ws: return []
-    hr=_header_row(ws); year=_year_from_title(str(ws.cell(1,1).value or ''))
-    months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-    h=[str(ws.cell(hr,c).value or '') for c in range(1,ws.max_column+1)]
-    monthcols=[(c,m) for c,m in enumerate(h,1) if m in months]
-    aliases={'revenue':'REV','sales':'REV','turnover':'REV','cost of sales':'COGS','cogs':'COGS','gross profit':'GP','ebitda':'EBITDA'}
-    out=[]
-    for r in range(hr+1,ws.max_row+1):
-        label=_norm(ws.cell(r,1).value); code=None
-        for a,k in aliases.items():
-            if label==a: code=k; break
-        if not code: continue
-        for c,m in monthcols:
-            v=ws.cell(r,c).value
-            if isinstance(v,(int,float)):
-                mi=months.index(m)+1
-                import calendar
-                d=calendar.monthrange(year,mi)[1]
-                # workbook declares £000 unless stated
-                out.append({'period_end':f'{year}-{mi:02d}-{d:02d}','line_code':code,'line_name':label.title(),'amount':float(v)*1000})
-    return out
+    with ExitStack() as resources:
+        wb=resources.enter_context(open_workbook(path,data_only=True)); ws=next((w for w in wb.worksheets if 'management accounts' in _norm(w.title)),None)
+        if not ws: return []
+        hr=_header_row(ws); year=_year_from_title(str(ws.cell(1,1).value or ''))
+        months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+        h=[str(ws.cell(hr,c).value or '') for c in range(1,ws.max_column+1)]
+        monthcols=[(c,m) for c,m in enumerate(h,1) if m in months]
+        aliases={'revenue':'REV','sales':'REV','turnover':'REV','cost of sales':'COGS','cogs':'COGS','gross profit':'GP','ebitda':'EBITDA'}
+        out=[]
+        for r in range(hr+1,ws.max_row+1):
+            label=_norm(ws.cell(r,1).value); code=None
+            for a,k in aliases.items():
+                if label==a: code=k; break
+            if not code: continue
+            for c,m in monthcols:
+                v=ws.cell(r,c).value
+                if isinstance(v,(int,float)):
+                    mi=months.index(m)+1
+                    import calendar
+                    d=calendar.monthrange(year,mi)[1]
+                    # workbook declares £000 unless stated
+                    out.append({'period_end':f'{year}-{mi:02d}-{d:02d}','line_code':code,'line_name':label.title(),'amount':float(v)*1000})
+        return out
 
 def _tb_rows(path):
-    wb=load_workbook(path,data_only=True); ws=next((w for w in wb.worksheets if 'trial balance' in _norm(w.title)),None)
-    if not ws:return []
-    hr=_header_row(ws); year=_year_from_title(str(ws.cell(1,1).value or '')); headers=[_norm(ws.cell(hr,c).value) for c in range(1,ws.max_column+1)]
-    def col(terms,default=None): return next((i+1 for i,h in enumerate(headers) if any(t==h or t in h for t in terms)),default)
-    cc=col(('account code','code'),1); nc=next((i+1 for i,h in enumerate(headers) if h=='account name' or h=='account'),2); cat=col(('category',),3); dc=col(('debit',),4); cr=col(('credit',),5)
-    out=[]
-    for r in range(hr+1,ws.max_row+1):
-        code=ws.cell(r,cc).value; name=ws.cell(r,nc).value
-        if code in (None,'') or name in (None,''): continue
-        d=ws.cell(r,dc).value or 0; c=ws.cell(r,cr).value or 0
-        if not isinstance(d,(int,float)) or not isinstance(c,(int,float)): continue
-        out.append({'period_end':f'{year}-12-31','account_code':str(code),'account_name':str(name),'account_type':str(ws.cell(r,cat).value or 'UNKNOWN'),'debit':float(d),'credit':float(c)})
-    return out
+    with ExitStack() as resources:
+        wb=resources.enter_context(open_workbook(path,data_only=True)); ws=next((w for w in wb.worksheets if 'trial balance' in _norm(w.title)),None)
+        if not ws:return []
+        hr=_header_row(ws); year=_year_from_title(str(ws.cell(1,1).value or '')); headers=[_norm(ws.cell(hr,c).value) for c in range(1,ws.max_column+1)]
+        def col(terms,default=None): return next((i+1 for i,h in enumerate(headers) if any(t==h or t in h for t in terms)),default)
+        cc=col(('account code','code'),1); nc=next((i+1 for i,h in enumerate(headers) if h=='account name' or h=='account'),2); cat=col(('category',),3); dc=col(('debit',),4); cr=col(('credit',),5)
+        out=[]
+        for r in range(hr+1,ws.max_row+1):
+            code=ws.cell(r,cc).value; name=ws.cell(r,nc).value
+            if code in (None,'') or name in (None,''): continue
+            d=ws.cell(r,dc).value or 0; c=ws.cell(r,cr).value or 0
+            if not isinstance(d,(int,float)) or not isinstance(c,(int,float)): continue
+            out.append({'period_end':f'{year}-12-31','account_code':str(code),'account_name':str(name),'account_type':str(ws.cell(r,cat).value or 'UNKNOWN'),'debit':float(d),'credit':float(c)})
+        return out
 
 def _bs_from_tb(tb):
     # Conservative control-balance extraction. Broad tokens such as 'bank', 'debtor'
@@ -96,39 +100,40 @@ def _insert_workforce(con,client,path):
     con.commit(); return n
 
 def execute_unknown_workbook(path, db_path=':memory:', client_id='UWB_CLIENT'):
-    con=connect(db_path); run=_id('run')
-    con.execute('INSERT INTO client VALUES (?,?,?,?,?)',(client_id,Path(path).stem,'GBP','PRODUCT_DISTRIBUTION',now()))
-    con.execute('INSERT INTO engine_run VALUES (?,?,?,?,?,?,?,?,?)',(run,client_id,'UNKNOWN_WORKBOOK_QUALIFICATION',now(),None,'RUNNING',None,None,'2.28'))
-    pnl=_ma_rows(path); tb=_tb_rows(path); bs=_bs_from_tb(tb)
-    with TemporaryDirectory() as td:
-        td=Path(td); store=td/'store'; store.mkdir()
-        if pnl:
-            p=td/'pnl.csv'; _write_csv(p,pnl,['period_end','line_code','line_name','amount']); ingest_accounting_file(con,client_id,run,p,'D01_PNL',store)
-        if bs:
-            p=td/'bs.csv'; _write_csv(p,bs,['period_end','line_code','line_name','amount']); ingest_accounting_file(con,client_id,run,p,'D02_BALANCE_SHEET',store)
-        if tb:
-            p=td/'tb.csv'; _write_csv(p,tb,['period_end','account_code','account_name','account_type','debit','credit']); ingest_accounting_file(con,client_id,run,p,'D03_TRIAL_BALANCE',store)
-        workforce=_insert_workforce(con,client_id,path)
-        # Persist intake controls as integrity evidence. Do not manufacture invoice-level AR/AP from aggregate schedules.
-        controls=generic_reconciliations(path)
-        for x in controls:
-            con.execute('INSERT INTO reconciliation VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',(_id('rec'),run,client_id,'UWB_'+x['control'],'ACCOUNTING_CONTROL','SUPPORTING_SCHEDULE',str(x.get('gl')),str(x.get('supporting')),str(x.get('difference')),('RECONCILED' if x['status']=='PASS' else 'FAILED'),x.get('basis'),now()))
-        con.commit()
-        run_primitive_engine(con,run,client_id)
-        diagnostics=run_diagnostic_engine(con,run,client_id)
-        aggregate_handoff=_aggregate_commercial_handoff(con,run,client_id,path)
-        diagnostics.update(aggregate_handoff['tests'])
-        reasoning=run_reasoning_engine(con,run,client_id)
-        attention=build_management_attention(con,run,client_id)
-        economic=run_economic_engine(con,run,client_id)
-        opportunity_register=build_action_opportunity_register(con,run,client_id)
-    executions=con.execute('SELECT test_id,execution_status,eligibility_state,signal_count,limitation FROM test_execution WHERE run_id=? ORDER BY test_id',(run,)).fetchall()
-    completed=sum(1 for r in executions if r['execution_status']=='COMPLETED'); notrun=sum(1 for r in executions if r['execution_status']!='COMPLETED')
-    signals=con.execute('SELECT count(*) FROM signal WHERE run_id=?',(run,)).fetchone()[0]
-    findings=con.execute('SELECT count(*) FROM finding_version WHERE run_id=?',(run,)).fetchone()[0]
-    con.execute("UPDATE engine_run SET status='COMPLETED',completed_at=? WHERE run_id=?",(now(),run)); con.commit()
-    result={'run_id':run,'intake':intake_assessment(path),'canonical':{'pnl_rows':len(pnl),'bs_rows':len(bs),'tb_rows':len(tb),'workforce_rows':workforce},'controls':controls,'aggregate_handoff':aggregate_handoff,'diagnostics':{'completed':completed,'not_run':notrun,'total':len(executions),'signals':signals,'findings':findings},'reasoning':reasoning,'management_attention':attention,'economic':economic,'opportunity_register':opportunity_register,'executions':[dict(r) for r in executions]}
-    con.close(); return result
+    with ExitStack() as resources:
+        con=resources.enter_context(closing(connect(db_path))); run=_id('run')
+        con.execute('INSERT INTO client VALUES (?,?,?,?,?)',(client_id,Path(path).stem,'GBP','PRODUCT_DISTRIBUTION',now()))
+        con.execute('INSERT INTO engine_run VALUES (?,?,?,?,?,?,?,?,?)',(run,client_id,'UNKNOWN_WORKBOOK_QUALIFICATION',now(),None,'RUNNING',None,None,'2.28'))
+        pnl=_ma_rows(path); tb=_tb_rows(path); bs=_bs_from_tb(tb)
+        with TemporaryDirectory() as td:
+            td=Path(td); store=td/'store'; store.mkdir()
+            if pnl:
+                p=td/'pnl.csv'; _write_csv(p,pnl,['period_end','line_code','line_name','amount']); ingest_accounting_file(con,client_id,run,p,'D01_PNL',store)
+            if bs:
+                p=td/'bs.csv'; _write_csv(p,bs,['period_end','line_code','line_name','amount']); ingest_accounting_file(con,client_id,run,p,'D02_BALANCE_SHEET',store)
+            if tb:
+                p=td/'tb.csv'; _write_csv(p,tb,['period_end','account_code','account_name','account_type','debit','credit']); ingest_accounting_file(con,client_id,run,p,'D03_TRIAL_BALANCE',store)
+            workforce=_insert_workforce(con,client_id,path)
+            # Persist intake controls as integrity evidence. Do not manufacture invoice-level AR/AP from aggregate schedules.
+            controls=generic_reconciliations(path)
+            for x in controls:
+                con.execute('INSERT INTO reconciliation VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',(_id('rec'),run,client_id,'UWB_'+x['control'],'ACCOUNTING_CONTROL','SUPPORTING_SCHEDULE',str(x.get('gl')),str(x.get('supporting')),str(x.get('difference')),('RECONCILED' if x['status']=='PASS' else 'FAILED'),x.get('basis'),now()))
+            con.commit()
+            run_primitive_engine(con,run,client_id)
+            diagnostics=run_diagnostic_engine(con,run,client_id)
+            aggregate_handoff=_aggregate_commercial_handoff(con,run,client_id,path)
+            diagnostics.update(aggregate_handoff['tests'])
+            reasoning=run_reasoning_engine(con,run,client_id)
+            attention=build_management_attention(con,run,client_id)
+            economic=run_economic_engine(con,run,client_id)
+            opportunity_register=build_action_opportunity_register(con,run,client_id)
+        executions=con.execute('SELECT test_id,execution_status,eligibility_state,signal_count,limitation FROM test_execution WHERE run_id=? ORDER BY test_id',(run,)).fetchall()
+        completed=sum(1 for r in executions if r['execution_status']=='COMPLETED'); notrun=sum(1 for r in executions if r['execution_status']!='COMPLETED')
+        signals=con.execute('SELECT count(*) FROM signal WHERE run_id=?',(run,)).fetchone()[0]
+        findings=con.execute('SELECT count(*) FROM finding_version WHERE run_id=?',(run,)).fetchone()[0]
+        con.execute("UPDATE engine_run SET status='COMPLETED',completed_at=? WHERE run_id=?",(now(),run)); con.commit()
+        result={'run_id':run,'intake':intake_assessment(path),'canonical':{'pnl_rows':len(pnl),'bs_rows':len(bs),'tb_rows':len(tb),'workforce_rows':workforce},'controls':controls,'aggregate_handoff':aggregate_handoff,'diagnostics':{'completed':completed,'not_run':notrun,'total':len(executions),'signals':signals,'findings':findings},'reasoning':reasoning,'management_attention':attention,'economic':economic,'opportunity_register':opportunity_register,'executions':[dict(r) for r in executions]}
+        con.close(); return result
 
 # v2.26 evidence-granularity-aware commercial canonicalisation.
 def _replace_execution(con, run, test_id):

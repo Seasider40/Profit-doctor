@@ -1,8 +1,20 @@
 from __future__ import annotations
+from contextlib import ExitStack, contextmanager
 from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Any
 from openpyxl import load_workbook
+
+
+@contextmanager
+def open_workbook(path, **options):
+    """Own both the workbook and its source stream, including parse failures."""
+    with open(path, 'rb') as stream:
+        workbook = load_workbook(stream, **options)
+        try:
+            yield workbook
+        finally:
+            workbook.close()
 
 DOMAIN_RULES = [
  ('D04_AR', ('accounts receivable','ar customer','debtor','customer ledger')),
@@ -35,19 +47,20 @@ def classify_sheet(name:str, headers:list[Any], sample:list[list[Any]]|None=None
     return scores[0][1] if scores else 'UNKNOWN'
 
 def profile_workbook(path:str|Path):
-    p=Path(path)
-    wbf=load_workbook(p,data_only=False,read_only=False)
-    wbv=load_workbook(p,data_only=True,read_only=False)
-    sheets=[]
-    for ws in wbf.worksheets:
-        hr=_header_row(ws)
-        headers=[ws.cell(hr,c).value for c in range(1,(ws.max_column or 0)+1)]
-        formulas=sum(1 for row in ws.iter_rows() for cell in row if isinstance(cell.value,str) and cell.value.startswith('='))
-        values_ws=wbv[ws.title]
-        cached_missing=sum(1 for row in ws.iter_rows() for cell in row if isinstance(cell.value,str) and cell.value.startswith('=') and values_ws[cell.coordinate].value is None)
-        domain=classify_sheet(ws.title,headers)
-        sheets.append({'sheet':ws.title,'rows':ws.max_row or 0,'columns':ws.max_column or 0,'header_row':hr,'headers':[str(x) if x is not None else '' for x in headers], 'domain':domain,'formula_cells':formulas,'formula_values_missing':cached_missing})
-    return {'file':p.name,'sheet_count':len(sheets),'sheets':sheets}
+    with ExitStack() as resources:
+        p=Path(path)
+        wbf=resources.enter_context(open_workbook(p,data_only=False,read_only=False))
+        wbv=resources.enter_context(open_workbook(p,data_only=True,read_only=False))
+        sheets=[]
+        for ws in wbf.worksheets:
+            hr=_header_row(ws)
+            headers=[ws.cell(hr,c).value for c in range(1,(ws.max_column or 0)+1)]
+            formulas=sum(1 for row in ws.iter_rows() for cell in row if isinstance(cell.value,str) and cell.value.startswith('='))
+            values_ws=wbv[ws.title]
+            cached_missing=sum(1 for row in ws.iter_rows() for cell in row if isinstance(cell.value,str) and cell.value.startswith('=') and values_ws[cell.coordinate].value is None)
+            domain=classify_sheet(ws.title,headers)
+            sheets.append({'sheet':ws.title,'rows':ws.max_row or 0,'columns':ws.max_column or 0,'header_row':hr,'headers':[str(x) if x is not None else '' for x in headers], 'domain':domain,'formula_cells':formulas,'formula_values_missing':cached_missing})
+        return {'file':p.name,'sheet_count':len(sheets),'sheets':sheets}
 
 def _find_sheet(wb, needles):
     for ws in wb.worksheets:
@@ -86,20 +99,21 @@ def _sum_col(ws, header_terms):
     return total if seen else None
 
 def reconcile_workbook(path:str|Path, tolerance=1000.0):
-    wb=load_workbook(path,data_only=True,read_only=False)
-    tb=_find_sheet(wb,('trial balance',)); ar=_find_sheet(wb,('ar customer','customers')); ap=_find_sheet(wb,('ap supplier',))
-    out=[]
-    if tb and ar:
-        gl=_find_tb_amount(tb,('trade receiv','accounts receiv'))
-        sub=_sum_col(ar,('ar balance','receivable balance'))
-        if gl is not None and sub is not None:
-            diff=gl-sub; out.append({'control':'AR_TO_TB','gl':gl,'supporting':sub,'difference':diff,'status':'PASS' if abs(diff)<=tolerance else 'FAIL'})
-    if tb and ap:
-        gl=abs(_find_tb_amount(tb,('trade payable','accounts payable')) or 0)
-        sub=_sum_col(ap,('ap balance','payable balance'))
-        if gl and sub is not None:
-            diff=gl-sub; out.append({'control':'AP_TO_TB','gl':gl,'supporting':sub,'difference':diff,'status':'PASS' if abs(diff)<=tolerance else 'FAIL'})
-    return out
+    with ExitStack() as resources:
+        wb=resources.enter_context(open_workbook(path,data_only=True,read_only=False))
+        tb=_find_sheet(wb,('trial balance',)); ar=_find_sheet(wb,('ar customer','customers')); ap=_find_sheet(wb,('ap supplier',))
+        out=[]
+        if tb and ar:
+            gl=_find_tb_amount(tb,('trade receiv','accounts receiv'))
+            sub=_sum_col(ar,('ar balance','receivable balance'))
+            if gl is not None and sub is not None:
+                diff=gl-sub; out.append({'control':'AR_TO_TB','gl':gl,'supporting':sub,'difference':diff,'status':'PASS' if abs(diff)<=tolerance else 'FAIL'})
+        if tb and ap:
+            gl=abs(_find_tb_amount(tb,('trade payable','accounts payable')) or 0)
+            sub=_sum_col(ap,('ap balance','payable balance'))
+            if gl and sub is not None:
+                diff=gl-sub; out.append({'control':'AP_TO_TB','gl':gl,'supporting':sub,'difference':diff,'status':'PASS' if abs(diff)<=tolerance else 'FAIL'})
+        return out
 
 # v2.24 semantic mapping / reconciliation / canonical hand-off foundation.
 SEMANTIC_TERMS={
@@ -135,78 +149,81 @@ def _unit(header, values):
     return 'TEXT' if not any(isinstance(v,(int,float)) for v in values if v is not None) else 'NUMBER'
 
 def semantic_map_workbook(path:str|Path):
-    wb=load_workbook(path,data_only=True,read_only=False); out=[]
-    for ws in wb.worksheets:
-        hr=_header_row(ws); headers=[ws.cell(hr,c).value for c in range(1,ws.max_column+1)]
-        domain=classify_sheet(ws.title,headers); cols=[]
-        for c,h in enumerate(headers,1):
-            vals=[ws.cell(r,c).value for r in range(hr+1,min(ws.max_row,hr+20)+1)]
-            sem=_semantic(h)
-            cols.append({'column':c,'header':str(h or ''),'semantic':sem[1] if sem else None,'confidence':sem[0] if sem else 0.0,'unit':_unit(h,vals),'requires_confirmation':not sem or sem[0]<.9})
-        mapped=sum(1 for x in cols if x['semantic'])
-        out.append({'sheet':ws.title,'domain':domain,'columns':cols,'mapping_confidence':round(mapped/max(1,len([h for h in headers if h not in (None,'')])),3),'requires_human_confirmation':domain=='UNKNOWN' or any(x['requires_confirmation'] for x in cols if x['header'])})
-    return out
+    with ExitStack() as resources:
+        wb=resources.enter_context(open_workbook(path,data_only=True,read_only=False)); out=[]
+        for ws in wb.worksheets:
+            hr=_header_row(ws); headers=[ws.cell(hr,c).value for c in range(1,ws.max_column+1)]
+            domain=classify_sheet(ws.title,headers); cols=[]
+            for c,h in enumerate(headers,1):
+                vals=[ws.cell(r,c).value for r in range(hr+1,min(ws.max_row,hr+20)+1)]
+                sem=_semantic(h)
+                cols.append({'column':c,'header':str(h or ''),'semantic':sem[1] if sem else None,'confidence':sem[0] if sem else 0.0,'unit':_unit(h,vals),'requires_confirmation':not sem or sem[0]<.9})
+            mapped=sum(1 for x in cols if x['semantic'])
+            out.append({'sheet':ws.title,'domain':domain,'columns':cols,'mapping_confidence':round(mapped/max(1,len([h for h in headers if h not in (None,'')])),3),'requires_human_confirmation':domain=='UNKNOWN' or any(x['requires_confirmation'] for x in cols if x['header'])})
+        return out
 
 def _tb_value(tb, terms):
     v=_find_tb_amount(tb,terms); return None if v is None else float(v)
 
 def generic_reconciliations(path:str|Path,tolerance=1000.0):
-    wb=load_workbook(path,data_only=True,read_only=False); out=reconcile_workbook(path,tolerance)
-    tb=_find_sheet(wb,('trial balance',))
-    # Inventory: compare GL to any reconciliation/control evidence only as supporting evidence, never trust its status/formula.
-    rec=_find_sheet(wb,('reconciliation',))
-    if tb and rec:
-        # Aggregate all inventory/stock TB accounts; do not stop at the first component account.
-        thr=_header_row(tb); th=[_norm(tb.cell(thr,c).value) for c in range(1,tb.max_column+1)]
-        tn=next((i+1 for i,h in enumerate(th) if h in ('account','account name')),2); td=next((i+1 for i,h in enumerate(th) if 'debit' in h),None); tc=next((i+1 for i,h in enumerate(th) if 'credit' in h),None)
-        inv_parts=[]
-        for rr in range(thr+1,tb.max_row+1):
-            nm=_norm(tb.cell(rr,tn).value)
-            if 'inventory' in nm or 'stock' in nm:
-                d=float(tb.cell(rr,td).value or 0) if td else 0; c=float(tb.cell(rr,tc).value or 0) if tc else 0; inv_parts.append(d-c)
-        inv=sum(inv_parts) if inv_parts else None
-        hr=_header_row(rec)
-        for r in range(hr+1,rec.max_row+1):
-            label=_norm(rec.cell(r,1).value)
-            if 'inventory' in label and inv is not None:
-                supporting=rec.cell(r,3).value
-                if isinstance(supporting,(int,float)):
-                    diff=inv-float(supporting); out.append({'control':'INVENTORY_TO_SUPPORT','gl':inv,'supporting':float(supporting),'difference':diff,'status':'PASS' if abs(diff)<=tolerance else 'FAIL','basis':'independently recalculated from TB and supporting amount; embedded status ignored'})
-            if ('debt' in label or 'borrow' in label) and tb:
-                supporting=rec.cell(r,3).value
-                if isinstance(supporting,(int,float)):
-                    # debt can span multiple TB lines; aggregate common borrowing terms.
-                    total=0.0; found=False
-                    thr=_header_row(tb); headers=[_norm(tb.cell(thr,c).value) for c in range(1,tb.max_column+1)]
-                    name_col=next((i+1 for i,h in enumerate(headers) if h in ('account','account name')),2); debit_col=next((i+1 for i,h in enumerate(headers) if 'debit' in h),None); credit_col=next((i+1 for i,h in enumerate(headers) if 'credit' in h),None)
-                    for rr in range(thr+1,tb.max_row+1):
-                        nm=_norm(tb.cell(rr,name_col).value)
-                        if any(t in nm for t in ('loan','debt','overdraft','borrowing')):
-                            d=float(tb.cell(rr,debit_col).value or 0) if debit_col else 0; c=float(tb.cell(rr,credit_col).value or 0) if credit_col else 0
-                            total+=abs(d-c); found=True
-                    if found:
-                        diff=total-float(supporting); out.append({'control':'DEBT_TO_SUPPORT','gl':total,'supporting':float(supporting),'difference':diff,'status':'PASS' if abs(diff)<=tolerance else 'FAIL','basis':'independently recalculated from TB borrowing accounts; embedded status ignored'})
-    return out
+    with ExitStack() as resources:
+        wb=resources.enter_context(open_workbook(path,data_only=True,read_only=False)); out=reconcile_workbook(path,tolerance)
+        tb=_find_sheet(wb,('trial balance',))
+        # Inventory: compare GL to any reconciliation/control evidence only as supporting evidence, never trust its status/formula.
+        rec=_find_sheet(wb,('reconciliation',))
+        if tb and rec:
+            # Aggregate all inventory/stock TB accounts; do not stop at the first component account.
+            thr=_header_row(tb); th=[_norm(tb.cell(thr,c).value) for c in range(1,tb.max_column+1)]
+            tn=next((i+1 for i,h in enumerate(th) if h in ('account','account name')),2); td=next((i+1 for i,h in enumerate(th) if 'debit' in h),None); tc=next((i+1 for i,h in enumerate(th) if 'credit' in h),None)
+            inv_parts=[]
+            for rr in range(thr+1,tb.max_row+1):
+                nm=_norm(tb.cell(rr,tn).value)
+                if 'inventory' in nm or 'stock' in nm:
+                    d=float(tb.cell(rr,td).value or 0) if td else 0; c=float(tb.cell(rr,tc).value or 0) if tc else 0; inv_parts.append(d-c)
+            inv=sum(inv_parts) if inv_parts else None
+            hr=_header_row(rec)
+            for r in range(hr+1,rec.max_row+1):
+                label=_norm(rec.cell(r,1).value)
+                if 'inventory' in label and inv is not None:
+                    supporting=rec.cell(r,3).value
+                    if isinstance(supporting,(int,float)):
+                        diff=inv-float(supporting); out.append({'control':'INVENTORY_TO_SUPPORT','gl':inv,'supporting':float(supporting),'difference':diff,'status':'PASS' if abs(diff)<=tolerance else 'FAIL','basis':'independently recalculated from TB and supporting amount; embedded status ignored'})
+                if ('debt' in label or 'borrow' in label) and tb:
+                    supporting=rec.cell(r,3).value
+                    if isinstance(supporting,(int,float)):
+                        # debt can span multiple TB lines; aggregate common borrowing terms.
+                        total=0.0; found=False
+                        thr=_header_row(tb); headers=[_norm(tb.cell(thr,c).value) for c in range(1,tb.max_column+1)]
+                        name_col=next((i+1 for i,h in enumerate(headers) if h in ('account','account name')),2); debit_col=next((i+1 for i,h in enumerate(headers) if 'debit' in h),None); credit_col=next((i+1 for i,h in enumerate(headers) if 'credit' in h),None)
+                        for rr in range(thr+1,tb.max_row+1):
+                            nm=_norm(tb.cell(rr,name_col).value)
+                            if any(t in nm for t in ('loan','debt','overdraft','borrowing')):
+                                d=float(tb.cell(rr,debit_col).value or 0) if debit_col else 0; c=float(tb.cell(rr,credit_col).value or 0) if credit_col else 0
+                                total+=abs(d-c); found=True
+                        if found:
+                            diff=total-float(supporting); out.append({'control':'DEBT_TO_SUPPORT','gl':total,'supporting':float(supporting),'difference':diff,'status':'PASS' if abs(diff)<=tolerance else 'FAIL','basis':'independently recalculated from TB borrowing accounts; embedded status ignored'})
+        return out
 
 def canonical_extract(path:str|Path):
     """Return normalized evidence records suitable for downstream domain adapters.
     Does not silently invent invoice/transaction detail that the workbook does not contain.
     """
-    wb=load_workbook(path,data_only=True,read_only=False); result={}
-    for ws in wb.worksheets:
-        hr=_header_row(ws); headers=[ws.cell(hr,c).value for c in range(1,ws.max_column+1)]; domain=classify_sheet(ws.title,headers)
-        sm=semantic_map_workbook(path); smrow=next(x for x in sm if x['sheet']==ws.title); bycol={x['column']:x for x in smrow['columns'] if x['semantic']}
-        if domain in ('D04_AR','D05_AP','D11_WORKFORCE','D16_OPERATIONS'):
-            records=[]
-            for r in range(hr+1,ws.max_row+1):
-                label=_norm(ws.cell(r,1).value)
-                if not label or 'total' in label or label=='subtotal': continue
-                rec={'source_sheet':ws.title,'source_row':r}
-                for c,m in bycol.items():
-                    rec[m['semantic']]=ws.cell(r,c).value
-                if len(rec)>2: records.append(rec)
-            result.setdefault(domain,[]).extend(records)
-    return result
+    with ExitStack() as resources:
+        wb=resources.enter_context(open_workbook(path,data_only=True,read_only=False)); result={}
+        for ws in wb.worksheets:
+            hr=_header_row(ws); headers=[ws.cell(hr,c).value for c in range(1,ws.max_column+1)]; domain=classify_sheet(ws.title,headers)
+            sm=semantic_map_workbook(path); smrow=next(x for x in sm if x['sheet']==ws.title); bycol={x['column']:x for x in smrow['columns'] if x['semantic']}
+            if domain in ('D04_AR','D05_AP','D11_WORKFORCE','D16_OPERATIONS'):
+                records=[]
+                for r in range(hr+1,ws.max_row+1):
+                    label=_norm(ws.cell(r,1).value)
+                    if not label or 'total' in label or label=='subtotal': continue
+                    rec={'source_sheet':ws.title,'source_row':r}
+                    for c,m in bycol.items():
+                        rec[m['semantic']]=ws.cell(r,c).value
+                    if len(rec)>2: records.append(rec)
+                result.setdefault(domain,[]).extend(records)
+        return result
 
 def intake_assessment(path:str|Path):
     profile=profile_workbook(path); mappings=semantic_map_workbook(path); recons=generic_reconciliations(path); canonical=canonical_extract(path)

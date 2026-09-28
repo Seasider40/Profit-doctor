@@ -1,3 +1,4 @@
+from tests.resources import dispose_with, remove_file
 import tempfile, unittest
 from pathlib import Path
 from sqlalchemy import select, text
@@ -8,8 +9,8 @@ from profit_doctor.persistence import Base, Client, EngineRun, OpportunityRelati
 
 class PersistenceV28Tests(unittest.TestCase):
     def make(self):
-        f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); f.close(); p=Path(f.name)
-        e=build_engine(DatabaseConfig(f"sqlite+pysqlite:///{p}")); Base.metadata.create_all(e); return p,e,session_factory(e)
+        f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); f.close(); self.addCleanup(remove_file, f.name); p=Path(f.name)
+        e=dispose_with(self.addCleanup, build_engine(DatabaseConfig(f"sqlite+pysqlite:///{p}"))); Base.metadata.create_all(e); return p,e,session_factory(e)
     def seed(self,F):
         with session_scope(F) as s:
             s.add(Client(client_id='c1',client_name='A',base_currency='GBP',business_model='SERVICES',created_at='2026-09-25T00:00:00Z'))
@@ -38,9 +39,9 @@ class PersistenceV28Tests(unittest.TestCase):
             with session_scope(F) as s: s.add(OpportunityRelationship(relationship_id='x2',client_id='c1',run_id='r1',from_opportunity_id='oppB',to_opportunity_id='oppA',pair_key=pair,relationship_type='OVERLAPPING',overlap_amount='20',evidence_basis='test'))
         e.dispose(); p.unlink(missing_ok=True)
     def test_alembic_upgrade_and_downgrade(self):
-        f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); f.close(); p=Path(f.name)
+        f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); f.close(); self.addCleanup(remove_file, f.name); p=Path(f.name)
         cfg=Config(str(Path(__file__).resolve().parents[1]/'alembic.ini')); cfg.set_main_option('sqlalchemy.url',f'sqlite+pysqlite:///{p}')
-        command.upgrade(cfg,'head'); e=build_engine(DatabaseConfig(f'sqlite+pysqlite:///{p}'))
+        command.upgrade(cfg,'head'); e=dispose_with(self.addCleanup, build_engine(DatabaseConfig(f'sqlite+pysqlite:///{p}')))
         with e.connect() as c: self.assertIn('client',{r[0] for r in c.execute(text("SELECT name FROM sqlite_master WHERE type='table'"))})
         e.dispose(); command.downgrade(cfg,'base'); p.unlink(missing_ok=True)
 if __name__=='__main__': unittest.main()

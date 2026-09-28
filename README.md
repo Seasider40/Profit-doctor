@@ -388,3 +388,11 @@ Adds a rich synthetic manufacturing qualification case spanning transaction sale
 
 ## v2.40 — D15 CRM / Pipeline / Win-Loss
 D15 is now a first-class canonical domain with opportunity, stage-history, activity and deterministic CRM-analysis objects. Level-3 qualification includes genuine CRM evidence while preserving the 56-diagnostic freeze. Pipeline/weighted pipeline are explicitly not recognised revenue or Profit Doctor forecasts. See `docs/CRM_D15_V2_40.md`.
+
+## v2.42 — Full Estate CI & Cross-Platform Qualification
+
+Install `requirements-dev.txt` and run `python scripts/run_full_estate.py` for complete
+non-live discovery with strict deprecation/resource warnings and exact JSON results.
+`scripts_run_full_regression.py` invokes the same gate. Full Estate CI covers Linux
+and Windows; live PostgreSQL remains the separate v2.41 qualification workflow.
+See [the inventory, qualification evidence and limitations](docs/V2_42_FULL_ESTATE_CI.md).

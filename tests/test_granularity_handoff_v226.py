@@ -1,8 +1,9 @@
+from tests.workbook_fixtures import scenario_path
 import os, unittest
 from profit_doctor.intake.bridge import execute_unknown_workbook
 class TestGranularityHandoffV226(unittest.TestCase):
  def setUp(self):
-  self.s1=os.environ.get('PD_UWB1','/mnt/data/v225/scenario1.xlsx'); self.s2=os.environ.get('PD_UWB2','/mnt/data/v225/scenario2.xlsx')
+  self.s1=scenario_path(1); self.s2=scenario_path(2)
  def test_s1_customer_summary_unlocks_without_fake_invoice(self):
   r=execute_unknown_workbook(self.s1); e={x['test_id']:x for x in r['executions']}
   self.assertEqual(e['CUS-01']['execution_status'],'COMPLETED'); self.assertEqual(e['CUS-02']['execution_status'],'COMPLETED'); self.assertEqual(e['CUS-07']['execution_status'],'COMPLETED')

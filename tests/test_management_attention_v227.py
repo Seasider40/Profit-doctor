@@ -1,10 +1,12 @@
+from tests.workbook_fixtures import scenario_path
+from tests.resources import close_with, remove_file
 import os, tempfile, sqlite3, unittest
 from profit_doctor.intake.bridge import execute_unknown_workbook
 class TestManagementAttentionV227(unittest.TestCase):
  def setUp(self):
-  self.s1=os.environ.get('PD_UWB1','/mnt/data/v227/scenario1.xlsx'); self.s2=os.environ.get('PD_UWB2','/mnt/data/v227/scenario2.xlsx')
+  self.s1=scenario_path(1); self.s2=scenario_path(2)
  def run_case(self,p):
-  f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); f.close(); r=execute_unknown_workbook(p,f.name); c=sqlite3.connect(f.name); c.row_factory=sqlite3.Row; return r,c
+  f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); f.close(); self.addCleanup(remove_file, f.name); r=execute_unknown_workbook(p,f.name); c=close_with(self.addCleanup, sqlite3.connect(f.name)); c.row_factory=sqlite3.Row; return r,c
  def test_s1_compacts_to_management_agenda_and_flags_bad_capacity_data(self):
   r,c=self.run_case(self.s1); a=r['management_attention']; self.assertGreaterEqual(a['selected'],3); self.assertLessEqual(a['selected'],7)
   themes={x['theme'] for x in a['items']}; self.assertIn('FINANCIAL_INTEGRITY',themes); self.assertIn('CUSTOMER_ECONOMICS',themes); self.assertIn('DATA_CAPACITY',themes)

@@ -1,3 +1,4 @@
+from tests.resources import close_with, remove_file
 import tempfile, unittest
 from datetime import datetime, timezone
 from profit_doctor.core.db import connect
@@ -6,7 +7,7 @@ from profit_doctor.diagnostic.engine import seed_registry, supplier_overhead_dia
 def now(): return datetime.now(timezone.utc).isoformat()
 class SupplierTests(unittest.TestCase):
  def setUp(self):
-  self.f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); self.f.close(); self.c=connect(self.f.name); self.client='c'; self.run='r'
+  self.f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); self.f.close(); self.addCleanup(remove_file, self.f.name); self.c=close_with(self.addCleanup, connect(self.f.name)); self.client='c'; self.run='r'
   self.c.execute('INSERT INTO client VALUES (?,?,?,?,?)',(self.client,'SupplyCo','GBP','PRODUCT_DISTRIBUTION',now())); self.c.execute('INSERT INTO engine_run VALUES (?,?,?,?,?,?,?,?,?)',(self.run,self.client,'TEST',now(),None,'RUNNING',None,None,'2.0')); seed_registry(self.c)
   for tid in [f'SUP-0{i}' for i in range(1,7)]: self.c.execute('INSERT INTO test_eligibility VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',(tid,self.run,self.client,tid,'APPLICABLE','FULL','SUPPLIER_EVIDENCE','Reliable','Reliable','100',None,now()))
   self.c.execute('INSERT INTO supplier_master VALUES (?,?,?,?,?,?,?,?)',('S1',self.client,'Critical Parts','Materials','CRITICAL',45,1,'contract/master evidence'))

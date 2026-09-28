@@ -1,0 +1,650 @@
+{
+  "test_accounting_trust": {
+    "category": "intake/data-quality",
+    "baseline_test_count": 5,
+    "fixture_dependent": false,
+    "expected_tests": 5,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 5,
+      "skipped": 0
+    }
+  },
+  "test_adversarial_sme_gate": {
+    "category": "governance/security",
+    "baseline_test_count": 10,
+    "fixture_dependent": false,
+    "expected_tests": 10,
+    "baseline_result": {
+      "passed": 9,
+      "failed": 0,
+      "errors": 1,
+      "skipped": 0
+    }
+  },
+  "test_alembic_schema_v241": {
+    "category": "persistence/migration",
+    "baseline_test_count": 5,
+    "fixture_dependent": false,
+    "expected_tests": 5,
+    "baseline_result": {
+      "passed": 5,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_crm_d15_v240": {
+    "category": "CRM/Level-3",
+    "baseline_test_count": 5,
+    "fixture_dependent": false,
+    "expected_tests": 5,
+    "baseline_result": {
+      "passed": 5,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_customer_expansion": {
+    "category": "diagnostic",
+    "baseline_test_count": 7,
+    "fixture_dependent": false,
+    "expected_tests": 7,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 7,
+      "skipped": 0
+    }
+  },
+  "test_diagnostic_engine": {
+    "category": "diagnostic",
+    "baseline_test_count": 7,
+    "fixture_dependent": false,
+    "expected_tests": 7,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 7,
+      "skipped": 0
+    }
+  },
+  "test_economic_engine": {
+    "category": "reasoning/economic",
+    "baseline_test_count": 11,
+    "fixture_dependent": false,
+    "expected_tests": 11,
+    "baseline_result": {
+      "passed": 2,
+      "failed": 0,
+      "errors": 9,
+      "skipped": 0
+    }
+  },
+  "test_forecasting_expansion": {
+    "category": "diagnostic",
+    "baseline_test_count": 6,
+    "fixture_dependent": false,
+    "expected_tests": 6,
+    "baseline_result": {
+      "passed": 6,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_foundation": {
+    "category": "deterministic core",
+    "baseline_test_count": 9,
+    "fixture_dependent": false,
+    "expected_tests": 9,
+    "baseline_result": {
+      "passed": 1,
+      "failed": 0,
+      "errors": 8,
+      "skipped": 0
+    }
+  },
+  "test_full_estate_v242": {
+    "category": "CI/resource lifecycle/fixture provenance",
+    "baseline_test_count": 0,
+    "fixture_dependent": false,
+    "expected_tests": 11,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_gate3_remediation": {
+    "category": "deterministic core",
+    "baseline_test_count": 4,
+    "fixture_dependent": false,
+    "expected_tests": 4,
+    "baseline_result": {
+      "passed": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_granularity_handoff_v226": {
+    "category": "intake/data-quality",
+    "baseline_test_count": 3,
+    "fixture_dependent": true,
+    "expected_tests": 3,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 3,
+      "skipped": 0
+    }
+  },
+  "test_intelligent_intake_v224": {
+    "category": "intake/data-quality",
+    "baseline_test_count": 5,
+    "fixture_dependent": true,
+    "expected_tests": 5,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 5,
+      "skipped": 0
+    }
+  },
+  "test_interactive_drilldown_v236": {
+    "category": "management/output",
+    "baseline_test_count": 5,
+    "fixture_dependent": true,
+    "expected_tests": 5,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 5,
+      "skipped": 0
+    }
+  },
+  "test_level3_qualification_v239": {
+    "category": "CRM/Level-3",
+    "baseline_test_count": 3,
+    "fixture_dependent": false,
+    "expected_tests": 3,
+    "baseline_result": {
+      "passed": 3,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_longitudinal_advisory_v230": {
+    "category": "longitudinal/benefit",
+    "baseline_test_count": 6,
+    "fixture_dependent": false,
+    "expected_tests": 6,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 6,
+      "skipped": 0
+    }
+  },
+  "test_management_action_opportunity_v228": {
+    "category": "management/output",
+    "baseline_test_count": 5,
+    "fixture_dependent": true,
+    "expected_tests": 5,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 5,
+      "skipped": 0
+    }
+  },
+  "test_management_attention_v227": {
+    "category": "management/output",
+    "baseline_test_count": 4,
+    "fixture_dependent": true,
+    "expected_tests": 4,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 4,
+      "skipped": 0
+    }
+  },
+  "test_management_benefit_engine": {
+    "category": "longitudinal/benefit",
+    "baseline_test_count": 7,
+    "fixture_dependent": false,
+    "expected_tests": 7,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 7,
+      "skipped": 0
+    }
+  },
+  "test_management_output_spec_v233": {
+    "category": "management/output",
+    "baseline_test_count": 6,
+    "fixture_dependent": true,
+    "expected_tests": 6,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 6,
+      "skipped": 0
+    }
+  },
+  "test_margin_expansion": {
+    "category": "diagnostic",
+    "baseline_test_count": 5,
+    "fixture_dependent": false,
+    "expected_tests": 5,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 5,
+      "skipped": 0
+    }
+  },
+  "test_multi_client_governance_v232": {
+    "category": "governance/security",
+    "baseline_test_count": 8,
+    "fixture_dependent": false,
+    "expected_tests": 8,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 8,
+      "skipped": 0
+    }
+  },
+  "test_opportunity_portfolio_v229": {
+    "category": "reasoning/economic",
+    "baseline_test_count": 5,
+    "fixture_dependent": false,
+    "expected_tests": 5,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 5,
+      "skipped": 0
+    }
+  },
+  "test_people_expansion": {
+    "category": "diagnostic",
+    "baseline_test_count": 6,
+    "fixture_dependent": false,
+    "expected_tests": 6,
+    "baseline_result": {
+      "passed": 6,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_period_basis_v222": {
+    "category": "deterministic core",
+    "baseline_test_count": 1,
+    "fixture_dependent": false,
+    "expected_tests": 1,
+    "baseline_result": {
+      "passed": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_persistence_cus_prod_pri_v211": {
+    "category": "persistence/migration",
+    "baseline_test_count": 4,
+    "fixture_dependent": false,
+    "expected_tests": 4,
+    "baseline_result": {
+      "passed": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_persistence_fcst_risk_v214": {
+    "category": "persistence/migration",
+    "baseline_test_count": 4,
+    "fixture_dependent": false,
+    "expected_tests": 4,
+    "baseline_result": {
+      "passed": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_persistence_peo_sup_v212": {
+    "category": "persistence/migration",
+    "baseline_test_count": 4,
+    "fixture_dependent": false,
+    "expected_tests": 4,
+    "baseline_result": {
+      "passed": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_persistence_rev_gm_v210": {
+    "category": "persistence/migration",
+    "baseline_test_count": 4,
+    "fixture_dependent": false,
+    "expected_tests": 4,
+    "baseline_result": {
+      "passed": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_persistence_v28": {
+    "category": "persistence/migration",
+    "baseline_test_count": 5,
+    "fixture_dependent": false,
+    "expected_tests": 5,
+    "baseline_result": {
+      "passed": 5,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_persistence_v29": {
+    "category": "persistence/migration",
+    "baseline_test_count": 3,
+    "fixture_dependent": false,
+    "expected_tests": 3,
+    "baseline_result": {
+      "passed": 3,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_persistence_wc_v213": {
+    "category": "persistence/migration",
+    "baseline_test_count": 4,
+    "fixture_dependent": false,
+    "expected_tests": 4,
+    "baseline_result": {
+      "passed": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_postgresql_live_qualification_v218": {
+    "category": "PostgreSQL-static/live",
+    "baseline_test_count": 9,
+    "fixture_dependent": false,
+    "expected_tests": 9,
+    "baseline_result": {
+      "passed": 2,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 7
+    }
+  },
+  "test_postgresql_readiness_v217": {
+    "category": "PostgreSQL-static/live",
+    "baseline_test_count": 5,
+    "fixture_dependent": false,
+    "expected_tests": 5,
+    "baseline_result": {
+      "passed": 3,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 2
+    }
+  },
+  "test_pricing_expansion": {
+    "category": "diagnostic",
+    "baseline_test_count": 6,
+    "fixture_dependent": false,
+    "expected_tests": 6,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 6,
+      "skipped": 0
+    }
+  },
+  "test_primitive_engine": {
+    "category": "deterministic core",
+    "baseline_test_count": 16,
+    "fixture_dependent": false,
+    "expected_tests": 16,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 16,
+      "skipped": 0
+    }
+  },
+  "test_product_expansion": {
+    "category": "diagnostic",
+    "baseline_test_count": 6,
+    "fixture_dependent": false,
+    "expected_tests": 6,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 6,
+      "skipped": 0
+    }
+  },
+  "test_product_view_model_v234": {
+    "category": "management/output",
+    "baseline_test_count": 6,
+    "fixture_dependent": true,
+    "expected_tests": 6,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 6,
+      "skipped": 0
+    }
+  },
+  "test_real_sme_qualification_programme_v219": {
+    "category": "qualification-contract (not real-SME evidence)",
+    "baseline_test_count": 4,
+    "fixture_dependent": false,
+    "expected_tests": 4,
+    "baseline_result": {
+      "passed": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_reasoning_engine": {
+    "category": "reasoning/economic",
+    "baseline_test_count": 11,
+    "fixture_dependent": false,
+    "expected_tests": 11,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 11,
+      "skipped": 0
+    }
+  },
+  "test_restatement_revision_v231": {
+    "category": "longitudinal/benefit",
+    "baseline_test_count": 7,
+    "fixture_dependent": false,
+    "expected_tests": 7,
+    "baseline_result": {
+      "passed": 2,
+      "failed": 0,
+      "errors": 5,
+      "skipped": 0
+    }
+  },
+  "test_revenue_expansion": {
+    "category": "diagnostic",
+    "baseline_test_count": 5,
+    "fixture_dependent": false,
+    "expected_tests": 5,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 5,
+      "skipped": 0
+    }
+  },
+  "test_risk_controls_expansion": {
+    "category": "governance/security",
+    "baseline_test_count": 7,
+    "fixture_dependent": false,
+    "expected_tests": 7,
+    "baseline_result": {
+      "passed": 7,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_supplier_overhead_expansion": {
+    "category": "diagnostic",
+    "baseline_test_count": 7,
+    "fixture_dependent": false,
+    "expected_tests": 7,
+    "baseline_result": {
+      "passed": 7,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_trust": {
+    "category": "intake/data-quality",
+    "baseline_test_count": 5,
+    "fixture_dependent": false,
+    "expected_tests": 5,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 5,
+      "skipped": 0
+    }
+  },
+  "test_unknown_workbook_bridge_v225": {
+    "category": "intake/data-quality",
+    "baseline_test_count": 3,
+    "fixture_dependent": true,
+    "expected_tests": 3,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 3,
+      "skipped": 0
+    }
+  },
+  "test_unknown_workbook_intake_v223": {
+    "category": "intake/data-quality",
+    "baseline_test_count": 4,
+    "fixture_dependent": true,
+    "expected_tests": 4,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 4,
+      "skipped": 0
+    }
+  },
+  "test_upload_readiness_v238": {
+    "category": "intake/data-quality",
+    "baseline_test_count": 5,
+    "fixture_dependent": false,
+    "expected_tests": 5,
+    "baseline_result": {
+      "passed": 5,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_upload_to_report_v237": {
+    "category": "management/output",
+    "baseline_test_count": 5,
+    "fixture_dependent": true,
+    "expected_tests": 5,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 5,
+      "skipped": 0
+    }
+  },
+  "test_v10_qualification": {
+    "category": "longitudinal/benefit",
+    "baseline_test_count": 3,
+    "fixture_dependent": false,
+    "expected_tests": 3,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 3,
+      "skipped": 0
+    }
+  },
+  "test_visual_prototype_v235": {
+    "category": "management/output",
+    "baseline_test_count": 4,
+    "fixture_dependent": false,
+    "expected_tests": 4,
+    "baseline_result": {
+      "passed": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_visual_prototype_v236": {
+    "category": "management/output",
+    "baseline_test_count": 5,
+    "fixture_dependent": false,
+    "expected_tests": 5,
+    "baseline_result": {
+      "passed": 5,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "test_visual_readiness_v235": {
+    "category": "management/output",
+    "baseline_test_count": 2,
+    "fixture_dependent": true,
+    "expected_tests": 2,
+    "baseline_result": {
+      "passed": 0,
+      "failed": 0,
+      "errors": 2,
+      "skipped": 0
+    }
+  },
+  "test_working_capital_expansion": {
+    "category": "diagnostic",
+    "baseline_test_count": 6,
+    "fixture_dependent": false,
+    "expected_tests": 6,
+    "baseline_result": {
+      "passed": 6,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  }
+}

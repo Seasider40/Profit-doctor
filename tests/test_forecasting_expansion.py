@@ -1,3 +1,4 @@
+from tests.resources import close_with, remove_file
 import tempfile, unittest
 from datetime import datetime, timezone
 from profit_doctor.core.db import connect
@@ -6,7 +7,7 @@ from profit_doctor.diagnostic.engine import seed_registry, forecasting_diagnosti
 def now(): return datetime.now(timezone.utc).isoformat()
 class ForecastTests(unittest.TestCase):
  def setUp(self):
-  self.f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); self.f.close(); self.c=connect(self.f.name); self.client='c'; self.run='r'
+  self.f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); self.f.close(); self.addCleanup(remove_file, self.f.name); self.c=close_with(self.addCleanup, connect(self.f.name)); self.client='c'; self.run='r'
   self.c.execute('INSERT INTO client VALUES (?,?,?,?,?)',(self.client,'PlanCo','GBP','SERVICES',now())); self.c.execute('INSERT INTO engine_run VALUES (?,?,?,?,?,?,?,?,?)',(self.run,self.client,'TEST',now(),None,'RUNNING',None,None,'2.2')); seed_registry(self.c)
   self.c.execute('INSERT INTO plan_version VALUES (?,?,?,?,?,?,?,?,?)',('pv1',self.client,'BUDGET','FY26 Original','2025-12-01','2026-01-01','2026-12-31','ACTIVE','board approved'))
   for i,(m,p,a) in enumerate([('2026-01',100,90),('2026-02',100,110),('2026-03',100,80)]):

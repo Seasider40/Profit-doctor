@@ -1,3 +1,5 @@
+from tests.resources import close_with
+from contextlib import ExitStack
 import unittest, tempfile, uuid
 from pathlib import Path
 from decimal import Decimal
@@ -17,8 +19,8 @@ def load(con,d):
 
 class TrustLayer(unittest.TestCase):
     def test_clean_northstar_is_reliable_and_full(self):
-        with tempfile.TemporaryDirectory() as d:
-            con=connect(Path(d)/'x.db'); run,info=load(con,d)
+        with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
+            con=close_with(resources.callback, connect(Path(d)/'x.db')); run,info=load(con,d)
             out=run_trust_layer(con,run,'c1',info['dataset_version_id'])
             self.assertEqual(out['trust']['availability'],'AVAILABLE')
             self.assertEqual(out['trust']['history_months'],36)
@@ -35,8 +37,8 @@ class TrustLayer(unittest.TestCase):
             self.assertEqual(Decimal(cov),Decimal('100'))
 
     def test_short_history_degrades_not_bluffs(self):
-        with tempfile.TemporaryDirectory() as d:
-            con=connect(Path(d)/'x.db'); run,info=load(con,d)
+        with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
+            con=close_with(resources.callback, connect(Path(d)/'x.db')); run,info=load(con,d)
             # retain only final 12 months in the active analytical scope
             dates=[r[0] for r in con.execute('select distinct transaction_date from sales_transaction order by transaction_date')]
             cutoff=dates[-12]
@@ -47,8 +49,8 @@ class TrustLayer(unittest.TestCase):
             self.assertTrue(any('12 months' in x for x in e['limitations']))
 
     def test_missing_customer_mapping_degrades_customer_test(self):
-        with tempfile.TemporaryDirectory() as d:
-            con=connect(Path(d)/'x.db'); run,info=load(con,d)
+        with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
+            con=close_with(resources.callback, connect(Path(d)/'x.db')); run,info=load(con,d)
             # remove mapping from economically material rows (>5% revenue)
             total=Decimal(con.execute('select sum(cast(net_revenue as real)) from sales_transaction').fetchone()[0])
             rows=con.execute('select sales_transaction_id,net_revenue from sales_transaction order by cast(net_revenue as real) desc').fetchall()
@@ -62,8 +64,8 @@ class TrustLayer(unittest.TestCase):
             self.assertLess(e['economic_coverage_pct'],Decimal('95'))
 
     def test_arithmetic_break_constrains_integrity(self):
-        with tempfile.TemporaryDirectory() as d:
-            con=connect(Path(d)/'x.db'); run,info=load(con,d)
+        with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
+            con=close_with(resources.callback, connect(Path(d)/'x.db')); run,info=load(con,d)
             row=con.execute('select sales_transaction_id from sales_transaction limit 1').fetchone()
             con.execute("update sales_transaction set source_gross_profit=cast(source_gross_profit as real)+1000 where sales_transaction_id=?",(row[0],)); con.commit()
             t=assess_sales_trust(con,run,'c1',info['dataset_version_id'])
@@ -73,8 +75,8 @@ class TrustLayer(unittest.TestCase):
             self.assertEqual(e['eligibility'],'PARTIAL-C')
 
     def test_trust_records_are_persisted(self):
-        with tempfile.TemporaryDirectory() as d:
-            con=connect(Path(d)/'x.db'); run,info=load(con,d); run_trust_layer(con,run,'c1',info['dataset_version_id'])
+        with tempfile.TemporaryDirectory() as d, ExitStack() as resources:
+            con=close_with(resources.callback, connect(Path(d)/'x.db')); run,info=load(con,d); run_trust_layer(con,run,'c1',info['dataset_version_id'])
             self.assertEqual(con.execute('select count(*) from data_availability where run_id=?',(run,)).fetchone()[0],18)
             self.assertGreaterEqual(con.execute('select count(*) from test_eligibility where run_id=?',(run,)).fetchone()[0],10)
             self.assertEqual(con.execute('select count(*) from reconciliation where run_id=?',(run,)).fetchone()[0],1)

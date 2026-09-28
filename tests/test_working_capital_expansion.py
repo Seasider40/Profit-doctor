@@ -1,3 +1,4 @@
+from tests.resources import close_with, remove_file
 import tempfile, unittest
 from datetime import datetime, timezone
 from profit_doctor.core.db import connect
@@ -7,7 +8,7 @@ from profit_doctor.calc.primitive_engine import seed_registry as seed_primitives
 def now(): return datetime.now(timezone.utc).isoformat()
 class WCTests(unittest.TestCase):
  def setUp(self):
-  self.f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); self.f.close(); self.c=connect(self.f.name); self.client='c'; self.run='r'
+  self.f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); self.f.close(); self.addCleanup(remove_file, self.f.name); self.c=close_with(self.addCleanup, connect(self.f.name)); self.client='c'; self.run='r'
   self.c.execute('INSERT INTO client VALUES (?,?,?,?,?)',(self.client,'CashCo','GBP','PRODUCT_DISTRIBUTION',now())); self.c.execute('INSERT INTO engine_run VALUES (?,?,?,?,?,?,?,?,?)',(self.run,self.client,'TEST',now(),None,'RUNNING',None,None,'2.1')); seed_registry(self.c); seed_primitives(self.c)
   # Direct primitive evidence keeps the test focused on diagnostics.
   vals=[('WC_DSO','52','DAYS'),('WC_DIO','70','DAYS'),('WC_DPO','45','DAYS'),('WC_CCC','77','DAYS'),('BS_ACCOUNTS_RECEIVABLE','250000','GBP'),('AR_LEDGER_OUTSTANDING','245000','GBP'),('AR_OVERDUE_OUTSTANDING','90000','GBP'),('BS_ACCOUNTS_PAYABLE','180000','GBP'),('AP_LEDGER_OUTSTANDING','175000','GBP'),('AP_OVERDUE_OUTSTANDING','30000','GBP'),('BS_INVENTORY','400000','GBP'),('AVAILABLE_CASH','120000','GBP')]

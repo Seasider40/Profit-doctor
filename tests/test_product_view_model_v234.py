@@ -1,3 +1,5 @@
+from tests.workbook_fixtures import scenario_path
+from tests.resources import close_with, remove_file
 import json,os,sqlite3,tempfile,unittest
 from pydantic import ValidationError
 from profit_doctor.intake.bridge import execute_unknown_workbook
@@ -6,9 +8,9 @@ from profit_doctor.api.view_models import ProductView
 
 class TestProductViewModelV234(unittest.TestCase):
  def setUp(self):
-  self.s1=os.environ.get('PD_UWB1','/mnt/data/v227/scenario1.xlsx'); self.s2=os.environ.get('PD_UWB2','/mnt/data/v227/scenario2.xlsx')
+  self.s1=scenario_path(1); self.s2=scenario_path(2)
  def run_case(self,p):
-  f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); f.close(); r=execute_unknown_workbook(p,f.name); c=sqlite3.connect(f.name); c.row_factory=sqlite3.Row; client=c.execute('select client_id from engine_run where run_id=?',(r['run_id'],)).fetchone()['client_id']; return r,c,client
+  f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); f.close(); self.addCleanup(remove_file, f.name); r=execute_unknown_workbook(p,f.name); c=close_with(self.addCleanup, sqlite3.connect(f.name)); c.row_factory=sqlite3.Row; client=c.execute('select client_id from engine_run where run_id=?',(r['run_id'],)).fetchone()['client_id']; return r,c,client
  def test_scenario2_validates_as_typed_product_view(self):
   r,c,client=self.run_case(self.s2); v=get_product_view(c,r['run_id'],client)
   self.assertEqual(v.api_version,API_VERSION); self.assertGreaterEqual(len(v.management_attention),3); self.assertLessEqual(len(v.management_attention),7); c.close()

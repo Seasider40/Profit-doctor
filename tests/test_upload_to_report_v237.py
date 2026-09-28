@@ -1,8 +1,9 @@
+from tests.workbook_fixtures import scenario_path
 import json, os, tempfile, unittest
 from pathlib import Path
 from profit_doctor.product_demo import run_upload_to_report
 class UploadToReportV237(unittest.TestCase):
- def setUp(self): self.src=os.environ.get('PD_UWB2','/mnt/data/v237/scenario2.xlsx')
+ def setUp(self): self.src=scenario_path(2)
  def test_full_upload_to_product_outputs(self):
   with tempfile.TemporaryDirectory() as td:
    m=run_upload_to_report(self.src,td,'V237_CLIENT'); r=json.loads((Path(td)/'review.json').read_text())

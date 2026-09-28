@@ -1,10 +1,11 @@
+from tests.workbook_fixtures import scenario_path
 import os, unittest
 from profit_doctor.intake.workbook import profile_workbook, reconcile_workbook
 
 class TestUnknownWorkbookIntake(unittest.TestCase):
     def setUp(self):
-        self.s1=os.environ.get('PD_UWB1','/mnt/data/v223/scenario1.xlsx')
-        self.s2=os.environ.get('PD_UWB2','/mnt/data/v223/scenario2.xlsx')
+        self.s1=scenario_path(1)
+        self.s2=scenario_path(2)
     def test_scenario1_classification(self):
         p=profile_workbook(self.s1); d={x['sheet']:x['domain'] for x in p['sheets']}
         self.assertEqual(d['Customers'],'D04_AR'); self.assertEqual(d['Staff Costs'],'D11_WORKFORCE'); self.assertEqual(d['Capacity'],'D16_OPERATIONS'); self.assertEqual(d['Trial Balance'],'D03_TB_GL'); self.assertEqual(d['Management Accounts'],'D01_PNL')

@@ -1,9 +1,11 @@
+from tests.workbook_fixtures import scenario_path
+from tests.resources import close_with, remove_file
 import os,sqlite3,tempfile,unittest
 from profit_doctor.intake.bridge import execute_unknown_workbook
 from profit_doctor.api import get_priority_detail,get_diagnostic_detail
 class TestInteractiveDrilldownV236(unittest.TestCase):
  def setUp(self):
-  p=os.environ.get('PD_UWB2','/mnt/data/v227/scenario2.xlsx'); f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); f.close(); self.r=execute_unknown_workbook(p,f.name); self.c=sqlite3.connect(f.name); self.c.row_factory=sqlite3.Row; self.client=self.c.execute('select client_id from engine_run where run_id=?',(self.r['run_id'],)).fetchone()['client_id']
+  p=scenario_path(2); f=tempfile.NamedTemporaryFile(suffix='.db',delete=False); f.close(); self.addCleanup(remove_file, f.name); self.r=execute_unknown_workbook(p,f.name); self.c=close_with(self.addCleanup, sqlite3.connect(f.name)); self.c.row_factory=sqlite3.Row; self.client=self.c.execute('select client_id from engine_run where run_id=?',(self.r['run_id'],)).fetchone()['client_id']
  def tearDown(self): self.c.close()
  def test_priority_lineage(self):
   d=get_priority_detail(self.c,self.r['run_id'],self.client,'FINANCIAL_INTEGRITY')

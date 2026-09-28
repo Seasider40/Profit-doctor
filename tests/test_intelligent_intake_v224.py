@@ -1,8 +1,9 @@
+from tests.workbook_fixtures import scenario_path
 import os, unittest
 from profit_doctor.intake.workbook import semantic_map_workbook,generic_reconciliations,canonical_extract,intake_assessment
 class TestIntelligentIntakeV224(unittest.TestCase):
  def setUp(self):
-  self.s1=os.environ.get('PD_UWB1','/mnt/data/v223/scenario1.xlsx'); self.s2=os.environ.get('PD_UWB2','/mnt/data/v223/scenario2.xlsx')
+  self.s1=scenario_path(1); self.s2=scenario_path(2)
  def test_semantic_columns_and_units(self):
   m={x['sheet']:x for x in semantic_map_workbook(self.s2)}
   ar={x['semantic']:x for x in m['AR Customer Ledger']['columns'] if x['semantic']}
