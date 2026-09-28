@@ -646,5 +646,17 @@
       "errors": 0,
       "skipped": 0
     }
+  },
+  "test_reasoning_domain_v243": {
+    "category": "reasoning/domain-foundation",
+    "fixture_dependent": false,
+    "expected_tests": 17,
+    "introduced_in": "2.43"
+  },
+  "test_reasoning_persistence_v243": {
+    "category": "persistence/migration",
+    "fixture_dependent": false,
+    "expected_tests": 21,
+    "introduced_in": "2.43"
   }
 }
