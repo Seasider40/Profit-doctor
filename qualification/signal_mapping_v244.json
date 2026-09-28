@@ -1,0 +1,3067 @@
+{
+  "baseline": "16576f6805f73287fac5bba1b8c050bd2ae432a4",
+  "coverage_basis": "All frozen static emission sites, including explicit closed dynamic expansions; not runtime occurrence coverage",
+  "writer": "diagnostic.engine._execute; intake bridge calls the same engine; SQLAlchemy migration copies existing Signals",
+  "distinct_signal_types": 86,
+  "emission_variants": 91,
+  "signals": [
+    {
+      "signal_type": "ABNORMAL_TRANSACTION_MARGIN",
+      "producer": "margin_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:278",
+      "classification": "INSUFFICIENT_SEMANTICS",
+      "reason": "Transaction identity is omitted from Signal.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "gp",
+        "comparison": "base",
+        "variance": "margin",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "AP_LEDGER_OUTSTANDING",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:658",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "WC-03",
+          "signal_type": "AP_LEDGER_OUTSTANDING",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "ap_ledger_outstanding",
+              "unit": "CURRENCY",
+              "basis": "captured trusted primitive; no cash release inference",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(r['numeric_value'])",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "AP_OVERDUE_OUTSTANDING",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:658",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "WC-03",
+          "signal_type": "AP_OVERDUE_OUTSTANDING",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "ap_overdue_outstanding",
+              "unit": "CURRENCY",
+              "basis": "captured trusted primitive; no cash release inference",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(r['numeric_value'])",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "AR_LEDGER_OUTSTANDING",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:648",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "WC-02",
+          "signal_type": "AR_LEDGER_OUTSTANDING",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "ar_ledger_outstanding",
+              "unit": "CURRENCY",
+              "basis": "captured trusted primitive; no cash release inference",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(r['numeric_value'])",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "AR_OVERDUE_OUTSTANDING",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:648",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "WC-02",
+          "signal_type": "AR_OVERDUE_OUTSTANDING",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "ar_overdue_outstanding",
+              "unit": "CURRENCY",
+              "basis": "captured trusted primitive; no cash release inference",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(r['numeric_value'])",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "AVAILABLE_CASH_POSITION",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:668",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "WC-05",
+          "signal_type": "AVAILABLE_CASH_POSITION",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "captured_cash",
+              "unit": "CURRENCY",
+              "basis": "available cash primitive or bank closing cash; no liquidity inference",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(cash['numeric_value'])",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "BS_ACCOUNTS_PAYABLE",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:658",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "WC-03",
+          "signal_type": "BS_ACCOUNTS_PAYABLE",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "bs_accounts_payable",
+              "unit": "CURRENCY",
+              "basis": "captured trusted primitive; no cash release inference",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(r['numeric_value'])",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "BS_ACCOUNTS_RECEIVABLE",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:648",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "WC-02",
+          "signal_type": "BS_ACCOUNTS_RECEIVABLE",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "bs_accounts_receivable",
+              "unit": "CURRENCY",
+              "basis": "captured trusted primitive; no cash release inference",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(r['numeric_value'])",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "BS_INVENTORY",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:664",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "WC-04",
+          "signal_type": "BS_INVENTORY",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "bs_inventory",
+              "unit": "CURRENCY",
+              "basis": "captured trusted primitive; no cash release inference",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(r['numeric_value'])",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "CASH_OPTIMISATION_CANDIDATE",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:682",
+      "classification": "NOT_APPLICABLE_TO_FACT",
+      "reason": "Candidate/action semantics are not an established descriptive proposition.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "None",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "COMMISSION_PLAN_STRUCTURE",
+      "producer": "workforce_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:531",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "PEO-01",
+          "signal_type": "COMMISSION_PLAN_STRUCTURE",
+          "source_unit": "COUNT",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "active_commission_plan_count",
+              "unit": "COUNT",
+              "basis": "captured active plans",
+              "required": true
+            },
+            {
+              "metric": "variable_people_cost",
+              "unit": "CURRENCY",
+              "basis": "commission and bonus in latest workforce snapshot",
+              "required": true
+            },
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(len(plans))",
+        "comparison": "variable",
+        "unit": "'COUNT'"
+      }
+    },
+    {
+      "signal_type": "COMPARABLE_PRICE_DISPERSION",
+      "producer": "pricing_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:477",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "PRI-02",
+          "signal_type": "COMPARABLE_PRICE_DISPERSION",
+          "source_unit": "PERCENT",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "highest_realised_unit_price",
+              "unit": "CURRENCY_PER_UNIT",
+              "basis": "current customer-product aggregates",
+              "required": true
+            },
+            {
+              "metric": "lowest_realised_unit_price",
+              "unit": "CURRENCY_PER_UNIT",
+              "basis": "current customer-product aggregates",
+              "required": true
+            },
+            {
+              "metric": "realised_price_dispersion",
+              "unit": "PERCENTAGE",
+              "basis": "(highest - lowest) / unweighted mean * 100",
+              "required": true
+            }
+          ],
+          "entity_type": "PRODUCT",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "hi",
+        "comparison": "lo",
+        "variance": "spread",
+        "unit": "'PERCENT'"
+      }
+    },
+    {
+      "signal_type": "COMPARABLE_REVENUE_CHANGE",
+      "producer": "revenue_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:121",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "REV-01",
+          "signal_type": "COMPARABLE_REVENUE_CHANGE",
+          "source_unit": "GBP",
+          "family": "COMPARATIVE",
+          "slots": [
+            {
+              "metric": "revenue",
+              "unit": "CURRENCY",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue",
+              "unit": "CURRENCY",
+              "basis": "prior comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue_change",
+              "unit": "CURRENCY",
+              "basis": "current minus prior",
+              "required": true
+            }
+          ],
+          "entity_type": null,
+          "period_basis": "Diagnostic comparable sales windows; Signal dates, if present, span both windows",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "c",
+        "comparison": "p",
+        "variance": "delta",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "CONTRIBUTION_0_PER_FTE",
+      "producer": "workforce_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:540",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "PEO-02",
+          "signal_type": "CONTRIBUTION_0_PER_FTE",
+          "source_unit": "GBP_PER_FTE",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "contribution_0_per_fte",
+              "unit": "CURRENCY_PER_FTE",
+              "basis": "latest FTE; diagnostic output period",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "contrib / fte",
+        "unit": "'GBP_PER_FTE'"
+      }
+    },
+    {
+      "signal_type": "CONTRIBUTION_CHANGE",
+      "producer": "margin_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:225",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "GM-02",
+          "signal_type": "CONTRIBUTION_CHANGE",
+          "source_unit": "GBP",
+          "family": "COMPARATIVE",
+          "slots": [
+            {
+              "metric": "contribution_0",
+              "unit": "CURRENCY",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "contribution_0",
+              "unit": "CURRENCY",
+              "basis": "prior comparable window",
+              "required": true
+            },
+            {
+              "metric": "contribution_0_change",
+              "unit": "CURRENCY",
+              "basis": "current minus prior",
+              "required": true
+            }
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "cgp",
+        "comparison": "pgp",
+        "variance": "gpdelta",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "CONTRIBUTION_MARGIN_CHANGE",
+      "producer": "margin_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:220",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "GM-01",
+          "signal_type": "CONTRIBUTION_MARGIN_CHANGE",
+          "source_unit": "PERCENTAGE_POINTS",
+          "family": "COMPARATIVE",
+          "slots": [
+            {
+              "metric": "contribution_0_margin",
+              "unit": "PERCENTAGE",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "contribution_0_margin",
+              "unit": "PERCENTAGE",
+              "basis": "prior comparable window",
+              "required": true
+            },
+            {
+              "metric": "contribution_0_margin_change",
+              "unit": "PERCENTAGE_POINTS",
+              "basis": "current minus prior",
+              "required": true
+            }
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "cm",
+        "comparison": "pm",
+        "variance": "md",
+        "unit": "'PERCENTAGE_POINTS'"
+      }
+    },
+    {
+      "signal_type": "CONTROL_PROCESS_EXCEPTION",
+      "producer": "risk_control_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:758",
+      "classification": "REQUIRES_TYPE_SPECIFIC_MAPPING",
+      "reason": "Exception kind and management/source authority need explicit resolution.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "amt",
+        "unit": "'GBP' if amt is not None else 'COUNT'"
+      }
+    },
+    {
+      "signal_type": "CUSTOMER_BRIDGE_LEG",
+      "producer": "revenue_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:131",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "REV-02",
+          "signal_type": "CUSTOMER_BRIDGE_LEG",
+          "source_unit": "GBP",
+          "family": "COMPARATIVE",
+          "slots": [
+            {
+              "metric": "revenue",
+              "unit": "CURRENCY",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue",
+              "unit": "CURRENCY",
+              "basis": "prior comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue_change",
+              "unit": "CURRENCY",
+              "basis": "current minus prior",
+              "required": true
+            }
+          ],
+          "entity_type": "CUSTOMER",
+          "period_basis": "Diagnostic comparable sales windows; Signal dates, if present, span both windows",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "b",
+        "comparison": "a",
+        "variance": "d",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "CUSTOMER_CONTRIBUTION_AFTER_CTS",
+      "producer": "customer_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:312",
+      "classification": "REQUIRES_TYPE_SPECIFIC_MAPPING",
+      "reason": "Upstream treats missing CTS as zero; require per-customer CTS coverage before asserting Contribution 1.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "c1",
+        "comparison": "a['c0']",
+        "variance": "a['cts']",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "CUSTOMER_CONTRIBUTION_PARETO",
+      "producer": "customer_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:367",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "CUS-07",
+          "signal_type": "CUSTOMER_CONTRIBUTION_PARETO",
+          "source_unit": "PERCENT",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "top_customer_contribution_share",
+              "unit": "PERCENTAGE",
+              "basis": "top contribution-ranked 20% customer contribution / total contribution * 100",
+              "required": false
+            },
+            {
+              "metric": "top_customer_count",
+              "unit": "COUNT",
+              "basis": "ceil(20% of customer count), minimum one",
+              "required": true
+            },
+            {
+              "metric": "customers_for_80_percent_contribution",
+              "unit": "PERCENTAGE",
+              "basis": "count to reach 80% positive total contribution / total count * 100; zero sentinel when total contribution is nonpositive",
+              "required": false
+            }
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": "derived"
+        }
+      ],
+      "source_slots": {
+        "observed": "top20gp / total_gp * D('100') if total_gp else None",
+        "comparison": "D(top20n)",
+        "variance": "D(n80) / D(len(vals)) * D('100') if vals else None",
+        "unit": "'PERCENT'"
+      }
+    },
+    {
+      "signal_type": "CUSTOMER_DECLINE",
+      "producer": "customer_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:323",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "CUS-04",
+          "signal_type": "CUSTOMER_DECLINE",
+          "source_unit": "GBP",
+          "family": "COMPARATIVE",
+          "slots": [
+            {
+              "metric": "revenue",
+              "unit": "CURRENCY",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue",
+              "unit": "CURRENCY",
+              "basis": "prior comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue_change",
+              "unit": "CURRENCY",
+              "basis": "current minus prior",
+              "required": true
+            }
+          ],
+          "entity_type": "CUSTOMER",
+          "period_basis": "Diagnostic comparable sales windows; Signal dates, if present, span both windows",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "b",
+        "comparison": "a",
+        "variance": "d",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "CUSTOMER_GROWTH",
+      "producer": "customer_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:323",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "CUS-04",
+          "signal_type": "CUSTOMER_GROWTH",
+          "source_unit": "GBP",
+          "family": "COMPARATIVE",
+          "slots": [
+            {
+              "metric": "revenue",
+              "unit": "CURRENCY",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue",
+              "unit": "CURRENCY",
+              "basis": "prior comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue_change",
+              "unit": "CURRENCY",
+              "basis": "current minus prior",
+              "required": true
+            }
+          ],
+          "entity_type": "CUSTOMER",
+          "period_basis": "Diagnostic comparable sales windows; Signal dates, if present, span both windows",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "b",
+        "comparison": "a",
+        "variance": "d",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "CUSTOMER_HHI",
+      "producer": "customer_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:291",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "CUS-01",
+          "signal_type": "CUSTOMER_HHI",
+          "source_unit": "INDEX",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "customer_revenue_hhi",
+              "unit": "INDEX",
+              "basis": "sum squared fractional revenue shares * 10000",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "hhi",
+        "unit": "'INDEX'"
+      }
+    },
+    {
+      "signal_type": "CUSTOMER_MARGIN_VARIANCE",
+      "producer": "margin_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:236",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "GM-03",
+          "signal_type": "CUSTOMER_MARGIN_VARIANCE",
+          "source_unit": "PERCENTAGE_POINTS",
+          "family": "COMPARATIVE",
+          "slots": [
+            {
+              "metric": "contribution_0_margin",
+              "unit": "PERCENTAGE",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "contribution_0_margin",
+              "unit": "PERCENTAGE",
+              "basis": "prior comparable window",
+              "required": true
+            },
+            {
+              "metric": "contribution_0_margin_change",
+              "unit": "PERCENTAGE_POINTS",
+              "basis": "current minus prior",
+              "required": true
+            }
+          ],
+          "entity_type": "CUSTOMER",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "bm",
+        "comparison": "am",
+        "variance": "pp",
+        "unit": "'PERCENTAGE_POINTS'"
+      }
+    },
+    {
+      "signal_type": "CUSTOMER_OVERDUE_AR",
+      "producer": "customer_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:351",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "CUS-06",
+          "signal_type": "CUSTOMER_OVERDUE_AR",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "overdue_receivables",
+              "unit": "CURRENCY",
+              "basis": "captured ledger",
+              "required": true
+            },
+            {
+              "metric": "outstanding_receivables",
+              "unit": "CURRENCY",
+              "basis": "captured ledger",
+              "required": true
+            },
+            {
+              "metric": "overdue_share",
+              "unit": "PERCENTAGE",
+              "basis": "overdue / outstanding * 100",
+              "required": false
+            }
+          ],
+          "entity_type": "CUSTOMER",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        },
+        {
+          "diagnostic": "WC-02",
+          "signal_type": "CUSTOMER_OVERDUE_AR",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "overdue_receivables",
+              "unit": "CURRENCY",
+              "basis": "ledger overdue at diagnostic execution; upstream REAL aggregation precision retained",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": "CUSTOMER",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "x['over']",
+        "comparison": "x['out']",
+        "variance": "pct",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "CUSTOMER_OVERDUE_AR",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:652",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "CUS-06",
+          "signal_type": "CUSTOMER_OVERDUE_AR",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "overdue_receivables",
+              "unit": "CURRENCY",
+              "basis": "captured ledger",
+              "required": true
+            },
+            {
+              "metric": "outstanding_receivables",
+              "unit": "CURRENCY",
+              "basis": "captured ledger",
+              "required": true
+            },
+            {
+              "metric": "overdue_share",
+              "unit": "PERCENTAGE",
+              "basis": "overdue / outstanding * 100",
+              "required": false
+            }
+          ],
+          "entity_type": "CUSTOMER",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        },
+        {
+          "diagnostic": "WC-02",
+          "signal_type": "CUSTOMER_OVERDUE_AR",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "overdue_receivables",
+              "unit": "CURRENCY",
+              "basis": "ledger overdue at diagnostic execution; upstream REAL aggregation precision retained",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": "CUSTOMER",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(r['amt'])",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "CUSTOMER_PRODUCT_WHITESPACE",
+      "producer": "product_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:436",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "PROD-05",
+          "signal_type": "CUSTOMER_PRODUCT_WHITESPACE",
+          "source_unit": "COUNT",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "unpurchased_peer_product_count",
+              "unit": "COUNT",
+              "basis": "peer-adopted products not purchased by customer",
+              "required": true
+            },
+            {
+              "metric": "peer_adopted_product_count",
+              "unit": "COUNT",
+              "basis": "products with at least max(2, floor(10% of active customers)) buyers",
+              "required": true
+            },
+            {
+              "metric": "observed_product_count_ratio",
+              "unit": "PERCENTAGE",
+              "basis": "all customer-owned products / peer-adopted universe * 100; numerator may include non-peer products",
+              "required": true
+            }
+          ],
+          "entity_type": "CUSTOMER",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(miss)",
+        "comparison": "D(universe)",
+        "variance": "penetration",
+        "unit": "'COUNT'"
+      }
+    },
+    {
+      "signal_type": "CUSTOMER_PROFITABILITY",
+      "producer": "customer_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:298",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "CUS-02",
+          "signal_type": "CUSTOMER_PROFITABILITY",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "contribution_0",
+              "unit": "CURRENCY",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue",
+              "unit": "CURRENCY",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "contribution_0_margin",
+              "unit": "PERCENTAGE",
+              "basis": "contribution_0 / revenue * 100",
+              "required": false
+            }
+          ],
+          "entity_type": "CUSTOMER",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "x['gp']",
+        "comparison": "x['revenue']",
+        "variance": "margin",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "CUSTOMER_RETENTION_SUMMARY",
+      "producer": "customer_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:336",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "CUS-05",
+          "signal_type": "CUSTOMER_RETENTION_SUMMARY",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "retained_customer_revenue",
+              "unit": "CURRENCY",
+              "basis": "current revenue of retained customers",
+              "required": true
+            },
+            {
+              "metric": "revenue",
+              "unit": "CURRENCY",
+              "basis": "prior comparable window",
+              "required": true
+            },
+            {
+              "metric": "observed_revenue_retention_ratio",
+              "unit": "PERCENTAGE",
+              "basis": "retained current revenue / prior revenue * 100; not contractual GRR",
+              "required": false
+            }
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "retained",
+        "comparison": "prior_total",
+        "variance": "grr",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "DEPARTMENT_WORKFORCE_ECONOMICS",
+      "producer": "workforce_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:554",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "PEO-03",
+          "signal_type": "DEPARTMENT_WORKFORCE_ECONOMICS",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "annual_people_cost",
+              "unit": "CURRENCY",
+              "basis": "latest workforce snapshot",
+              "required": true
+            },
+            {
+              "metric": "full_time_equivalents",
+              "unit": "FTE",
+              "basis": "latest workforce snapshot",
+              "required": true
+            },
+            {
+              "metric": "utilisation",
+              "unit": "PERCENTAGE",
+              "basis": "captured utilised / practical capacity hours * 100",
+              "required": false
+            }
+          ],
+          "entity_type": "DEPARTMENT",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "g['cost']",
+        "comparison": "g['fte']",
+        "variance": "util",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "DEPENDENCY_EXPOSURE_SIGNAL",
+      "producer": "risk_control_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:772",
+      "classification": "REQUIRES_TYPE_SPECIFIC_MAPPING",
+      "reason": "Resolve the heterogeneous originating Signal before mapping.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "D(r['observed_value']) if r['observed_value'] not in (None, '') else None",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "DUPLICATE_LOOKING_SPEND",
+      "producer": "supplier_overhead_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:620",
+      "classification": "INSUFFICIENT_SEMANTICS",
+      "reason": "The pair of transaction identities is omitted from Signal ancestry.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "amount",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "EVIDENCED_RECURRING_REVENUE_MIX",
+      "producer": "extended_revenue_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:199",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "REV-06",
+          "signal_type": "EVIDENCED_RECURRING_REVENUE_MIX",
+          "source_unit": "PERCENT",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "recurring_revenue_share",
+              "unit": "PERCENTAGE",
+              "basis": "mapped transaction revenue; not guaranteed future revenue",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "mix['recurring_pct']",
+        "unit": "'PERCENT'"
+      }
+    },
+    {
+      "signal_type": "EXISTING_CUSTOMER_NET_CHANGE",
+      "producer": "revenue_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:136",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "REV-03",
+          "signal_type": "EXISTING_CUSTOMER_NET_CHANGE",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "existing_customer_revenue_change",
+              "unit": "CURRENCY",
+              "basis": "customers active in both windows",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "existing",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "FINANCIAL_EXPOSURE",
+      "producer": "risk_control_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:769",
+      "classification": "REQUIRES_TYPE_SPECIFIC_MAPPING",
+      "reason": "Exposure type and source authority need explicit resolution.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "amt",
+        "comparison": "D(r['concentration_pct']) if r['concentration_pct'] not in (None, '') else None",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "FINANCIAL_INTEGRITY_WEAKNESS",
+      "producer": "risk_control_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:744",
+      "classification": "REQUIRES_TYPE_SPECIFIC_MAPPING",
+      "reason": "Requires typed state proposition and trust-layer source resolver.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "None",
+        "unit": "'STATE'"
+      }
+    },
+    {
+      "signal_type": "FORECAST_MAE",
+      "producer": "forecasting_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:713",
+      "classification": "INSUFFICIENT_SEMANTICS",
+      "reason": "Signal omits forecast-vintage/target-period ancestry; percentage is not standard MAPE.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "mae",
+        "comparison": "mape",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "FORECAST_MEAN_ERROR",
+      "producer": "forecasting_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:713",
+      "classification": "INSUFFICIENT_SEMANTICS",
+      "reason": "Signal omits forecast-vintage/target-period ancestry.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "me",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "FORENSIC_EXCEPTION_SIGNAL",
+      "producer": "risk_control_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:761",
+      "classification": "REQUIRES_TYPE_SPECIFIC_MAPPING",
+      "reason": "Resolve the heterogeneous originating Signal before mapping.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "D(r['observed_value']) if r['observed_value'] not in (None, '') else None",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "FORWARD_SCENARIO_RANGE",
+      "producer": "forecasting_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:729",
+      "classification": "NOT_APPLICABLE_TO_FACT",
+      "reason": "Illustrative assumptions are not observed outcomes.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "base",
+        "comparison": "downside",
+        "variance": "upside - base",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "GOVERNANCE_ACTION_CANDIDATE",
+      "producer": "risk_control_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:788",
+      "classification": "NOT_APPLICABLE_TO_FACT",
+      "reason": "Candidate/action semantics are not an established descriptive proposition.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "None",
+        "unit": "'ACTION'"
+      }
+    },
+    {
+      "signal_type": "INVENTORY_SNAPSHOT_VALUE",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:664",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "WC-04",
+          "signal_type": "INVENTORY_SNAPSHOT_VALUE",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "inventory_snapshot_value",
+              "unit": "CURRENCY",
+              "basis": "captured trusted primitive; no cash release inference",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(r['numeric_value'])",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "KPI_DRIVER_OBSERVATION",
+      "producer": "forecasting_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:721",
+      "classification": "REQUIRES_TYPE_SPECIFIC_MAPPING",
+      "reason": "KPI-specific unit, authority and period contract required.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "D(k['value'])",
+        "unit": "k['unit']"
+      }
+    },
+    {
+      "signal_type": "LOST_CUSTOMER_REVENUE",
+      "producer": "revenue_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:136",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "REV-03",
+          "signal_type": "LOST_CUSTOMER_REVENUE",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "lost_customer_prior_revenue",
+              "unit": "CURRENCY",
+              "basis": "prior revenue of customers absent in current window",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        },
+        {
+          "diagnostic": "CUS-05",
+          "signal_type": "LOST_CUSTOMER_REVENUE",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "lost_customer_prior_revenue",
+              "unit": "CURRENCY",
+              "basis": "prior revenue of customers absent in current window",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "lost",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "LOST_CUSTOMER_REVENUE",
+      "producer": "customer_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:336",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "REV-03",
+          "signal_type": "LOST_CUSTOMER_REVENUE",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "lost_customer_prior_revenue",
+              "unit": "CURRENCY",
+              "basis": "prior revenue of customers absent in current window",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        },
+        {
+          "diagnostic": "CUS-05",
+          "signal_type": "LOST_CUSTOMER_REVENUE",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "lost_customer_prior_revenue",
+              "unit": "CURRENCY",
+              "basis": "prior revenue of customers absent in current window",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "lost",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "MARGIN_LEAKAGE_SIGNAL",
+      "producer": "margin_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:248",
+      "classification": "INSUFFICIENT_SEMANTICS",
+      "reason": "Transaction identity is omitted; dataset ancestry alone cannot identify the transaction.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "actual",
+        "comparison": "base",
+        "variance": "impact",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "MARGIN_RATE_EFFECT",
+      "producer": "margin_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:225",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "GM-02",
+          "signal_type": "MARGIN_RATE_EFFECT",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "mechanical_margin_rate_effect",
+              "unit": "CURRENCY",
+              "basis": "current revenue times margin-point movement / 100",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "rate_effect",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "MIX_PORTFOLIO_RESIDUAL",
+      "producer": "extended_revenue_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:165",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "REV-04",
+          "signal_type": "MIX_PORTFOLIO_RESIDUAL",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "portfolio_residual",
+              "unit": "CURRENCY",
+              "basis": "total revenue movement less mechanical price and volume effects",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "val",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "MONTHLY_REVENUE_VOLATILITY",
+      "producer": "extended_revenue_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:194",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "REV-06",
+          "signal_type": "MONTHLY_REVENUE_VOLATILITY",
+          "source_unit": "PERCENT_CV",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "monthly_revenue_coefficient_of_variation",
+              "unit": "PERCENTAGE",
+              "basis": "population standard deviation / mean * 100",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "cv",
+        "unit": "'PERCENT_CV'"
+      }
+    },
+    {
+      "signal_type": "NEGATIVE_TRANSACTION_MARGIN",
+      "producer": "margin_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:278",
+      "classification": "INSUFFICIENT_SEMANTICS",
+      "reason": "Transaction identity is omitted from Signal.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "gp",
+        "comparison": "base",
+        "variance": "margin",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "NEW_CUSTOMER_REVENUE",
+      "producer": "revenue_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:136",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "REV-03",
+          "signal_type": "NEW_CUSTOMER_REVENUE",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "new_customer_revenue",
+              "unit": "CURRENCY",
+              "basis": "customers absent in prior comparable window",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        },
+        {
+          "diagnostic": "CUS-05",
+          "signal_type": "NEW_CUSTOMER_REVENUE",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "new_customer_revenue",
+              "unit": "CURRENCY",
+              "basis": "no prior or older captured customer revenue",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "new",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "NEW_CUSTOMER_REVENUE",
+      "producer": "customer_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:336",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "REV-03",
+          "signal_type": "NEW_CUSTOMER_REVENUE",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "new_customer_revenue",
+              "unit": "CURRENCY",
+              "basis": "customers absent in prior comparable window",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        },
+        {
+          "diagnostic": "CUS-05",
+          "signal_type": "NEW_CUSTOMER_REVENUE",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "new_customer_revenue",
+              "unit": "CURRENCY",
+              "basis": "no prior or older captured customer revenue",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "genuinely_new",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "OVERHEAD_COST_DRIFT",
+      "producer": "supplier_overhead_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:615",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "SUP-04",
+          "signal_type": "OVERHEAD_COST_DRIFT",
+          "source_unit": "GBP",
+          "family": "COMPARATIVE",
+          "slots": [
+            {
+              "metric": "overhead_spend",
+              "unit": "CURRENCY",
+              "basis": "later captured months",
+              "required": true
+            },
+            {
+              "metric": "overhead_spend",
+              "unit": "CURRENCY",
+              "basis": "earlier captured months",
+              "required": true
+            },
+            {
+              "metric": "overhead_spend_change",
+              "unit": "CURRENCY",
+              "basis": "later minus earlier; windows may differ in length",
+              "required": true
+            }
+          ],
+          "entity_type": "OVERHEAD_CATEGORY",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "b",
+        "comparison": "a",
+        "variance": "change",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "PEOPLE_COST_PER_FTE",
+      "producer": "workforce_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:528",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "PEO-01",
+          "signal_type": "PEOPLE_COST_PER_FTE",
+          "source_unit": "GBP_PER_FTE",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "annual_people_cost_per_fte",
+              "unit": "CURRENCY_PER_FTE",
+              "basis": "latest FTE; diagnostic output period",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "total_cost / fte",
+        "unit": "'GBP_PER_FTE'"
+      }
+    },
+    {
+      "signal_type": "PLAN_VS_ACTUAL_REVENUE",
+      "producer": "forecasting_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:701",
+      "classification": "INSUFFICIENT_SEMANTICS",
+      "reason": "Selected common periods and actual evidence are not retained in Signal ancestry.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "ac",
+        "comparison": "pa",
+        "variance": "var",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "PRICE_EFFECT",
+      "producer": "extended_revenue_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:165",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "REV-04",
+          "signal_type": "PRICE_EFFECT",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "mechanical_price_effect",
+              "unit": "CURRENCY",
+              "basis": "comparable products, current quantity weighting; not causal",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "val",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "PRICE_LEAKAGE_SIGNAL",
+      "producer": "pricing_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:489",
+      "classification": "INSUFFICIENT_SEMANTICS",
+      "reason": "Transaction identity and unit basis are omitted from Signal.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "price",
+        "comparison": "ref",
+        "variance": "gap",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "PRICING_OPPORTUNITY_CANDIDATE_SET",
+      "producer": "pricing_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:512",
+      "classification": "NOT_APPLICABLE_TO_FACT",
+      "reason": "Candidate/action semantics are not an established descriptive proposition.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "D(disp + leak)",
+        "comparison": "D(disp)",
+        "variance": "D(leak)",
+        "unit": "'COUNT'"
+      }
+    },
+    {
+      "signal_type": "PRODUCT_COMPLEXITY_DISTRIBUTION",
+      "producer": "product_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:415",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "PROD-04",
+          "signal_type": "PRODUCT_COMPLEXITY_DISTRIBUTION",
+          "source_unit": "COUNT",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "long_tail_product_count",
+              "unit": "COUNT",
+              "basis": "products with at most 1% revenue share; empty when total revenue is zero",
+              "required": true
+            },
+            {
+              "metric": "product_count",
+              "unit": "COUNT",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "long_tail_contribution_0",
+              "unit": "CURRENCY",
+              "basis": "contribution of long-tail products",
+              "required": true
+            }
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": "observed"
+        }
+      ],
+      "source_slots": {
+        "observed": "D(len(tail))",
+        "comparison": "D(len(vals))",
+        "variance": "tail_gp",
+        "unit": "'COUNT'"
+      }
+    },
+    {
+      "signal_type": "PRODUCT_ECONOMICS",
+      "producer": "product_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:383",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "PROD-01",
+          "signal_type": "PRODUCT_ECONOMICS",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "contribution_0",
+              "unit": "CURRENCY",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue",
+              "unit": "CURRENCY",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "contribution_0_margin",
+              "unit": "PERCENTAGE",
+              "basis": "contribution_0 / revenue * 100",
+              "required": false
+            }
+          ],
+          "entity_type": "PRODUCT",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "x['gp']",
+        "comparison": "x['revenue']",
+        "variance": "margin",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "PRODUCT_GROWTH_DECLINE",
+      "producer": "product_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:402",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "PROD-03",
+          "signal_type": "PRODUCT_GROWTH_DECLINE",
+          "source_unit": "GBP",
+          "family": "COMPARATIVE",
+          "slots": [
+            {
+              "metric": "revenue",
+              "unit": "CURRENCY",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue",
+              "unit": "CURRENCY",
+              "basis": "prior comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue_change",
+              "unit": "CURRENCY",
+              "basis": "current minus prior",
+              "required": true
+            }
+          ],
+          "entity_type": "PRODUCT",
+          "period_basis": "Diagnostic comparable sales windows; Signal dates, if present, span both windows",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "b['revenue']",
+        "comparison": "a['revenue']",
+        "variance": "rd",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "PRODUCT_MARGIN_VARIANCE",
+      "producer": "margin_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:236",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "GM-04",
+          "signal_type": "PRODUCT_MARGIN_VARIANCE",
+          "source_unit": "PERCENTAGE_POINTS",
+          "family": "COMPARATIVE",
+          "slots": [
+            {
+              "metric": "contribution_0_margin",
+              "unit": "PERCENTAGE",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "contribution_0_margin",
+              "unit": "PERCENTAGE",
+              "basis": "prior comparable window",
+              "required": true
+            },
+            {
+              "metric": "contribution_0_margin_change",
+              "unit": "PERCENTAGE_POINTS",
+              "basis": "current minus prior",
+              "required": true
+            }
+          ],
+          "entity_type": "PRODUCT",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "bm",
+        "comparison": "am",
+        "variance": "pp",
+        "unit": "'PERCENTAGE_POINTS'"
+      }
+    },
+    {
+      "signal_type": "PRODUCT_MIX_SHIFT",
+      "producer": "product_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:393",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "PROD-02",
+          "signal_type": "PRODUCT_MIX_SHIFT",
+          "source_unit": "PERCENTAGE_POINTS",
+          "family": "COMPARATIVE",
+          "slots": [
+            {
+              "metric": "revenue_share",
+              "unit": "PERCENTAGE",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue_share",
+              "unit": "PERCENTAGE",
+              "basis": "prior comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue_share_change",
+              "unit": "PERCENTAGE_POINTS",
+              "basis": "current minus prior",
+              "required": true
+            }
+          ],
+          "entity_type": "PRODUCT",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": "comparison"
+        }
+      ],
+      "source_slots": {
+        "observed": "newshare",
+        "comparison": "oldshare",
+        "variance": "shift",
+        "unit": "'PERCENTAGE_POINTS'"
+      }
+    },
+    {
+      "signal_type": "PURCHASE_COST_INFLATION_RECOVERY",
+      "producer": "margin_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:268",
+      "classification": "REQUIRES_TYPE_SPECIFIC_MAPPING",
+      "reason": "Mechanical recovery requires explicit quantity basis and comparability validation.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "pressure",
+        "comparison": "recovered",
+        "variance": "unrecovered",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "PURCHASE_PRICE_VARIANCE",
+      "producer": "supplier_overhead_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:597",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "SUP-02",
+          "signal_type": "PURCHASE_PRICE_VARIANCE",
+          "source_unit": "GBP_PER_UNIT",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "unit_cost_change",
+              "unit": "CURRENCY_PER_UNIT",
+              "basis": "latest minus earliest captured item cost",
+              "required": true
+            },
+            {
+              "metric": "mechanical_purchase_price_variance",
+              "unit": "CURRENCY",
+              "basis": "unit cost change times latest quantity",
+              "required": true
+            },
+            null
+          ],
+          "entity_type": "SUPPLIER_ITEM",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "delta",
+        "comparison": "impact",
+        "unit": "'GBP_PER_UNIT'"
+      }
+    },
+    {
+      "signal_type": "PVM_RECONCILIATION",
+      "producer": "extended_revenue_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:166",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "REV-04",
+          "signal_type": "PVM_RECONCILIATION",
+          "source_unit": "GBP",
+          "family": "RECONCILIATION",
+          "slots": [
+            {
+              "metric": "mechanical_bridge_total",
+              "unit": "CURRENCY",
+              "basis": "price + volume + explicit portfolio residual",
+              "required": true
+            },
+            {
+              "metric": "revenue_change",
+              "unit": "CURRENCY",
+              "basis": "current minus prior",
+              "required": true
+            },
+            {
+              "metric": "reconciliation_residual",
+              "unit": "CURRENCY",
+              "basis": "bridge total minus revenue change",
+              "required": true
+            }
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "price + volume + residual",
+        "comparison": "total_delta",
+        "variance": "price + volume + residual - total_delta",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "REACTIVATED_CUSTOMER_REVENUE",
+      "producer": "customer_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:336",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "CUS-05",
+          "signal_type": "REACTIVATED_CUSTOMER_REVENUE",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "reactivated_customer_revenue",
+              "unit": "CURRENCY",
+              "basis": "older history but no prior window revenue",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "reactivated",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "REALISED_PRICE_INCREASE_COVERAGE",
+      "producer": "pricing_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:503",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "PRI-04",
+          "signal_type": "REALISED_PRICE_INCREASE_COVERAGE",
+          "source_unit": "PERCENT",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "price_increase_coverage",
+              "unit": "PERCENTAGE",
+              "basis": "products with higher realised price / comparable products * 100",
+              "required": true
+            },
+            {
+              "metric": "comparable_product_count",
+              "unit": "COUNT",
+              "basis": "products comparable across windows",
+              "required": true
+            },
+            {
+              "metric": "mechanical_price_effect",
+              "unit": "CURRENCY",
+              "basis": "positive unit-price movement times current units; no attribution",
+              "required": true
+            }
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "coverage",
+        "comparison": "D(comparable)",
+        "variance": "effect",
+        "unit": "'PERCENT'"
+      }
+    },
+    {
+      "signal_type": "REALISED_PRICE_MOVEMENT",
+      "producer": "pricing_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:466",
+      "classification": "INSUFFICIENT_SEMANTICS",
+      "reason": "Customer-product calculation drops product identity from the Signal.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "new",
+        "comparison": "old",
+        "variance": "impact",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "RECONCILIATION_EXCEPTION",
+      "producer": "risk_control_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:750",
+      "classification": "REQUIRES_TYPE_SPECIFIC_MAPPING",
+      "reason": "Multiple reconciliation kinds require signed residual and status semantics.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "D(residual) if residual not in (None, '') else None",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "REVENUE_BRIDGE_TOTAL",
+      "producer": "revenue_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:130",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "REV-02",
+          "signal_type": "REVENUE_BRIDGE_TOTAL",
+          "source_unit": "GBP",
+          "family": "COMPARATIVE",
+          "slots": [
+            {
+              "metric": "revenue",
+              "unit": "CURRENCY",
+              "basis": "current comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue",
+              "unit": "CURRENCY",
+              "basis": "prior comparable window",
+              "required": true
+            },
+            {
+              "metric": "revenue_change",
+              "unit": "CURRENCY",
+              "basis": "current minus prior",
+              "required": true
+            }
+          ],
+          "entity_type": null,
+          "period_basis": "Diagnostic comparable sales windows; Signal dates, if present, span both windows",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "c",
+        "comparison": "p",
+        "variance": "delta",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "REVENUE_PER_FTE",
+      "producer": "workforce_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:540",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "PEO-02",
+          "signal_type": "REVENUE_PER_FTE",
+          "source_unit": "GBP_PER_FTE",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "revenue_per_fte",
+              "unit": "CURRENCY_PER_FTE",
+              "basis": "latest FTE; diagnostic output period",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "rev / fte",
+        "unit": "'GBP_PER_FTE'"
+      }
+    },
+    {
+      "signal_type": "SEASONAL_INDEX_SPREAD",
+      "producer": "extended_revenue_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:183",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "REV-05",
+          "signal_type": "SEASONAL_INDEX_SPREAD",
+          "source_unit": "INDEX_POINTS",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "seasonal_index_spread",
+              "unit": "INDEX_POINTS",
+              "basis": "peak minus trough month-of-year index; 100 = average month",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "spread",
+        "unit": "'INDEX_POINTS'"
+      }
+    },
+    {
+      "signal_type": "SEASONAL_PEAK_MONTH",
+      "producer": "extended_revenue_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:181",
+      "classification": "INSUFFICIENT_SEMANTICS",
+      "reason": "Month identity exists only in prose; do not parse prose into truth.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "valid[peak]",
+        "comparison": "D('100')",
+        "variance": "valid[peak] - D('100')",
+        "unit": "'INDEX'"
+      }
+    },
+    {
+      "signal_type": "SEASONAL_TROUGH_MONTH",
+      "producer": "extended_revenue_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:182",
+      "classification": "INSUFFICIENT_SEMANTICS",
+      "reason": "Month identity exists only in prose; do not parse prose into truth.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "valid[trough]",
+        "comparison": "D('100')",
+        "variance": "valid[trough] - D('100')",
+        "unit": "'INDEX'"
+      }
+    },
+    {
+      "signal_type": "SUPPLIER_DEPENDENCY",
+      "producer": "supplier_overhead_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:606",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "SUP-03",
+          "signal_type": "SUPPLIER_DEPENDENCY",
+          "source_unit": "PERCENT",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "supplier_spend_share",
+              "unit": "PERCENTAGE",
+              "basis": "supplier spend / total captured spend * 100",
+              "required": true
+            },
+            {
+              "metric": "supplier_spend",
+              "unit": "CURRENCY",
+              "basis": "captured purchase transactions",
+              "required": true
+            },
+            null
+          ],
+          "entity_type": "SUPPLIER",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": "observed"
+        }
+      ],
+      "source_slots": {
+        "observed": "share",
+        "comparison": "v",
+        "unit": "'PERCENT'"
+      }
+    },
+    {
+      "signal_type": "SUPPLIER_OVERHEAD_OPPORTUNITY_CANDIDATE",
+      "producer": "supplier_overhead_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:625",
+      "classification": "NOT_APPLICABLE_TO_FACT",
+      "reason": "Candidate/action semantics are not an established descriptive proposition.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "None",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "SUPPLIER_SPEND",
+      "producer": "supplier_overhead_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:589",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "SUP-01",
+          "signal_type": "SUPPLIER_SPEND",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "supplier_spend",
+              "unit": "CURRENCY",
+              "basis": "captured purchase transactions",
+              "required": true
+            },
+            {
+              "metric": "supplier_spend_share",
+              "unit": "PERCENTAGE",
+              "basis": "supplier spend / total captured spend * 100",
+              "required": true
+            },
+            null
+          ],
+          "entity_type": "SUPPLIER",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": "comparison"
+        }
+      ],
+      "source_slots": {
+        "observed": "v",
+        "comparison": "share",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "TOP5_CONCENTRATION",
+      "producer": "customer_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:291",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "CUS-01",
+          "signal_type": "TOP5_CONCENTRATION",
+          "source_unit": "PERCENT",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "top_five_customer_revenue_share",
+              "unit": "PERCENTAGE",
+              "basis": "current comparable revenue",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "top5 / total * D('100')",
+        "unit": "'PERCENT'"
+      }
+    },
+    {
+      "signal_type": "TOP_CUSTOMER_CONCENTRATION",
+      "producer": "customer_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:291",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "CUS-01",
+          "signal_type": "TOP_CUSTOMER_CONCENTRATION",
+          "source_unit": "PERCENT",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "largest_customer_revenue_share",
+              "unit": "PERCENTAGE",
+              "basis": "current comparable revenue",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": "CUSTOMER",
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "top1[2]",
+        "unit": "'PERCENT'"
+      }
+    },
+    {
+      "signal_type": "TOTAL_PEOPLE_COST",
+      "producer": "workforce_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:528",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "PEO-01",
+          "signal_type": "TOTAL_PEOPLE_COST",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "annual_people_cost",
+              "unit": "CURRENCY",
+              "basis": "latest captured workforce snapshot",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "total_cost",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "VOLUME_EFFECT",
+      "producer": "extended_revenue_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:165",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "REV-04",
+          "signal_type": "VOLUME_EFFECT",
+          "source_unit": "GBP",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "mechanical_volume_effect",
+              "unit": "CURRENCY",
+              "basis": "comparable products, prior unit-price weighting; not causal",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "val",
+        "unit": "'GBP'"
+      }
+    },
+    {
+      "signal_type": "WC_CCC",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:642",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "WC-01",
+          "signal_type": "WC_CCC",
+          "source_unit": "DAYS",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "wc_ccc",
+              "unit": "DAYS",
+              "basis": "captured trusted primitive; exact basis retained in lineage",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(r['numeric_value'])",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "WC_DIO",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:642",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "WC-01",
+          "signal_type": "WC_DIO",
+          "source_unit": "DAYS",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "wc_dio",
+              "unit": "DAYS",
+              "basis": "captured trusted primitive; exact basis retained in lineage",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        },
+        {
+          "diagnostic": "WC-04",
+          "signal_type": "WC_DIO",
+          "source_unit": "DAYS",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "wc_dio",
+              "unit": "DAYS",
+              "basis": "captured trusted primitive; exact basis retained in lineage",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(r['numeric_value'])",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "WC_DIO",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:664",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "WC-01",
+          "signal_type": "WC_DIO",
+          "source_unit": "DAYS",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "wc_dio",
+              "unit": "DAYS",
+              "basis": "captured trusted primitive; exact basis retained in lineage",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        },
+        {
+          "diagnostic": "WC-04",
+          "signal_type": "WC_DIO",
+          "source_unit": "DAYS",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "wc_dio",
+              "unit": "DAYS",
+              "basis": "captured trusted primitive; exact basis retained in lineage",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(r['numeric_value'])",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "WC_DPO",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:642",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "WC-01",
+          "signal_type": "WC_DPO",
+          "source_unit": "DAYS",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "wc_dpo",
+              "unit": "DAYS",
+              "basis": "captured trusted primitive; exact basis retained in lineage",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        },
+        {
+          "diagnostic": "WC-03",
+          "signal_type": "WC_DPO",
+          "source_unit": "DAYS",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "wc_dpo",
+              "unit": "DAYS",
+              "basis": "captured trusted primitive; exact basis retained in lineage",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(r['numeric_value'])",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "WC_DPO",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:658",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "WC-01",
+          "signal_type": "WC_DPO",
+          "source_unit": "DAYS",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "wc_dpo",
+              "unit": "DAYS",
+              "basis": "captured trusted primitive; exact basis retained in lineage",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        },
+        {
+          "diagnostic": "WC-03",
+          "signal_type": "WC_DPO",
+          "source_unit": "DAYS",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "wc_dpo",
+              "unit": "DAYS",
+              "basis": "captured trusted primitive; exact basis retained in lineage",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(r['numeric_value'])",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "WC_DSO",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:642",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "WC-01",
+          "signal_type": "WC_DSO",
+          "source_unit": "DAYS",
+          "family": "MEASUREMENT",
+          "slots": [
+            {
+              "metric": "wc_dso",
+              "unit": "DAYS",
+              "basis": "captured trusted primitive; exact basis retained in lineage",
+              "required": true
+            },
+            null,
+            null
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "D(r['numeric_value'])",
+        "unit": "r['unit']"
+      }
+    },
+    {
+      "signal_type": "WORKFORCE_CAPACITY_OPPORTUNITY_CANDIDATE",
+      "producer": "workforce_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:571",
+      "classification": "NOT_APPLICABLE_TO_FACT",
+      "reason": "Candidate/action semantics are not an established descriptive proposition.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "spare",
+        "unit": "'HOURS'"
+      }
+    },
+    {
+      "signal_type": "WORKFORCE_UTILISATION",
+      "producer": "workforce_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:564",
+      "classification": "SAFE_TO_CANONICALISE",
+      "reason": "Only listed producer mappings; record-level eligibility, slots, denominator guards and lineage must also pass",
+      "mappings": [
+        {
+          "diagnostic": "PEO-04",
+          "signal_type": "WORKFORCE_UTILISATION",
+          "source_unit": "PERCENT",
+          "family": "MEASUREMENT_SET",
+          "slots": [
+            {
+              "metric": "utilisation",
+              "unit": "PERCENTAGE",
+              "basis": "utilised / practical capacity hours * 100",
+              "required": true
+            },
+            {
+              "metric": "practical_capacity",
+              "unit": "HOURS",
+              "basis": "records with both capacity and used hours",
+              "required": true
+            },
+            {
+              "metric": "unused_capacity",
+              "unit": "HOURS",
+              "basis": "max(capacity - used, 0); not a cash saving",
+              "required": true
+            }
+          ],
+          "entity_type": null,
+          "period_basis": "Captured diagnostic scope; exact dates unavailable unless retained by Signal",
+          "version": "SF-2.44.1",
+          "classification": "SAFE_TO_CANONICALISE",
+          "refuse_ambiguous_zero_slot": null
+        }
+      ],
+      "source_slots": {
+        "observed": "util",
+        "comparison": "cap",
+        "variance": "spare",
+        "unit": "'PERCENT'"
+      }
+    },
+    {
+      "signal_type": "WORKING_CAPITAL_RELEASE_CANDIDATE",
+      "producer": "working_capital_diagnostics",
+      "source": "profit_doctor/diagnostic/engine.py:675",
+      "classification": "NOT_APPLICABLE_TO_FACT",
+      "reason": "Candidate/action semantics are not an established descriptive proposition.",
+      "mappings": [],
+      "source_slots": {
+        "observed": "None",
+        "unit": "'GBP'"
+      }
+    }
+  ]
+}

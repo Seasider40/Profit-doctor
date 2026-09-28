@@ -658,5 +658,17 @@
     "fixture_dependent": false,
     "expected_tests": 21,
     "introduced_in": "2.43"
+  },
+  "test_canonical_facts_findings_v244": {
+    "category": "reasoning/canonical-facts-findings",
+    "fixture_dependent": false,
+    "expected_tests": 35,
+    "introduced_in": "2.44"
+  },
+  "test_canonical_migrations_v244": {
+    "category": "persistence/migration",
+    "fixture_dependent": false,
+    "expected_tests": 3,
+    "introduced_in": "2.44"
   }
 }
