@@ -700,5 +700,17 @@
     "fixture_dependent": false,
     "expected_tests": 3,
     "introduced_in": "2.46"
+  },
+  "test_economic_story_v247": {
+    "category": "reasoning/economic-story",
+    "fixture_dependent": false,
+    "expected_tests": 33,
+    "introduced_in": "2.47"
+  },
+  "test_story_migrations_v247": {
+    "category": "persistence/migration",
+    "fixture_dependent": false,
+    "expected_tests": 3,
+    "introduced_in": "2.47"
   }
 }
