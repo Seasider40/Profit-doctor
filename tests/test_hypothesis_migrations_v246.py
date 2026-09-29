@@ -1,4 +1,4 @@
-"""Frozen v2.44 upgrade evidence, independent of current metadata."""
+"""Frozen v2.45 upgrade evidence, independent of current metadata."""
 from pathlib import Path
 import tempfile
 import unittest
@@ -12,11 +12,11 @@ from profit_doctor.persistence import Base, DatabaseConfig, build_engine
 from tests.test_postgresql_live_qualification_v218 import alembic_config
 
 ROOT = Path(__file__).resolve().parents[1]
-FIXTURE = ROOT / 'tests/fixtures/v244_schema.sql'
-NEW = {'evidence_graph_record'}
+FIXTURE = ROOT / 'tests/fixtures/v245_schema.sql'
+NEW = {'canonical_hypothesis', 'canonical_interpretation_revision'}
 
 
-class GraphMigrationsV245(unittest.TestCase):
+class HypothesisMigrationsV246(unittest.TestCase):
     def setUp(self):
         directory = tempfile.TemporaryDirectory()
         self.addCleanup(directory.cleanup)
@@ -44,7 +44,7 @@ class GraphMigrationsV245(unittest.TestCase):
         command.upgrade(self.cfg, 'head')
         self.assert_head()
 
-    def test_frozen_v244_all_tables_preserved_downgrade_and_reupgrade(self):
+    def test_frozen_v245_all_tables_preserved_downgrade_and_reupgrade(self):
         statements = '\n'.join(x for x in FIXTURE.read_text(encoding='utf-8').splitlines() if not x.startswith('--'))
         with self.engine.begin() as c:
             for statement in statements.split(';'):
@@ -52,7 +52,7 @@ class GraphMigrationsV245(unittest.TestCase):
                     c.exec_driver_sql(statement)
         old = MetaData()
         old.reflect(self.engine)
-        self.assertEqual(25, len(old.tables)-1)
+        self.assertEqual(26, len(old.tables)-1)
         self.assertFalse(NEW & old.tables.keys())
         expected = {}
         with self.engine.begin() as c:
@@ -65,10 +65,10 @@ class GraphMigrationsV245(unittest.TestCase):
                     if col.foreign_keys:
                         fk = next(iter(col.foreign_keys)).column
                         value = ids[fk.table.name] if fk.primary_key else 'old-client'
-                    elif col.primary_key:
-                        value = ids[table.name]
                     elif str(col.type) == 'INTEGER':
                         value = 1
+                    elif col.primary_key:
+                        value = ids[table.name]
                     else:
                         value = {'document':'{"frozen":"preserve exactly"}', 'created_at':'2026-09-28T00:00:00+00:00',
                                  'currency':'GBP','base_currency':'GBP'}.get(col.name, 'legacy')
@@ -77,12 +77,13 @@ class GraphMigrationsV245(unittest.TestCase):
                 expected[table.name] = row
         command.upgrade(self.cfg, 'head')
         self.assert_head()
-        # Payload removal on downgrade is intentional; v2.44 records and foundation links/audits stay.
+        # Payload removal on downgrade is intentional; v2.45 records and foundation links/audits stay.
         with self.engine.begin() as c:
             for name in NEW:
-                values = dict(link_id='old-evidence_link_v243', revision=1, client_id='old-client', run_id='old-engine_run', source_id='old-reasoning_object_v243', target_id='old-reasoning_object_v243', document='{"qualification":"payload"}')
+                values = dict(object_id='old-reasoning_object_v243', revision=1, client_id='old-client', document='{"qualification":"payload"}')
+                values['finding_id' if name == 'canonical_hypothesis' else 'hypothesis_id'] = 'old-reasoning_object_v243'
                 c.execute(insert(Base.metadata.tables[name]).values(**values))
-        for revision in ('head', '0005_canonical_facts_findings'):
+        for revision in ('head', '0006_evidence_graph'):
             if revision != 'head':
                 command.downgrade(self.cfg, revision)
             with self.engine.connect() as c:
@@ -96,10 +97,10 @@ class GraphMigrationsV245(unittest.TestCase):
                 self.assertEqual(0, c.scalar(text(f'SELECT count(*) FROM {name}')))
 
     def test_forward_migration_does_not_import_mutable_models(self):
-        source = (ROOT/'alembic/versions/0006_evidence_graph.py').read_text(encoding='utf-8')
+        source = (ROOT/'alembic/versions/0007_hypothesis_interpretation.py').read_text(encoding='utf-8')
         for forbidden in ('profit_doctor', 'metadata', 'create_all'):
             self.assertNotIn(forbidden, source)
-        self.assertIn("down_revision = '0005_canonical_facts_findings'", source)
+        self.assertIn("down_revision = '0006_evidence_graph'", source)
 
 
 if __name__ == '__main__':

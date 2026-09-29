@@ -3,4 +3,5 @@ from .models import (Base,Client,EngineRun,OpportunityRelationship,PrimitiveResu
 from . import reasoning_schema  # Register additive canonical foundation tables.
 from . import canonical_schema  # Typed Fact/Finding extensions reuse foundation IDs.
 from . import graph_schema  # Governance records extend existing EvidenceLink IDs.
+from . import hypothesis_schema  # Class-scoped hypotheses and interpretation revisions.
 __all__=[x for x in globals() if not x.startswith('_')]

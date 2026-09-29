@@ -682,5 +682,23 @@
     "fixture_dependent": false,
     "expected_tests": 3,
     "introduced_in": "2.45"
+  },
+  "test_hypothesis_gaps_v246": {
+    "category": "reasoning/hypothesis",
+    "fixture_dependent": false,
+    "expected_tests": 8,
+    "introduced_in": "2.46"
+  },
+  "test_hypothesis_engine_v246": {
+    "category": "reasoning/hypothesis",
+    "fixture_dependent": false,
+    "expected_tests": 30,
+    "introduced_in": "2.46"
+  },
+  "test_hypothesis_migrations_v246": {
+    "category": "persistence/migration",
+    "fixture_dependent": false,
+    "expected_tests": 3,
+    "introduced_in": "2.46"
   }
 }
