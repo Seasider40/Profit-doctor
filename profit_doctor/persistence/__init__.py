@@ -6,3 +6,4 @@ from . import graph_schema  # Governance records extend existing EvidenceLink ID
 from . import hypothesis_schema  # Class-scoped hypotheses and interpretation revisions.
 __all__=[x for x in globals() if not x.startswith('_')]
 from . import story_schema  # noqa: F401
+from . import measurement_schema  # Immutable semantics; no new measurement values.

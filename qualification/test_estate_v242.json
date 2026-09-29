@@ -707,6 +707,24 @@
     "expected_tests": 33,
     "introduced_in": "2.47"
   },
+  "test_bridge_input_qualification_v248": {
+    "category": "reasoning/bridge-input-qualification",
+    "fixture_dependent": false,
+    "expected_tests": 26,
+    "introduced_in": "2.48"
+  },
+  "test_measurement_context_v248": {
+    "category": "reasoning/measurement-context",
+    "fixture_dependent": false,
+    "expected_tests": 22,
+    "introduced_in": "2.48"
+  },
+  "test_measurement_context_migrations_v248": {
+    "category": "persistence/migration",
+    "fixture_dependent": false,
+    "expected_tests": 3,
+    "introduced_in": "2.48"
+  },
   "test_story_migrations_v247": {
     "category": "persistence/migration",
     "fixture_dependent": false,

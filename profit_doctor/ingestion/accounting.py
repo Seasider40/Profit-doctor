@@ -28,7 +28,7 @@ def _date(v, field):
     try: return datetime.fromisoformat(v).date().isoformat()
     except Exception: raise ValueError(f'INVALID_DATE:{field}:{v}')
 
-def ingest_accounting_file(con,client_id,run_id,path,contract_key,storage_root):
+def _ingest_accounting_file(con,client_id,run_id,path,contract_key,storage_root):
     required,domain,logical=CONTRACTS[contract_key]; path=Path(path)
     job=id4('job'); con.execute('INSERT INTO ingestion_job VALUES (?,?,?,?,?,?,?)',(job,run_id,client_id,now(),None,'RUNNING',None)); con.commit()
     try:
@@ -72,3 +72,15 @@ def ingest_accounting_file(con,client_id,run_id,path,contract_key,storage_root):
         return info
     except Exception as e:
         con.rollback(); con.execute("UPDATE ingestion_job SET status='FAILED',completed_at=?,error_detail=? WHERE ingestion_job_id=?",(now(),str(e),job)); con.commit(); raise
+
+
+def ingest_accounting_file(con,client_id,run_id,path,contract_key,storage_root, *, context_sink=None):
+    """Optional semantic capture follows successful ingestion, without dual writes.
+
+    A context sink owns its canonical transaction. Its failure cannot mark a
+    committed source ingestion failed; callers may retry capture independently.
+    """
+    info = _ingest_accounting_file(con,client_id,run_id,path,contract_key,storage_root)
+    if context_sink is not None:
+        context_sink(info['dataset_version_id'])
+    return info

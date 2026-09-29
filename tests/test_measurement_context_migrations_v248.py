@@ -1,4 +1,4 @@
-"""Frozen v2.45 upgrade evidence, independent of current metadata."""
+"""Frozen v2.47 upgrade evidence, independent of current metadata."""
 from pathlib import Path
 import tempfile
 import unittest
@@ -12,11 +12,11 @@ from profit_doctor.persistence import Base, DatabaseConfig, build_engine
 from tests.test_postgresql_live_qualification_v218 import alembic_config
 
 ROOT = Path(__file__).resolve().parents[1]
-FIXTURE = ROOT / 'tests/fixtures/v245_schema.sql'
-NEW = {'canonical_hypothesis', 'canonical_interpretation_revision'}
+FIXTURE = ROOT / 'tests/fixtures/v247_schema.sql'
+NEW = {'canonical_measurement_context', 'canonical_measurement_binding', 'canonical_measurement_audit'}
 
 
-class HypothesisMigrationsV246(unittest.TestCase):
+class MeasurementContextMigrationsV248(unittest.TestCase):
     def setUp(self):
         directory = tempfile.TemporaryDirectory()
         self.addCleanup(directory.cleanup)
@@ -44,7 +44,7 @@ class HypothesisMigrationsV246(unittest.TestCase):
         command.upgrade(self.cfg, 'head')
         self.assert_head()
 
-    def test_frozen_v245_all_tables_preserved_downgrade_and_reupgrade(self):
+    def test_frozen_v247_all_tables_preserved_downgrade_and_reupgrade(self):
         statements = '\n'.join(x for x in FIXTURE.read_text(encoding='utf-8').splitlines() if not x.startswith('--'))
         with self.engine.begin() as c:
             for statement in statements.split(';'):
@@ -52,7 +52,7 @@ class HypothesisMigrationsV246(unittest.TestCase):
                     c.exec_driver_sql(statement)
         old = MetaData()
         old.reflect(self.engine)
-        self.assertEqual(26, len(old.tables)-1)
+        self.assertEqual(30, len(old.tables)-1)
         self.assertFalse(NEW & old.tables.keys())
         expected = {}
         with self.engine.begin() as c:
@@ -77,13 +77,17 @@ class HypothesisMigrationsV246(unittest.TestCase):
                 expected[table.name] = row
         command.upgrade(self.cfg, 'head')
         self.assert_head()
-        # Payload removal on downgrade is intentional; v2.45 records and foundation links/audits stay.
+        # Populated context, binding and audit records are intentionally removed.
         with self.engine.begin() as c:
-            for name in NEW:
-                values = dict(object_id='old-reasoning_object_v243', revision=1, client_id='old-client', document='{"qualification":"payload"}')
-                values['finding_id' if name == 'canonical_hypothesis' else 'hypothesis_id'] = 'old-reasoning_object_v243'
-                c.execute(insert(Base.metadata.tables[name]).values(**values))
-        for revision in ('head', '0006_evidence_graph'):
+            c.execute(insert(Base.metadata.tables['canonical_measurement_context']).values(
+                context_id='context',client_id='old-client',run_id='old-engine_run',document='{}'))
+            c.execute(insert(Base.metadata.tables['canonical_measurement_binding']).values(
+                binding_id='binding',client_id='old-client',run_id='old-engine_run',context_id='context',
+                owner_key='source:amount',owner_digest='a'*64,document='{}'))
+            c.execute(insert(Base.metadata.tables['canonical_measurement_audit']).values(
+                event_id='event',client_id='old-client',context_id='context',binding_id='binding',
+                created_at='2026-09-29T00:00:00+00:00',document='{}'))
+        for revision in ('head', '0008_economic_story'):
             if revision != 'head':
                 command.downgrade(self.cfg, revision)
             with self.engine.connect() as c:
@@ -97,10 +101,10 @@ class HypothesisMigrationsV246(unittest.TestCase):
                 self.assertEqual(0, c.scalar(text(f'SELECT count(*) FROM {name}')))
 
     def test_forward_migration_does_not_import_mutable_models(self):
-        source = (ROOT/'alembic/versions/0007_hypothesis_interpretation.py').read_text(encoding='utf-8')
+        source = (ROOT/'alembic/versions/0009_measurement_context.py').read_text(encoding='utf-8')
         for forbidden in ('profit_doctor', 'metadata', 'create_all'):
             self.assertNotIn(forbidden, source)
-        self.assertIn("down_revision = '0006_evidence_graph'", source)
+        self.assertIn("down_revision = '0008_economic_story'", source)
 
 
 if __name__ == '__main__':
