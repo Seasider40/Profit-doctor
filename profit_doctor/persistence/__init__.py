@@ -9,3 +9,4 @@ from . import story_schema  # noqa: F401
 from . import measurement_schema  # Immutable semantics; no new measurement values.
 from . import bridge_schema  # Opt-in deterministic Bridge history; no downstream promotion.
 from . import impact_schema  # Opt-in qualification; candidates never enter Impact totals.
+from . import receivables_schema  # Outstanding snapshot ownership, never original invoice inference.

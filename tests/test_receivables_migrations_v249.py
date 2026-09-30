@@ -12,11 +12,11 @@ from profit_doctor.persistence import Base, DatabaseConfig, build_engine
 from tests.test_postgresql_live_qualification_v218 import alembic_config
 
 ROOT = Path(__file__).resolve().parents[1]
-FIXTURE = ROOT / 'tests/fixtures/v248_checkpoint_schema.sql'
-NEW = {'canonical_bridge_snapshot', 'canonical_bridge_input', 'canonical_bridge_audit'}
+FIXTURE = ROOT / 'tests/fixtures/v249_schema.sql'
+NEW = {'canonical_receivables_snapshot','canonical_receivable_invoice','canonical_receivables_audit','canonical_receivables_impact_source'}
 
 
-class EconomicBridgeMigrationsV248B(unittest.TestCase):
+class ReceivablesMigrationsV249(unittest.TestCase):
     def setUp(self):
         directory = tempfile.TemporaryDirectory()
         self.addCleanup(directory.cleanup)
@@ -52,7 +52,7 @@ class EconomicBridgeMigrationsV248B(unittest.TestCase):
                     c.exec_driver_sql(statement)
         old = MetaData()
         old.reflect(self.engine)
-        self.assertEqual(33, len(old.tables)-1)
+        self.assertEqual(39, len(old.tables)-1)
         self.assertFalse(NEW & old.tables.keys())
         expected = {}
         with self.engine.begin() as c:
@@ -62,7 +62,9 @@ class EconomicBridgeMigrationsV248B(unittest.TestCase):
                     continue
                 row = {}
                 for col in table.columns:
-                    if col.foreign_keys:
+                    if str(col.type) == 'INTEGER':
+                        value = 1
+                    elif col.foreign_keys:
                         fk = next(iter(col.foreign_keys)).column
                         value = ids[fk.table.name] if fk.primary_key else 'old-client'
                     elif str(col.type) == 'INTEGER':
@@ -77,15 +79,15 @@ class EconomicBridgeMigrationsV248B(unittest.TestCase):
                 expected[table.name] = row
         command.upgrade(self.cfg, 'head')
         self.assert_head()
-        # Populated Bridge records/audits are intentionally removed on rollback.
+        # Populate new owners and source FKs; old v2.49 candidate rows remain intact.
         with self.engine.begin() as c:
-            c.execute(insert(Base.metadata.tables['canonical_bridge_snapshot']).values(
-                snapshot_id='bridge',client_id='old-client',run_id='old-engine_run',series_id='series',revision=1,document='{}'))
-            c.execute(insert(Base.metadata.tables['canonical_bridge_input']).values(
-                snapshot_id='bridge',client_id='old-client',binding_id='old-canonical_measurement_binding',role='OPENING'))
-            c.execute(insert(Base.metadata.tables['canonical_bridge_audit']).values(
-                event_id='event',snapshot_id='bridge',client_id='old-client',created_at='2026-09-29T00:00:00+00:00',document='{}'))
-        for revision in ('head', '0009_measurement_context'):
+            c.execute(insert(Base.metadata.tables['canonical_receivables_snapshot']).values(
+                snapshot_id='new-snapshot',client_id='old-client',run_id='old-engine_run',series_id='new-series',revision=1,document='{}'))
+            c.execute(insert(Base.metadata.tables['canonical_receivable_invoice']).values(
+                owner_id='new-owner',snapshot_id='new-snapshot',client_id='old-client',document='{}'))
+            c.execute(insert(Base.metadata.tables['canonical_receivables_audit']).values(
+                event_id='new-audit',snapshot_id='new-snapshot',client_id='old-client',created_at='2026-09-30',document='{}'))
+        for revision in ('head', '0011_economic_impact'):
             if revision != 'head':
                 command.downgrade(self.cfg, revision)
             with self.engine.connect() as c:
@@ -99,10 +101,10 @@ class EconomicBridgeMigrationsV248B(unittest.TestCase):
                 self.assertEqual(0, c.scalar(text(f'SELECT count(*) FROM {name}')))
 
     def test_forward_migration_does_not_import_mutable_models(self):
-        source = (ROOT/'alembic/versions/0010_economic_bridge.py').read_text(encoding='utf-8')
+        source = (ROOT/'alembic/versions/0012_receivables_snapshot.py').read_text(encoding='utf-8')
         for forbidden in ('profit_doctor', 'metadata', 'create_all'):
             self.assertNotIn(forbidden, source)
-        self.assertIn("down_revision='0009_measurement_context'", source)
+        self.assertIn("down_revision = '0011_economic_impact'", source)
 
 
 if __name__ == '__main__':

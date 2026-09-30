@@ -94,7 +94,7 @@ class SyntheticBasis(Contract):
 
 
 class Source(Contract):
-    kind: Literal['BRIDGE', 'REASONING', 'SYNTHETIC']
+    kind: Literal['BRIDGE', 'REASONING', 'SYNTHETIC', 'RECEIVABLES']
     source_id: Identifier
 
 
@@ -141,6 +141,55 @@ class QualifiedImpact(Contract):
     limitations: tuple[str, ...] = Field(min_length=1)
 
 
+class ReceivablesAmount(Contract):
+    value: FinancialDecimal = Field(gt=0)
+    currency: Literal['GBP'] = 'GBP'
+    basis: Literal['CONTRACTUALLY_OVERDUE_UNCONSTRAINED'] = 'CONTRACTUALLY_OVERDUE_UNCONSTRAINED'
+    as_of: date
+    scope: str
+    coverage: Literal['COMPLETE', 'PARTIAL']
+    observed: FinancialDecimal
+    required_position: FinancialDecimal
+    excluded_constrained: FinancialDecimal
+    snapshot_document: str
+    qualification_origin: Literal['REAL_SOURCE', 'BLIND_QUALIFICATION']
+    calculation: Literal['sum of contractually overdue outstanding balances with current unconstrained source reviews'] = 'sum of contractually overdue outstanding balances with current unconstrained source reviews'
+
+    @model_validator(mode='after')
+    def validated_population(self):
+        from profit_doctor.reasoning.receivables.contracts import Snapshot, population
+        s = Snapshot.from_json(self.snapshot_document)
+        if s.coverage == 'COMPLETE' and (s.control_amount is None or s.reconciliation_difference != 0):
+            raise ValueError('Qualified complete population must reconcile')
+        if s.control_amount is not None and s.total > s.control_amount:
+            raise ValueError('Qualified population exceeds its control')
+        groups = population(s)
+        with localcontext() as ctx:
+            ctx.prec = precision(i.outstanding for i in s.invoices)
+            amounts = {k:sum((i.outstanding for i in v), 0) for k,v in groups.items()}
+            within = amounts.get('WITHIN_TERMS',0)
+            qualifying = amounts.get('QUALIFYING_OVERDUE',0)
+            if (self.value,self.observed,self.required_position,self.excluded_constrained) != (qualifying,s.total,within,s.total-within-qualifying):
+                raise ValueError('Receivables amount disagrees with retained contractual partition')
+        if (self.as_of,self.currency,self.scope,self.coverage,self.qualification_origin) != (s.as_of,s.currency,s.scope,s.coverage,s.origin):
+            raise ValueError('Receivables amount scope mismatch')
+        return self
+
+
+class ReceivablesImpact(QualifiedImpact):
+    contract: Literal['OVERDUE_RECEIVABLES_1'] = 'OVERDUE_RECEIVABLES_1'
+    domain: Literal['PRODUCTION'] = 'PRODUCTION'
+    amount: ReceivablesAmount
+
+    @model_validator(mode='after')
+    def source_scope(self):
+        from profit_doctor.reasoning.receivables.contracts import Snapshot
+        s = Snapshot.from_json(self.amount.snapshot_document)
+        if (self.client_id,self.run_id) != (s.client_id,s.run_id):
+            raise ValueError('Impact outside receivables source scope')
+        return self
+
+
 class Qualification(Contract):
     schema_version: Literal['IQ-2.49.1'] = 'IQ-2.49.1'
     candidate_id: Identifier
@@ -158,7 +207,7 @@ class Qualification(Contract):
     blockers: tuple[str, ...]
     effect_ids: tuple[Identifier, ...] = ()
     overlap: OverlapType = OverlapType.UNKNOWN_OVERLAP
-    impact: QualifiedImpact | None = None
+    impact: QualifiedImpact | ReceivablesImpact | None = None
 
     @model_validator(mode='after')
     def boundary(self):
@@ -166,6 +215,8 @@ class Qualification(Contract):
             raise ValueError('Only qualified assessments contain Impacts')
         if self.impact:
             i = self.impact
+            if isinstance(i, ReceivablesImpact) and (self.source.kind != 'RECEIVABLES' or self.source_document != i.amount.snapshot_document):
+                raise ValueError('Production receivables Impact requires its governed source')
             if (self.candidate_id, self.revision, self.client_id, self.run_id, self.category, self.domain) != (
                 i.candidate_id, i.revision, i.client_id, i.run_id, i.category, i.domain):
                 raise ValueError('Impact and qualification disagree')
@@ -188,3 +239,4 @@ class Aggregation(Contract):
     included: tuple[Identifier, ...] = ()
     excluded: tuple[Identifier, ...] = ()
     blockers: tuple[str, ...] = ()
+    qualification_origin: Literal['REAL_SOURCE', 'BLIND_QUALIFICATION'] | None = None

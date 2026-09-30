@@ -754,5 +754,17 @@
     "fixture_dependent": true,
     "expected_tests": 3,
     "introduced_in": "2.49"
+  },
+  "test_receivables_v249": {
+    "category": "reasoning/economic-impact",
+    "fixture_dependent": true,
+    "expected_tests": 33,
+    "introduced_in": "2.49 receivables"
+  },
+  "test_receivables_migrations_v249": {
+    "category": "persistence/migration",
+    "fixture_dependent": true,
+    "expected_tests": 3,
+    "introduced_in": "2.49 receivables"
   }
 }

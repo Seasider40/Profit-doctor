@@ -21,6 +21,8 @@ class MeasurementContextService:
         self.source = AccountingContextSource(connection, client_id)
         self.foundation = FoundationService(session, client_id, self.actor)
         self.foundation._run(run_id)
+        self.receivables = None
+        self.workbook_providers = ()
         if run_id is None:
             raise ScopeError('Context capture requires a scoped run')
 
@@ -46,7 +48,8 @@ class MeasurementContextService:
                 row['context_id'], row['client_id'], row['run_id'], row['supersedes']):
             raise ScopeError('Context payload disagrees with indexed envelope')
         if current:
-            reproduced = (self._fact_context(value.origin) if value.capture_method == 'RETAINED_FACT_SLOT_V1' else
+            reproduced = (self._receivable_provider().context(value.origin.source_id) if value.capture_method == 'RECEIVABLE_SNAPSHOT_V1' else
+                          self._fact_context(value.origin) if value.capture_method == 'RETAINED_FACT_SLOT_V1' else
                           self.source.capture(value.origin.source_id, value.run_id, supersedes=value.supersedes))
             if reproduced != value:
                 raise RevisionConflict('Context no longer matches its retained source snapshot')
@@ -125,6 +128,8 @@ class MeasurementContextService:
 
     def _owner(self, owner):
         owner = MeasurementSlot.from_json(owner.to_json())
+        if owner.resource == 'canonical_receivable_invoice':
+            return self._receivable_provider().owner(owner.source_id)
         if owner.store == 'CANONICAL':
             service = CanonicalService(self.session, self.client_id, self.actor,
                 LegacySignalSource(self.source.connection, self.client_id))
@@ -148,6 +153,12 @@ class MeasurementContextService:
         if raw is None:
             raise ValueError('Source measurement slot is absent')
         return row, Decimal(raw), row.get('unit', 'GBP')
+
+    def _receivable_provider(self):
+        from profit_doctor.reasoning.receivables.service import ReceivablesService
+        if not isinstance(self.receivables, ReceivablesService) or self.receivables.contexts is not self:
+            raise ScopeError('Registered receivables owner required')
+        return self.receivables
 
     @staticmethod
     def _owner_key(owner):

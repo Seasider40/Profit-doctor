@@ -24,3 +24,12 @@ REGISTRY = {c.category: c for c in (
     ImpactContract(ImpactType.VALUE_CREATION_POTENTIAL, 'Supported economic upside, not revenue growth', 'Defensible alternative economic state', 'Explicit future horizon'),
     ImpactContract(ImpactType.REALISED_BENEFIT, 'Observed improvement with qualified benefit attribution', 'Qualified attribution baseline; later integration deferred', 'Realisation window'),
 )}
+
+# The generic identity/Bridge registry above remains insufficient. Positive
+# authority is confined to this versioned, source-specific production provider.
+PROVIDER_CONTRACTS = {
+    'OVERDUE_RECEIVABLES_1': ImpactContract(ImpactType.CASH_TRAPPED,
+        'Retained invoice snapshot, contractual dates, current unconstrained source reviews and scoped CMC bindings',
+        'Contractual settlement by due date; within-terms position and blocked overdue retained separately',
+        'Single reporting-date outstanding stock', production_qualified=True),
+}

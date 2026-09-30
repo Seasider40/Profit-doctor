@@ -100,12 +100,21 @@ def data_rows(cells, header):
     return rows
 
 
-def inspect_pack(path):
+def inspect_pack(path, *, providers=()):
     """Return retained declarations/records; no inferred missing classifications."""
     sheets = read_cells(path)
     required = {'README', 'Management PL', 'Balance Sheet', 'Customer Product', 'Versions', 'Cash and Output', 'Context'}
-    if set(sheets) != required:
+    claimed = set()
+    extensions = {}
+    for provider in providers:
+        if claimed & provider.sheets or required & provider.sheets:
+            raise ValueError('Conflicting workbook evidence providers')
+        claimed.update(provider.sheets)
+    if set(sheets) != required | claimed:
         raise ValueError('Unqualified source sheet catalogue')
+    for provider in providers:
+        if provider.name in extensions: raise ValueError('Duplicate evidence provider')
+        extensions[provider.name] = provider.inspect(sheets)
     registry = sheets['Context']
     rows = data_rows(registry, ('Context ID','Entity','Currency / scale','Measurement','Period scope','Population','Basis / definition','Source / version','Availability notes'))
     contexts = {value(registry, 'A'+str(r)): {k:value(registry, chr(65+i)+str(r)) for i,k in enumerate(('id','entity','unit','nature','period','population','basis','version','notes'))} for r in rows}
@@ -200,11 +209,12 @@ def inspect_pack(path):
     if keys!={(p,*member) for p in periods for member in population}:
         raise ValueError('Selected population has missing monthly records; absence is not zero')
     return dict(contract='DECLARED_ACCOUNTING_PACK_1',sha256=hashlib.sha256(Path(path).read_bytes()).hexdigest(),
-        entity=entity,years=years,contexts=contexts,records=output,releases=[{k:str(v) if isinstance(v,(Decimal,date)) else v for k,v in x.items()} for x in releases.values()])
+        entity=entity,years=years,contexts=contexts,records=output,releases=[{k:str(v) if isinstance(v,(Decimal,date)) else v for k,v in x.items()} for x in releases.values()], **({'extensions':extensions} if providers else {}))
 
 
-def capture_pack(service, path, storage_root):
-    pack=inspect_pack(path)  # Validate entire source before any ingestion write.
+def capture_pack(service, path, storage_root, *, providers=()):
+    pack=inspect_pack(path, providers=providers)  # Validate entire source before any ingestion write.
+    service.workbook_providers = tuple(providers)
     con=service.source.connection
     original=register_file(con,service.client_id,Path(path),Path(storage_root)); con.commit()
     ensure_schema(con)

@@ -23,7 +23,7 @@ from .registry import REGISTRY
 
 class ImpactService:
     def __init__(self, foundation: FoundationService, run_id, *, bridges=None, synthetic_resolver=None,
-                 synthetic_overlap_resolver=None):
+                 synthetic_overlap_resolver=None, receivables=None):
         self.foundation = foundation
         self.session = foundation.session
         self.client_id = foundation.client_id
@@ -31,12 +31,28 @@ class ImpactService:
         self.bridges = bridges
         self.synthetic_resolver = synthetic_resolver
         self.synthetic_overlap_resolver = synthetic_overlap_resolver
+        self.receivables = receivables
+        if receivables is not None:
+            from profit_doctor.reasoning.receivables.service import ReceivablesService
+            if not isinstance(receivables, ReceivablesService) or (receivables.session is not self.session or
+                    (receivables.client_id, receivables.run_id) != (self.client_id, self.run_id)):
+                raise ScopeError('Receivables owner must share caller transaction and scope')
         foundation._run(run_id)
         if bridges is not None and (bridges.session is not self.session or
                 bridges.contexts.client_id != self.client_id or bridges.contexts.run_id != run_id):
             raise ScopeError('Bridge owner must share the caller transaction and scope')
 
     def _resolve(self, source):
+        if source.kind == 'RECEIVABLES':
+            if self.receivables is None: raise ScopeError('Governed receivables provider required')
+            value = self.receivables.latest(source.source_id)
+            for invoice in value.invoices:
+                from profit_doctor.reasoning.measurement.contracts import MeasurementSlot
+                owner = MeasurementSlot(store='CANONICAL',resource='canonical_receivable_invoice',
+                    source_id=self.receivables.owner_id(value,invoice),slot='amount')
+                binding = self.receivables.contexts.lookup(owner)
+                self.receivables.contexts.resolve_binding(binding.binding_id)
+            return value.to_json(), None
         if source.kind == 'SYNTHETIC':
             if self.synthetic_resolver is None:
                 raise ScopeError('Explicit synthetic fixture resolver required')
@@ -87,6 +103,9 @@ class ImpactService:
             result['effect_ids'] = tuple(sorted(set(refs)))
             for key in result['effect_ids']:
                 self.foundation.get_effect(key)
+        if source.kind == 'RECEIVABLES' and category == ImpactType.CASH_TRAPPED:
+            from .receivables import qualify
+            result.update(qualify(document, candidate_id, revision))
         if source.kind == 'SYNTHETIC' and category == ImpactType.CASH_TRAPPED:
             basis = SyntheticBasis.from_json(document)
             with localcontext() as ctx:
@@ -140,6 +159,10 @@ class ImpactService:
                 bridge_id=source.source_id if source.kind == 'BRIDGE' else None,
                 source_object_id=source.source_id if source.kind == 'REASONING' else None,
                 document=proposed.to_json()))
+            if source.kind == 'RECEIVABLES':
+                from profit_doctor.persistence.receivables_schema import impact_source
+                self.session.execute(insert(impact_source).values(candidate_id=candidate_id,revision=proposed.revision,
+                    client_id=self.client_id,snapshot_id=self.receivables.latest(source.source_id).snapshot_id))
             if proposed.impact:
                 i = proposed.impact
                 t = foundation_tables.economic_effect
@@ -159,6 +182,9 @@ class ImpactService:
                     object_id=i.impact_id, effect_id=i.effect_id))
                 self.session.execute(insert(tables.impact).values(impact_id=i.impact_id, client_id=self.client_id,
                     candidate_id=candidate_id, revision=i.revision, effect_id=i.effect_id, document=i.to_json()))
+                if source.kind == 'RECEIVABLES':
+                    from .receivables import link_aggregate
+                    link_aggregate(self.foundation, i)
             self.session.execute(insert(tables.audit).values(event_id=identity('impact-qualification-audit', candidate_id, proposed.revision),
                 candidate_id=candidate_id, revision=proposed.revision, client_id=self.client_id, created_at=now().isoformat(),
                 document=json.dumps({'event_type': 'OBJECT_UPDATED' if old else 'OBJECT_CREATED',
@@ -182,6 +208,13 @@ class ImpactService:
             q.source.source_id if q.source.kind == 'BRIDGE' else None,
             q.source.source_id if q.source.kind == 'REASONING' else None):
             raise ScopeError('Qualification source FK mismatch')
+        from profit_doctor.reasoning.receivables.contracts import Snapshot
+        expected_ar = Snapshot.from_json(q.source_document).snapshot_id if q.source.kind == 'RECEIVABLES' else None
+        from profit_doctor.persistence.receivables_schema import impact_source
+        actual_ar = self.session.scalar(select(impact_source.c.snapshot_id).where(
+            impact_source.c.candidate_id == q.candidate_id, impact_source.c.revision == q.revision,
+            impact_source.c.client_id == self.client_id))
+        if actual_ar != expected_ar: raise ScopeError('Receivables source FK mismatch')
         if q.impact:
             i = q.impact
             stored = self.session.execute(select(tables.impact).where(tables.impact.c.impact_id == i.impact_id,
@@ -215,7 +248,7 @@ class ImpactService:
             return 'INVALIDATED' if q.impact and not latest.impact else 'SUPERSEDED'
         return 'QUANTIFIED' if q.impact else 'CANDIDATE'
 
-    def aggregate(self, candidate_ids, *, domain, dimension, category):
+    def aggregate(self, candidate_ids, *, domain, dimension, category, qualification_origin='REAL_SOURCE'):
         dimension, category = Dimension(dimension), ImpactType(category)
         if DIMENSIONS[category] != dimension:
             raise ValueError('Incompatible economic dimension/category')
@@ -227,8 +260,12 @@ class ImpactService:
             elif q.impact is None:
                 excluded.append(key)
             else:
+                if hasattr(q.impact.amount, 'qualification_origin') and q.impact.amount.qualification_origin != qualification_origin:
+                    blockers.append('QUALIFICATION_ORIGIN_NOT_SELECTED:' + key)
                 impacts.append(q.impact)
         if impacts:
+            origins = {getattr(i.amount, 'qualification_origin', i.domain) for i in impacts}
+            if len(origins) != 1: blockers.append('INCOMPATIBLE_QUALIFICATION_ORIGIN')
             signatures = {(i.amount.as_of, i.amount.scope, i.amount.currency, i.amount.basis, i.amount.coverage) for i in impacts}
             if len(signatures) != 1:
                 blockers.append('INCOMPATIBLE_PERIOD_SCOPE_BASIS_OR_COVERAGE')
@@ -283,10 +320,12 @@ class ImpactService:
                 blockers.append('CONTRADICTORY_EFFECT_EQUIVALENCE')
         if blockers:
             return Aggregation(domain=domain, dimension=dimension, category=category,
-                status='NOT_SAFELY_AGGREGATABLE', excluded=tuple(excluded), blockers=tuple(sorted(set(blockers))))
+                status='NOT_SAFELY_AGGREGATABLE', excluded=tuple(excluded), blockers=tuple(sorted(set(blockers))),
+                qualification_origin=qualification_origin if any(hasattr(i.amount,'qualification_origin') for i in impacts) else None)
         with localcontext() as ctx:
             ctx.prec = precision([i.amount.value for i in items] or [Decimal(0)])
             total = sum((i.amount.value for i in items if i.impact_id in included), Decimal(0))
         return Aggregation(domain=domain, dimension=dimension, category=category,
             status='TOTAL' if included else 'EMPTY', total=total if included else None,
-            included=tuple(included), excluded=tuple(excluded))
+            included=tuple(included), excluded=tuple(excluded),
+            qualification_origin=qualification_origin if any(hasattr(i.amount,'qualification_origin') for i in impacts) else None)

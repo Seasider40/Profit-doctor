@@ -43,7 +43,7 @@ class BridgeEngine:
         if len(set(files))!=1:
             raise ValueError('Different source packs need a separate version contract')
         source=self.contexts.source.row('source_file',files[0])
-        pack=inspect_pack(Path(source['storage_location']))
+        pack=inspect_pack(Path(source['storage_location']), providers=self.contexts.workbook_providers)
         if pack['sha256']!=source['file_hash']:
             raise ValueError('Original source changed')
         expected={}
