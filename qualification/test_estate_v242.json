@@ -766,5 +766,23 @@
     "fixture_dependent": true,
     "expected_tests": 3,
     "introduced_in": "2.49 receivables"
+  },
+  "test_opportunity_v250": {
+    "category": "reasoning/opportunity",
+    "fixture_dependent": true,
+    "expected_tests": 43,
+    "introduced_in": "2.50"
+  },
+  "test_collection_workbook_v250": {
+    "category": "intake/data-quality",
+    "fixture_dependent": true,
+    "expected_tests": 29,
+    "introduced_in": "2.50 collection adapter"
+  },
+  "test_opportunity_migrations_v250": {
+    "category": "persistence/migration",
+    "fixture_dependent": true,
+    "expected_tests": 3,
+    "introduced_in": "2.50"
   }
 }

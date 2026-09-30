@@ -1,0 +1,95 @@
+{
+  "specification_version": "1",
+  "contract": "MATCHED_COLLECTION_OUTCOMES_1",
+  "evidence_schema": "CE-2.50.1",
+  "structural_validator": "profit_doctor.reasoning.opportunity.contracts.CollectionEvidence",
+  "capture_authority": "profit_doctor.reasoning.opportunity.engine.capture",
+  "assessment_authority": "profit_doctor.reasoning.opportunity.engine.assess",
+  "scope": {
+    "source": "Current canonical PRODUCTION ReceivablesImpact from OVERDUE_RECEIVABLES_1",
+    "identity": ["client_id", "run_id", "impact_id"],
+    "origin": ["REAL_SOURCE", "BLIND_QUALIFICATION"],
+    "assessed_on": "Equal to current canonical receivables as_of; all evidence observed_on <= assessed_on",
+    "horizon_days": {"type": "integer", "minimum": 1, "maximum": 3660},
+    "coverage": ["COMPLETE", "PARTIAL"],
+    "complete_coverage": "Exactly the qualified Impact invoice population; no omitted or extra invoice/customer keys",
+    "partial_coverage": "Missing reviews remain UNRESOLVED; no extrapolation"
+  },
+  "current_population_fields": {
+    "invoice_id": "Stable original invoice identity in the qualified source Impact",
+    "customer_id": "Stable exact customer identity, not a customer class or cohort label",
+    "outstanding": "Positive exact Decimal GBP string from source Impact, never caller-supplied Opportunity value",
+    "currency": "GBP",
+    "terms.days": "Governed nonnegative integral contractual terms; missing terms cannot qualify capture",
+    "days_overdue": "Positive source-governed ageing at assessment date",
+    "age_band": {"1_30": [1, 30], "31_60": [31, 60], "61_90": [61, 90], "OVER_90": [91, null]},
+    "addressability": ["ORDINARY_COLLECTION", "COMMERCIAL_INTERVENTION", "STRATEGIC_CONSTRAINT", "UNKNOWN"],
+    "authority_evidence": "Dated reference with explicit SOURCE_RECORD, MANAGEMENT_ASSERTION or HUMAN_FD_JUDGEMENT authority; observed_on must equal assessment date for assessment eligibility",
+    "contacts": "Dated CONTACTED/ACKNOWLEDGED/PROMISE_RECEIVED/NO_RESPONSE evidence; promised_on and promised_amount optional, never substituted for received cash",
+    "constraint_basis": "Explicit evidence of strategic restriction; does not change source Impact or label debt unrecoverable"
+  },
+  "incrementality": {
+    "positive_requirements": {
+      "initiative": "NO_QUALIFYING_PRIOR_INITIATIVE_EVIDENCED",
+      "initiative_review_complete": true,
+      "initiative_review": "Explicit dated review covering this current invoice and relevant existing recovery activity; observed_on equals assessed_on",
+      "initiative_id": null,
+      "initiative_started_on": null
+    },
+    "existing_initiative": "ALREADY_UNDERWAY with initiative_id, dated review and initiative_started_on < assessed_on is excluded from newly claimed value",
+    "absence": "Missing row, partial register, absent date or incomplete review remains UNKNOWN; never default to NONE"
+  },
+  "cohort": {
+    "minimum_pairs": 3,
+    "coverage": "COMPLETE_INCEPTION_COHORT",
+    "manifest_authority": "SOURCE_RECORD",
+    "comparability_basis": "Explicit source declaration, nonempty, retaining inclusion denominator and inception membership",
+    "eligible_pair_count": "Exactly equal to number of supplied pairs",
+    "cohort_exclusions": [],
+    "selection": "No outcome-selected subset, successful-only sample, silently omitted pair or discarded contradictory outcome",
+    "pair_matching_authority": "SOURCE_RECORD",
+    "historical_case_fields": ["case_id", "invoice_id", "customer_id", "currency", "exposure", "days_overdue_at_start", "terms_days", "status", "intervention", "started_on", "observed_through", "cash_received", "evidence"],
+    "historical_status": "ORDINARY_UNCONSTRAINED",
+    "case_authority": "SOURCE_RECORD",
+    "case_evidence_date": "observed_through <= evidence.observed_on <= assessed_on",
+    "exact_matches_for_both_arms": {
+      "customer_id": "current.customer_id",
+      "exposure": "current.outstanding, exact Decimal equality; no scaling, tolerance or common-size fraction",
+      "currency": "current.currency",
+      "terms_days": "current.terms.days",
+      "age_band(days_overdue_at_start)": "age_band(current.days_overdue)",
+      "observed_through - started_on": "horizon_days"
+    },
+    "treated_intervention": "current review addressability: ORDINARY_COLLECTION or COMMERCIAL_INTERVENTION",
+    "comparison_intervention": "BUSINESS_AS_USUAL",
+    "paired_dates": "Both arms have identical started_on and observed_through; closed on or before assessed_on",
+    "historical_identity": "Every customer_id/invoice_id key unique within the current invoice's cohort, distinct from the current invoice; episode_id alone is not invoice_id",
+    "cash_bounds": "0 <= cash_received <= exposure for each case",
+    "days_to_pay": "Optional; if supplied requires original invoice_date, settled_on and exact date difference",
+    "contradiction": "Any treated cash_received < comparison cash_received refuses the whole current invoice capture cohort"
+  },
+  "calculation": {
+    "pair_difference": "treated.cash_received - comparison.cash_received",
+    "low": "min(all eligible pair differences)",
+    "high": "max(all eligible pair differences)",
+    "central_method_default": "NOT_ASSESSED",
+    "central_method_optional": "EMPIRICAL_PAIR_MEAN",
+    "central": "Exact unweighted arithmetic mean of all pair differences, only if rational denominator in lowest terms has no primes other than 2 and 5",
+    "central_absent": ["NOT_ASSESSED", "nonterminating Decimal mean", "unqualified cohort", "any contributing portion has no central estimate"],
+    "invoice_aggregation": "Sum disjoint qualified current-invoice low and high values; central only if every contributor has central; excluded and unresolved invoices contribute no invented value",
+    "all_zero": "No positive Opportunity; zero historical uplift is not changed into a positive estimate",
+    "interpretation": "Empirical prospective incremental CASH envelope, not a probability, confidence interval, guaranteed recovery, profit or realised benefit"
+  },
+  "workbook_transport": {
+    "TABLES": "CollectionWorkbook(): seven registered extract sheets with exact headers in intake/collection.py; incomplete history and initiative declarations are retained without promotion",
+    "NORMALIZED": "CollectionWorkbook(layout='NORMALIZED'): Collection Document!A4 = Collection document; A5 = one CE-2.50.1 JSON document; all other data columns/rows refused",
+    "core_pack": "Original seven accounting sheets plus six ReceivablesWorkbook sheets plus exactly the selected collection-provider sheet set; no unregistered extras",
+    "amount_encoding": "JSON financial numbers as Decimal-safe strings",
+    "runtime_binding": "client/run/Impact identities bind to the actually ingested canonical source; dataset_version_id is assigned by ingestion, never an invented source valuation",
+    "retention": "Immutable original workbook and normalized CSV, workbook hash/file ID/provider/source-version envelope, dated evidence references and source locators"
+  },
+  "synthetic_examples": [
+    {"exposure": "1200", "baseline": ["200", "250", "300"], "intervention": ["450", "600", "700"], "differences": ["250", "350", "400"], "low": "250", "high": "400", "central_method": "EMPIRICAL_PAIR_MEAN", "central": null, "reason": "1000/3 is nonterminating; no rounding"},
+    {"exposure": "1200", "baseline": ["200", "250", "300"], "intervention": ["500", "650", "800"], "differences": ["300", "400", "500"], "low": "300", "high": "500", "central_method": "EMPIRICAL_PAIR_MEAN", "central": "400"}
+  ]
+}

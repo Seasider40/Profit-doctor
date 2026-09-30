@@ -12,11 +12,11 @@ from profit_doctor.persistence import Base, DatabaseConfig, build_engine
 from tests.test_postgresql_live_qualification_v218 import alembic_config
 
 ROOT = Path(__file__).resolve().parents[1]
-FIXTURE = ROOT / 'tests/fixtures/v249_schema.sql'
-NEW = {'canonical_receivables_snapshot','canonical_receivable_invoice','canonical_receivables_audit','canonical_receivables_impact_source'}
+FIXTURE = ROOT / 'tests/fixtures/v249_receivables_schema.sql'
+NEW = {'canonical_collection_evidence','canonical_opportunity_candidate','canonical_opportunity_assessment','canonical_opportunity','canonical_opportunity_audit'}
 
 
-class ReceivablesMigrationsV249(unittest.TestCase):
+class OpportunityMigrationsV250(unittest.TestCase):
     def setUp(self):
         directory = tempfile.TemporaryDirectory()
         self.addCleanup(directory.cleanup)
@@ -52,7 +52,7 @@ class ReceivablesMigrationsV249(unittest.TestCase):
                     c.exec_driver_sql(statement)
         old = MetaData()
         old.reflect(self.engine)
-        self.assertEqual(39, len(old.tables)-1)
+        self.assertEqual(43, len(old.tables)-1)
         self.assertFalse(NEW & old.tables.keys())
         expected = {}
         with self.engine.begin() as c:
@@ -79,15 +79,7 @@ class ReceivablesMigrationsV249(unittest.TestCase):
                 expected[table.name] = row
         command.upgrade(self.cfg, 'head')
         self.assert_head()
-        # Populate new owners and source FKs; old v2.49 candidate rows remain intact.
-        with self.engine.begin() as c:
-            c.execute(insert(Base.metadata.tables['canonical_receivables_snapshot']).values(
-                snapshot_id='new-snapshot',client_id='old-client',run_id='old-engine_run',series_id='new-series',revision=1,document='{}'))
-            c.execute(insert(Base.metadata.tables['canonical_receivable_invoice']).values(
-                owner_id='new-owner',snapshot_id='new-snapshot',client_id='old-client',document='{}'))
-            c.execute(insert(Base.metadata.tables['canonical_receivables_audit']).values(
-                event_id='new-audit',snapshot_id='new-snapshot',client_id='old-client',created_at='2026-09-30',document='{}'))
-        for revision in ('head', '0011_economic_impact'):
+        for revision in ('head', '0012_receivables_snapshot'):
             if revision != 'head':
                 command.downgrade(self.cfg, revision)
             with self.engine.connect() as c:
@@ -101,10 +93,10 @@ class ReceivablesMigrationsV249(unittest.TestCase):
                 self.assertEqual(0, c.scalar(text(f'SELECT count(*) FROM {name}')))
 
     def test_forward_migration_does_not_import_mutable_models(self):
-        source = (ROOT/'alembic/versions/0012_receivables_snapshot.py').read_text(encoding='utf-8')
+        source = (ROOT/'alembic/versions/0013_opportunity.py').read_text(encoding='utf-8')
         for forbidden in ('profit_doctor', 'metadata', 'create_all'):
             self.assertNotIn(forbidden, source)
-        self.assertIn("down_revision = '0011_economic_impact'", source)
+        self.assertIn("down_revision = '0012_receivables_snapshot'", source)
 
 
 if __name__ == '__main__':
