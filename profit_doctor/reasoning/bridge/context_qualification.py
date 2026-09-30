@@ -13,7 +13,7 @@ from .qualification import BridgeFamily, Outcome
 
 
 class ContextQualification(Contract):
-    contract_version: Literal['BIQ-2.48.2'] = 'BIQ-2.48.2'
+    contract_version: Literal['BIQ-2.48.2', 'BIQ-2.48B.1'] = 'BIQ-2.48.2'
     family: BridgeFamily
     opening_binding_id: Identifier
     closing_binding_id: Identifier
@@ -38,12 +38,22 @@ METRICS = {
 
 
 def qualify_contexts(service, family, opening_binding_id, closing_binding_id):
+    return _qualify_contexts(service, family, opening_binding_id, closing_binding_id, METRICS, 'BIQ-2.48.2')
+
+
+def qualify_bridge_contexts(service, family, opening_binding_id, closing_binding_id):
+    """Additive exact C0 amount contract; frozen BIQ-2.48.2 is unchanged."""
+    metrics = {**METRICS, BridgeFamily.MARGIN_OR_PROFIT_BRIDGE: {'contribution_0'}}
+    return _qualify_contexts(service, family, opening_binding_id, closing_binding_id, metrics, 'BIQ-2.48B.1')
+
+
+def _qualify_contexts(service, family, opening_binding_id, closing_binding_id, metrics, version):
     family = BridgeFamily(family)
     resolved = [service.resolve_binding(key) for key in (opening_binding_id, closing_binding_id)]
     contexts = [context for binding, context in resolved]
     a, b = contexts
     mismatch, missing, partial = [], [], []
-    if family not in METRICS or a.metric not in METRICS[family] or b.metric not in METRICS[family]:
+    if family not in metrics or a.metric not in metrics[family] or b.metric not in metrics[family]:
         missing.append('FAMILY_MEASURE_CONTRACT_UNQUALIFIED')
     if (a.client_id, a.metric, a.unit, a.currency, a.entity_type, a.entity_id, a.segment_scope) != (
             b.client_id, b.metric, b.unit, b.currency, b.entity_type, b.entity_id, b.segment_scope):
@@ -85,7 +95,7 @@ def qualify_contexts(service, family, opening_binding_id, closing_binding_id):
         missing.append('CROSS_VERSION_COMPATIBILITY_UNQUALIFIED')
     outcome = (Outcome.INCOMPARABLE if mismatch else Outcome.INSUFFICIENT_EVIDENCE if missing
                else Outcome.PARTIALLY_QUALIFIED if partial else Outcome.QUALIFIED)
-    return ContextQualification(family=family, opening_binding_id=opening_binding_id,
+    return ContextQualification(contract_version=version, family=family, opening_binding_id=opening_binding_id,
         closing_binding_id=closing_binding_id, opening_context_id=a.context_id, closing_context_id=b.context_id,
         outcome=outcome, gaps=tuple(sorted(set(mismatch + missing + partial))),
         version_basis='SAME_IMMUTABLE_DATASET_SNAPSHOT' if same_snapshot else 'UNKNOWN')

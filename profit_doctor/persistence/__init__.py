@@ -7,3 +7,4 @@ from . import hypothesis_schema  # Class-scoped hypotheses and interpretation re
 __all__=[x for x in globals() if not x.startswith('_')]
 from . import story_schema  # noqa: F401
 from . import measurement_schema  # Immutable semantics; no new measurement values.
+from . import bridge_schema  # Opt-in deterministic Bridge history; no downstream promotion.

@@ -18,6 +18,13 @@ def digest(value):
 
 
 def accounting_metric(row):
+    selected = {'SELECTED_REVENUE': ('Selected population revenue', 'financial_revenue'),
+                'SELECTED_CONTRIBUTION_0': ('Selected population Contribution 0', 'contribution_0')}
+    if row['statement_type'] == 'PNL' and row['line_code'] in selected and row['line_name'] == selected[row['line_code']][0]:
+        return selected[row['line_code']][1]
+    # Explicit additive source measure; never an alias for gross profit.
+    if row['statement_type'] == 'PNL' and row['line_code'] == 'CONTRIBUTION_0' and row['line_name'] == 'Contribution 0':
+        return 'contribution_0'
     options = (('REVENUE', 'financial_revenue'), ('DIRECT_COST', 'financial_direct_cost'),
                ('GROSS_PROFIT', 'financial_gross_profit'), ('EBITDA', 'financial_ebitda')) if row['statement_type'] == 'PNL' else (
                ('AR', 'bs_accounts_receivable'), ('AP', 'bs_accounts_payable'),
@@ -116,6 +123,7 @@ class AccountingContextSource:
             origin=MeasurementSlot(store='LEGACY_SQLITE', resource='financial_statement_line', source_id=statement_line_id, slot='amount'),
             origin_digest=snapshot, metric=accounting_metric(row), unit='CURRENCY', currency=currency,
             economic_basis=declared('economic_basis'), segment_scope=declared('segment_scope'), period=period,
+            entity_type=declared('entity_type'), entity_id=declared('entity_id'),
             coverage=declared('coverage') or 'UNKNOWN', coverage_basis=declared('coverage_basis'),
             source_version=ref, lineage=(ref, file_ref, record_ref) + ((parent_ref,) if parent_ref else ()), supersedes=supersedes,
             source_locator=declared('source_locator'),

@@ -1,4 +1,4 @@
-"""Frozen v2.43 upgrade evidence, independent of current metadata."""
+"""Frozen checkpoint upgrade evidence, independent of current metadata."""
 from pathlib import Path
 import tempfile
 import unittest
@@ -12,11 +12,11 @@ from profit_doctor.persistence import Base, DatabaseConfig, build_engine
 from tests.test_postgresql_live_qualification_v218 import alembic_config
 
 ROOT = Path(__file__).resolve().parents[1]
-FIXTURE = ROOT / 'tests/fixtures/v243_schema.sql'
-NEW = {'canonical_fact_v244', 'canonical_finding_v244', 'canonical_semantic_revision_v244'}
+FIXTURE = ROOT / 'tests/fixtures/v248_checkpoint_schema.sql'
+NEW = {'canonical_bridge_snapshot', 'canonical_bridge_input', 'canonical_bridge_audit'}
 
 
-class CanonicalMigrationsV244(unittest.TestCase):
+class EconomicBridgeMigrationsV248B(unittest.TestCase):
     def setUp(self):
         directory = tempfile.TemporaryDirectory()
         self.addCleanup(directory.cleanup)
@@ -44,7 +44,7 @@ class CanonicalMigrationsV244(unittest.TestCase):
         command.upgrade(self.cfg, 'head')
         self.assert_head()
 
-    def test_frozen_v243_all_tables_preserved_downgrade_and_reupgrade(self):
+    def test_frozen_checkpoint_all_tables_preserved_downgrade_and_reupgrade(self):
         statements = '\n'.join(x for x in FIXTURE.read_text(encoding='utf-8').splitlines() if not x.startswith('--'))
         with self.engine.begin() as c:
             for statement in statements.split(';'):
@@ -52,7 +52,7 @@ class CanonicalMigrationsV244(unittest.TestCase):
                     c.exec_driver_sql(statement)
         old = MetaData()
         old.reflect(self.engine)
-        self.assertEqual(22, len(old.tables)-1)
+        self.assertEqual(33, len(old.tables)-1)
         self.assertFalse(NEW & old.tables.keys())
         expected = {}
         with self.engine.begin() as c:
@@ -65,10 +65,10 @@ class CanonicalMigrationsV244(unittest.TestCase):
                     if col.foreign_keys:
                         fk = next(iter(col.foreign_keys)).column
                         value = ids[fk.table.name] if fk.primary_key else 'old-client'
-                    elif col.primary_key:
-                        value = ids[table.name]
                     elif str(col.type) == 'INTEGER':
                         value = 1
+                    elif col.primary_key:
+                        value = ids[table.name]
                     else:
                         value = {'document':'{"frozen":"preserve exactly"}', 'created_at':'2026-09-28T00:00:00+00:00',
                                  'currency':'GBP','base_currency':'GBP'}.get(col.name, 'legacy')
@@ -77,14 +77,15 @@ class CanonicalMigrationsV244(unittest.TestCase):
                 expected[table.name] = row
         command.upgrade(self.cfg, 'head')
         self.assert_head()
-        # Payload removal on downgrade is intentional; v2.43 identity/audits stay.
+        # Populated Bridge records/audits are intentionally removed on rollback.
         with self.engine.begin() as c:
-            for name in NEW:
-                values = dict(object_id='old-reasoning_object_v243', client_id='old-client', revision=1, document='{"qualification":"payload"}')
-                if name == 'canonical_semantic_revision_v244':
-                    values['revision_id'] = 'qualification-revision'
-                c.execute(insert(Base.metadata.tables[name]).values(**values))
-        for revision in ('head', '0004_reasoning_foundation'):
+            c.execute(insert(Base.metadata.tables['canonical_bridge_snapshot']).values(
+                snapshot_id='bridge',client_id='old-client',run_id='old-engine_run',series_id='series',revision=1,document='{}'))
+            c.execute(insert(Base.metadata.tables['canonical_bridge_input']).values(
+                snapshot_id='bridge',client_id='old-client',binding_id='old-canonical_measurement_binding',role='OPENING'))
+            c.execute(insert(Base.metadata.tables['canonical_bridge_audit']).values(
+                event_id='event',snapshot_id='bridge',client_id='old-client',created_at='2026-09-29T00:00:00+00:00',document='{}'))
+        for revision in ('head', '0009_measurement_context'):
             if revision != 'head':
                 command.downgrade(self.cfg, revision)
             with self.engine.connect() as c:
@@ -98,10 +99,10 @@ class CanonicalMigrationsV244(unittest.TestCase):
                 self.assertEqual(0, c.scalar(text(f'SELECT count(*) FROM {name}')))
 
     def test_forward_migration_does_not_import_mutable_models(self):
-        source = (ROOT/'alembic/versions/0005_canonical_facts_findings.py').read_text(encoding='utf-8')
+        source = (ROOT/'alembic/versions/0010_economic_bridge.py').read_text(encoding='utf-8')
         for forbidden in ('profit_doctor', 'metadata', 'create_all'):
             self.assertNotIn(forbidden, source)
-        self.assertIn("down_revision = '0004_reasoning_foundation'", source)
+        self.assertIn("down_revision='0009_measurement_context'", source)
 
 
 if __name__ == '__main__':

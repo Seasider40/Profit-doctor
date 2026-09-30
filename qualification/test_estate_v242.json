@@ -730,5 +730,17 @@
     "fixture_dependent": false,
     "expected_tests": 3,
     "introduced_in": "2.47"
+  },
+  "test_economic_bridge_v248b": {
+    "category": "reasoning/economic-bridge",
+    "fixture_dependent": true,
+    "expected_tests": 33,
+    "introduced_in": "2.48B"
+  },
+  "test_economic_bridge_migrations_v248b": {
+    "category": "persistence/migration",
+    "fixture_dependent": true,
+    "expected_tests": 3,
+    "introduced_in": "2.48B"
   }
 }
