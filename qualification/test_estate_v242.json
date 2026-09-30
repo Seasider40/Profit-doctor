@@ -742,5 +742,17 @@
     "fixture_dependent": true,
     "expected_tests": 3,
     "introduced_in": "2.48B"
+  },
+  "test_economic_impact_v249": {
+    "category": "reasoning/economic-impact",
+    "fixture_dependent": true,
+    "expected_tests": 40,
+    "introduced_in": "2.49"
+  },
+  "test_economic_impact_migrations_v249": {
+    "category": "persistence/migration",
+    "fixture_dependent": true,
+    "expected_tests": 3,
+    "introduced_in": "2.49"
   }
 }

@@ -1,0 +1,23 @@
+{
+  "domain": "SYNTHETIC",
+  "fixture_key": "operational-wc-a",
+  "client_id": "c1",
+  "run_id": "r1",
+  "consequence_key": "synthetic-stock-a",
+  "metric": "net_trade_working_capital",
+  "scope": "SYNTHETIC named population; not Golden Manufacturing",
+  "as_of": "2026-12-31",
+  "currency": "GBP",
+  "coverage": "COMPLETE",
+  "observed": "1200.00000000000000000001",
+  "counterfactual": {
+    "basis": "SYNTHETIC_OPERATIONAL_REQUIREMENT",
+    "required": "1000.00000000000000000000",
+    "scope": "SYNTHETIC named population; not Golden Manufacturing",
+    "as_of": "2026-12-31",
+    "rationale": "Fixture axiom: the named population requires exactly 1000 GBP at the stated as-of date.",
+    "evidence": ["Synthetic operational schedule WC-A, same scope and date"],
+    "assumptions": ["Fixture requirement is exact; no real-world benchmark or recoverability is established"]
+  },
+  "limitations": ["SYNTHETIC qualification evidence only; not production or Golden Manufacturing"]
+}
