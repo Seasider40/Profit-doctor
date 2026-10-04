@@ -128,15 +128,18 @@ class PriorityService:
             raise ScopeError('Priority envelope mismatch')
         if value.result.basis.origin != 'CANONICAL' or evaluate(value.result.basis) != value.result:
             raise ScopeError('Unqualified priority result')
-        # No assessed future-provider inputs may be smuggled into stored production history.
         b = value.result.basis
-        if any(getattr(b, n).state != 'NOT_ASSESSED' for n in ('materiality','urgency','controllability','persistence')) or b.evidence_strength.state not in ('NOT_ASSESSED','CONFLICTED'):
-            raise ScopeError('No production provider is qualified for these dimensions')
+        self._validate_basis(b, subject, value.run_id)
         if current:
             latest = self._row(tables.assessment, subject_id)
             if latest['revision'] != value.revision or value.run_id != self.run_id or self._basis(subject['source_kind'], subject['source_id']) != b:
                 raise RevisionConflict('Priority is historical or its source changed; reassessment required')
         return value
+
+    def _validate_basis(self, basis, subject, run_id):
+        # Frozen default boundary; opt-in providers must validate their own proof.
+        if any(getattr(basis, n).state != 'NOT_ASSESSED' for n in ('materiality','urgency','controllability','persistence')) or basis.evidence_strength.state not in ('NOT_ASSESSED','CONFLICTED'):
+            raise ScopeError('No production provider is qualified for these dimensions')
 
     def decide(self, subject_id, assessment_revision, request, *, expected_revision=None):
         request = AdviserRequest.from_json(request.to_json())

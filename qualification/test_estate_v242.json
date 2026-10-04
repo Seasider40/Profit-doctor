@@ -796,5 +796,11 @@
     "fixture_dependent": true,
     "expected_tests": 3,
     "introduced_in": "2.51"
+  },
+  "test_attention_v252": {
+    "category": "reasoning/attention-evidence",
+    "fixture_dependent": true,
+    "expected_tests": 26,
+    "introduced_in": "2.52"
   }
 }
