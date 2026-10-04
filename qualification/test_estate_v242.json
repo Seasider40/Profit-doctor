@@ -784,5 +784,17 @@
     "fixture_dependent": true,
     "expected_tests": 3,
     "introduced_in": "2.50"
+  },
+  "test_priority_v251": {
+    "category": "reasoning/priority-decision",
+    "fixture_dependent": true,
+    "expected_tests": 40,
+    "introduced_in": "2.51"
+  },
+  "test_priority_migrations_v251": {
+    "category": "persistence/migration",
+    "fixture_dependent": true,
+    "expected_tests": 3,
+    "introduced_in": "2.51"
   }
 }

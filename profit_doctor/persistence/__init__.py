@@ -11,3 +11,4 @@ from . import bridge_schema  # Opt-in deterministic Bridge history; no downstrea
 from . import impact_schema  # Opt-in qualification; candidates never enter Impact totals.
 from . import receivables_schema  # Outstanding snapshot ownership, never original invoice inference.
 from . import opportunity_schema  # Opt-in prospective capture; no product cutover.
+from . import priority_schema  # Separate machine attention and human decisions.

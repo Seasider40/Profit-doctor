@@ -1,4 +1,4 @@
-"""Frozen v2.45 upgrade evidence, independent of current metadata."""
+"""Frozen checkpoint upgrade evidence, independent of current metadata."""
 from pathlib import Path
 import tempfile
 import unittest
@@ -12,11 +12,11 @@ from profit_doctor.persistence import Base, DatabaseConfig, build_engine
 from tests.test_postgresql_live_qualification_v218 import alembic_config
 
 ROOT = Path(__file__).resolve().parents[1]
-FIXTURE = ROOT / 'tests/fixtures/v245_schema.sql'
-NEW = {'canonical_hypothesis', 'canonical_interpretation_revision'}
+FIXTURE = ROOT / 'tests/fixtures/v250_opportunity_schema.sql'
+NEW = {'canonical_priority_subject','canonical_priority_assessment','canonical_adviser_decision','canonical_priority_audit'}
 
 
-class HypothesisMigrationsV246(unittest.TestCase):
+class PriorityMigrationsV251(unittest.TestCase):
     def setUp(self):
         directory = tempfile.TemporaryDirectory()
         self.addCleanup(directory.cleanup)
@@ -44,7 +44,7 @@ class HypothesisMigrationsV246(unittest.TestCase):
         command.upgrade(self.cfg, 'head')
         self.assert_head()
 
-    def test_frozen_v245_all_tables_preserved_downgrade_and_reupgrade(self):
+    def test_frozen_checkpoint_all_tables_preserved_downgrade_and_reupgrade(self):
         statements = '\n'.join(x for x in FIXTURE.read_text(encoding='utf-8').splitlines() if not x.startswith('--'))
         with self.engine.begin() as c:
             for statement in statements.split(';'):
@@ -52,7 +52,7 @@ class HypothesisMigrationsV246(unittest.TestCase):
                     c.exec_driver_sql(statement)
         old = MetaData()
         old.reflect(self.engine)
-        self.assertEqual(26, len(old.tables)-1)
+        self.assertEqual(48, len(old.tables)-1)
         self.assertFalse(NEW & old.tables.keys())
         expected = {}
         with self.engine.begin() as c:
@@ -62,9 +62,16 @@ class HypothesisMigrationsV246(unittest.TestCase):
                     continue
                 row = {}
                 for col in table.columns:
-                    if col.foreign_keys:
-                        fk = next(iter(col.foreign_keys)).column
-                        value = ids[fk.table.name] if fk.primary_key else 'old-client'
+                    if str(col.type) == 'INTEGER':
+                        value = 1
+                    elif col.foreign_keys:
+                        values = []
+                        for reference in col.foreign_keys:
+                            fk = reference.column
+                            values.append(expected[fk.table.name][fk.name] if fk.table.name in expected
+                                else ids[fk.table.name] if fk.primary_key else 'old-client')
+                        self.assertEqual(1, len(set(values)), 'Frozen foreign-key seed must reconcile')
+                        value = values[0]
                     elif str(col.type) == 'INTEGER':
                         value = 1
                     elif col.primary_key:
@@ -77,13 +84,7 @@ class HypothesisMigrationsV246(unittest.TestCase):
                 expected[table.name] = row
         command.upgrade(self.cfg, 'head')
         self.assert_head()
-        # Payload removal on downgrade is intentional; v2.45 records and foundation links/audits stay.
-        with self.engine.begin() as c:
-            for name in NEW:
-                values = dict(object_id='old-reasoning_object_v243', revision=1, client_id='old-client', document='{"qualification":"payload"}')
-                values['finding_id' if name == 'canonical_hypothesis' else 'hypothesis_id'] = 'old-reasoning_object_v243'
-                c.execute(insert(Base.metadata.tables[name]).values(**values))
-        for revision in ('head', '0006_evidence_graph'):
+        for revision in ('head', '0013_opportunity'):
             if revision != 'head':
                 command.downgrade(self.cfg, revision)
             with self.engine.connect() as c:
@@ -97,10 +98,10 @@ class HypothesisMigrationsV246(unittest.TestCase):
                 self.assertEqual(0, c.scalar(text(f'SELECT count(*) FROM {name}')))
 
     def test_forward_migration_does_not_import_mutable_models(self):
-        source = (ROOT/'alembic/versions/0007_hypothesis_interpretation.py').read_text(encoding='utf-8')
+        source = (ROOT/'alembic/versions/0014_priority_decision.py').read_text(encoding='utf-8')
         for forbidden in ('profit_doctor', 'metadata', 'create_all'):
             self.assertNotIn(forbidden, source)
-        self.assertIn("down_revision = '0006_evidence_graph'", source)
+        self.assertIn("down_revision = '0013_opportunity'", source)
 
 
 if __name__ == '__main__':
