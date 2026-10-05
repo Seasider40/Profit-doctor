@@ -802,5 +802,35 @@
     "fixture_dependent": true,
     "expected_tests": 26,
     "introduced_in": "2.52"
+  },
+  "test_dataset_contract_v253": {
+    "category": "reasoning/dataset-comparability",
+    "fixture_dependent": false,
+    "expected_tests": 19,
+    "introduced_in": "2.53"
+  },
+  "test_dataset_contract_service_v253": {
+    "category": "persistence/dataset-contract",
+    "fixture_dependent": true,
+    "expected_tests": 9,
+    "introduced_in": "2.53"
+  },
+  "test_dataset_migrations_v253": {
+    "category": "persistence/migration",
+    "fixture_dependent": true,
+    "expected_tests": 3,
+    "introduced_in": "2.53"
+  },
+  "test_dataset_qualification_runner_v253": {
+    "category": "PostgreSQL-static/live",
+    "fixture_dependent": false,
+    "expected_tests": 12,
+    "introduced_in": "2.53"
+  },
+  "test_preserved_schema_fixture": {
+    "category": "persistence/migration",
+    "fixture_dependent": true,
+    "expected_tests": 2,
+    "introduced_in": "2.53 fixture portability"
   }
 }

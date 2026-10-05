@@ -12,3 +12,4 @@ from . import impact_schema  # Opt-in qualification; candidates never enter Impa
 from . import receivables_schema  # Outstanding snapshot ownership, never original invoice inference.
 from . import opportunity_schema  # Opt-in prospective capture; no product cutover.
 from . import priority_schema  # Separate machine attention and human decisions.
+from . import dataset_schema  # Governed source population/definition contracts.
