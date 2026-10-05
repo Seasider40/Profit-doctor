@@ -13,3 +13,4 @@ from . import receivables_schema  # Outstanding snapshot ownership, never origin
 from . import opportunity_schema  # Opt-in prospective capture; no product cutover.
 from . import priority_schema  # Separate machine attention and human decisions.
 from . import dataset_schema  # Governed source population/definition contracts.
+from . import temporal_schema  # Opt-in governed history; no downstream promotion.

@@ -832,5 +832,29 @@
     "fixture_dependent": true,
     "expected_tests": 2,
     "introduced_in": "2.53 fixture portability"
+  },
+  "test_temporal_contracts_v254": {
+    "category": "reasoning/temporal",
+    "fixture_dependent": false,
+    "expected_tests": 34,
+    "introduced_in": "2.54"
+  },
+  "test_temporal_service_v254": {
+    "category": "persistence/temporal",
+    "fixture_dependent": true,
+    "expected_tests": 12,
+    "introduced_in": "2.54"
+  },
+  "test_temporal_migrations_v254": {
+    "category": "persistence/migration",
+    "fixture_dependent": true,
+    "expected_tests": 3,
+    "introduced_in": "2.54"
+  },
+  "test_temporal_runner_v254": {
+    "category": "PostgreSQL-static/live",
+    "fixture_dependent": false,
+    "expected_tests": 4,
+    "introduced_in": "2.54"
   }
 }
