@@ -17,7 +17,7 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         python: ['3.12', '3.13']
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 45
+    timeout-minutes: ${{ matrix.os == 'windows-latest' && 60 || 45 }}
     env:
       # No secrets: these nine tests must skip, never masquerade as SQLite passes.
       PROFIT_DOCTOR_POSTGRES_TEST_URL: ''
