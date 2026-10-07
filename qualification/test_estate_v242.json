@@ -851,10 +851,100 @@
     "expected_tests": 3,
     "introduced_in": "2.54"
   },
+  "test_production_evidence_foundation_v255": {
+    "category": "persistence/migration",
+    "fixture_dependent": true,
+    "expected_tests": 24,
+    "introduced_in": "2.55"
+  },
+  "test_production_semantics_v255": {
+    "category": "governance/production-evidence",
+    "fixture_dependent": true,
+    "expected_tests": 45,
+    "introduced_in": "2.55"
+  },
+  "test_monthly_absence_v255": {
+    "category": "governance/production-evidence",
+    "fixture_dependent": true,
+    "expected_tests": 71,
+    "introduced_in": "2.55"
+  },
+  "test_production_ownership_service_v255": {
+    "category": "persistence/production-evidence",
+    "fixture_dependent": true,
+    "expected_tests": 22,
+    "introduced_in": "2.55"
+  },
+  "test_production_evidence_migrations_v255": {
+    "category": "persistence/migration",
+    "fixture_dependent": true,
+    "expected_tests": 5,
+    "introduced_in": "2.55"
+  },
   "test_temporal_runner_v254": {
     "category": "PostgreSQL-static/live",
     "fixture_dependent": false,
     "expected_tests": 4,
     "introduced_in": "2.54"
+  },
+  "test_component_margin_v255": {
+    "category": "governance/production-evidence",
+    "fixture_dependent": true,
+    "expected_tests": 59,
+    "introduced_in": "2.55"
+  },
+  "test_component_margin_migrations_v255": {
+    "category": "persistence/migration",
+    "fixture_dependent": true,
+    "expected_tests": 4,
+    "introduced_in": "2.55"
+  },
+  "test_production_temporal_v255": {
+    "category": "governance/production-temporal",
+    "fixture_dependent": true,
+    "expected_tests": 22,
+    "introduced_in": "2.55"
+  },
+  "test_ar_semantics_v255": {
+    "category": "governance/production-evidence",
+    "fixture_dependent": true,
+    "expected_tests": 42,
+    "introduced_in": "2.55"
+  },
+  "test_production_history_v255": {
+    "category": "governance/production-evidence",
+    "fixture_dependent": true,
+    "expected_tests": 23,
+    "introduced_in": "2.55"
+  },
+  "test_zero_ar_v255": {
+    "category": "governance/production-evidence",
+    "fixture_dependent": true,
+    "expected_tests": 17,
+    "introduced_in": "2.55"
+  },
+  "test_production_assessments_v255": {
+    "category": "governance/production-evidence",
+    "fixture_dependent": true,
+    "expected_tests": 13,
+    "introduced_in": "2.55"
+  },
+  "test_evidence_readiness_v255": {
+    "category": "governance/production-evidence",
+    "fixture_dependent": true,
+    "expected_tests": 19,
+    "introduced_in": "2.55"
+  },
+  "test_production_history_migrations_v255": {
+    "category": "persistence/migration",
+    "fixture_dependent": true,
+    "expected_tests": 4,
+    "introduced_in": "2.55"
+  },
+  "test_production_runner_v255": {
+    "category": "PostgreSQL-static/live",
+    "fixture_dependent": false,
+    "expected_tests": 4,
+    "introduced_in": "2.55"
   }
 }

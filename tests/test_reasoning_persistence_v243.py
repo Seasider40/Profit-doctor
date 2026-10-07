@@ -13,7 +13,7 @@ import unittest
 from alembic import command
 from alembic.autogenerate import compare_metadata
 from alembic.migration import MigrationContext
-from sqlalchemy import MetaData, inspect, insert, select, text, update
+from sqlalchemy import CheckConstraint, MetaData, inspect, insert, select, text, update
 from sqlalchemy.exc import IntegrityError
 
 from profit_doctor.persistence import Base, DatabaseConfig, build_engine, session_factory
@@ -276,7 +276,18 @@ class ReasoningMigrationV243(unittest.TestCase):
                              opts={'compare_type': True, 'compare_server_default': True}), Base.metadata))
         self.assertEqual(set(Base.metadata.tables), set(inspect(self.engine).get_table_names()) - {'alembic_version'})
         for name in Base.metadata.tables:
-            self.assertEqual([], inspect(self.engine).get_check_constraints(name))
+            # This local suite upgrades to current head. Preserve zero CHECKs
+            # on legacy tables and require exact parity for additive owners.
+            expected = sorted(
+                ({'name': constraint.name, 'sqltext': str(constraint.sqltext)}
+                 for constraint in Base.metadata.tables[name].constraints
+                 if isinstance(constraint, CheckConstraint)),
+                key=lambda item: item['name'] or '',
+            )
+            self.assertEqual(expected, sorted(
+                inspect(self.engine).get_check_constraints(name),
+                key=lambda item: item['name'] or '',
+            ))
 
     def test_clean_creation_and_repeat_upgrade(self):
         command.upgrade(self.cfg, 'head')

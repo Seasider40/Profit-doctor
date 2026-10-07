@@ -22,6 +22,8 @@ class MeasurementContextService:
         self.foundation = FoundationService(session, client_id, self.actor)
         self.foundation._run(run_id)
         self.receivables = None
+        self.monthly = None
+        self.margins = None
         self.workbook_providers = ()
         if run_id is None:
             raise ScopeError('Context capture requires a scoped run')
@@ -48,7 +50,9 @@ class MeasurementContextService:
                 row['context_id'], row['client_id'], row['run_id'], row['supersedes']):
             raise ScopeError('Context payload disagrees with indexed envelope')
         if current:
-            reproduced = (self._receivable_provider().context(value.origin.source_id) if value.capture_method == 'RECEIVABLE_SNAPSHOT_V1' else
+            reproduced = (self._margin_provider().get_margin(value.origin.source_id, current=True).context if value.capture_method == 'QUALIFIED_C0_MARGIN_V255' else
+                          self._monthly_provider().context(value.origin.source_id) if value.capture_method == 'QUALIFIED_MONTHLY_SOURCE_V255' else
+                          self._receivable_provider().context(value.origin.source_id) if value.capture_method == 'RECEIVABLE_SNAPSHOT_V1' else
                           self._fact_context(value.origin) if value.capture_method == 'RETAINED_FACT_SLOT_V1' else
                           self.source.capture(value.origin.source_id, value.run_id, supersedes=value.supersedes))
             if reproduced != value:
@@ -128,6 +132,10 @@ class MeasurementContextService:
 
     def _owner(self, owner):
         owner = MeasurementSlot.from_json(owner.to_json())
+        if owner.resource == 'canonical_monthly_c0_margin':
+            return self._margin_provider().owner(owner.source_id)
+        if owner.resource == 'canonical_monthly_measurement':
+            return self._monthly_provider().owner(owner.source_id)
         if owner.resource == 'canonical_receivable_invoice':
             return self._receivable_provider().owner(owner.source_id)
         if owner.store == 'CANONICAL':
@@ -159,6 +167,18 @@ class MeasurementContextService:
         if not isinstance(self.receivables, ReceivablesService) or self.receivables.contexts is not self:
             raise ScopeError('Registered receivables owner required')
         return self.receivables
+
+    def _monthly_provider(self):
+        from profit_doctor.reasoning.production_evidence.service import ProductionEvidenceService
+        if not isinstance(self.monthly, ProductionEvidenceService) or self.monthly.contexts is not self:
+            raise ScopeError('Registered monthly owner required')
+        return self.monthly
+
+    def _margin_provider(self):
+        from profit_doctor.reasoning.production_evidence.margin import MarginQualificationService
+        if not isinstance(self.margins, MarginQualificationService) or self.margins.contexts is not self:
+            raise ScopeError('Registered exact monthly margin owner required')
+        return self.margins
 
     @staticmethod
     def _owner_key(owner):

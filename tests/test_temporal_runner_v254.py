@@ -40,4 +40,4 @@ class TemporalRunnerV254(unittest.TestCase):
         with patch.object(runner.cumulative,'main',return_value=7) as main:
             self.assertEqual(7,runner.main(['test-arguments']))
             main.assert_called_once_with(['test-arguments'])
-        self.assertEqual('0016_temporal_evidence',runner.cumulative.CURRENT_HEAD)
+        self.assertEqual('0019_production_history',runner.cumulative.CURRENT_HEAD)

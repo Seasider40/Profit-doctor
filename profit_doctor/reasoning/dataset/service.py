@@ -58,6 +58,7 @@ class DatasetContractService:
 
     def _get_contract(self, contract_id):
         row = self.session.execute(select(tables.dataset_contract).where(
+            tables.dataset_contract.c.contract_role == 'RAW',
             tables.dataset_contract.c.contract_id == contract_id,
             tables.dataset_contract.c.client_id == self.client_id)).mappings().one_or_none()
         if row is None:
@@ -83,6 +84,7 @@ class DatasetContractService:
         dataset_ref = self.source_ref('DATASET', 'dataset', source['dataset_id'])
         file_ref = self.source_ref('SOURCE_FILE', 'source_file', source['source_file_id'])
         existing = self.session.execute(select(tables.dataset_contract).where(
+            tables.dataset_contract.c.contract_role == 'RAW',
             tables.dataset_contract.c.client_id == self.client_id,
             tables.dataset_contract.c.source_version_id == dataset_version_id,
             tables.dataset_contract.c.revision == 1)).mappings().one_or_none()
@@ -132,6 +134,7 @@ class DatasetContractService:
             raise ValueError('Declaration authority must remain human-provided')
         previous = self.get_contract(contract_id, current=True)
         latest = self.session.execute(select(tables.dataset_contract).where(
+            tables.dataset_contract.c.contract_role == 'RAW',
             tables.dataset_contract.c.client_id == self.client_id,
             tables.dataset_contract.c.source_version_id == previous.source_version.source_id
         ).order_by(tables.dataset_contract.c.revision.desc()).limit(1)).mappings().one()

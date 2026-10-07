@@ -7,7 +7,7 @@ from alembic import command
 from alembic.autogenerate import compare_metadata
 from alembic.migration import MigrationContext
 from alembic.script import ScriptDirectory
-from sqlalchemy import event, inspect, text
+from sqlalchemy import CheckConstraint, event, inspect, text
 from sqlalchemy.dialects import postgresql
 from sqlalchemy.engine import Engine
 from sqlalchemy.schema import CreateColumn, CreateIndex, CreateTable
@@ -49,7 +49,16 @@ class AlembicSchemaV241(unittest.TestCase):
                     [column.name for column in table.primary_key],
                     inspector.get_pk_constraint(table.name)["constrained_columns"],
                 )
-                self.assertEqual([], inspector.get_check_constraints(table.name))
+                # Legacy tables still require zero CHECKs. New governed owners
+                # must retain every declared CHECK, with no extra/missing rule.
+                expected_checks = sorted(
+                    ({'name': constraint.name, 'sqltext': str(constraint.sqltext)}
+                     for constraint in table.constraints if isinstance(constraint, CheckConstraint)),
+                    key=lambda item: item['name'] or '',
+                )
+                self.assertEqual(expected_checks, sorted(
+                    inspector.get_check_constraints(table.name), key=lambda item: item['name'] or '',
+                ))
 
     def test_fresh_migrations_match_all_metadata_and_postgresql_ddl(self):
         # Capture the DDL actually executed by the migration chain, then compile
@@ -72,12 +81,14 @@ class AlembicSchemaV241(unittest.TestCase):
             return (
                 tuple(str(CreateColumn(c).compile(dialect=dialect)) for c in table.columns),
                 sorted(line.strip().rstrip(",") for line in
-                       str(CreateTable(table).compile(dialect=dialect)).splitlines()
+                       str(CreateTable(table).compile(dialect=dialect)).replace("_alembic_tmp_", "").splitlines()
                        if line.strip()),
             )
 
         tables = {
-            ddl.element.name: ddl.element for ddl in emitted
+            # A SQLite batch alteration creates a temporary replacement and
+            # renames it to the original table. Compare that final emitted DDL.
+            ddl.element.name.removeprefix("_alembic_tmp_"): ddl.element for ddl in emitted
             if isinstance(ddl, CreateTable) and ddl.element.name != "alembic_version"
         }
         self.assertEqual(set(Base.metadata.tables), set(tables))
@@ -87,7 +98,8 @@ class AlembicSchemaV241(unittest.TestCase):
         self.assertEqual(
             {str(CreateIndex(index).compile(dialect=dialect))
              for table in Base.metadata.tables.values() for index in table.indexes},
-            {str(ddl.compile(dialect=dialect)) for ddl in emitted if isinstance(ddl, CreateIndex)},
+            {str(ddl.compile(dialect=dialect)).replace("_alembic_tmp_", "")
+             for ddl in emitted if isinstance(ddl, CreateIndex)},
         )
 
     def test_qualification_reset_replays_migrations_on_repeated_runs(self):

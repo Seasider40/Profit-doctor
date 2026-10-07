@@ -44,7 +44,7 @@ class TemporalMigrationsV254(unittest.TestCase):
         self.assertEqual(set(Base.metadata.tables),set(inspect(self.engine).get_table_names())-{'alembic_version'})
         with self.engine.connect() as connection:
             context=MigrationContext.configure(connection,opts={'compare_type':True,'compare_server_default':True})
-            self.assertEqual(('0016_temporal_evidence',),context.get_current_heads())
+            self.assertEqual(('0019_production_history',),context.get_current_heads())
             self.assertEqual([],compare_metadata(context,Base.metadata))
         for name in NEW:
             actual=inspect(self.engine).get_foreign_keys(name)

@@ -14,3 +14,6 @@ from . import opportunity_schema  # Opt-in prospective capture; no product cutov
 from . import priority_schema  # Separate machine attention and human decisions.
 from . import dataset_schema  # Governed source population/definition contracts.
 from . import temporal_schema  # Opt-in governed history; no downstream promotion.
+from . import production_evidence_schema  # Separate source-derived monthly/absence owners.
+from . import production_qualification_schema  # Authenticated C0 component and exact margin histories.
+from . import production_history_schema  # Scoped production semantic/temporal/readiness histories.

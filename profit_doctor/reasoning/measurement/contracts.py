@@ -11,7 +11,7 @@ from profit_doctor.reasoning.canonical.service import identity
 
 class MeasurementSlot(Contract):
     store: Literal['LEGACY_SQLITE', 'CANONICAL']
-    resource: Literal['financial_statement_line', 'primitive_result', 'signal', 'canonical_fact', 'canonical_receivable_invoice']
+    resource: Literal['financial_statement_line', 'primitive_result', 'signal', 'canonical_fact', 'canonical_receivable_invoice', 'canonical_monthly_measurement', 'canonical_monthly_c0_margin']
     source_id: Identifier
     slot: Literal['amount', 'numeric_value', 'observed', 'comparison', 'derived']
 
@@ -19,8 +19,9 @@ class MeasurementSlot(Contract):
     def valid_slot(self):
         slots = {'financial_statement_line': ('amount',), 'primitive_result': ('numeric_value',),
                  'signal': ('observed', 'comparison', 'derived'),
-                 'canonical_fact': ('observed', 'comparison', 'derived'), 'canonical_receivable_invoice': ('amount',)}
-        if self.slot not in slots[self.resource] or (self.store == 'CANONICAL') != (self.resource in ('canonical_fact', 'canonical_receivable_invoice')):
+                 'canonical_fact': ('observed', 'comparison', 'derived'), 'canonical_receivable_invoice': ('amount',),
+                 'canonical_monthly_measurement': ('amount',), 'canonical_monthly_c0_margin': ('derived',)}
+        if self.slot not in slots[self.resource] or (self.store == 'CANONICAL') != (self.resource in ('canonical_fact', 'canonical_receivable_invoice', 'canonical_monthly_measurement', 'canonical_monthly_c0_margin')):
             raise ValueError('Invalid owning store/resource/measurement slot')
         return self
 
@@ -50,7 +51,7 @@ class MeasurementContext(Contract):
     revision_state: Literal['UNKNOWN_UNBOUND', 'ORIGINAL', 'RESTATEMENT'] = 'UNKNOWN_UNBOUND'
     prior_source_revision_id: Identifier | None = None
     supersedes: Identifier | None = None
-    capture_method: Literal['ACCOUNTING_CSV_EXPLICIT_V1', 'RETAINED_ACCOUNTING_V1', 'RETAINED_FACT_SLOT_V1', 'RECEIVABLE_SNAPSHOT_V1']
+    capture_method: Literal['ACCOUNTING_CSV_EXPLICIT_V1', 'RETAINED_ACCOUNTING_V1', 'RETAINED_FACT_SLOT_V1', 'RECEIVABLE_SNAPSHOT_V1', 'QUALIFIED_MONTHLY_SOURCE_V255', 'QUALIFIED_C0_MARGIN_V255']
     limitations: tuple[str, ...] = ()
 
     @property

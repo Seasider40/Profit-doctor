@@ -1,6 +1,6 @@
 """Canonical dataset contracts and immutable comparability assessments."""
 from sqlalchemy import (Column, ForeignKey, ForeignKeyConstraint, Index, Integer,
-                        String, Table, Text, UniqueConstraint)
+                        String, Table, Text, UniqueConstraint, CheckConstraint)
 
 from .models import Base
 
@@ -13,8 +13,10 @@ dataset_contract = Table('canonical_dataset_contract', Base.metadata,
     Column('revision', Integer, nullable=False),
     Column('supersedes', String(64)),
     Column('document', Text, nullable=False),
+    Column('contract_role', String(32), nullable=False, server_default='RAW'),
     UniqueConstraint('contract_id', 'client_id', name='uq_dataset_contract_client'),
-    UniqueConstraint('client_id', 'source_version_id', 'revision', name='uq_dataset_contract_source_revision'),
+    UniqueConstraint('client_id', 'source_version_id', 'contract_role', 'revision', name='uq_dataset_contract_source_revision'),
+    CheckConstraint("contract_role IN ('RAW', 'AR_SEMANTIC_PROJECTION')", name='ck_dataset_contract_role'),
     ForeignKeyConstraint(['supersedes', 'client_id'],
         ['canonical_dataset_contract.contract_id', 'canonical_dataset_contract.client_id'], ondelete='RESTRICT'))
 Index('ix_dataset_contract_source_version', dataset_contract.c.client_id, dataset_contract.c.source_version_id)

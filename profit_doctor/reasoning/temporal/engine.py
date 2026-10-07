@@ -102,8 +102,28 @@ def evaluate(value: TemporalInput) -> TemporalResult:
     production input cannot acquire positive temporal claims in this release.
     """
     value = TemporalInput.from_json(value.to_json())
+    return _evaluate_sequence(value)
+
+
+def _evaluate_sequence(value, *, result_model=TemporalResult, measurement_kinds=('FACT',),
+                       measurement_families=('SALES_TRANSACTIONS',), ar_admission=None):
+    """Shared sequence kernel. Production admission belongs to its owning service.
+
+    The frozen evaluate entry point retains its exact input validation, family
+    restrictions and unconditional CANONICAL refusal. A separately versioned
+    owner may supply truthful typed observations after registered-source checks.
+    This helper neither verifies sources nor writes/publishes assessments.
+    """
     policy = POLICIES[value.contract_key]
     cash = value.contract_key == ContractKey.CASH_TRAPPED_RECEIVABLES_LIFECYCLE
+    cash_families = ('GENERAL_LEDGER',)
+    if ar_admission is not None:
+        from profit_doctor.reasoning.production_evidence.ar_admission import ARProductionAdmission
+        from profit_doctor.reasoning.production_evidence.ar_semantics import AR_FAMILY
+        if not cash or not isinstance(ar_admission, ARProductionAdmission):
+            raise ValueError('Only typed registered production AR admission is supported')
+        ar_admission.validate(value)
+        cash_families = (AR_FAMILY,)
     window = value.window
     excluded, revisions, included, problems, comparisons = [], [], [], [], []
     grouped = {}
@@ -149,13 +169,13 @@ def evaluate(value: TemporalInput) -> TemporalResult:
     for o in included:
         if (o.metric, o.unit) != (policy.metric, policy.unit):
             problems.append('MEASUREMENT_SEMANTICS_MISMATCH')
-        if not cash and (o.source_kind != 'FACT' or o.value is None or not o.lineage):
+        if not cash and (o.source_kind not in measurement_kinds or o.value is None or not o.lineage):
             problems.append('MISSING_CANONICAL_MEASUREMENT_EVIDENCE')
         ds = o.dataset
         if ds is None:
             problems.append('DATASET_CONTRACT_UNAVAILABLE')
             continue
-        if ds.family.verified_value != ('GENERAL_LEDGER' if cash else 'SALES_TRANSACTIONS'):
+        if ds.family.verified_value not in (cash_families if cash else measurement_families):
             problems.append('DATASET_FAMILY_OUTSIDE_CONTRACT')
         if ds.revision_relationship.verified_value != 'NEW_OBSERVATION' and o.observation_id not in resolved_replacements:
             problems.append('NEW_OBSERVATION_OR_RESOLVED_REVISION_NOT_VERIFIED')
@@ -188,19 +208,19 @@ def evaluate(value: TemporalInput) -> TemporalResult:
         limitations=('Assessment is restricted to the requested window; NEW never means never previously occurred.',
                      'No automatic downstream state, confidence uplift, seasonality or causal claim.'))
     if value.origin == 'CANONICAL':
-        return TemporalResult(**base, reasons=tuple(sorted(set(problems))) + (
+        return result_model(**base, reasons=tuple(sorted(set(problems))) + (
             'PRODUCTION_TEMPORAL_PREREQUISITES_NOT_VERIFIED',
             'No production temporal/absence verification provider is qualified in v2.54.'))
     if problems or not included:
         indeterminate = bool(gaps) or 'UNRESOLVED_DUPLICATE_OR_RESTATEMENT' in problems
         state = 'INDETERMINATE' if indeterminate else 'NOT_ASSESSED'
-        return TemporalResult(**base, sequence=state,
+        return result_model(**base, sequence=state,
             lifecycle=Lifecycle.INDETERMINATE if cash and indeterminate else Lifecycle.NOT_ASSESSED,
             trajectory=Trajectory.INDETERMINATE if not cash and indeterminate else Trajectory.NOT_ASSESSED,
             reasons=tuple(sorted(set(problems))) or ('NO_INCLUDED_OBSERVATIONS',))
     base.update(sequence='QUALIFIED', consecutive=True)
     if cash:
-        return TemporalResult(**base, lifecycle=_lifecycle(included),
+        return result_model(**base, lifecycle=_lifecycle(included),
             reasons=('Presence/explicit verified absence assessed independently of magnitude.',))
     movements = tuple(movement(policy, a, b) for a, b in zip(included, included[1:]))
     trajectory = Trajectory.NOT_ASSESSED
@@ -217,5 +237,5 @@ def evaluate(value: TemporalInput) -> TemporalResult:
             Trajectory.DECREASING: Interpretation.WORSENING, Trajectory.STABLE: Interpretation.STABLE,
             Trajectory.MIXED: Interpretation.INDETERMINATE,
             Trajectory.INDETERMINATE: Interpretation.INDETERMINATE}.get(trajectory, Interpretation.NOT_ASSESSED)
-    return TemporalResult(**base, movements=movements, trajectory=trajectory,
+    return result_model(**base, movements=movements, trajectory=trajectory,
         interpretation=interpretation, reasons=('Two observations describe movement only; trajectory requires at least three.',))
