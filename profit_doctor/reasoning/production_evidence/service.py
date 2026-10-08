@@ -149,10 +149,10 @@ class ProductionEvidenceService:
         self.session.execute(insert(tables.audit).values(event_id=event.event_id,client_id=self.client_id,
             **{key:owner},created_at=event.created_at.isoformat(),document=event.to_json()))
 
-    def owner(self, measurement_id):
-        value = self.get_monthly(measurement_id,current=True)
+    def owner(self, measurement_id, *, current=True):
+        value = self.get_monthly(measurement_id,current=current)
         # Context binding uses the complete owned snapshot, never diagnostic data.
         return value.model_dump(mode='json'),value.measurement.value,value.measurement.unit.value
 
-    def context(self, measurement_id):
-        return self.get_monthly(measurement_id,current=True).context
+    def context(self, measurement_id, *, current=True):
+        return self.get_monthly(measurement_id,current=current).context

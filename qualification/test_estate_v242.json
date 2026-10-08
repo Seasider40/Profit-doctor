@@ -941,6 +941,12 @@
     "expected_tests": 4,
     "introduced_in": "2.55"
   },
+  "test_revenue_historical_context_v2551": {
+    "category": "persistence/reasoning/temporal",
+    "fixture_dependent": false,
+    "expected_tests": 11,
+    "introduced_in": "2.55.1"
+  },
   "test_production_runner_v255": {
     "category": "PostgreSQL-static/live",
     "fixture_dependent": false,

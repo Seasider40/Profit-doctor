@@ -77,7 +77,7 @@ class ProductionTemporalService:
             source_kind='MONTHLY_REVENUE', source_id=value.measurement_id, source_revision=value.revision,
             scope_key=self._scope(value.semantic.manifest.scope), period=value.context.period, dataset=value.semantic.contract,
             metric='revenue', unit='CURRENCY', currency='GBP', value=value.measurement.value,
-            context_binding_id=self.production.contexts.lookup(value.context.origin).binding_id,
+            context_binding_id=self.production.contexts.lookup(value.context.origin, current=not historical).binding_id,
             lineage=value.lineage, source_snapshot=value.to_json())
 
     def _margin(self, identifier, *, historical=False):
@@ -120,7 +120,7 @@ class ProductionTemporalService:
             source_kind='MONTHLY_C0_MARGIN', source_id=value.margin_id, source_revision=value.revision,
             scope_key=self._scope(revenue.semantic.manifest.scope), period=period, dataset=projection,
             metric='contribution_0_margin', unit='PERCENTAGE', value=value.measurement.value if value.measurement else None,
-            context_binding_id=self.production.contexts.lookup(value.context.origin).binding_id if value.context else None,
+            context_binding_id=self.production.contexts.lookup(value.context.origin, current=not historical).binding_id if value.context else None,
             lineage=lineage, source_snapshot=value.to_json())
 
     def evaluate(self, contract_key, window, *, monthly_ids=(), margin_ids=(), absence_ids=(), impact_ids=()):

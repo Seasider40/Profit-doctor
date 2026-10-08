@@ -248,8 +248,8 @@ class MarginQualificationService:
                 raise RevisionConflict('Margin no longer matches current source-qualified components')
         return value
 
-    def owner(self, identifier):
-        value = self.get_margin(identifier, current=True)
+    def owner(self, identifier, *, current=True):
+        value = self.get_margin(identifier, current=current)
         if value.status != 'QUALIFIED':
             raise ScopeError('Refused margin has no qualified measurement context')
         return value.model_dump(mode='json'), value.measurement.value, value.measurement.unit.value

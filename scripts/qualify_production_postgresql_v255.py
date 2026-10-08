@@ -24,13 +24,15 @@ from tests import test_zero_ar_v255 as zero
 from tests import test_production_assessments_v255 as assessments
 from tests import test_evidence_readiness_v255 as readiness
 from tests import test_production_history_migrations_v255 as history_migrations
+from tests import test_revenue_historical_context_v2551 as historical_context
 
 CURRENT_HEAD='0019_production_history'
 CLASSES=(ownership.ProductionOwnershipServiceV255,component.ComponentMarginV255,
     component_migrations.ComponentMarginMigrationsV255,migrations.ProductionEvidenceMigrationsV255,
     ar.ARSemanticCheckpointV255,temporal.ProductionTemporalV255,history.ProductionHistoryV255,
     zero.ZeroARV255,assessments.ProductionAssessmentsV255,assessments.ARProductionAssessmentsV255,
-    readiness.EvidenceReadinessV255,readiness.ARReadinessV255,history_migrations.ProductionHistoryMigrationsV255)
+    readiness.EvidenceReadinessV255,readiness.ARReadinessV255,history_migrations.ProductionHistoryMigrationsV255,
+    historical_context.RevenueHistoricalContextV2551)
 
 
 def live_class(base):

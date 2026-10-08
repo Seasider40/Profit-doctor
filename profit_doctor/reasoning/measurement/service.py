@@ -130,12 +130,14 @@ class MeasurementContextService:
             (self.client_id, dataset_version_id)).fetchall()
         return tuple(self.capture_accounting(row[0]) for row in rows)
 
-    def _owner(self, owner):
+    def _owner(self, owner, *, current=True):
         owner = MeasurementSlot.from_json(owner.to_json())
         if owner.resource == 'canonical_monthly_c0_margin':
-            return self._margin_provider().owner(owner.source_id)
+            return self._margin_provider().owner(owner.source_id, current=current)
         if owner.resource == 'canonical_monthly_measurement':
-            return self._monthly_provider().owner(owner.source_id)
+            return self._monthly_provider().owner(owner.source_id, current=current)
+        if not current:
+            raise ScopeError('Historical binding access requires a separately owned monthly measurement')
         if owner.resource == 'canonical_receivable_invoice':
             return self._receivable_provider().owner(owner.source_id)
         if owner.store == 'CANONICAL':
@@ -220,8 +222,9 @@ class MeasurementContextService:
         self._audit(context, value)
         return value
 
-    def lookup(self, owner):
-        row, _, _ = self._owner(owner)
+    def lookup(self, owner, *, current=True):
+        """Resolve the pinned owner snapshot; historical access is explicit."""
+        row, _, _ = self._owner(owner, current=current)
         binding_id = self.session.scalar(select(tables.measurement_binding.c.binding_id).where(
             tables.measurement_binding.c.client_id == self.client_id,
             tables.measurement_binding.c.owner_key == self._owner_key(owner),
@@ -230,8 +233,8 @@ class MeasurementContextService:
             raise ScopeError('Current measurement slot is unknown/unbound')
         return self.get_binding(binding_id)
 
-    def resolve_binding(self, binding_id):
-        """Validate every pinned dependency before a current-context consumer."""
+    def resolve_binding(self, binding_id, *, current=True):
+        """Validate pinned dependencies without promoting historical owners."""
         value = self.get_binding(binding_id)
         visited = set()
         cursor = value
@@ -239,13 +242,13 @@ class MeasurementContextService:
             if cursor.binding_id in visited or cursor.context_id != value.context_id:
                 raise ScopeError('Cyclic or inconsistent context propagation chain')
             visited.add(cursor.binding_id)
-            row, _, _ = self._owner(cursor.owner)
+            row, _, _ = self._owner(cursor.owner, current=current)
             if digest(row) != cursor.owner_digest:
                 raise RevisionConflict('A measurement in the propagation chain changed')
             if cursor.parent_binding_id is None:
                 break
             cursor = self.get_binding(cursor.parent_binding_id)
-        context = self.get_context(value.context_id, current=True)
+        context = self.get_context(value.context_id, current=current)
         if cursor.owner != context.origin:
             raise ScopeError('Context chain does not terminate at its captured origin')
         return value, context
