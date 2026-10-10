@@ -952,5 +952,35 @@
     "fixture_dependent": false,
     "expected_tests": 4,
     "introduced_in": "2.55"
+  },
+  "test_workspace_v256": {
+    "category": "management/output",
+    "expected_tests": 25,
+    "fixture_dependent": false,
+    "qualification": "v2.56 local workflow; no production evidence promotion"
+  },
+  "test_workspace_http_v256": {
+    "category": "governance/security",
+    "expected_tests": 8,
+    "fixture_dependent": false,
+    "qualification": "v2.56 local workflow; no production evidence promotion"
+  },
+  "test_workspace_migrations_v256": {
+    "category": "persistence/migration",
+    "expected_tests": 5,
+    "fixture_dependent": false,
+    "qualification": "v2.56 local workflow; no production evidence promotion"
+  },
+  "test_workspace_readers_v256": {
+    "category": "governance/security",
+    "expected_tests": 11,
+    "fixture_dependent": false,
+    "qualification": "v2.56 local workflow; no production evidence promotion"
+  },
+  "test_workspace_runner_v256": {
+    "category": "PostgreSQL-static",
+    "expected_tests": 4,
+    "fixture_dependent": false,
+    "qualification": "v2.56 local workflow; no production evidence promotion"
   }
 }

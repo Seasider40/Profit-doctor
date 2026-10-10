@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profit Doctor — Evidence Workspace</title><link rel="stylesheet" href="/ui.css"><script src="/ui.js" defer></script></head>
+<body><header><h1>Profit Doctor</h1><p>Controlled evidence workspace · Local adviser access</p></header>
+<main><p class="notice">Receipt and administrative review do not authenticate, reconcile or qualify evidence. No analytical conclusions are created here.</p>
+<p id="message" role="status"></p>
+<form id="login"><h2>Operator access</h2><label>Local access code <input id="code" type="password" required autocomplete="off"></label><button>Open workspace</button></form>
+<div id="workspace" hidden>
+<section><h2>Client and engagement</h2><label>Client <select id="clients"></select></label>
+<form id="client-form"><label>Authorised new client ID <select id="new-client"></select></label><label>Client name <input id="client-name" required maxlength="255"></label><button>Create client</button></form>
+<label>Saved engagements <select id="engagements"></select></label><button id="open">Open selected engagement</button>
+<form id="engagement-form"><h3>New engagement</h3><label>Title <input id="title" required maxlength="255"></label>
+<label>Entity identifier <input id="entity" required></label><label>Ledger identifier <input id="ledger" required></label>
+<label>Period start <input id="start" type="date" required></label><label>Period end <input id="end" type="date" required></label>
+<p>These are administrative scope declarations, not verified source semantics.</p><button>Create engagement</button></form></section>
+<div id="review" hidden><section><h2 id="review-title"></h2><p id="scope"></p><button id="close">Close / reopen engagement</button>
+<form id="selection-form"><h3>Existing owner selections</h3><label>Analytical run IDs (comma-separated) <input id="runs"></label>
+<label>Governed readiness IDs (comma-separated) <input id="readiness-ids"></label>
+<label>Selection view <select id="readiness-mode"><option value="CURRENT">Current — owning service must revalidate</option><option value="HISTORICAL">Historical — retained snapshot, no current assurance</option></select></label>
+<p>Selections require existing scoped owners. No evidence is qualified by selecting it.</p><button>Save selection</button></form></section>
+<section><h2>Evidence inventory</h2><form id="receipt-form"><label>Original files <input id="files" type="file" multiple required></label>
+<label>Declared source role <input id="role" required value="ACCOUNTING_PACK"></label>
+<label>Replacement of receipt (optional) <select id="predecessor"></select></label><button>Receive originals</button></form><div id="inventory"></div>
+<form id="registration-form"><h3>Existing registration association</h3><label>Receipt <select id="registration-receipt"></select></label>
+<label>Existing dataset version ID <input id="version-id" required></label><p>Exact retained bytes and client ownership must match; this does not authenticate the source.</p><button>Associate registration</button></form></section>
+<section><h2>Readiness</h2><p>Governed readiness is separate from legacy upload/diagnostic coverage. No whole-company score.</p><button id="readiness-current">Inspect current selection</button><button id="readiness-history">Inspect historical selection</button><div id="readiness"></div></section>
+<section><h2>Missing information</h2><form id="request-form"><label>Question <textarea id="question" required maxlength="2000"></textarea></label>
+<label>Evidence required <textarea id="required" required maxlength="2000"></textarea></label><label>Prerequisite reference (optional) <input id="prerequisite"></label><label>Due date <input id="due" type="date"></label><button>Create request</button></form><div id="requests"></div></section>
+<section><h2>Immutable workflow history</h2><div id="history"></div></section></div></div></main></body></html>

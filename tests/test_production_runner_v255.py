@@ -42,7 +42,7 @@ class ProductionRunnerV255(unittest.TestCase):
     def test_current_head_only_changed_inside_execution(self):
         original=runner.inherited.cumulative.CURRENT_HEAD
         def delegated(args):
-            self.assertEqual(runner.inherited.cumulative.CURRENT_HEAD,'0019_production_history')
+            self.assertEqual(runner.inherited.cumulative.CURRENT_HEAD,'0020_engagement_workspace')
             self.assertIs(runner.inherited.cumulative.build_live_suite,runner.build_live_suite)
             return 7
         with patch.object(runner.inherited.cumulative,'main',side_effect=delegated):self.assertEqual(runner.main([]),7)

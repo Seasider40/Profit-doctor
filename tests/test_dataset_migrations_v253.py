@@ -48,7 +48,7 @@ class DatasetContractMigrationsV253(unittest.TestCase):
         self.assertEqual(set(Base.metadata.tables), set(inspect(self.engine).get_table_names())-{'alembic_version'})
         with self.engine.connect() as connection:
             context = MigrationContext.configure(connection, opts={'compare_type':True,'compare_server_default':True})
-            self.assertEqual(('0019_production_history',), context.get_current_heads())
+            self.assertEqual(('0020_engagement_workspace',), context.get_current_heads())
             self.assertEqual([], compare_metadata(context, Base.metadata))
         for name in NEW:
             expected = Base.metadata.tables[name]

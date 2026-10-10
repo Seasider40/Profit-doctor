@@ -37,7 +37,7 @@ class ProductionEvidenceMigrationsV255(unittest.TestCase):
         self.assertEqual(set(Base.metadata.tables),set(inspect(self.engine).get_table_names())-{'alembic_version'})
         with self.engine.connect() as connection:
             ctx=MigrationContext.configure(connection,opts={'compare_type':True,'compare_server_default':True})
-            self.assertEqual(('0019_production_history',),ctx.get_current_heads())
+            self.assertEqual(('0020_engagement_workspace',),ctx.get_current_heads())
             self.assertEqual([],compare_metadata(ctx,Base.metadata))
 
     def test_clean_upgrade_and_repeat_head(self):
@@ -110,5 +110,5 @@ class ProductionEvidenceMigrationsV255(unittest.TestCase):
 
     def test_all_revision_ids_fit_version_table(self):
         script=ScriptDirectory.from_config(self.cfg)
-        self.assertEqual('0019_production_history',script.get_current_head())
+        self.assertEqual('0020_engagement_workspace',script.get_current_head())
         for rev in script.walk_revisions():self.assertLessEqual(len(rev.revision),32)

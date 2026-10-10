@@ -15,7 +15,7 @@ class ComponentMarginMigrationsV255(fixture.ComponentFixture, unittest.TestCase)
     def test_current_head_matches_metadata(self):
         with self.engine.connect() as connection:
             ctx = MigrationContext.configure(connection, opts={'compare_type': True, 'compare_server_default': True})
-            self.assertEqual(ctx.get_current_heads(), ('0019_production_history',))
+            self.assertEqual(ctx.get_current_heads(), ('0020_engagement_workspace',))
             self.assertEqual(compare_metadata(ctx, Base.metadata), [])
 
     def test_0017_data_preserved_on_downgrade_and_reupgrade(self):

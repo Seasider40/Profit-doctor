@@ -17,3 +17,4 @@ from . import temporal_schema  # Opt-in governed history; no downstream promotio
 from . import production_evidence_schema  # Separate source-derived monthly/absence owners.
 from . import production_qualification_schema  # Authenticated C0 component and exact margin histories.
 from . import production_history_schema  # Scoped production semantic/temporal/readiness histories.
+from . import workspace_schema  # Administrative receipt/request owners; no analytical activation.

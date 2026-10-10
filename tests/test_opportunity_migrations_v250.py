@@ -29,7 +29,7 @@ class OpportunityMigrationsV250(unittest.TestCase):
         self.assertEqual(set(Base.metadata.tables), set(inspect(self.engine).get_table_names()) - {'alembic_version'})
         with self.engine.connect() as c:
             context = MigrationContext.configure(c, opts={'compare_type': True, 'compare_server_default': True})
-            self.assertEqual(('0019_production_history',), context.get_current_heads())
+            self.assertEqual(('0020_engagement_workspace',), context.get_current_heads())
             self.assertEqual([], compare_metadata(context, Base.metadata))
         for name in NEW:
             self.assertEqual([], inspect(self.engine).get_check_constraints(name))

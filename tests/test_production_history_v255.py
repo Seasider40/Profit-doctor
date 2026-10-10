@@ -172,7 +172,7 @@ class ProductionHistoryV255(unittest.TestCase):
     def test_metadata_matches_clean_current_head(self):
         with self.session.get_bind().connect() as connection:
             ctx=MigrationContext.configure(connection,opts={'compare_type':True,'compare_server_default':True})
-            self.assertEqual(ctx.get_current_heads(),('0019_production_history',))
+            self.assertEqual(ctx.get_current_heads(),('0020_engagement_workspace',))
             self.assertEqual(compare_metadata(ctx,Base.metadata),[])
 
     def test_downgrade_removes_only_derived_contracts_preserving_raw_source_rows(self):
