@@ -1,6 +1,7 @@
 """Loopback operator application; no unauthenticated client-data routes."""
 from contextlib import contextmanager
 import secrets
+from urllib.parse import unquote
 from pathlib import Path
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse, Response
@@ -11,6 +12,9 @@ from profit_doctor.reasoning.domain.service import ScopeError, RevisionConflict
 from .contracts import EngagementRevision, InformationRevision
 from .service import WorkspaceService
 from .storage import EvidenceStore
+from .session import OperatorSession, SessionRefused
+from .setup import SetupFields, SetupService
+from .home import reviews as review_summaries
 
 
 class Input(BaseModel):
@@ -38,11 +42,19 @@ class RegistrationInput(Input):
     version_id: str
 
 
-def create_app(factory, operator, store, *, port=8765, access_code=None, reader_factory=None):
+class SetupInput(Input):
+    draft_id: str = Field(min_length=1, max_length=64, pattern=r'^[A-Za-z0-9_.:-]+$')
+    fields: SetupFields
+    expected_revision: int = Field(strict=True, ge=0)
+    action: str = 'SAVE'
+    step: int = Field(strict=True, ge=1, le=3, default=1)
+
+
+def create_app(factory, operator, store, *, port=8765, access_code=None, reader_factory=None, session_clock=None):
     if not isinstance(store, EvidenceStore) or not 1024 <= port <= 65535:
         raise ValueError('Controlled evidence storage and unprivileged loopback port required')
     access_code = access_code or secrets.token_urlsafe(32)
-    session_token, csrf = secrets.token_urlsafe(32), secrets.token_urlsafe(32)
+    operator_session = OperatorSession(clock=session_clock)
     origin = f'http://127.0.0.1:{port}'
     app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 
@@ -68,13 +80,19 @@ def create_app(factory, operator, store, *, port=8765, access_code=None, reader_
         if request.method not in ('GET', 'HEAD') and request.headers.get('origin') != origin:
             return JSONResponse({'error': 'Origin validation failed'}, status_code=403)
         if request.url.path not in ('/', '/session', '/ui.js', '/ui.css'):
-            if not secrets.compare_digest(request.cookies.get('pd_workspace', ''), session_token):
+            try:
+                request.state.operator_session = operator_session.authenticate(
+                    request.cookies.get('pd_workspace', ''),
+                    csrf=request.headers.get('X-CSRF-Token', '') if request.method not in ('GET', 'HEAD') else None,
+                    touch=request.url.path not in ('/workspace/session', '/workspace/session/renew', '/workspace/session/end'))
+            except SessionRefused:
                 return JSONResponse({'error': 'Operator session required'}, status_code=401)
-            if request.method not in ('GET', 'HEAD') and not secrets.compare_digest(
-                    request.headers.get('X-CSRF-Token', ''), csrf):
+            except PermissionError:
                 return JSONResponse({'error': 'Request token required'}, status_code=403)
         try:
             response = await call_next(request)
+        except SessionRefused:
+            response = JSONResponse({'error': 'Operator session required'}, status_code=401)
         except (PermissionError, ScopeError):
             response = JSONResponse({'error': 'Object unavailable in authorised scope'}, status_code=403)
         except (RevisionConflict, IntegrityError):
@@ -102,16 +120,58 @@ def create_app(factory, operator, store, *, port=8765, access_code=None, reader_
     @app.post('/session')
     async def login(request: Request):
         data = await request.body()
-        if len(data) > 200 or not secrets.compare_digest(data.decode('utf-8'), access_code):
+        if len(data) > 200 or not secrets.compare_digest(data, access_code.encode()):
             return JSONResponse({'error': 'Operator access code refused'}, status_code=401)
-        response = JSONResponse({'csrf': csrf, 'actor': operator.actor, 'client_grants': sorted(operator.clients)})
-        response.set_cookie('pd_workspace', session_token, httponly=True, samesite='strict', path='/')
+        binding = operator_session.login()
+        response = JSONResponse(operator_session.metadata(binding) | {'actor': operator.actor, 'client_grants': sorted(operator.clients)})
+        response.set_cookie('pd_workspace', binding.token, httponly=True, samesite='strict', path='/')
         return response
+
+    @app.get('/workspace/session')
+    def resume_session(request: Request):
+        return operator_session.metadata(request.state.operator_session) | {'actor': operator.actor, 'client_grants': sorted(operator.clients)}
+
+    @app.post('/workspace/session/renew')
+    def renew_session(request: Request):
+        return operator_session.metadata(request.state.operator_session, renew=True)
+
+    @app.post('/workspace/session/end')
+    def end_session(request: Request):
+        operator_session.end(request.state.operator_session)
+        response = JSONResponse({'signed_out': True})
+        response.delete_cookie('pd_workspace', path='/', httponly=True, samesite='strict')
+        return response
+
+    @app.get('/clients/{client}/setup-drafts')
+    def setup_drafts(client: str, offset: int = 0, limit: int = 50):
+        with service() as owner:
+            return SetupService(owner).list(client, offset=offset, limit=limit)
+
+    @app.get('/clients/{client}/setup-drafts/{draft}')
+    def setup_draft(client: str, draft: str):
+        with service() as owner:
+            return SetupService(owner).get(client, draft).model_dump(mode='json')
+
+    @app.get('/clients/{client}/setup-drafts/{draft}/history')
+    def setup_history(client: str, draft: str):
+        with service() as owner:
+            return SetupService(owner).history(client, draft)
+
+    @app.post('/clients/{client}/setup-drafts')
+    def save_setup(client: str, data: SetupInput, request: Request):
+        with service() as owner:
+            return SetupService(owner).save(client, data.draft_id, data.fields,
+                expected_revision=data.expected_revision, key=key(request), action=data.action, step=data.step).model_dump(mode='json')
 
     @app.get('/clients')
     def clients():
         with service() as owner:
             return owner.clients()
+
+    @app.get('/workspace/home')
+    def home(offset: int = 0, limit: int = 50):
+        with service() as owner:
+            return {'clients': owner.clients(), 'reviews': review_summaries(owner, offset=offset, limit=limit)}
 
     @app.post('/clients')
     def create_client(data: ClientInput):
@@ -136,7 +196,8 @@ def create_app(factory, operator, store, *, port=8765, access_code=None, reader_
         with service() as owner:
             return {'engagement': owner.engagement(client, engagement).model_dump(mode='json'),
                 'inventory': owner.inventory(client, engagement), 'requests': owner.requests(client, engagement),
-                'history': owner.history(client, engagement)}
+                'history': owner.history(client, engagement),
+                'setup_history': SetupService(owner).review_history(client, engagement)}
 
     @app.post('/clients/{client}/engagements/{engagement}/receipts')
     async def receive(client: str, engagement: str, request: Request):
@@ -146,7 +207,9 @@ def create_app(factory, operator, store, *, port=8765, access_code=None, reader_
                 return JSONResponse({'error': 'Receipt exceeds 50 MiB'}, status_code=413)
             data.extend(chunk)
         with service() as owner:
-            return owner.receive(client, engagement, request.headers.get('X-Filename', ''), bytes(data),
+            encoded = request.headers.get('X-Filename-Encoded')
+            filename = unquote(encoded, encoding='utf-8', errors='strict') if encoded is not None else request.headers.get('X-Filename', '')
+            return owner.receive(client, engagement, filename, bytes(data),
                 role=request.headers.get('X-Source-Role', 'UNSPECIFIED'),
                 predecessor=request.headers.get('X-Predecessor'), key=key(request)).model_dump(mode='json')
 

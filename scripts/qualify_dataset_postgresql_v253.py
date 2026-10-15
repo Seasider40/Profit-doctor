@@ -51,7 +51,7 @@ BRANCH_ID = 'br-royal-math-za046ex1'
 BRANCH_NAME = 'v2-41-qualification'
 API_BASE = 'https://console.neon.tech/api/v2'
 V243_HEAD = '0004_reasoning_foundation'
-CURRENT_HEAD = '0020_engagement_workspace'
+CURRENT_HEAD = '0021_adviser_setup'
 
 
 _V243_BASE = None
@@ -193,16 +193,16 @@ def verify_neon_target(url: str, expected_host: str, token: str, *, api_get=neon
     endpoints = endpoint_payload.get('endpoints')
     if not isinstance(endpoints, list):
         raise UnsafeQualificationTarget('Neon project endpoint response did not contain an endpoint list')
-    # Fail closed on any host collision; the one matching endpoint must itself
-    # prove exact branch ownership and enabled read-write capability.
+    # Count the branch's enabled read-write endpoints before matching the host.
+    # A matching host cannot select one of several competing write endpoints.
     host_matches = [row for row in endpoints if isinstance(row, dict)
                     and str(row.get('host', '')).lower().rstrip('.') == host]
-    eligible = [row for row in host_matches
+    eligible = [row for row in endpoints if isinstance(row, dict)
                 if row.get('branch_id') == BRANCH_ID
                 and row.get('type', row.get('endpoint_type')) == 'read_write'
-                and row.get('disabled') is False
-                and row.get('project_id', PROJECT_ID) == PROJECT_ID]
-    if len(host_matches) != 1 or len(eligible) != 1:
+                and row.get('disabled') is False]
+    if (len(host_matches) != 1 or len(eligible) != 1 or eligible[0] is not host_matches[0]
+            or eligible[0].get('project_id', PROJECT_ID) != PROJECT_ID):
         raise UnsafeQualificationTarget('The direct host must map uniquely to an enabled read-write endpoint on the verified branch')
     endpoint = eligible[0]
     return {

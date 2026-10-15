@@ -1,0 +1,53 @@
+name: Adviser Browser CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser:
+    name: Adviser browser (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    env:
+      PROFIT_DOCTOR_POSTGRES_TEST_URL: ''
+      NEON_API_KEY: ''
+      NEON_API_TOKEN: ''
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install application dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Install isolated browser qualification runtime
+        shell: pwsh
+        run: |
+          npm install --prefix "$env:RUNNER_TEMP/adviser-browser" --ignore-scripts --no-audit --no-fund playwright@1.62.1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node "$env:RUNNER_TEMP/adviser-browser/node_modules/playwright/cli.js" install --with-deps chromium
+          exit $LASTEXITCODE
+      - name: Complete synthetic real-browser qualification
+        shell: pwsh
+        run: |
+          node scripts/qualify_adviser_browser_v257.cjs --python python --playwright-module "$env:RUNNER_TEMP/adviser-browser/node_modules/playwright" --report "$env:RUNNER_TEMP/adviser-browser-results.json"
+          exit $LASTEXITCODE
+      - name: Retain exact browser results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: adviser-browser-${{ matrix.os }}
+          path: ${{ runner.temp }}/adviser-browser-results.json
+          if-no-files-found: error

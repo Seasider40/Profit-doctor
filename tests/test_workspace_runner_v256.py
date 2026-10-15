@@ -48,7 +48,7 @@ class WorkspaceRunnerV256(unittest.TestCase):
         cumulative = runner.inherited.inherited.cumulative
         original = cumulative.CURRENT_HEAD
         def delegated(args):
-            self.assertEqual(cumulative.CURRENT_HEAD, '0020_engagement_workspace')
+            self.assertEqual(cumulative.CURRENT_HEAD, '0021_adviser_setup')
             self.assertIs(cumulative.build_live_suite, runner.build_live_suite)
             return 1
         with patch.object(cumulative, 'main', side_effect=delegated):

@@ -23,7 +23,7 @@ class ProductionHistoryMigrationsV255(unittest.TestCase):
     def test_head_matches_metadata_and_complete_scope_constraints(self):
         with self.session.get_bind().connect() as connection:
             ctx=MigrationContext.configure(connection,opts={'compare_type':True,'compare_server_default':True})
-            self.assertEqual(ctx.get_current_heads(),('0020_engagement_workspace',))
+            self.assertEqual(ctx.get_current_heads(),('0021_adviser_setup',))
             self.assertEqual(compare_metadata(ctx,Base.metadata),[])
 
     def test_downgrade_removes_ar_projection_but_preserves_original_absence(self):

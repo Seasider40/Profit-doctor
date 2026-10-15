@@ -982,5 +982,30 @@
     "expected_tests": 4,
     "fixture_dependent": false,
     "qualification": "v2.56 local workflow; no production evidence promotion"
+  },
+  "test_adviser_setup_v257": {
+    "category": "governance/security",
+    "fixture_dependent": false,
+    "expected_tests": 21
+  },
+  "test_adviser_session_v257": {
+    "category": "governance/security",
+    "fixture_dependent": false,
+    "expected_tests": 28
+  },
+  "test_adviser_migrations_v257": {
+    "category": "persistence/migration",
+    "fixture_dependent": false,
+    "expected_tests": 5
+  },
+  "test_adviser_home_v257": {
+    "category": "management/output",
+    "fixture_dependent": false,
+    "expected_tests": 6
+  },
+  "test_adviser_runner_v257": {
+    "category": "PostgreSQL-static",
+    "fixture_dependent": false,
+    "expected_tests": 20
   }
 }

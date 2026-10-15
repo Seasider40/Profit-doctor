@@ -13,7 +13,7 @@ from tests import test_workspace_v256 as workflow
 from tests import test_workspace_migrations_v256 as migrations
 from tests import test_workspace_readers_v256 as readers
 
-CURRENT_HEAD = '0020_engagement_workspace'
+CURRENT_HEAD = '0021_adviser_setup'
 CLASSES = (workflow.WorkspaceV256, migrations.WorkspaceMigrationsV256, readers.WorkspaceReadersV256)
 LIVE_CLASSES = tuple(inherited.live_class(cls) for cls in CLASSES)
 

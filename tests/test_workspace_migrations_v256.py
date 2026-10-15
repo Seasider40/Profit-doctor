@@ -9,7 +9,7 @@ from sqlalchemy import inspect, select, text
 from sqlalchemy.engine import create_mock_engine
 from tests.test_workspace_v256 import WorkspaceFixture
 from tests.test_postgresql_live_qualification_v218 import alembic_config
-from profit_doctor.persistence import Base, Client, workspace_schema as t
+from profit_doctor.persistence import Base, Client, workspace_schema as t, setup_schema
 from tests.preserved_schema_fixture import load_preserved_schema_fixture, reflect_preserved_schema
 
 FIXTURE = Path(__file__).with_name('fixtures') / 'v2551_schema.sql'
@@ -19,7 +19,7 @@ class WorkspaceMigrationsV256(WorkspaceFixture, unittest.TestCase):
     def test_clean_head_equals_metadata(self):
         with self.engine.connect() as connection:
             context = MigrationContext.configure(connection, opts={'compare_type': True, 'compare_server_default': True})
-            self.assertEqual(context.get_current_heads(), ('0020_engagement_workspace',))
+            self.assertEqual(context.get_current_heads(), ('0021_adviser_setup',))
             self.assertEqual(compare_metadata(context, Base.metadata), [])
 
     def test_upgrade_downgrade_reupgrade_preserves_legacy_clients(self):
@@ -67,7 +67,8 @@ class WorkspaceMigrationsV256(WorkspaceFixture, unittest.TestCase):
                 command.upgrade(alembic_config(url), 'head')
                 with engine.connect() as connection:
                     self.assertEqual(compare_metadata(MigrationContext.configure(connection), Base.metadata), [])
-                    self.assertEqual(set(frozen.tables), set(inspect(engine).get_table_names()) - {x.name for x in t.TABLES})
+                    self.assertEqual(set(frozen.tables), set(inspect(engine).get_table_names()) -
+                        {x.name for x in t.TABLES} - {x.name for x in setup_schema.TABLES})
             finally:
                 if not live:
                     engine.dispose()

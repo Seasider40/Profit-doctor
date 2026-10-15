@@ -43,7 +43,7 @@ def main(argv=None):
     engine = build_engine(DatabaseConfig(url))
     try:
         with engine.connect() as connection:
-            if MigrationContext.configure(connection).get_current_heads() != ('0020_engagement_workspace',):
+            if MigrationContext.configure(connection).get_current_heads() != ('0021_adviser_setup',):
                 raise ValueError('Explicit local --initialize upgrade required before workspace use')
         operator = Operator(getpass.getuser(), frozenset(args.client))
         reader_factory = None

@@ -18,3 +18,4 @@ from . import production_evidence_schema  # Separate source-derived monthly/abse
 from . import production_qualification_schema  # Authenticated C0 component and exact margin histories.
 from . import production_history_schema  # Scoped production semantic/temporal/readiness histories.
 from . import workspace_schema  # Administrative receipt/request owners; no analytical activation.
+from . import setup_schema  # Separate administrative drafts; no analytical activation.
